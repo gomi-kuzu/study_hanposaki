@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  manim:
+    build: ./docker_example/
+    container_name: manim-container
+    volumes:
+      - "./manim_src:/manim:z"
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+    working_dir : /manim/

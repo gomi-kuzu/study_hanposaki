@@ -1,0 +1,3 @@
+[submodule "docker_example"]
+	path = docker_example
+	url = https://github.com/Sunwood-ai-labs/Manim-Examples-Docker.git
