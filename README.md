@@ -7,13 +7,16 @@
 # コマンド例
 - mp4を生成
 ```
-manim xxx.py VectorAsNumbers
+manim sec1_1.py VectorAsNumbers
 ```
 - movを生成
 ```
-manim --format=mov xxx.py VectorAsNumbers
+manim --format=mov sec1_1.py VectorAsNumbers
 ```
 - gifを生成（qmで品質を下げないとサイズが大きくなる）
 ```
-manim -iqm xxx.py VectorAsNumbers
+manim -iqm sec1_1.py VectorAsNumbers
 ```
+
+# しおり
+- [1章](./doc/sec1.md)
