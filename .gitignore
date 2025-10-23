@@ -1,0 +1,8 @@
+/manim_src/__*
+/manim_src/.*
+/manim_src/media/images
+/manim_src/media/Tex
+/manim_src/media/texts
+**/partial_movie_files/*
+*.mp4
+*test*.py
