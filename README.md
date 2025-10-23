@@ -9,7 +9,10 @@
 ```
 manim xxx.py VectorAsNumbers
 ```
-
+- movを生成
+```
+manim --format=mov xxx.py VectorAsNumbers
+```
 - gifを生成（qmで品質を下げないとサイズが大きくなる）
 ```
 manim -iqm xxx.py VectorAsNumbers
