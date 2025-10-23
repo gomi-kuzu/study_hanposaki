@@ -4,5 +4,5 @@
 /manim_src/media/Tex
 /manim_src/media/texts
 **/partial_movie_files/*
-*.mp4
+/manim_src/media/videos/test/
 *test*.py

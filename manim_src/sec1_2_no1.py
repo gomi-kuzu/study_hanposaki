@@ -155,7 +155,7 @@ class VectorScalarMultiplication(Scene):
         self.wait(1)
         
         # === パート3: スカラ倍したもの同士の加算 ===
-        subtitle3 = Text("スカラ倍したベクトル同士も足せる", font_size=28, color=YELLOW)
+        subtitle3 = Text("当然、スカラ倍したベクトルの加算もOK", font_size=28, color=YELLOW)
         subtitle3.next_to(title, DOWN)
         self.play(Write(subtitle3))
         self.wait(1)
