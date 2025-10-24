@@ -2,8 +2,12 @@
 ===
 # 環境
 - Makiさんが公開しているDockerFileを使わせてもらっている→[Manim-Examples-Docker](https://github.com/Sunwood-ai-labs/Manim-Examples-Docker/)
-
-
+- dockerとdocker composeをインスコしておく
+```bash
+git clone --recurse-submodules https://github.com/gomi-kuzu/study_hanposaki.git
+cd study_hanposaki/
+docker compose up -d
+```
 # コマンド例
 - mp4を生成
 ```
