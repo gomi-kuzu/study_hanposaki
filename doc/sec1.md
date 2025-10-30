@@ -16,4 +16,9 @@
 ### １次結合：「分解する」という視点
 <div><video controls src="https://github.com/user-attachments/assets/807d19b8-e990-4389-8759-3e83da5597eb"></video></div>
 
+### １次結合：「空間を生成する」という視点
+<div><video controls src="https://github.com/user-attachments/assets/861ae044-cbd1-4b99-8647-c48641ad0ea9"></video></div>
+
+
+
 
