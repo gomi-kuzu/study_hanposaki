@@ -16,9 +16,16 @@
 ### １次結合：「分解する」という視点
 <div><video controls src="https://github.com/user-attachments/assets/807d19b8-e990-4389-8759-3e83da5597eb"></video></div>
 
+- 2次元の例でみると、同じ（もしくは対向）方向のベクトルだけになっちゃうが、３次元を想像すると、、、
+    - 2本のベクトルの平面上に乗らない点はそのベクトルに分解はできないってカンジかな？
+  
 ### １次結合：「空間を生成する」という視点
-<div><video controls src="https://github.com/user-attachments/assets/861ae044-cbd1-4b99-8647-c48641ad0ea9"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/dbdd197b-1516-4093-a5b1-9e602d1a6c0c"></video></div>
 
+- 一つの制約があると、ベクトル空間の次元も落ちる
+  - ３変数の場合は、３次元空間の部分空間の平面を描く
+      - 4変数以上の場合は、いわゆる「超平面」になる
+  - このとき基底も１本減っている 
 
 
 
