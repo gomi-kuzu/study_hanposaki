@@ -20,7 +20,7 @@
     - 2本のベクトルの平面上に乗らない点はそのベクトルに分解はできないってカンジかな？
   
 ### １次結合：「空間を生成する」という視点
-<div><video controls src="https://github.com/user-attachments/assets/dbdd197b-1516-4093-a5b1-9e602d1a6c0c"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/2c0825be-4953-4f45-8277-7916f5c8f10c"></video></div>
 
 - 一つの制約があると、ベクトル空間の次元も落ちる
   - ３変数の場合は、３次元空間の部分空間の平面を描く
