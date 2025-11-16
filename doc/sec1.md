@@ -1,6 +1,6 @@
 1章
 ===
-# 第一話
+# 第1話
 ## 1.1
 ### とりあえず基本的な話
 <div><video controls src="https://github.com/user-attachments/assets/a144184f-032c-4b3d-9245-972a6e0dd0ef" muted="true"></video></div>
@@ -26,6 +26,17 @@
   - ３変数の場合は、３次元空間の部分空間の平面を描く
       - 4変数以上の場合は、いわゆる「超平面」になる
   - このとき基底も１本減っている 
+# 第2話
+## 1.1
+
+<div><video controls src="https://github.com/user-attachments/assets/86197eaa-2a8b-4468-9029-0fd3ff4fe0d2
+"></video></div>
+
+<div><video controls src="https://github.com/user-attachments/assets/1a2060f3-57be-4239-bc0e-6cc8e0bc22ca
+"></video></div>
+
+<div><video controls src=""></video></div>
 
 
+## 1.2
 
