@@ -8,12 +8,14 @@ class BasisConcept(ThreeDScene):
         # タイトル
         title = Text("基底とは何か？", font_size=36, color=WHITE)
         title.to_edge(UP)
+        self.add_fixed_in_frame_mobjects(title)
         self.play(Write(title), run_time=0.8)
         self.wait(0.8)
         
         # === パート1: 基底の定義 ===
         subtitle1 = Text("基底の定義", font_size=28, color=YELLOW)
         subtitle1.next_to(title, DOWN)
+        self.add_fixed_in_frame_mobjects(subtitle1)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.5)
         
@@ -25,6 +27,7 @@ class BasisConcept(ThreeDScene):
             Text("ポイントは必要十分であること！", color=GREEN, font_size=28, weight=BOLD)
         ).arrange(DOWN, buff=0.3)
         definition1.shift(DOWN * 0.5)
+        self.add_fixed_in_frame_mobjects(definition1)
         
         self.play(Write(definition1[0]), run_time=0.7)
         self.wait(0.4)
@@ -41,6 +44,7 @@ class BasisConcept(ThreeDScene):
         # === パート2: 2次元空間の座標軸 ===
         subtitle2 = Text("2次元空間での例", font_size=28, color=YELLOW)
         subtitle2.next_to(title, DOWN)
+        self.add_fixed_in_frame_mobjects(subtitle2)
         self.play(Write(subtitle2), run_time=0.6)
         self.wait(0.5)
         
@@ -53,12 +57,14 @@ class BasisConcept(ThreeDScene):
             axis_config={"color": GRAY}
         )
         axes.shift(LEFT * 3.5)
+        self.add_fixed_in_frame_mobjects(axes)
         
         # 座標軸ラベル
         x_label = Text("X", color=RED, font_size=18)
         y_label = Text("Y", color=GREEN, font_size=18)
         x_label.next_to(axes.get_x_axis().get_end(), DOWN)
         y_label.next_to(axes.get_y_axis().get_end(), LEFT)
+        self.add_fixed_in_frame_mobjects(x_label, y_label)
         
         self.play(Create(axes), Write(x_label), Write(y_label), run_time=0.7)
         self.wait(0.4)
@@ -67,6 +73,7 @@ class BasisConcept(ThreeDScene):
         self.play(FadeOut(subtitle2))
         subtitle3 = Text("例1: 不足 (1本のみ)", font_size=26, color=RED)
         subtitle3.next_to(title, DOWN)
+        self.add_fixed_in_frame_mobjects(subtitle3)
         self.play(Write(subtitle3), run_time=0.6)
         self.wait(0.4)
         
@@ -76,9 +83,11 @@ class BasisConcept(ThreeDScene):
             color=BLUE,
             stroke_width=5
         ).shift(axes.c2p(0, 0))
+        self.add_fixed_in_frame_mobjects(v1)
         
         v1_label = MathTex(r"\mathbf{v}_1", color=BLUE, font_size=24)
         v1_label.next_to(v1.get_end(), RIGHT, buff=0.2)
+        self.add_fixed_in_frame_mobjects(v1_label)
         
         self.play(Create(v1), Write(v1_label), run_time=0.7)
         self.wait(0.5)
@@ -89,12 +98,14 @@ class BasisConcept(ThreeDScene):
             Text("2次元空間には不足", color=RED, font_size=24),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
         explanation1_part1.to_edge(RIGHT).shift(LEFT * 2.0 + UP * 1.5)
+        self.add_fixed_in_frame_mobjects(explanation1_part1)
         
         explanation1_part2 = VGroup(
             Text("すべての点を", color=YELLOW, font_size=22),
             Text("表現できない", color=YELLOW, font_size=22),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
         explanation1_part2.to_edge(RIGHT).shift(LEFT * 2.0 + DOWN * 0.5)
+        self.add_fixed_in_frame_mobjects(explanation1_part2)
         
         for item in explanation1_part1:
             self.play(Write(item), run_time=0.6)
@@ -116,6 +127,7 @@ class BasisConcept(ThreeDScene):
         # === パート4: 不足例2 - 2本だが従属 ===
         subtitle4 = Text("例2: 不足 (2本だが1次従属)", font_size=26, color=RED)
         subtitle4.next_to(title, DOWN)
+        self.add_fixed_in_frame_mobjects(subtitle4)
         self.play(Write(subtitle4), run_time=0.6)
         self.wait(0.4)
         
@@ -181,6 +193,7 @@ class BasisConcept(ThreeDScene):
         # === パート5: 過不足ない例 - 2本で独立 ===
         subtitle5 = Text("例3: 過不足ない (基底！)", font_size=26, color=GREEN)
         subtitle5.next_to(title, DOWN)
+        self.add_fixed_in_frame_mobjects(subtitle5)
         self.play(Write(subtitle5), run_time=0.6)
         self.wait(0.4)
         
@@ -286,6 +299,7 @@ class BasisConcept(ThreeDScene):
         # === パート6: 過剰例 - 3本 ===
         subtitle6 = Text("例4: 過剰 (3本)", font_size=26, color=ORANGE)
         subtitle6.next_to(title, DOWN)
+        self.add_fixed_in_frame_mobjects(subtitle6)
         self.play(Write(subtitle6), run_time=0.6)
         self.wait(0.4)
         
@@ -360,43 +374,42 @@ class BasisConcept(ThreeDScene):
         self.wait(0.5)
         
         # === パート7: 次元が重要 ===
-        subtitle7 = Text("重要: 空間の次元", font_size=32, color=YELLOW)
-        subtitle7.next_to(title, DOWN)
-        self.play(Write(subtitle7), run_time=0.6)
-        self.wait(0.5)
+        # subtitle7 = Text("重要: 空間の次元", font_size=32, color=YELLOW)
+        # subtitle7.next_to(title, DOWN)
+        # self.play(Write(subtitle7), run_time=0.6)
+        # self.wait(0.5)
         
-        dimension_note_part1 = VGroup(
-            Text("基底の本数 = 空間の次元", color=WHITE, font_size=26),
-        ).arrange(DOWN, buff=0.5)
-        dimension_note_part1.shift(UP * 0.8)
+        # dimension_note_part1 = VGroup(
+        #     Text("基底の本数 = 空間の次元", color=WHITE, font_size=26),
+        # ).arrange(DOWN, buff=0.5)
+        # dimension_note_part1.shift(UP * 0.8)
         
-        dimension_note_part2 = VGroup(
-            Text("2次元空間 → 基底は2本", color=GREEN, font_size=24),
-            Text("3次元空間 → 基底は3本", color=GREEN, font_size=24),
-        ).arrange(DOWN, buff=0.5)
-        dimension_note_part2.shift(DOWN * 1.0)
+        # dimension_note_part2 = VGroup(
+        #     Text("2次元空間 → 基底は2本", color=GREEN, font_size=24),
+        #     Text("3次元空間 → 基底は3本", color=GREEN, font_size=24),
+        # ).arrange(DOWN, buff=0.5)
+        # dimension_note_part2.shift(DOWN * 1.0)
         
-        for item in dimension_note_part1:
-            self.play(Write(item), run_time=0.7)
-            self.wait(0.4)
+        # for item in dimension_note_part1:
+        #     self.play(Write(item), run_time=0.7)
+        #     self.wait(0.4)
         
-        for item in dimension_note_part2:
-            self.play(Write(item), run_time=0.7)
-            self.wait(0.4)
+        # for item in dimension_note_part2:
+        #     self.play(Write(item), run_time=0.7)
+        #     self.wait(0.4)
         
-        self.wait(1.0)
-        self.play(FadeOut(dimension_note_part1), FadeOut(dimension_note_part2))
-        self.wait(0.3)
+        # self.wait(1.0)
+        # self.play(FadeOut(dimension_note_part1), FadeOut(dimension_note_part2))
+        # self.wait(0.3)
         
         # === パート8: 3次元空間での部分空間の基底 ===
-        # self.play(FadeOut(subtitle7))
-        subtitle8 = Text("注目している空間の次元に注目", font_size=28, color=YELLOW)
+        self.play(FadeOut(title))
+        subtitle8 = Text("注目している空間の次元が重要", font_size=28, color=YELLOW)
         subtitle8.next_to(title, DOWN)
         self.add_fixed_in_frame_mobjects(subtitle8)
         self.play(Write(subtitle8), run_time=0.6)
         self.wait(0.5)
         
-        # 3D空間に切り替え(疑似3D表現)
         # 3次元座標軸
         axes_3d = ThreeDAxes(
             x_range=[-2, 2, 1],
@@ -499,8 +512,8 @@ class BasisConcept(ThreeDScene):
         # self.wait(1.0)
         
         # 斜めから見る（立体的に見える角度）
-        self.move_camera(phi=70 * DEGREES, theta=-30 * DEGREES, run_time=2.0)
-        self.wait(1.0)
+        # self.move_camera(phi=70 * DEGREES, theta=-30 * DEGREES, run_time=2.0)
+        # self.wait(1.0)
         
         # 最後の説明を表示
         for item in explanation5_part3:
