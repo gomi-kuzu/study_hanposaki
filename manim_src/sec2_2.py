@@ -13,7 +13,7 @@ class BasisTransformation(ThreeDScene):
         self.wait(0.8)
         
         # === パート1: 同一ベクトルの導入 ===
-        subtitle1 = Text("同じベクトルx = [2, 3]ᵀ", font_size=32, color=YELLOW)
+        subtitle1 = Text("あるベクトルx = [2, 3]ᵀを考える", font_size=32, color=YELLOW)
         subtitle1.next_to(title, DOWN)
         self.add_fixed_in_frame_mobjects(subtitle1)
         self.play(Write(subtitle1), run_time=0.6)
@@ -130,7 +130,7 @@ class BasisTransformation(ThreeDScene):
         # 右側に基底の説明
         basis1_explanation = VGroup(
             Text("基底:", color=WHITE, font_size=26),
-            MathTex(r"\mathbf{e}_1, \mathbf{e}_2", color=YELLOW, font_size=28),
+            MathTex(r"\mathbf{e}_1, \mathbf{e}_2", color=YELLOW, font_size=30),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         basis1_explanation.to_edge(RIGHT).shift(LEFT * 1.5 + UP * 1.8)
         self.add_fixed_in_frame_mobjects(basis1_explanation)
@@ -142,7 +142,7 @@ class BasisTransformation(ThreeDScene):
         
         # ベクトルの分解アニメーション
         decomp_text1 = MathTex(r"\mathbf{x} = 2\mathbf{e}_1 + 3\mathbf{e}_2", 
-                              color=YELLOW, font_size=28)
+                              color=YELLOW, font_size=30)
         decomp_text1.to_edge(RIGHT).shift(LEFT * 1.5 + UP * 0.5)
         self.add_fixed_in_frame_mobjects(decomp_text1)
         self.play(Write(decomp_text1), run_time=0.7)
@@ -208,12 +208,15 @@ class BasisTransformation(ThreeDScene):
         self.wait(0.5)
         
         # 座標の結論
-        coord1_result = MathTex(r"\text{Coordinates: } \begin{bmatrix} 2 \\ 3 \end{bmatrix}", 
-                               color=ORANGE, font_size=30)
-        coord1_result.to_edge(RIGHT).shift(LEFT * 1.5 + DOWN * 0.8)
-        self.add_fixed_in_frame_mobjects(coord1_result)
-        self.play(Write(coord1_result), run_time=0.7)
-        self.wait(1.0)
+        coord1_result  = VGroup(
+            Text("座標：", color=ORANGE, font_size=26),MathTex(r"\begin{bmatrix} 2 \\ 3 \end{bmatrix}", 
+                               color=ORANGE, font_size=30))
+
+        for i, item in enumerate(coord1_result):
+            item.to_edge(RIGHT).shift(LEFT * 1.2 *(2-i) + DOWN * 0.8)
+            self.add_fixed_in_frame_mobjects(item)
+            self.play(Write(item), run_time=0.7)
+            self.wait(1.0)
         
         # クリーンアップ（標準基底関連）
         self.play(
@@ -280,11 +283,11 @@ class BasisTransformation(ThreeDScene):
         
         # 計算過程の説明
         calc_explanation = VGroup(
-            Text("x = [2, 3]ᵀ を分解すると:", color=WHITE, font_size=24),
+            Text("新たな基底を使うと…", color=WHITE, font_size=24),
             MathTex(r"\mathbf{x} = \frac{5}{2}\mathbf{b}_1 + \left(-\frac{1}{2}\right)\mathbf{b}_2", 
                    color=YELLOW, font_size=24),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        calc_explanation.to_edge(RIGHT).shift(LEFT * 1.5 + UP * 0.8)
+        calc_explanation.to_edge(RIGHT).shift(LEFT * 1.5)
         self.add_fixed_in_frame_mobjects(calc_explanation)
         
         for item in calc_explanation:
@@ -345,15 +348,17 @@ class BasisTransformation(ThreeDScene):
         self.wait(0.5)
         
         # 座標の結論
-        coord2_result = MathTex(r"\text{Coordinates: } \begin{bmatrix} \frac{5}{2} \\ -\frac{1}{2} \end{bmatrix}", 
-                               color=ORANGE, font_size=30)
-        coord2_result.to_edge(RIGHT).shift(LEFT * 1.5 + DOWN * 1.5)
-        self.add_fixed_in_frame_mobjects(coord2_result)
-        self.play(Write(coord2_result), run_time=0.7)
-        self.wait(1.0)
+        coord2_result = VGroup(
+            Text("座標：", color=ORANGE, font_size=26),MathTex(r"\begin{bmatrix} \frac{5}{2} \\ -\frac{1}{2} \end{bmatrix}", 
+                               color=ORANGE, font_size=30))
+        for i, item in enumerate(coord2_result):
+            item.to_edge(RIGHT).shift(LEFT * 1.2*(2-i) + DOWN * 1.5)
+            self.add_fixed_in_frame_mobjects(item)
+            self.play(Write(item), run_time=0.7)
+            self.wait(1.0)
         
         # 同じベクトルであることを強調
-        same_vector_text = Text("同じベクトルx！", color=RED, font_size=28, weight=BOLD)
+        same_vector_text = Text("同じベクトルなのに座標が違う！", color=RED, font_size=28, weight=BOLD)
         same_vector_text.to_edge(RIGHT).shift(LEFT * 1.5 + DOWN * 2.5)
         self.add_fixed_in_frame_mobjects(same_vector_text)
         self.play(Write(same_vector_text), run_time=0.6)
@@ -476,12 +481,14 @@ class BasisTransformation(ThreeDScene):
         self.wait(0.5)
         
         # 座標の結論
-        coord3_result = MathTex(r"\text{Coordinates: } \begin{bmatrix} 1 \\ 1 \end{bmatrix}", 
-                               color=ORANGE, font_size=30)
-        coord3_result.to_edge(RIGHT).shift(LEFT * 1.5 + DOWN * 0.8)
-        self.add_fixed_in_frame_mobjects(coord3_result)
-        self.play(Write(coord3_result), run_time=0.7)
-        self.wait(1.0)
+        coord3_result = VGroup(
+            Text("座標：", color=ORANGE, font_size=26),MathTex(r"\begin{bmatrix} 1 \\ 1 \end{bmatrix}", 
+                               color=ORANGE, font_size=30))
+        for i, item in enumerate(coord3_result):
+            item.to_edge(RIGHT).shift(LEFT * 1.2 * (2-i) + DOWN * 0.8)
+            self.add_fixed_in_frame_mobjects(item)
+            self.play(Write(item), run_time=0.7)
+            self.wait(1.0)
         
         # クリーンアップ（3つ目の基底関連）
         self.play(
@@ -515,26 +522,26 @@ class BasisTransformation(ThreeDScene):
         
         self.wait(1.5)
         
-        # === パート6: 視覚的強調 ===
-        emphasis_text = Text("基底が決まると座標は一意！", 
-                            font_size=36, color=RED, weight=BOLD)
-        emphasis_text.shift(DOWN * 2.5)
-        self.add_fixed_in_frame_mobjects(emphasis_text)
+        # # === パート6: 視覚的強調 ===
+        # emphasis_text = Text("基底が決まると座標は一意！", 
+        #                     font_size=36, color=RED, weight=BOLD)
+        # emphasis_text.shift(DOWN * 2.5)
+        # self.add_fixed_in_frame_mobjects(emphasis_text)
         
-        # アニメーション効果付きで強調
-        self.play(
-            Write(emphasis_text),
-            emphasis_text.animate.scale(1.2),
-            run_time=1.0
-        )
-        self.play(
-            emphasis_text.animate.scale(1.0),
-            run_time=0.5
-        )
-        self.wait(1.0)
+        # # アニメーション効果付きで強調
+        # self.play(
+        #     Write(emphasis_text),
+        #     emphasis_text.animate.scale(1.2),
+        #     run_time=1.0
+        # )
+        # self.play(
+        #     emphasis_text.animate.scale(1.0),
+        #     run_time=0.5
+        # )
+        # self.wait(1.0)
         
         # 最後のクリーンアップ
-        self.play(
-            FadeOut(summary), FadeOut(subtitle5), FadeOut(emphasis_text), FadeOut(title)
-        )
-        self.wait(0.5)
+        # self.play(
+        #     FadeOut(summary), FadeOut(subtitle5), FadeOut(emphasis_text), FadeOut(title)
+        # )
+        # self.wait(0.5)

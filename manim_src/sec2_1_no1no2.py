@@ -139,13 +139,32 @@ class LinearIndependence(Scene):
         )
         self.wait(0.3)
         
-        # === パート4: 従属の例2 - a₄とa₅は従属 ===
-        subtitle4 = Text("例2: a₄ = [1, 2], a₅ = [-1, 2]", font_size=26, color=YELLOW)
+        # === パート4: 従属の例2 - a₄は従属 ===
+        subtitle4 = Text("例2: a₁ = [0, 1], a₂ = [1, 0], a₄ = [1, 2]", font_size=26, color=YELLOW)
         subtitle4.next_to(title, DOWN)
         self.play(Write(subtitle4), run_time=0.6)
         self.wait(0.4)
         
         # ベクトルa₄とa₅を表示
+        a1_vec = Vector(
+            axes.c2p(0, 1) - axes.c2p(0, 0),
+            color=BLUE,
+            stroke_width=5
+        ).shift(axes.c2p(0, 0))
+        
+        a1_label = MathTex(r"\mathbf{a}_1", color=BLUE, font_size=24)
+        a1_label.next_to(a1_vec.get_end(), LEFT, buff=0.2)
+        
+        a2_vec = Vector(
+            axes.c2p(1, 0) - axes.c2p(0, 0),
+            color=GREEN,
+            stroke_width=5
+        ).shift(axes.c2p(0, 0))
+
+        a2_label = MathTex(r"\mathbf{a}_2", color=GREEN, font_size=24)
+        a2_label.next_to(a2_vec.get_end(), DOWN, buff=0.2)
+
+
         a4_vec = Vector(
             axes.c2p(1, 2) - axes.c2p(0, 0),
             color=PURPLE,
@@ -155,26 +174,20 @@ class LinearIndependence(Scene):
         a4_label = MathTex(r"\mathbf{a}_4", color=PURPLE, font_size=24)
         a4_label.next_to(a4_vec.get_end(), RIGHT, buff=0.2)
         
-        a5_vec = Vector(
-            axes.c2p(-1, 2) - axes.c2p(0, 0),
-            color=ORANGE,
-            stroke_width=5
-        ).shift(axes.c2p(0, 0))
-        
-        a5_label = MathTex(r"\mathbf{a}_5", color=ORANGE, font_size=24)
-        a5_label.next_to(a5_vec.get_end(), LEFT, buff=0.2)
         
         self.play(
+            Create(a1_vec), Write(a1_label),
+            Create(a2_vec), Write(a2_label),
             Create(a4_vec), Write(a4_label),
-            Create(a5_vec), Write(a5_label),
             run_time=0.7
         )
         self.wait(0.5)
         
         # 右側に説明を表示
         explanation2 = VGroup(
+            MathTex(r"\mathbf{a}_1 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}", color=BLUE, font_size=28),
+            MathTex(r"\mathbf{a}_2 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}", color=GREEN, font_size=28),
             MathTex(r"\mathbf{a}_4 = \begin{bmatrix} 1 \\ 2 \end{bmatrix}", color=PURPLE, font_size=28),
-            MathTex(r"\mathbf{a}_5 = \begin{bmatrix} -1 \\ 2 \end{bmatrix}", color=ORANGE, font_size=28),
         ).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
         explanation2.to_edge(RIGHT).shift(LEFT * 2.0 + UP * 1.5)
         
@@ -187,37 +200,9 @@ class LinearIndependence(Scene):
         self.play(Write(relation3_label), run_time=0.6)
         self.wait(0.5)
         
-        # a₁とa₂を追加して説明
-        a1_vec2 = Vector(
-            axes.c2p(0, 1) - axes.c2p(0, 0),
-            color=BLUE,
-            stroke_width=4,
-            stroke_opacity=0.5
-        ).shift(axes.c2p(0, 0))
-        
-        a2_vec = Vector(
-            axes.c2p(1, 0) - axes.c2p(0, 0),
-            color=GREEN,
-            stroke_width=4,
-            stroke_opacity=0.5
-        ).shift(axes.c2p(0, 0))
-        
-        a1_label2 = MathTex(r"\mathbf{a}_1", color=BLUE, font_size=20)
-        a1_label2.next_to(a1_vec2.get_end(), LEFT, buff=0.2)
-        
-        a2_label = MathTex(r"\mathbf{a}_2", color=GREEN, font_size=20)
-        a2_label.next_to(a2_vec.get_end(), DOWN, buff=0.2)
-        
-        self.play(
-            Create(a1_vec2), Write(a1_label2),
-            Create(a2_vec), Write(a2_label),
-            run_time=0.6
-        )
-        self.wait(0.5)
-        
         # a₄をa₁とa₂で表現
         relation3 = MathTex(
-            r"\mathbf{a}_4 = 2\mathbf{a}_1 + 1\mathbf{a}_2",
+            r"\mathbf{a}_4 = 2\mathbf{a}_1 + \mathbf{a}_2",
             color=YELLOW,
             font_size=28
         )
@@ -225,21 +210,12 @@ class LinearIndependence(Scene):
         self.play(Write(relation3), run_time=0.7)
         self.wait(0.6)
         
-        # a₅をa₁とa₂で表現
-        relation4 = MathTex(
-            r"\mathbf{a}_5 = 2\mathbf{a}_1 - 1\mathbf{a}_2",
-            color=YELLOW,
-            font_size=28
-        )
-        relation4.next_to(relation3, DOWN, buff=0.3)
-        self.play(Write(relation4), run_time=0.7)
-        self.wait(0.6)
         
         # 結論
-        conclusion2 = Text("a₁, a₂があれば", color=GREEN, font_size=24)
-        conclusion2_2 = Text("a₄, a₅は不要！", color=RED, font_size=24)
+        conclusion2 = Text("a₁, a₂でa₄が表現できる", color=GREEN, font_size=24)
+        conclusion2_2 = Text("→右左辺間の移項でお互い言えること!", color=RED, font_size=24)
         conclusion2_group = VGroup(conclusion2, conclusion2_2).arrange(DOWN, buff=0.2)
-        conclusion2_group.next_to(relation4, DOWN, buff=0.5)
+        conclusion2_group.next_to(relation3, DOWN, buff=0.5)
         self.play(Write(conclusion2), run_time=0.6)
         self.wait(0.4)
         self.play(Write(conclusion2_2), run_time=0.6)
@@ -248,11 +224,10 @@ class LinearIndependence(Scene):
         # クリーンアップ
         self.play(
             FadeOut(a4_vec), FadeOut(a4_label),
-            FadeOut(a5_vec), FadeOut(a5_label),
-            FadeOut(a1_vec2), FadeOut(a1_label2),
+            FadeOut(a1_vec), FadeOut(a1_label),
             FadeOut(a2_vec), FadeOut(a2_label),
             FadeOut(explanation2), FadeOut(relation3_label),
-            FadeOut(relation3), FadeOut(relation4),
+            FadeOut(relation3), 
             FadeOut(conclusion2_group),
             FadeOut(subtitle4)
         )
@@ -345,9 +320,9 @@ class LinearIndependence(Scene):
             FadeOut(a2_vec2), FadeOut(a2_label2),
             FadeOut(explanation3), FadeOut(question1),
             FadeOut(answer1), FadeOut(result1),
-            FadeOut(conclusion3), FadeOut(subtitle5)
+            FadeOut(conclusion3), FadeOut(subtitle5),
+            FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
         )
-        
         # === パート6: まとめ ===
         subtitle6 = Text("まとめ", font_size=32, color=GREEN)
         subtitle6.next_to(title, DOWN)
@@ -369,9 +344,4 @@ class LinearIndependence(Scene):
         
         self.wait(1.5)
         
-        # 最後のクリーンアップ
-        self.play(
-            FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
-            FadeOut(summary), FadeOut(subtitle6)
-        )
-        self.wait(0.5)
+
