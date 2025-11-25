@@ -28,22 +28,18 @@
   - このとき基底も１本減っている 
 # 第2話
 ## 2.1
+<div><video controls src="https://github.com/user-attachments/assets/0d84b634-d750-41b7-bf42-e46cd505bbcf"></video></div>
 
-<div><video controls src="https://github.com/user-attachments/assets/86197eaa-2a8b-4468-9029-0fd3ff4fe0d2
-"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/272ee6e9-bb56-41ca-9025-5ee35379de53"></video></div>
+
 - 従属してなければ独立
 - 従属は「組」に対する概念
 - 互いに置き換えがきくメンバ構成になっていることが従属
     - 主従関係はない（従属っていうより共依存！？）
 
-<div><video controls src="https://github.com/user-attachments/assets/1a2060f3-57be-4239-bc0e-6cc8e0bc22ca
-"></video></div>
-
 <div><video controls src="https://github.com/user-attachments/assets/44fc8234-b01a-4d64-a205-4da3d6f4b41a
 "></video></div>
 
-
 ## 2.2
-
 <div><video controls src="https://github.com/user-attachments/assets/db7ddbe9-a834-4d06-a9df-aa5bc3d5862b"></video></div>
 
