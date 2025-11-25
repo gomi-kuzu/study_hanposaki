@@ -41,7 +41,9 @@
 <div><video controls src="https://github.com/user-attachments/assets/44fc8234-b01a-4d64-a205-4da3d6f4b41a
 "></video></div>
 
+- "注目している"空間を表現するのに必定十分な線形独立のベクトルが基底
 ## 2.2
 ### 座標ってなんだって話
 <div><video controls src="https://github.com/user-attachments/assets/db7ddbe9-a834-4d06-a9df-aa5bc3d5862b"></video></div>
+
 - あれ？でもこの例って、最初のベクトルが正規直行基底下での座標だったってこと？なんかこんがらがる…
