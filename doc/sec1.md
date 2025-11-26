@@ -46,4 +46,7 @@
 ### 座標ってなんだって話
 <div><video controls src="https://github.com/user-attachments/assets/db7ddbe9-a834-4d06-a9df-aa5bc3d5862b"></video></div>
 
-- あれ？でもこの例って、最初のベクトルが正規直行基底下での座標だったってこと？なんかこんがらがる…
+- あれ？でもこの例って、最初のベクトルが正規直行基底下での座標だったってこと？なんか鶏たまごっぽくね？…
+- なんにせよ、「ベクトルは基底とあわせて初めて意味のあるもの」ってことかな
+- ちなみに原点と基底のセットで、座標系になるっぽい
+    - [参考](https://shiroyasu.github.io/teaching/dendai/2013/im3-f/im3-1009-text08.pdf)
