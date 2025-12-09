@@ -53,10 +53,19 @@
  
 ## 第3話
 ### 3.1
+### 内積とは？の話
 
 <div><video controls src="https://github.com/user-attachments/assets/a765131e-9eb6-427f-a0f5-eccffe67b94e"/video></div>
 
+- 内積の公理については↓この辺を参照
+    - https://mathlandscape.com/inner-product/
 
 ### 3.2
+### 内積を使った尺度の話とか
 
+<div><video controls src="https://github.com/user-attachments/assets/1c16e934-ab06-485c-a578-b15748285825"/video></div>
+
+<div><video controls src="https://github.com/user-attachments/assets/00369cc0-3961-4433-9fcd-bb08bb4c4985"/video></div>
+
+<!-- <div><video controls src=""/video></div> -->
 
