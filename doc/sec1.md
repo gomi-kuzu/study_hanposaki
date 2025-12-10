@@ -58,7 +58,8 @@
 <div><video controls src="https://github.com/user-attachments/assets/a765131e-9eb6-427f-a0f5-eccffe67b94e"/video></div>
 
 - 内積の公理については↓この辺を参照
-    - https://mathlandscape.com/inner-product/
+    - https://math.jp/textbooks/go4AEA3oTU6iQIozVIaR/Jq4zeUmQb0sIADUvxK8W
+        - 実数ベクトルか複素ベクトルかで、微妙に話が変わるので注意
 
 ### 3.2
 ### 内積を使った尺度の話とか
