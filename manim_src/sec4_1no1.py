@@ -138,7 +138,7 @@ class VectorAngleFromNorm(ThreeDScene):
         
         # ステップ2: 内積の定義を使って展開
         step2_eq = MathTex(
-            r"=", r"(\mathbf{a}_1 - \mathbf{a}_2, \mathbf{a}_1 - \mathbf{a}_2)",
+            r"=", r"\langle \mathbf{a}_1 - \mathbf{a}_2 | \mathbf{a}_1 - \mathbf{a}_2 \rangle",
             color=WHITE, font_size=32
         )
         step2_eq.next_to(norm_def, DOWN* 1.5, buff=0.4)
@@ -148,8 +148,8 @@ class VectorAngleFromNorm(ThreeDScene):
         
         # ステップ3: 内積を展開
         step3_eq = MathTex(
-            r"=", r"(\mathbf{a}_1, \mathbf{a}_1)", r"-", r"2(\mathbf{a}_1, \mathbf{a}_2)", 
-            r"+", r"(\mathbf{a}_2, \mathbf{a}_2)",
+            r"=", r"\langle \mathbf{a}_1 | \mathbf{a}_1 \rangle", r"-", r"2\langle \mathbf{a}_1 | \mathbf{a}_2 \rangle", 
+            r"+", r"\langle \mathbf{a}_2 | \mathbf{a}_2 \rangle",
             color=WHITE, font_size=32
         )
         step3_eq.next_to(step2_eq, DOWN*1.5, buff=0.4)
@@ -159,7 +159,7 @@ class VectorAngleFromNorm(ThreeDScene):
         
         # ステップ4: ノルムの記法で書き直す
         step4_eq = MathTex(
-            r"=", r"\|\mathbf{a}_1\|^2", r"-", r"2(\mathbf{a}_1, \mathbf{a}_2)", 
+            r"=", r"\|\mathbf{a}_1\|^2", r"-", r"2\langle \mathbf{a}_1 | \mathbf{a}_2 \rangle", 
             r"+", r"\|\mathbf{a}_2\|^2",
             color=WHITE, font_size=32
         )
@@ -215,7 +215,7 @@ class VectorAngleFromNorm(ThreeDScene):
         
         # 前のステップの式を再表示
         previous_eq = MathTex(
-            r"\|\mathbf{a}_1 - \mathbf{a}_2\|^2 = \|\mathbf{a}_1\|^2 - 2(\mathbf{a}_1, \mathbf{a}_2) + \|\mathbf{a}_2\|^2",
+            r"\|\mathbf{a}_1 - \mathbf{a}_2\|^2 = \|\mathbf{a}_1\|^2 - 2\langle \mathbf{a}_1 | \mathbf{a}_2 \rangle + \|\mathbf{a}_2\|^2",
             color=WHITE, font_size=28
         )
         previous_eq.shift(UP * 0.5)
@@ -232,7 +232,7 @@ class VectorAngleFromNorm(ThreeDScene):
         
         # 対応関係
         correspondence = MathTex(
-            r"2(\mathbf{a}_1, \mathbf{a}_2) = 2\|\mathbf{a}_1\|\|\mathbf{a}_2\|\cos\theta",
+            r"2\langle \mathbf{a}_1 | \mathbf{a}_2 \rangle = 2\|\mathbf{a}_1\|\|\mathbf{a}_2\|\cos\theta",
             color=YELLOW, font_size=32
         )
         correspondence.shift(DOWN * 0.8)
@@ -248,7 +248,7 @@ class VectorAngleFromNorm(ThreeDScene):
         conclusion_box.shift(DOWN * 2.0)
         
         conclusion_formula = MathTex(
-            r"\cos\theta = \frac{(\mathbf{a}_1, \mathbf{a}_2)}{\|\mathbf{a}_1\|\|\mathbf{a}_2\|}",
+            r"\cos\theta = \frac{\langle \mathbf{a}_1 | \mathbf{a}_2 \rangle}{\|\mathbf{a}_1\|\|\mathbf{a}_2\|}",
             color=GREEN, font_size=40
         )
         conclusion_formula.shift(DOWN * 2.0)
@@ -399,7 +399,7 @@ class VectorAngleFromNorm(ThreeDScene):
             VGroup(
                 Text("2.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    MathTex(r"\cos\theta = \frac{(\mathbf{a}_1, \mathbf{a}_2)}{\|\mathbf{a}_1\|\|\mathbf{a}_2\|}", 
+                    MathTex(r"\cos\theta = \frac{\langle \mathbf{a}_1 | \mathbf{a}_2 \rangle}{\|\mathbf{a}_1\|\|\mathbf{a}_2\|}", 
                            color=GREEN, font_size=26),
                 ),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
