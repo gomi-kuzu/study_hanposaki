@@ -21,9 +21,9 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         intro_text = VGroup(
             Text("与えられた3つのベクトル:", color=WHITE, font_size=26),
-            MathTex(r"\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \quad"
-                   r"\mathbf{v}_2 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}, \quad"
-                   r"\mathbf{v}_3 = \begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix}",
+            MathTex(r"|a_1\rangle = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}, \quad"
+                   r"|a_2\rangle = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}, \quad"
+                   r"|a_3\rangle = \begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix}",
                    color=WHITE, font_size=24),
             Text("↓", color=YELLOW, font_size=30),
             Text("直交基底を作りたい!", color=YELLOW, font_size=26, weight=BOLD),
@@ -121,7 +121,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
             height=0.2,
             base_radius=0.08
         )
-        v1_label = MathTex(r"\mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}", 
+        v1_label = MathTex(r"|a_1\rangle = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}", 
                           color=RED, font_size=28)
         v1_label.to_corner(UL).shift(DOWN * 2)
         self.add_fixed_orientation_mobjects(v1_label)
@@ -131,7 +131,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         # u1 = v1
         u1_formula = MathTex(
-            r"\mathbf{u}_1 = \mathbf{v}_1 = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}",
+            r"\mathbf{u}_1 = |a_1\rangle = \begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}",
             color=RED, font_size=32
         )
         u1_formula.shift(DOWN * 2)
@@ -159,9 +159,9 @@ class GramSchmidtOrthogonalization(ThreeDScene):
             height=0.2,
             base_radius=0.08
         )
-        v2_label = MathTex(r"\mathbf{v}_2 = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}", 
+        v2_label = MathTex(r"|a_2\rangle = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}", 
                           color=BLUE, font_size=28)
-        v2_label.to_corner(UL).shift(DOWN * 2.5)
+        v2_label.to_corner(UL).shift(DOWN * 2.5 + LEFT * (-9))
         self.add_fixed_orientation_mobjects(v2_label)
         
         self.play(Create(v2_vector), Write(v2_label), run_time=1.0)
@@ -169,8 +169,8 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         # 射影の公式を表示
         projection_formula = MathTex(
-            r"\text{proj}_{\mathbf{u}_1} \mathbf{v}_2 = "
-            r"\frac{\langle \mathbf{v}_2 | \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1 | \mathbf{u}_1 \rangle} \mathbf{u}_1",
+            r"\text{proj}_{\mathbf{u}_1} |a_2\rangle = "
+            r"\frac{\langle a_2 | \mathbf{u}_1 \rangle}{\langle \mathbf{u}_1 | \mathbf{u}_1 \rangle} \mathbf{u}_1",
             color=YELLOW, font_size=28
         )
         projection_formula.to_corner(UR).shift(DOWN * 1.5)
@@ -180,7 +180,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         # 内積の計算
         inner_product_calc = VGroup(
-            MathTex(r"\langle \mathbf{v}_2 | \mathbf{u}_1 \rangle = 1 \cdot 1 + 0 \cdot 1 + 1 \cdot 0 = 1", 
+            MathTex(r"\langle a_2 | \mathbf{u}_1 \rangle = 1 \cdot 1 + 0 \cdot 1 + 1 \cdot 0 = 1", 
                    color=WHITE, font_size=24),
             MathTex(r"\langle \mathbf{u}_1 | \mathbf{u}_1 \rangle = 1^2 + 1^2 + 0^2 = 2", 
                    color=WHITE, font_size=24),
@@ -199,9 +199,9 @@ class GramSchmidtOrthogonalization(ThreeDScene):
             height=0.15,
             base_radius=0.06
         )
-        proj_label = MathTex(r"\text{proj}_{\mathbf{u}_1} \mathbf{v}_2", 
+        proj_label = MathTex(r"\text{proj}_{\mathbf{u}_1} |a_2\rangle", 
                             color=YELLOW, font_size=24)
-        proj_label.next_to(axes.c2p(0.5, 0.5, 0), DOWN, buff=0.1)
+        proj_label.next_to(axes.c2p(0.5, 0.5, 0), DOWN, buff=0.1).shift(UP*0.5 + LEFT*1.2)
         self.add_fixed_orientation_mobjects(proj_label)
         
         self.play(Create(proj_v2_u1), Write(proj_label), run_time=0.8)
@@ -209,7 +209,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         # u2の計算
         u2_calc = MathTex(
-            r"\mathbf{u}_2 = \mathbf{v}_2 - \text{proj}_{\mathbf{u}_1} \mathbf{v}_2",
+            r"\mathbf{u}_2 = |a_2\rangle - \text{proj}_{\mathbf{u}_1} |a_2\rangle",
             color=GREEN, font_size=28
         )
         u2_calc.shift(DOWN * 2.2)
@@ -262,7 +262,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         self.wait(0.3)
         
         # === パート4: Step 3 - 3番目のベクトル ===
-        self.play(FadeOut(subtitle3))
+        self.play(FadeOut(subtitle3), FadeOut(v2_vector))
         subtitle4 = Text("Step 3: 3番目のベクトルを直交化", font_size=32, color=PURPLE)
         subtitle4.next_to(title, DOWN)
         self.add_fixed_in_frame_mobjects(subtitle4)
@@ -278,9 +278,9 @@ class GramSchmidtOrthogonalization(ThreeDScene):
             height=0.2,
             base_radius=0.08
         )
-        v3_label = MathTex(r"\mathbf{v}_3 = \begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix}", 
+        v3_label = MathTex(r"|a_3\rangle = \begin{bmatrix} 1 \\ 2 \\ -1 \end{bmatrix}", 
                           color=ORANGE, font_size=28)
-        v3_label.to_corner(UL).shift(DOWN * 3)
+        v3_label.to_corner(UR).shift(DOWN * 7 + LEFT * 3)
         self.add_fixed_orientation_mobjects(v3_label)
         
         self.play(Create(v3_vector), Write(v3_label), run_time=1.0)
@@ -288,7 +288,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         # u3の公式
         u3_formula = MathTex(
-            r"\mathbf{u}_3 = \mathbf{v}_3 - \text{proj}_{\mathbf{u}_1} \mathbf{v}_3 - \text{proj}_{\mathbf{u}_2} \mathbf{v}_3",
+            r"\mathbf{u}_3 = |a_3\rangle - \text{proj}_{\mathbf{u}_1} |a_3\rangle - \text{proj}_{\mathbf{u}_2} |a_3\rangle",
             color=PURPLE, font_size=26
         )
         u3_formula.shift(UP * 1.8)
@@ -298,20 +298,20 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         
         # 射影の計算
         proj_calc_title = Text("射影の計算:", color=ORANGE, font_size=24, weight=BOLD)
-        proj_calc_title.to_corner(UR).shift(DOWN * 1.5)
+        proj_calc_title.to_corner(UR).shift(DOWN * 1.5 )
         self.add_fixed_in_frame_mobjects(proj_calc_title)
         self.play(Write(proj_calc_title), run_time=0.5)
         self.wait(0.3)
         
         proj_calculations = VGroup(
-            MathTex(r"\langle \mathbf{v}_3 | \mathbf{u}_1 \rangle = 1 + 2 + 0 = 3", color=WHITE, font_size=22),
-            MathTex(r"\text{proj}_{\mathbf{u}_1} \mathbf{v}_3 = \frac{3}{2}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}", 
+            MathTex(r"\langle a_3 | \mathbf{u}_1 \rangle = 1 + 2 + 0 = 3", color=WHITE, font_size=22),
+            MathTex(r"\text{proj}_{\mathbf{u}_1} |a_3\rangle = \frac{3}{2}\begin{bmatrix} 1 \\ 1 \\ 0 \end{bmatrix}", 
                    color=WHITE, font_size=22),
-            MathTex(r"\langle \mathbf{v}_3 | \mathbf{u}_2 \rangle = \frac{1}{2} - 1 - 1 = -\frac{3}{2}", 
+            MathTex(r"\langle a_3 | \mathbf{u}_2 \rangle = \frac{1}{2} - 1 - 1 = -\frac{3}{2}", 
                    color=WHITE, font_size=22),
             MathTex(r"\langle \mathbf{u}_2 | \mathbf{u}_2 \rangle = \frac{1}{4} + \frac{1}{4} + 1 = \frac{3}{2}", 
                    color=WHITE, font_size=22),
-            MathTex(r"\text{proj}_{\mathbf{u}_2} \mathbf{v}_3 = -1 \cdot \begin{bmatrix} 1/2 \\ -1/2 \\ 1 \end{bmatrix}", 
+            MathTex(r"\text{proj}_{\mathbf{u}_2} |a_3\rangle = -1 \cdot \begin{bmatrix} 1/2 \\ -1/2 \\ 1 \end{bmatrix}", 
                    color=WHITE, font_size=22),
         ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
         proj_calculations.to_corner(UR).shift(DOWN * 2)
@@ -326,7 +326,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
             r"\begin{bmatrix} -1/2 \\ 1/2 \\ -1 \end{bmatrix}",
             color=PURPLE, font_size=24
         )
-        u3_calc.shift(DOWN * 2.2)
+        u3_calc.shift(DOWN * 2.2 + RIGHT * 1.5)
         self.add_fixed_in_frame_mobjects(u3_calc)
         self.play(Write(u3_calc), run_time=1.0)
         self.wait(0.6)
@@ -343,7 +343,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         # 重要な結論
         conclusion_text = VGroup(
             Text("重要な発見!", color=RED, font_size=26, weight=BOLD),
-            Text("v₃は v₁ と v₂ の線形結合で表せる", color=YELLOW, font_size=24),
+            Text("|a₃⟩は |a₁⟩ と |a₂⟩ の線形結合で表せる", color=YELLOW, font_size=24),
             Text("→ 3つのベクトルは独立ではない", color=YELLOW, font_size=24),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         conclusion_text.to_corner(DL).shift(UP * 0.5)
@@ -399,14 +399,33 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         self.wait(1.0)
         
         # u1とu2が張る平面を可視化
+        # 平面をパラメトリック表現: s*u1 + t*u2
+        u1_coords = np.array([1, 1, 0])
+        u2_coords = np.array([0.5, -0.5, 1])
+        
+        plane_surface = Surface(
+            lambda u, v: axes.c2p(*(u * u1_coords + v * u2_coords)),
+            u_range=[-1.5, 1.5],
+            v_range=[-1.5, 1.5],
+            resolution=(10, 10),
+            fill_color=TEAL,
+            fill_opacity=0.3,
+            stroke_color=TEAL,
+            stroke_opacity=0.5
+        )
+        
         plane_note = Text(
             "u₁とu₂が張る平面",
             color=TEAL, font_size=24, slant=ITALIC
         )
         plane_note.to_corner(DL).shift(UP * 0.5)
         self.add_fixed_in_frame_mobjects(plane_note)
+        
+        self.play(Create(plane_surface), run_time=1.0)
         self.play(Write(plane_note), run_time=0.6)
         self.wait(1.2)
+        
+        self.play(FadeOut(plane_surface), run_time=0.5)
         
         self.play(
             FadeOut(result_summary), FadeOut(orthogonality),
@@ -417,7 +436,7 @@ class GramSchmidtOrthogonalization(ThreeDScene):
         # === まとめ ===
         # カメラを正面に戻す
         self.play(
-            FadeOut(axes), FadeOut(v1_vector), FadeOut(v2_vector), FadeOut(u2_vector),
+            FadeOut(axes), FadeOut(v1_vector), FadeOut(u2_vector),
             run_time=1.0
         )
         self.move_camera(phi=0 * DEGREES, theta=-90 * DEGREES, run_time=1.0)
@@ -441,11 +460,10 @@ class GramSchmidtOrthogonalization(ThreeDScene):
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=26, weight=BOLD),
-                Text("v₃は v₁, v₂の線形結合→独立ではない", color=YELLOW, font_size=24),
+                Text("結果: 2つの直交ベクトルを得た", color=YELLOW, font_size=24),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("4.", color=WHITE, font_size=26, weight=BOLD),
-                Text("結果: 2つの直交ベクトルを得た", color=GREEN, font_size=24),
+                Text("※それぞれ正規化すると教科書のように正規直交基底に", color=GREEN, font_size=24),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
         summary_points.shift(UP * 0.3)
