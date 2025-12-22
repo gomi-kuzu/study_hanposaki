@@ -54,41 +54,40 @@ class OrthogonalBasisAdvantage(ThreeDScene):
                            color=WHITE, font_size=26)
         basis_line = VGroup(basis_label, basis_math).arrange(RIGHT, buff=0.2)
 
-        vector_label = Text("ベクトル:", color=YELLOW, font_size=26)
+        vector_label = Text("座標ベクトル:", color=WHITE, font_size=26)
         vector_math = MathTex(r"\mathbf{v} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}",
-                            color=YELLOW, font_size=26)
+                            color=WHITE, font_size=26)
         vector_line = VGroup(vector_label, vector_math).arrange(RIGHT, buff=0.2)
         
         basis_and_vector = VGroup(basis_line, vector_line).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
-        basis_and_vector.shift(UP * 0.9)
+        basis_and_vector.shift(UP)
         self.add_fixed_in_frame_mobjects(basis_and_vector)
         self.play(Write(basis_and_vector), run_time=1.0)
         self.wait(0.8)
         
         # 求めたいもの
-        goal_text = Text("求めたい:", color=BLUE, font_size=26, weight=BOLD)
-        goal_text.shift(UP * 0.0)
+        goal_text = Text("求めたいのは…", color=WHITE, font_size=23, weight=BOLD)
         self.add_fixed_in_frame_mobjects(goal_text)
         self.play(Write(goal_text), run_time=0.5)
         self.wait(0.3)
         
         goal_eq = MathTex(
             r"\mathbf{v} = c_1 \mathbf{e}_1 + c_2 \mathbf{e}_2",
-            color=BLUE, font_size=28
+            color=WHITE, font_size=28
         )
         goal_eq.shift(DOWN * 0.5)
         self.add_fixed_in_frame_mobjects(goal_eq)
         self.play(Write(goal_eq), run_time=0.7)
         self.wait(0.6)
         
-        coefficients_text = Text("係数 c₁, c₂ を求める", color=YELLOW, font_size=24, slant=ITALIC)
+        coefficients_text = Text("としたときの係数 c₁, c₂", color=WHITE, font_size=24, slant=ITALIC)
         coefficients_text.shift(DOWN * 1.1)
         self.add_fixed_in_frame_mobjects(coefficients_text)
         self.play(Write(coefficients_text), run_time=0.6)
         self.wait(0.8)
         
         # 連立方程式
-        system_title = Text("連立方程式を立てる:", color=ORANGE, font_size=26, weight=BOLD)
+        system_title = Text("なので、連立方程式を解く！", color=ORANGE, font_size=26, weight=BOLD)
         system_title.shift(DOWN * 1.8)
         self.add_fixed_in_frame_mobjects(system_title)
         self.play(Write(system_title), run_time=0.5)
@@ -104,21 +103,20 @@ class OrthogonalBasisAdvantage(ThreeDScene):
         self.wait(1.0)
         
         # 解く過程
-        solving_note = Text(
-            "連立方程式を解く必要がある...",
-            color=RED, font_size=24, slant=ITALIC, weight=BOLD
-        )
-        solving_note.shift(DOWN * 3.5)
-        self.add_fixed_in_frame_mobjects(solving_note)
-        self.play(Write(solving_note), run_time=0.7)
-        self.wait(1.2)
+        # solving_note = Text(
+        #     "連立方程式を解く必要がある...",
+        #     color=RED, font_size=24, slant=ITALIC, weight=BOLD
+        # )
+        # solving_note.shift(DOWN * 3.5)
+        # self.add_fixed_in_frame_mobjects(solving_note)
+        # self.play(Write(solving_note), run_time=0.7)
+        # self.wait(1.2)
         
         self.play(
             FadeOut(problem_title), FadeOut(basis_and_vector),
             FadeOut(goal_text), FadeOut(goal_eq),
             FadeOut(coefficients_text), FadeOut(system_title),
-            FadeOut(system_eq), FadeOut(solving_note),
-            FadeOut(subtitle1)
+            FadeOut(system_eq), FadeOut(subtitle1)
         )
         self.wait(0.3)
         
@@ -143,9 +141,9 @@ class OrthogonalBasisAdvantage(ThreeDScene):
                                  color=WHITE, font_size=26)
         ortho_basis_line = VGroup(ortho_basis_label, ortho_basis_math).arrange(RIGHT, buff=0.2)
         
-        ortho_vector_label = Text("ベクトル:", color=YELLOW, font_size=26)
+        ortho_vector_label = Text("座標ベクトル:", color=WHITE, font_size=26)
         ortho_vector_math = MathTex(r"\mathbf{v} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}",
-                                  color=YELLOW, font_size=26)
+                                  color=WHITE, font_size=26)
         ortho_vector_line = VGroup(ortho_vector_label, ortho_vector_math).arrange(RIGHT, buff=0.2)
         
         ortho_basis_and_vector = VGroup(ortho_basis_line, ortho_vector_line).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
@@ -188,7 +186,7 @@ class OrthogonalBasisAdvantage(ThreeDScene):
         self.wait(0.8)
         
         # 計算
-        calc_title = Text("計算:", color=BLUE, font_size=24, weight=BOLD)
+        calc_title = Text("計算:", color=WHITE, font_size=24, weight=BOLD)
         calc_title.shift(DOWN * 2.5 + LEFT *2.5)
         self.add_fixed_in_frame_mobjects(calc_title)
         self.play(Write(calc_title), run_time=0.5)
