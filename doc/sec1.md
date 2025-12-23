@@ -51,8 +51,8 @@
 - ちなみに原点と基底のセットで、座標系になるっぽい
     - [参考](https://shiroyasu.github.io/teaching/dendai/2013/im3-f/im3-1009-text08.pdf)
  
-## 第3話
-### 3.1
+# 第3話
+## 3.1
 ### 内積とは？の話
 
 <div><video controls src="https://github.com/user-attachments/assets/a765131e-9eb6-427f-a0f5-eccffe67b94e"/video></div>
@@ -61,12 +61,24 @@
     - https://math.jp/textbooks/go4AEA3oTU6iQIozVIaR/Jq4zeUmQb0sIADUvxK8W
         - 実数ベクトルか複素ベクトルかで、微妙に話が変わるので注意
 
-### 3.2
+## 3.2
 ### 内積を使った尺度の話とか
 
 <div><video controls src="https://github.com/user-attachments/assets/1c16e934-ab06-485c-a578-b15748285825"/video></div>
 
 <div><video controls src="https://github.com/user-attachments/assets/00369cc0-3961-4433-9fcd-bb08bb4c4985"/video></div>
+
+# 第4話
+## 4.1
+### 想像できないベクトルも”なす角”を定義できるって話
+<div><video controls src="https://github.com/user-attachments/assets/22dc66d8-e713-4554-b767-325b2bbcd5ae"/video></div>
+
+### 直交基底は便利という話
+<div><video controls src="https://github.com/user-attachments/assets/71d63768-a081-4de6-bf5b-8fc56b060472"/video></div>
+
+## 4.2
+### 直交化の具体的なやり方
+<div><video controls src="https://github.com/user-attachments/assets/55b3e6bd-32e9-4f70-aee5-a7c3cf894796"/video></div>
 
 <!-- <div><video controls src=""/video></div> -->
 
