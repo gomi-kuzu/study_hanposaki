@@ -23,7 +23,7 @@ class MatrixMultiplicationVisualization(ThreeDScene):
             Text("行列の積の基本形:", color=WHITE, font_size=26),
             MathTex(r"A_{L \times M} \times B_{M \times N} = C_{L \times N}",
                    color=YELLOW, font_size=32),
-            Text("例: 2×3 行列と 3×2 行列の積", color=WHITE, font_size=24),
+            Text("例: 2×3 行列と 3×2 行列の積は2×2 行列", color=WHITE, font_size=24),
         ).arrange(DOWN, buff=0.4)
         intro_text.shift(DOWN * 0.5)
         self.add_fixed_in_frame_mobjects(intro_text)
@@ -368,107 +368,107 @@ class MatrixMultiplicationVisualization(ThreeDScene):
         self.wait(0.3)
         
         # === パート3: 正規直交基底による行列の分解 ===
-        subtitle3 = Text("正規直交基底による行列の分解", font_size=32, color=PURPLE)
-        subtitle3.next_to(title, DOWN)
-        self.add_fixed_in_frame_mobjects(subtitle3)
-        self.play(Write(subtitle3), run_time=0.6)
-        self.wait(0.5)
+        # subtitle3 = Text("正規直交基底による行列の分解", font_size=32, color=PURPLE)
+        # subtitle3.next_to(title, DOWN)
+        # self.add_fixed_in_frame_mobjects(subtitle3)
+        # self.play(Write(subtitle3), run_time=0.6)
+        # self.wait(0.5)
         
-        # 正規直交基底の導入
-        basis_intro = VGroup(
-            Text("2次元空間の正規直交基底:", color=YELLOW, font_size=26, weight=BOLD),
-            MathTex(r"|e_1\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad"
-                   r"|e_2\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}",
-                   color=WHITE, font_size=30),
-        ).arrange(DOWN, buff=0.4)
-        basis_intro.shift(UP * 2)
-        self.add_fixed_in_frame_mobjects(basis_intro)
-        self.play(Write(basis_intro), run_time=0.9)
-        self.wait(0.8)
+        # # 正規直交基底の導入
+        # basis_intro = VGroup(
+        #     Text("２次元空間の正規直交基底:", color=WHITE, font_size=26, weight=BOLD),
+        #     MathTex(r"|e_1\rangle = \begin{bmatrix} 1 \\ 0 \end{bmatrix}, \quad"
+        #            r"|e_2\rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}",
+        #            color=WHITE, font_size=30),
+        # ).arrange(DOWN*2.5, buff=0.4)
+        # basis_intro.shift(UP * 2)
+        # self.add_fixed_in_frame_mobjects(basis_intro)
+        # self.play(Write(basis_intro), run_time=0.9)
+        # self.wait(0.8)
         
-        # 正規直交性の確認
-        orthonormal = VGroup(
-            MathTex(r"\langle e_i | e_j \rangle = \delta_{ij}", color=ORANGE, font_size=26),
-            Text("(正規直交性)", color=ORANGE, font_size=22),
-        ).arrange(RIGHT, buff=0.3)
-        orthonormal.shift(UP * 1.0)
-        self.add_fixed_in_frame_mobjects(orthonormal)
-        self.play(Write(orthonormal), run_time=0.7)
-        self.wait(0.8)
+        # # 正規直交性の確認
+        # orthonormal = VGroup(
+        #     MathTex(r"\langle e_i | e_j \rangle = \delta_{ij}", color=ORANGE, font_size=26),
+        #     Text("(正規直交基底)", color=ORANGE, font_size=22),
+        # ).arrange(RIGHT, buff=0.3)
+        # orthonormal.shift(UP * 1.0)
+        # self.add_fixed_in_frame_mobjects(orthonormal)
+        # self.play(Write(orthonormal), run_time=0.7)
+        # self.wait(0.8)
         
-        # 行列Aの分解
-        decomp_title = Text("行列Aを基底で分解:", color=BLUE, font_size=26, weight=BOLD)
-        decomp_title.shift(UP * 0.2)
-        self.add_fixed_in_frame_mobjects(decomp_title)
-        self.play(Write(decomp_title), run_time=0.6)
-        self.wait(0.5)
+        # # 行列Aの分解
+        # decomp_title = Text("行列Aを基底で分解:", color=BLUE, font_size=26, weight=BOLD)
+        # decomp_title.shift(UP * 0.2)
+        # self.add_fixed_in_frame_mobjects(decomp_title)
+        # self.play(Write(decomp_title), run_time=0.6)
+        # self.wait(0.5)
         
-        # 外積展開の式
-        decomp_formula = MathTex(
-            r"A = \sum_{i=1}^{2} \sum_{j=1}^{2} a_{ij} |e_i\rangle\langle e_j|",
-            color=GREEN, font_size=32
-        )
-        decomp_formula.shift(DOWN * 0.5)
-        self.add_fixed_in_frame_mobjects(decomp_formula)
-        self.play(Write(decomp_formula), run_time=0.8)
-        self.wait(1.0)
+        # # 外積展開の式
+        # decomp_formula = MathTex(
+        #     r"A = \sum_{i=1}^{2}   |e_i\rangle\langle a_{i}|",
+        #     color=GREEN, font_size=32
+        # )
+        # decomp_formula.shift(DOWN * 0.5)
+        # self.add_fixed_in_frame_mobjects(decomp_formula)
+        # self.play(Write(decomp_formula), run_time=0.8)
+        # self.wait(1.0)
         
         # 展開した形
-        expand_arrow = MathTex(r"\Downarrow", color=YELLOW, font_size=36)
-        expand_arrow.next_to(decomp_formula, DOWN, buff=0.3)
-        expand_text = Text("展開すると", color=YELLOW, font_size=22)
-        expand_text.next_to(expand_arrow, RIGHT, buff=0.3)
-        self.add_fixed_in_frame_mobjects(expand_arrow, expand_text)
-        self.play(Write(expand_arrow), Write(expand_text), run_time=0.6)
-        self.wait(0.5)
+        # expand_arrow = MathTex(r"\Downarrow", color=YELLOW, font_size=36)
+        # expand_arrow.next_to(decomp_formula, DOWN, buff=0.3)
+        # expand_text = Text("展開すると", color=YELLOW, font_size=22)
+        # expand_text.next_to(expand_arrow, RIGHT, buff=0.3)
+        # self.add_fixed_in_frame_mobjects(expand_arrow, expand_text)
+        # self.play(Write(expand_arrow), Write(expand_text), run_time=0.6)
+        # self.wait(0.5)
         
         # 完全に展開した式
-        expanded_decomp = MathTex(
-            r"A = a_{11}|e_1\rangle\langle e_1| + a_{12}|e_1\rangle\langle e_2|",
-            color=WHITE, font_size=28
-        )
-        expanded_decomp.shift(DOWN * 1.5)
-        expanded_decomp2 = MathTex(
-            r"+ a_{21}|e_2\rangle\langle e_1| + a_{22}|e_2\rangle\langle e_2|",
-            color=WHITE, font_size=28
-        )
-        expanded_decomp2.next_to(expanded_decomp, DOWN, buff=0.2)
-        self.add_fixed_in_frame_mobjects(expanded_decomp, expanded_decomp2)
-        self.play(Write(expanded_decomp), run_time=0.8)
-        self.wait(0.4)
-        self.play(Write(expanded_decomp2), run_time=0.8)
-        self.wait(1.0)
+        # expanded_decomp = MathTex(
+        #     r"A = a_{11}|e_1\rangle\langle e_1| + a_{12}|e_1\rangle\langle e_2|",
+        #     color=WHITE, font_size=28
+        # )
+        # expanded_decomp.shift(DOWN * 1.5)
+        # expanded_decomp2 = MathTex(
+        #     r"+ a_{21}|e_2\rangle\langle e_1| + a_{22}|e_2\rangle\langle e_2|",
+        #     color=WHITE, font_size=28
+        # )
+        # expanded_decomp2.next_to(expanded_decomp, DOWN, buff=0.2)
+        # self.add_fixed_in_frame_mobjects(expanded_decomp, expanded_decomp2)
+        # self.play(Write(expanded_decomp), run_time=0.8)
+        # self.wait(0.4)
+        # self.play(Write(expanded_decomp2), run_time=0.8)
+        # self.wait(1.0)
         
         # 外積の意味
-        outer_product_note = VGroup(
-            Text("外積の意味:", color=ORANGE, font_size=24, weight=BOLD),
-            MathTex(r"|e_i\rangle\langle e_j| = \text{projection operator}", 
-                   color=ORANGE, font_size=22),
-        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        outer_product_note.to_corner(DL).shift(UP * 0.5 + RIGHT * 0.3)
-        self.add_fixed_in_frame_mobjects(outer_product_note)
-        self.play(Write(outer_product_note), run_time=0.8)
-        self.wait(1.2)
+        # outer_product_note = VGroup(
+        #     Text("外積の意味:", color=ORANGE, font_size=24, weight=BOLD),
+        #     MathTex(r"|e_i\rangle\langle e_j| = \text{projection operator}", 
+        #            color=ORANGE, font_size=22),
+        # ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+        # outer_product_note.to_corner(DL).shift(UP * 0.5 + RIGHT * 0.3)
+        # self.add_fixed_in_frame_mobjects(outer_product_note)
+        # self.play(Write(outer_product_note), run_time=0.8)
+        # self.wait(1.2)
         
-        # 重要なポイント
-        key_insight_decomp = Text(
-            "行列 = 基底の外積の線形結合",
-            color=YELLOW, font_size=28, weight=BOLD, slant=ITALIC
-        )
-        key_insight_decomp.to_edge(UP).shift(DOWN * 1.2)
-        self.add_fixed_in_frame_mobjects(key_insight_decomp)
-        self.play(Write(key_insight_decomp), run_time=0.8)
-        self.wait(1.5)
+        # # 重要なポイント
+        # key_insight_decomp = Text(
+        #     "行列 = 基底の外積の線形結合",
+        #     color=YELLOW, font_size=28, weight=BOLD, slant=ITALIC
+        # )
+        # key_insight_decomp.to_edge(UP).shift(DOWN * 1.2)
+        # self.add_fixed_in_frame_mobjects(key_insight_decomp)
+        # self.play(Write(key_insight_decomp), run_time=0.8)
+        # self.wait(1.5)
         
-        self.play(
-            FadeOut(basis_intro), FadeOut(orthonormal),
-            FadeOut(decomp_title), FadeOut(decomp_formula),
-            FadeOut(expand_arrow), FadeOut(expand_text),
-            FadeOut(expanded_decomp), FadeOut(expanded_decomp2),
-            FadeOut(outer_product_note), FadeOut(key_insight_decomp),
-            FadeOut(subtitle3)
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(basis_intro), FadeOut(orthonormal),
+        #     FadeOut(decomp_title), FadeOut(decomp_formula),
+        #     FadeOut(expand_arrow), FadeOut(expand_text),
+        #     FadeOut(expanded_decomp), FadeOut(expanded_decomp2),
+        #     FadeOut(outer_product_note), FadeOut(key_insight_decomp),
+        #     FadeOut(subtitle3)
+        # )
+        # self.wait(0.3)
         
         # === パート4: 観測ブラベクトルのベクトルとしての解釈 ===
         subtitle4 = Text("別の視点: 観測ブラベクトルのベクトル", font_size=32, color=TEAL)
@@ -517,25 +517,25 @@ class MatrixMultiplicationVisualization(ThreeDScene):
         self.wait(0.8)
         
         # ブラベクトルの詳細
-        bra_details = VGroup(
-            MathTex(r"\langle a_1 | = [a_{11}, a_{12}]", color=ORANGE, font_size=28),
-            MathTex(r"\langle a_2 | = [a_{21}, a_{22}]", color=ORANGE, font_size=28),
-        ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        bra_details.shift(DOWN * 1.5 + LEFT * 2)
-        self.add_fixed_in_frame_mobjects(bra_details)
-        self.play(Write(bra_details), run_time=0.9)
-        self.wait(1.0)
+        # bra_details = VGroup(
+        #     MathTex(r"\langle a_1 | = [a_{11}, a_{12}]", color=ORANGE, font_size=28),
+        #     MathTex(r"\langle a_2 | = [a_{21}, a_{22}]", color=ORANGE, font_size=28),
+        # ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
+        # bra_details.shift(DOWN * 1.5 + LEFT * 2)
+        # self.add_fixed_in_frame_mobjects(bra_details)
+        # self.play(Write(bra_details), run_time=0.9)
+        # self.wait(1.0)
         
         self.play(
             FadeOut(bra_intro), FadeOut(matrix_normal),
             FadeOut(arrow_transform), FadeOut(transform_text),
-            FadeOut(bra_details)
+            # FadeOut(bra_details)
         )
         self.wait(0.3)
         
         # ケットベクトルとの積
         multiplication_title = Text("任意のケットベクトルとの積", color=BLUE, font_size=28, weight=BOLD)
-        multiplication_title.shift(UP * 2.2)
+        multiplication_title.shift(UP * 1.8)
         self.add_fixed_in_frame_mobjects(multiplication_title)
         self.play(Write(multiplication_title), run_time=0.6)
         self.wait(0.5)
@@ -559,7 +559,8 @@ class MatrixMultiplicationVisualization(ThreeDScene):
         self.add_fixed_in_frame_mobjects(product_eq)
         self.play(
             TransformFromCopy(matrix_bra, product_eq),
-            run_time=0.8
+            FadeOut(matrix_bra),
+            run_time=0.8,
         )
         self.wait(0.8)
         
@@ -577,46 +578,47 @@ class MatrixMultiplicationVisualization(ThreeDScene):
             r"= \begin{bmatrix} \langle a_1 | x \rangle \\ \langle a_2 | x \rangle \end{bmatrix}",
             color=GREEN, font_size=36
         )
-        observation_vector.shift(DOWN * 1.0)
+        observation_vector.shift(DOWN * 1.5)
         self.add_fixed_in_frame_mobjects(observation_vector)
         self.play(Write(observation_vector), run_time=0.8)
         self.wait(1.0)
         
         # 観測値ベクトルの説明
         obs_label = Text("観測値ベクトル", color=GREEN, font_size=28, weight=BOLD)
-        obs_label.next_to(observation_vector, DOWN, buff=0.4)
+        obs_label.next_to(observation_vector, DOWN *1.2, buff=0.4)
         self.add_fixed_in_frame_mobjects(obs_label)
         self.play(Write(obs_label), run_time=0.6)
         self.wait(0.8)
         
         # 詳細な展開
-        detailed_expansion = VGroup(
-            MathTex(r"\langle a_1 | x \rangle = a_{11} x_1 + a_{12} x_2", 
-                   color=ORANGE, font_size=24),
-            MathTex(r"\langle a_2 | x \rangle = a_{21} x_1 + a_{22} x_2", 
-                   color=ORANGE, font_size=24),
-        ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        detailed_expansion.shift(DOWN * 2.3 + LEFT * 1.5)
-        self.add_fixed_in_frame_mobjects(detailed_expansion)
-        self.play(Write(detailed_expansion), run_time=0.9)
-        self.wait(1.2)
+        # detailed_expansion = VGroup(
+        #     MathTex(r"\langle a_1 | x \rangle = a_{11} x_1 + a_{12} x_2", 
+        #            color=ORANGE, font_size=24),
+        #     MathTex(r"\langle a_2 | x \rangle = a_{21} x_1 + a_{22} x_2", 
+        #            color=ORANGE, font_size=24),
+        # ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
+        # detailed_expansion.shift(DOWN * 2.3 + LEFT * 1.5)
+        # self.add_fixed_in_frame_mobjects(detailed_expansion)
+        # self.play(Write(detailed_expansion), run_time=0.9)
+        # self.wait(1.2)
         
         # まとめのポイント
         key_insight = Text(
             "行列 = 観測ブラベクトルの集まり",
             color=YELLOW, font_size=28, weight=BOLD, slant=ITALIC
         )
-        key_insight.to_edge(UP).shift(DOWN * 1.2)
+        key_insight.to_edge(UP).shift(DOWN * 6.5)
         self.add_fixed_in_frame_mobjects(key_insight)
         self.play(Write(key_insight), run_time=0.8)
         self.wait(1.5)
         
         self.play(
-            FadeOut(matrix_bra), FadeOut(multiplication_title),
+            FadeOut(multiplication_title),
             FadeOut(ket_vector), FadeOut(product_eq),
             FadeOut(transform_arrow1), FadeOut(step1_text),
             FadeOut(observation_vector), FadeOut(obs_label),
-            FadeOut(detailed_expansion), FadeOut(key_insight),
+            # FadeOut(detailed_expansion),
+            FadeOut(key_insight),
             FadeOut(subtitle4)
         )
         self.wait(0.3)
@@ -639,20 +641,12 @@ class MatrixMultiplicationVisualization(ThreeDScene):
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=26, weight=BOLD),
-                Text("展開すると各項の積の和（経路の総和）", color=WHITE, font_size=24),
+                Text("経路の総和という視点", color=WHITE, font_size=24),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("基底分解: ", color=PURPLE, font_size=24),
-                    MathTex(r"A = \sum_{ij} a_{ij} |e_i\rangle\langle e_j|", 
-                           color=PURPLE, font_size=22),
-                ).arrange(RIGHT, buff=0.2),
-            ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
-            VGroup(
-                Text("4.", color=WHITE, font_size=26, weight=BOLD),
-                VGroup(
-                    Text("観測ブラベクトル: ", color=YELLOW, font_size=24),
+                    Text("観測器による観測という視点: ", color=YELLOW, font_size=24),
                     MathTex(r"A|x\rangle = \begin{bmatrix} \langle a_1|x\rangle \\ \vdots \end{bmatrix}", 
                            color=YELLOW, font_size=22),
                 ).arrange(RIGHT, buff=0.2),
@@ -666,22 +660,11 @@ class MatrixMultiplicationVisualization(ThreeDScene):
             self.wait(0.4)
         
         self.wait(0.5)
-        
-        # 最終メッセージ
-        final_message = VGroup(
-            Text("行列の積 = ", color=YELLOW, font_size=30, weight=BOLD),
-            Text("経路の総和 = 観測値のベクトル", color=YELLOW, font_size=30, weight=BOLD, slant=ITALIC),
-        ).arrange(DOWN, buff=0.3)
-        final_message.shift(DOWN * 2.3)
-        self.add_fixed_in_frame_mobjects(final_message)
-        self.play(Write(final_message), run_time=0.8)
-        self.wait(1.5)
-        
-        self.wait(2.0)
-        
+                
         # フェードアウト
         all_objects = VGroup(
-            title, summary_subtitle, summary_points, final_message
+            title, summary_subtitle, summary_points,
+            # final_message
         )
         self.play(FadeOut(all_objects), run_time=1.0)
         self.wait(0.5)
