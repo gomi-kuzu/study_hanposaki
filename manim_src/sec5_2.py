@@ -20,7 +20,7 @@ class MatrixTransformationProperties(ThreeDScene):
         self.wait(0.5)
         
         # 線型性の定義
-        linearity_title = Text("線型性とは:", color=YELLOW, font_size=28, weight=BOLD)
+        linearity_title = Text("線型性の復習↓", color=YELLOW, font_size=28, weight=BOLD)
         linearity_title.shift(UP * 2.0)
         self.add_fixed_in_frame_mobjects(linearity_title)
         self.play(Write(linearity_title), run_time=0.6)
@@ -92,7 +92,7 @@ class MatrixTransformationProperties(ThreeDScene):
             "回転してから鏡映 vs 鏡映してから回転",
             color=YELLOW, font_size=26
         )
-        explanation.shift(UP * 2.5)
+        explanation.shift(DOWN * 3)
         self.add_fixed_in_frame_mobjects(explanation)
         self.play(Write(explanation), run_time=0.7)
         self.wait(0.6)
@@ -148,13 +148,16 @@ class MatrixTransformationProperties(ThreeDScene):
         rotation_note.to_edge(LEFT).shift(UP * 1.3)
         self.add_fixed_in_frame_mobjects(rotation_note)
         
+        # Transformアニメーション用のコピーを作成
+        transform_vec1 = original_vector.copy()
+        self.add(transform_vec1)
+        
         self.play(
-            Transform(original_vector.copy(), rotated_vector),
+            Transform(transform_vec1, rotated_vector),
             Write(rotated_label),
             Write(rotation_note),
             run_time=1.0
         )
-        self.add(rotated_vector)
         self.wait(0.6)
         
         # 鏡映 (x軸対称)
@@ -173,21 +176,25 @@ class MatrixTransformationProperties(ThreeDScene):
         reflection_note.to_edge(LEFT).shift(UP * 0.8)
         self.add_fixed_in_frame_mobjects(reflection_note)
         
+        # 次の変換用のコピーを作成
+        transform_vec2 = transform_vec1.copy()
+        self.add(transform_vec2)
+        
         self.play(
-            Transform(rotated_vector.copy(), reflected_vector1),
+            Transform(transform_vec2, reflected_vector1),
             Write(reflected_label1),
             Write(reflection_note),
             run_time=1.0
         )
-        self.add(reflected_vector1)
         self.wait(1.0)
         
         # 結果ベクトルの位置を記録
         result1_pos = reflected_vector1.get_end()
         
-        # フェードアウト
+        # フェードアウト(transform_vec1とtransform_vec2も消す)
         self.play(
-            FadeOut(rotated_vector), FadeOut(rotated_label),
+            FadeOut(transform_vec1), FadeOut(rotated_label),
+            FadeOut(transform_vec2), FadeOut(reflected_label1),
             FadeOut(rotation_note), FadeOut(reflection_note)
         )
         self.wait(0.3)
@@ -218,13 +225,16 @@ class MatrixTransformationProperties(ThreeDScene):
         reflection_note2.to_edge(LEFT).shift(UP * 1.3)
         self.add_fixed_in_frame_mobjects(reflection_note2)
         
+        # Transformアニメーション用のコピーを作成
+        transform_vec3 = original_vector.copy()
+        self.add(transform_vec3)
+        
         self.play(
-            Transform(original_vector.copy(), reflected_first),
+            Transform(transform_vec3, reflected_first),
             Write(reflected_first_label),
             Write(reflection_note2),
             run_time=1.0
         )
-        self.add(reflected_first)
         self.wait(0.6)
         
         # 回転 (45度)
@@ -244,13 +254,16 @@ class MatrixTransformationProperties(ThreeDScene):
         rotation_note2.to_edge(LEFT).shift(UP * 0.8)
         self.add_fixed_in_frame_mobjects(rotation_note2)
         
+        # 次の変換用のコピーを作成
+        transform_vec4 = transform_vec3.copy()
+        self.add(transform_vec4)
+        
         self.play(
-            Transform(reflected_first.copy(), rotated_second),
+            Transform(transform_vec4, rotated_second),
             Write(rotated_second_label),
             Write(rotation_note2),
             run_time=1.0
         )
-        self.add(rotated_second)
         self.wait(1.0)
         
         # 結果の比較
@@ -279,18 +292,17 @@ class MatrixTransformationProperties(ThreeDScene):
         self.play(Write(noncommutative), run_time=0.7)
         self.wait(1.5)
         
-        # フェードアウト
+        # フェードアウト(transform_vec3とtransform_vec4も消す)
         self.play(
             FadeOut(original_vector), FadeOut(original_label),
-            FadeOut(reflected_vector1), FadeOut(reflected_label1),
-            FadeOut(reflected_first), FadeOut(reflected_first_label),
-            FadeOut(rotated_second), FadeOut(rotated_second_label),
+            FadeOut(transform_vec3), FadeOut(reflected_first_label),
+            FadeOut(transform_vec4), FadeOut(rotated_second_label),
             FadeOut(axes), FadeOut(axis_labels),
             FadeOut(case2_label), FadeOut(reflection_note2),
             FadeOut(rotation_note2), FadeOut(comparison),
             FadeOut(comparison_box), FadeOut(matrix_equation),
             FadeOut(matrix_box), FadeOut(noncommutative),
-            FadeOut(explanation), FadeOut(subtitle2)
+            FadeOut(explanation), FadeOut(subtitle2),
         )
         self.wait(0.3)
         
@@ -303,14 +315,14 @@ class MatrixTransformationProperties(ThreeDScene):
         self.play(Write(subtitle3), run_time=0.6)
         self.wait(0.5)
         
-        intro_text = Text(
-            "同じ線型変換でも、基底によって異なる行列で表される",
-            color=YELLOW, font_size=24
-        )
-        intro_text.shift(UP * 2.5)
-        self.add_fixed_in_frame_mobjects(intro_text)
-        self.play(Write(intro_text), run_time=0.8)
-        self.wait(0.8)
+        # intro_text = Text(
+        #     "同じ線型変換でも、基底によって異なる行列で表される",
+        #     color=YELLOW, font_size=24
+        # )
+        # intro_text.shift(UP * 2.5)
+        # self.add_fixed_in_frame_mobjects(intro_text)
+        # self.play(Write(intro_text), run_time=0.8)
+        # self.wait(0.8)
         
         # === 標準基底の場合 ===
         basis1_title = Text("基底1: 標準基底", font_size=28, color=BLUE, weight=BOLD)
@@ -352,16 +364,16 @@ class MatrixTransformationProperties(ThreeDScene):
         self.wait(0.8)
         
         # 検証
-        verification1 = VGroup(
-            MathTex(r"P_1 \mathbf{u}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}", 
-                   color=GREEN, font_size=20),
-            MathTex(r"P_1 \mathbf{u}_2 = \begin{bmatrix} 0 \\ 0 \end{bmatrix}", 
-                   color=GREEN, font_size=20),
-        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        verification1.shift(DOWN * 1.2 + LEFT * 3.5)
-        self.add_fixed_in_frame_mobjects(verification1)
-        self.play(Write(verification1), run_time=0.7)
-        self.wait(0.8)
+        # verification1 = VGroup(
+        #     MathTex(r"P_1 \mathbf{u}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}", 
+        #            color=GREEN, font_size=20),
+        #     MathTex(r"P_1 \mathbf{u}_2 = \begin{bmatrix} 0 \\ 0 \end{bmatrix}", 
+        #            color=GREEN, font_size=20),
+        # ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+        # verification1.shift(DOWN * 1.2 + LEFT * 3.5)
+        # self.add_fixed_in_frame_mobjects(verification1)
+        # self.play(Write(verification1), run_time=0.7)
+        # self.wait(0.8)
         
         # === 別の基底の場合 ===
         basis2_title = Text("基底2: 別の基底", font_size=28, color=ORANGE, weight=BOLD)
@@ -373,7 +385,7 @@ class MatrixTransformationProperties(ThreeDScene):
         # 別の基底の定義
         alt_basis = MathTex(
             r"\mathbf{a}_1 = \begin{bmatrix} -1 \\ 0 \end{bmatrix}, \quad"
-            r"\mathbf{a}_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}",
+            r"\mathbf{a}_2 = \begin{bmatrix} -1 \\ -1 \end{bmatrix}",
             color=ORANGE, font_size=26
         )
         alt_basis.shift(UP * 1.2 + RIGHT * 3.5)
@@ -381,9 +393,9 @@ class MatrixTransformationProperties(ThreeDScene):
         self.play(Write(alt_basis), run_time=0.8)
         self.wait(0.6)
         
-        # a1方向成分抽出の説明
+        # u1方向成分抽出の説明
         projection_desc2 = Text(
-            "a₁方向の成分を抽出する変換:",
+            "u₁方向の成分を抽出する変換:",
             color=WHITE, font_size=22
         )
         projection_desc2.shift(UP * 0.5 + RIGHT * 3.5)
@@ -391,38 +403,28 @@ class MatrixTransformationProperties(ThreeDScene):
         self.play(Write(projection_desc2), run_time=0.6)
         self.wait(0.4)
         
-        # 注意: a1方向に射影する行列は、標準基底で表すと異なる
-        note_text = Text(
-            "※標準基底で表すと:",
-            color=YELLOW, font_size=20
-        )
-        note_text.shift(UP * 0.1 + RIGHT * 3.5)
-        self.add_fixed_in_frame_mobjects(note_text)
-        self.play(Write(note_text), run_time=0.5)
-        self.wait(0.3)
-        
         # 別基底での表現行列 (標準基底で表現)
         matrix2 = MathTex(
             r"P_2 = \begin{bmatrix} -1 & -1 \\ 0 & 0 \end{bmatrix}",
             color=ORANGE, font_size=30
         )
-        matrix2.shift(DOWN * 0.5 + RIGHT * 3.5)
+        matrix2.shift(DOWN *0.2 + RIGHT * 3.5)
         matrix2_box = SurroundingRectangle(matrix2, color=ORANGE, buff=0.15)
         self.add_fixed_in_frame_mobjects(matrix2, matrix2_box)
         self.play(Write(matrix2), Create(matrix2_box), run_time=0.8)
         self.wait(0.8)
         
         # 検証
-        verification2 = VGroup(
-            MathTex(r"P_2 \mathbf{a}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix} = -\mathbf{a}_1", 
-                   color=GREEN, font_size=18),
-            MathTex(r"P_2 \mathbf{a}_2 = \begin{bmatrix} 0 \\ 0 \end{bmatrix}", 
-                   color=GREEN, font_size=18),
-        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        verification2.shift(DOWN * 1.4 + RIGHT * 3.5)
-        self.add_fixed_in_frame_mobjects(verification2)
-        self.play(Write(verification2), run_time=0.7)
-        self.wait(1.0)
+        # verification2 = VGroup(
+        #     MathTex(r"P_2 \mathbf{a}_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix} = -\mathbf{a}_1", 
+        #            color=GREEN, font_size=18),
+        #     MathTex(r"P_2 \mathbf{a}_2 = \begin{bmatrix} 0 \\ 0 \end{bmatrix}", 
+        #            color=GREEN, font_size=18),
+        # ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+        # verification2.shift(DOWN * 1.4 + RIGHT * 3.5)
+        # self.add_fixed_in_frame_mobjects(verification2)
+        # self.play(Write(verification2), run_time=0.7)
+        # self.wait(1.0)
         
         # 重要なポイント
         key_point = VGroup(
@@ -430,7 +432,7 @@ class MatrixTransformationProperties(ThreeDScene):
             Text("同じ「方向成分を抽出する」操作でも", color=WHITE, font_size=22),
             Text("基底が違えば表現行列も異なる!", color=YELLOW, font_size=22),
         ).arrange(DOWN, buff=0.3)
-        key_point.shift(DOWN * 2.8)
+        key_point.shift(DOWN * 2)
         key_box = SurroundingRectangle(key_point, color=YELLOW, buff=0.2)
         self.add_fixed_in_frame_mobjects(key_point, key_box)
         self.play(Write(key_point), Create(key_box), run_time=1.0)
@@ -438,14 +440,14 @@ class MatrixTransformationProperties(ThreeDScene):
         
         # フェードアウト
         self.play(
-            FadeOut(intro_text),
+            # FadeOut(intro_text),
             FadeOut(basis1_title), FadeOut(standard_basis),
             FadeOut(projection_desc1), FadeOut(matrix1),
-            FadeOut(matrix1_box), FadeOut(verification1),
+            FadeOut(matrix1_box),
             FadeOut(basis2_title), FadeOut(alt_basis),
-            FadeOut(projection_desc2), FadeOut(note_text),
+            FadeOut(projection_desc2),
             FadeOut(matrix2), FadeOut(matrix2_box),
-            FadeOut(verification2), FadeOut(key_point),
+            FadeOut(key_point),
             FadeOut(key_box), FadeOut(subtitle3)
         )
         self.wait(0.3)
