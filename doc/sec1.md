@@ -80,5 +80,14 @@
 ### 直交化の具体的なやり方
 <div><video controls src="https://github.com/user-attachments/assets/55b3e6bd-32e9-4f70-aee5-a7c3cf894796"/video></div>
 
+# 第5話
+## 5.1
+
+<div><video controls src="https://github.com/user-attachments/assets/15e6447e-f4f8-4ce0-8292-ba8ee11dd04a"/video></div>
+
+## 5.2
+
+<div><video controls src=""/video></div>
+
 <!-- <div><video controls src=""/video></div> -->
 
