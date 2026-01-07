@@ -82,12 +82,10 @@
 
 # 第5話
 ## 5.1
-
 <div><video controls src="https://github.com/user-attachments/assets/15e6447e-f4f8-4ce0-8292-ba8ee11dd04a"/video></div>
 
 ## 5.2
-
-<div><video controls src=""/video></div>
+<div><video controls src="https://github.com/user-attachments/assets/c5b45443-a0f7-4b30-8e94-c3025f5e1a5c"/video></div>
 
 <!-- <div><video controls src=""/video></div> -->
 
