@@ -89,5 +89,12 @@
 ### 行列はベクトルを変換する
 <div><video controls src="https://github.com/user-attachments/assets/c5b45443-a0f7-4b30-8e94-c3025f5e1a5c"/video></div>
 
+# 第6話
+## 6.2
+### 正規化ベクトルとの内積が”影”の長さになるって話
+<div><video controls src="https://github.com/user-attachments/assets/66346e1b-8ca7-4e13-9f56-5cdad0ec6bcc"/video></div>
+
+###
+
 <!-- <div><video controls src=""/video></div> -->
 
