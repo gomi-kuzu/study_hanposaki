@@ -13,16 +13,16 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.wait(0.8)
         
         # === イントロ: 前回の復習 ===
-        intro_subtitle = Text("前回の復習: 正規化ベクトルとの内積", font_size=32, color=YELLOW)
-        intro_subtitle.next_to(title, DOWN)
-        self.add_fixed_in_frame_mobjects(intro_subtitle)
-        self.play(Write(intro_subtitle), run_time=0.6)
-        self.wait(0.5)
+        # intro_subtitle = Text("前回の復習: 正規化ベクトルとの内積", font_size=32, color=YELLOW)
+        # intro_subtitle.next_to(title, DOWN)
+        # self.add_fixed_in_frame_mobjects(intro_subtitle)
+        # self.play(Write(intro_subtitle), run_time=0.6)
+        # self.wait(0.5)
         
         intro_text = VGroup(
-            Text("正規化ベクトルとの内積 → 影の長さ", color=WHITE, font_size=26, weight=BOLD),
+            Text("再掲：正規化ベクトルとの内積 → 影の長さ", color=WHITE, font_size=32, weight=BOLD),
             MathTex(r"\langle \mathbf{u}_1 | \mathbf{x} \rangle = \|\mathbf{x}\| \cos\theta", 
-                   color=YELLOW, font_size=28),
+                   color=YELLOW, font_size=32),
             Text("||u₁|| = 1 のとき、内積 = u₁方向への射影", color=GREEN, font_size=24),
         ).arrange(DOWN, buff=0.4)
         intro_text.shift(DOWN * 0.5)
@@ -31,15 +31,15 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.play(Write(intro_text), run_time=1.2)
         self.wait(1.5)
         
-        self.play(FadeOut(intro_text), FadeOut(intro_subtitle))
+        self.play(FadeOut(intro_text))
         self.wait(0.3)
         
         # === パート1: 3次元空間の設定 ===
-        subtitle1 = Text("3次元空間でのベクトル分解", font_size=32, color=BLUE)
-        subtitle1.next_to(title, DOWN)
-        self.add_fixed_in_frame_mobjects(subtitle1)
-        self.play(Write(subtitle1), run_time=0.6)
-        self.wait(0.5)
+        # subtitle1 = Text("3次元空間でのベクトル分解", font_size=32, color=BLUE)
+        # subtitle1.next_to(title, DOWN)
+        # self.add_fixed_in_frame_mobjects(subtitle1)
+        # self.play(Write(subtitle1), run_time=0.6)
+        # self.wait(0.5)
         
         # 3D空間の設定
         self.set_camera_orientation(phi=70 * DEGREES, theta=45 * DEGREES)
@@ -51,9 +51,11 @@ class ProjectionAndOrthogonalization(ThreeDScene):
             z_range=[-1, 3, 1],
             x_length=6,
             y_length=6,
-            z_length=6,
+            z_length=5,
             axis_config={"color": GREY, "stroke_width": 2}
         )
+        axes.shift(UP+RIGHT*2)  # 座標軸を少し下げる
+        
         axis_labels = axes.get_axis_labels(
             MathTex("x", font_size=24),
             MathTex("y", font_size=24),
@@ -126,11 +128,11 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.play(Create(a3_vector), Write(a3_label), run_time=0.8)
         self.wait(1.0)
         
-        self.play(FadeOut(subtitle1))
+        # self.play(FadeOut(subtitle1))
         self.wait(0.3)
         
         # === パート2: ベクトルの分解式 ===
-        subtitle2 = Text("ベクトルを直交成分に分解", font_size=32, color=PURPLE)
+        subtitle2 = Text("観点１：ベクトルを直交成分に分解", font_size=32, color=ORANGE)
         subtitle2.next_to(title, DOWN)
         self.add_fixed_in_frame_mobjects(subtitle2)
         self.play(Write(subtitle2), run_time=0.6)
@@ -140,9 +142,9 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         decomposition_eq = MathTex(
             r"|a_3\rangle = \langle \mathbf{u}_1 | a_3 \rangle |\mathbf{u}_1\rangle + "
             r"\langle \mathbf{u}_2 | a_3 \rangle |\mathbf{u}_2\rangle + |\tilde{\mathbf{u}}_3\rangle",
-            color=WHITE, font_size=26
+            color=WHITE, font_size=30
         )
-        decomposition_eq.shift(DOWN * 2.5)
+        decomposition_eq.shift(DOWN*2)
         self.add_fixed_in_frame_mobjects(decomposition_eq)
         self.play(Write(decomposition_eq), run_time=1.2)
         self.wait(1.0)
@@ -177,7 +179,7 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         proj_u1_label.next_to(axes.c2p(*proj_u1_end), DOWN, buff=0.3)
         self.add_fixed_orientation_mobjects(proj_u1_label)
         
-        self.play(Create(proj_u1_vector), Write(proj_u1_label), run_time=0.9)
+        self.play(Create(proj_u1_vector), Write(proj_u1_label), FadeOut((u1_label)), run_time=0.9)
         self.wait(0.8)
         
         # 垂線（u1成分を引いた後の残り）
@@ -226,7 +228,7 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         proj_u2_label.next_to(axes.c2p(*proj_u2_end), LEFT, buff=0.3)
         self.add_fixed_orientation_mobjects(proj_u2_label)
         
-        self.play(Create(proj_u2_vector), Write(proj_u2_label), run_time=0.9)
+        self.play(Create(proj_u2_vector), Write(proj_u2_label), FadeOut((u2_label)), run_time=0.9)
         self.wait(0.8)
         
         self.play(FadeOut(term_explanation2))
@@ -269,7 +271,7 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.wait(0.3)
         
         # === パート3: 式変形とシュミットの直交化 ===
-        subtitle3 = Text("式変形: 観測装置で成分を測定", font_size=32, color=TEAL)
+        subtitle3 = Text("観点２：観測装置で成分を測定", font_size=32, color=TEAL)
         subtitle3.next_to(title, DOWN)
         self.add_fixed_in_frame_mobjects(subtitle3)
         self.play(Write(subtitle3), run_time=0.6)
@@ -277,8 +279,8 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         
         # 元の式
         original_eq = MathTex(
-            r"|a_3\rangle = \langle \mathbf{u}_1 | a_3 \rangle |\mathbf{u}_1\rangle + "
-            r"\langle \mathbf{u}_2 | a_3 \rangle |\mathbf{u}_2\rangle + |\tilde{\mathbf{u}}_3\rangle",
+            r"|a_3\rangle = (\langle \mathbf{u}_1 | a_3 \rangle ) |\mathbf{u}_1\rangle + "
+            r"(\langle \mathbf{u}_2 | a_3 \rangle ) |\mathbf{u}_2\rangle + |\tilde{\mathbf{u}}_3\rangle",
             color=WHITE, font_size=24
         )
         original_eq.to_corner(UR).shift(DOWN * 1.5 + LEFT * 0.3)
@@ -289,8 +291,8 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         # 式変形の矢印
         arrow = MathTex(r"\Downarrow", color=YELLOW, font_size=28)
         arrow.next_to(original_eq, DOWN, buff=0.2)
-        rearrange_text = Text("両辺を変形", color=YELLOW, font_size=20)
-        rearrange_text.next_to(arrow, RIGHT, buff=0.2)
+        rearrange_text = Text("式を変形", color=YELLOW, font_size=20)
+        rearrange_text.next_to(arrow, RIGHT, buff=0.2).shift(LEFT*2)
         self.add_fixed_in_frame_mobjects(arrow, rearrange_text)
         self.play(Write(arrow), Write(rearrange_text), run_time=0.6)
         self.wait(0.5)
@@ -300,9 +302,9 @@ class ProjectionAndOrthogonalization(ThreeDScene):
             r"|\tilde{\mathbf{u}}_3\rangle = |a_3\rangle - "
             r"\langle \mathbf{u}_1 | a_3 \rangle |\mathbf{u}_1\rangle - "
             r"\langle \mathbf{u}_2 | a_3 \rangle |\mathbf{u}_2\rangle",
-            color=ORANGE, font_size=24
+            color=ORANGE, font_size=26
         )
-        schmidt_eq.next_to(arrow, DOWN, buff=0.3, aligned_edge=LEFT)
+        schmidt_eq.next_to(arrow, DOWN, buff=0.3, aligned_edge=LEFT*2.5).shift(LEFT*1.7)
         schmidt_box = SurroundingRectangle(schmidt_eq, color=ORANGE, buff=0.15)
         self.add_fixed_in_frame_mobjects(schmidt_eq, schmidt_box)
         self.play(Write(schmidt_eq), Create(schmidt_box), run_time=1.0)
@@ -324,10 +326,10 @@ class ProjectionAndOrthogonalization(ThreeDScene):
                 Text("観測装置〈u₂|で測定した成分を引く", color=GREEN, font_size=22),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        interpretation.shift(DOWN * 1.8)
+        interpretation.shift(DOWN * 1.8 + RIGHT *3.6)
         self.add_fixed_in_frame_mobjects(interpretation)
-        self.play(Write(interpretation), run_time=1.5)
-        self.wait(1.5)
+        self.play(Write(interpretation), run_time=2)
+        self.wait(2.5)
         
         self.play(
             FadeOut(original_eq), FadeOut(arrow), FadeOut(rearrange_text),
@@ -337,45 +339,45 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.wait(0.3)
         
         # === パート4: 直交性の確認 ===
-        subtitle4 = Text("直交性の確認", font_size=32, color=GOLD)
-        subtitle4.next_to(title, DOWN)
-        self.add_fixed_in_frame_mobjects(subtitle4)
-        self.play(Write(subtitle4), run_time=0.6)
-        self.wait(0.5)
+        # subtitle4 = Text("直交性の確認", font_size=32, color=GOLD)
+        # subtitle4.next_to(title, DOWN)
+        # self.add_fixed_in_frame_mobjects(subtitle4)
+        # self.play(Write(subtitle4), run_time=0.6)
+        # self.wait(0.5)
         
-        # u3はu1, u2と直交していることを確認
-        orthogonal_check = VGroup(
-            MathTex(r"\langle \mathbf{u}_1 | \tilde{\mathbf{u}}_3 \rangle = 0", 
-                   color=RED, font_size=26),
-            MathTex(r"\langle \mathbf{u}_2 | \tilde{\mathbf{u}}_3 \rangle = 0", 
-                   color=GREEN, font_size=26),
-        ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        orthogonal_check.shift(UP * 0.5)
-        self.add_fixed_in_frame_mobjects(orthogonal_check)
+        # # u3はu1, u2と直交していることを確認
+        # orthogonal_check = VGroup(
+        #     MathTex(r"\langle \mathbf{u}_1 | \tilde{\mathbf{u}}_3 \rangle = 0", 
+        #            color=RED, font_size=26),
+        #     MathTex(r"\langle \mathbf{u}_2 | \tilde{\mathbf{u}}_3 \rangle = 0", 
+        #            color=GREEN, font_size=26),
+        # ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
+        # orthogonal_check.shift(UP * 0.5)
+        # self.add_fixed_in_frame_mobjects(orthogonal_check)
         
-        for check in orthogonal_check:
-            self.play(Write(check), run_time=0.7)
-            self.wait(0.5)
+        # for check in orthogonal_check:
+        #     self.play(Write(check), run_time=0.7)
+        #     self.wait(0.5)
         
-        self.wait(0.8)
+        # self.wait(0.8)
         
-        # 直交基底の完成
-        complete_text = Text(
-            "u₁, u₂, ũ₃ は互いに直交する!",
-            color=YELLOW, font_size=28, weight=BOLD
-        )
-        complete_text.shift(DOWN * 1.2)
-        complete_box = SurroundingRectangle(complete_text, color=YELLOW, buff=0.2)
-        self.add_fixed_in_frame_mobjects(complete_text, complete_box)
-        self.play(Write(complete_text), Create(complete_box), run_time=0.8)
-        self.wait(1.2)
+        # # 直交基底の完成
+        # complete_text = Text(
+        #     "u₁, u₂, ũ₃ は互いに直交する!",
+        #     color=YELLOW, font_size=28, weight=BOLD
+        # )
+        # complete_text.shift(DOWN * 1.2)
+        # complete_box = SurroundingRectangle(complete_text, color=YELLOW, buff=0.2)
+        # self.add_fixed_in_frame_mobjects(complete_text, complete_box)
+        # self.play(Write(complete_text), Create(complete_box), run_time=0.8)
+        # self.wait(1.2)
         
-        self.play(
-            FadeOut(orthogonal_check),
-            FadeOut(complete_text), FadeOut(complete_box),
-            FadeOut(subtitle4)
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(orthogonal_check),
+        #     FadeOut(complete_text), FadeOut(complete_box),
+        #     FadeOut(subtitle4)
+        # )
+        # self.wait(0.3)
         
         # カメラをさらに回転
         self.move_camera(phi=60 * DEGREES, theta=30 * DEGREES, run_time=2.0)
@@ -384,8 +386,8 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         # 3Dオブジェクトをフェードアウト
         self.play(
             FadeOut(axes), FadeOut(axis_labels),
-            FadeOut(u1_vector), FadeOut(u1_label),
-            FadeOut(u2_vector), FadeOut(u2_label),
+            FadeOut(u1_vector),
+            FadeOut(u2_vector), 
             FadeOut(a3_vector), FadeOut(a3_label),
             FadeOut(proj_u1_vector), FadeOut(proj_u1_label),
             FadeOut(proj_u2_vector), FadeOut(proj_u2_label),
@@ -397,7 +399,7 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.wait(0.3)
         
         # === まとめ ===
-        summary_subtitle = Text("まとめ", font_size=36, color=GOLD, weight=BOLD)
+        summary_subtitle = Text("まとめ", font_size=32, color=GOLD, weight=BOLD)
         summary_subtitle.next_to(title, DOWN)
         self.add_fixed_in_frame_mobjects(summary_subtitle)
         self.play(Write(summary_subtitle), run_time=0.6)
@@ -416,9 +418,9 @@ class ProjectionAndOrthogonalization(ThreeDScene):
             VGroup(
                 Text("2.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("正規化ベクトルは「観測装置」として機能", color=WHITE, font_size=24),
-                    MathTex(r"\langle \mathbf{u}_i | a \rangle", color=GREEN, font_size=24),
-                    Text("で、その方向の成分を測定できる", color=WHITE, font_size=24),
+                    Text("正規化ベクトルは「観測装置」として機能し、", color=WHITE, font_size=24),
+                    # MathTex(r"\langle \mathbf{u}_i | a \rangle", color=GREEN, font_size=24),
+                    Text("その方向の成分を測定できる", color=WHITE, font_size=24),
                 ).arrange(DOWN, buff=0.15, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             
@@ -448,20 +450,20 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.wait(1.5)
         
         # 最終メッセージ
-        final_message = Text(
-            "射影 = 観測 = 直交化の核心!",
-            color=YELLOW, font_size=32, weight=BOLD, slant=ITALIC
-        )
-        final_message.shift(DOWN * 2.8)
-        final_box = SurroundingRectangle(final_message, color=YELLOW, buff=0.25)
-        self.add_fixed_in_frame_mobjects(final_message, final_box)
-        self.play(Write(final_message), Create(final_box), run_time=1.0)
-        self.wait(2.0)
+        # final_message = Text(
+        #     "射影 = 観測 = 直交化の核心!",
+        #     color=YELLOW, font_size=32, weight=BOLD, slant=ITALIC
+        # )
+        # final_message.shift(DOWN * 2.8)
+        # final_box = SurroundingRectangle(final_message, color=YELLOW, buff=0.25)
+        # self.add_fixed_in_frame_mobjects(final_message, final_box)
+        # self.play(Write(final_message), Create(final_box), run_time=1.0)
+        # self.wait(2.0)
         
         # フェードアウト
         all_objects = VGroup(
             title, summary_subtitle, summary_points, 
-            final_message, final_box
+            # final_message, final_box
         )
         self.play(FadeOut(all_objects), run_time=1.0)
         self.wait(0.5)
