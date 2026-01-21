@@ -183,18 +183,18 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.wait(0.8)
         
         # 垂線（u1成分を引いた後の残り）
-        perp_u1_start = proj_u1_end
-        perp_u1_end = a3_end
-        perp_u1_line = DashedLine(
-            axes.c2p(*perp_u1_start),
-            axes.c2p(*perp_u1_end),
-            color=ORANGE,
-            stroke_width=3,
-            dash_length=0.1
-        )
+        # perp_u1_start = proj_u1_end
+        # perp_u1_end = a3_end
+        # perp_u1_line = DashedLine(
+        #     axes.c2p(*perp_u1_start),
+        #     axes.c2p(*perp_u1_end),
+        #     color=ORANGE,
+        #     stroke_width=3,
+        #     dash_length=0.1
+        # )
         
-        self.play(Create(perp_u1_line), run_time=0.7)
-        self.wait(0.8)
+        # self.play(Create(perp_u1_line), run_time=0.7)
+        # self.wait(0.8)
         
         self.play(FadeOut(term_explanation))
         
@@ -263,11 +263,92 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         self.play(FadeOut(term_explanation3))
         self.wait(0.3)
         
+        # === ベクトルの合成を視覚化 ===
+        composition_text = Text("これら3つの成分を繋ぐと...", color=YELLOW, font_size=26, weight=BOLD)
+        composition_text.to_corner(DR).shift(UP * 3.5 + LEFT * 0.5)
+        self.add_fixed_in_frame_mobjects(composition_text)
+        self.play(Write(composition_text), run_time=0.8)
+        self.wait(0.5)
+        
+        # proj_u2_vectorを複製してproj_u1_vectorの先端から開始するように移動
+        proj_u2_shifted_vector = Arrow3D(
+            start=axes.c2p(*proj_u1_end),
+            end=axes.c2p(*(proj_u1_end + proj_u2_end)),
+            color=GREEN,
+            thickness=0.02,
+            height=0.2,
+            base_radius=0.08,
+            resolution=8
+        )
+        
+        # u3_tilde_vectorを複製してproj_u1 + proj_u2の先端から開始するように移動
+        combined_u1_u2_end = proj_u1_end + proj_u2_end
+        u3_tilde_shifted_vector = Arrow3D(
+            start=axes.c2p(*combined_u1_u2_end),
+            end=axes.c2p(*(combined_u1_u2_end + u3_tilde_end)),
+            color=PURPLE,
+            thickness=0.025,
+            height=0.25,
+            base_radius=0.1
+        )
+        
+        # 元のproj_u2とu3_tildeをフェードアウトし、シフトしたものをフェードイン
+        self.play(
+            FadeOut(proj_u2_vector),
+            FadeOut(u3_tilde_vector),
+            run_time=0.5
+        )
+        self.play(
+            Create(proj_u2_shifted_vector),
+            run_time=0.8
+        )
+        self.wait(0.5)
+        
+        self.play(
+            Create(u3_tilde_shifted_vector),
+            run_time=0.8
+        )
+        self.wait(1.0)
+        
+        
         # カメラを回転させて3次元構造を強調
         self.move_camera(phi=70 * DEGREES, theta=75 * DEGREES, run_time=2.0)
         self.wait(0.8)
         
-        self.play(FadeOut(subtitle2), FadeOut(decomposition_eq))
+        self.play(FadeOut(u1_vector), FadeOut(u2_vector))
+        self.wait(0.3)
+        
+        # 3つのベクトルが繋がってa3になることを強調
+        result_text = Text("元のベクトル|a₃〉になる!", color=YELLOW, font_size=28, weight=BOLD)
+        result_text.to_corner(DR).shift(UP * 3.5 + LEFT * 0.5)
+        self.add_fixed_in_frame_mobjects(result_text)
+        self.play(
+            FadeOut(composition_text),
+            Write(result_text),
+            a3_vector.animate.set_color(YELLOW).set_opacity(1),
+            run_time=1.0
+        )
+        self.wait(1.5)
+        
+        # a3_vectorを元の色に戻す
+        self.play(
+            a3_vector.animate.set_color(BLUE),
+            FadeOut(result_text),
+            run_time=0.6
+        )
+        self.wait(0.5)
+        
+        # シフトしたベクトルをフェードアウト
+        self.play(
+            FadeOut(proj_u2_shifted_vector),
+            FadeOut(u3_tilde_shifted_vector),
+            run_time=0.6
+        )
+        self.wait(0.3)
+        
+        self.play(FadeOut(subtitle2), FadeOut(decomposition_eq),
+                  FadeIn(proj_u2_vector), FadeIn(u3_tilde_vector),
+        )
         self.wait(0.3)
         
         # === パート3: 式変形とシュミットの直交化 ===
@@ -386,13 +467,13 @@ class ProjectionAndOrthogonalization(ThreeDScene):
         # 3Dオブジェクトをフェードアウト
         self.play(
             FadeOut(axes), FadeOut(axis_labels),
-            FadeOut(u1_vector),
-            FadeOut(u2_vector), 
+            # FadeOut(u1_vector),
+            # FadeOut(u2_vector), 
             FadeOut(a3_vector), FadeOut(a3_label),
             FadeOut(proj_u1_vector), FadeOut(proj_u1_label),
             FadeOut(proj_u2_vector), FadeOut(proj_u2_label),
             FadeOut(u3_tilde_vector), FadeOut(u3_tilde_label),
-            FadeOut(perp_u1_line),
+            # FadeOut(perp_u1_line),
             FadeOut(norm_text),
             run_time=0.8
         )
