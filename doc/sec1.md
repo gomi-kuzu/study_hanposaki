@@ -94,7 +94,7 @@
 ### 正規化ベクトルとの内積が”影”の長さになるって話
 <div><video controls src="https://github.com/user-attachments/assets/66346e1b-8ca7-4e13-9f56-5cdad0ec6bcc"/video></div>
 
-###
-
-<!-- <div><video controls src=""/video></div> -->
+### 再考：シュミットの直交化法
+<div><video controls src="https://github.com/user-attachments/assets/8e2188df-1d10-4e2d-b6fc-8e06d00d8ad3
+"/video></div>
 
