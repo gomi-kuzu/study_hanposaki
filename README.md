@@ -24,3 +24,4 @@ manim -iqm sec1_1.py VectorAsNumbers
 
 # しおり
 - [1章](./doc/sec1.md)
+- [2章](./doc/sec2.md)
