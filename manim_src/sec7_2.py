@@ -183,6 +183,7 @@ class PolynomialVectorSpace(Scene):
         self.play(Write(vec1), run_time=0.6)
         self.wait(0.3)
         self.play(Write(vec2), run_time=0.6)
+        
         self.wait(0.3)
         self.play(Write(vec3), run_time=0.6)
         self.wait(1.0)
@@ -420,7 +421,7 @@ class PolynomialVectorSpace(Scene):
         self.wait(0.3)
         
         # === まとめ ===
-        summary_subtitle = Text("まとめ", font_size=36, color=GOLD, weight=BOLD)
+        summary_subtitle = Text("まとめ", font_size=32, color=GOLD, weight=BOLD)
         summary_subtitle.next_to(title, DOWN)
         self.play(Write(summary_subtitle), run_time=0.6)
         self.wait(0.5)
