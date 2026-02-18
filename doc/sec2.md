@@ -9,5 +9,14 @@
 ### 多項式を元とする空間を考える話
 <div><video controls src="https://github.com/user-attachments/assets/a1c0a498-26c3-42a8-8731-5e20a9d115b9"></video></div>
 
+# 第8話
+## 8.1
+### 多項式の空間も様々な基底がとれるって話
+<div><video controls src="https://github.com/user-attachments/assets/c7e57d5c-779f-4901-88ad-d828c4ee487d"></video></div>
+
+## 8.2
+### エルミート多項式・ルジャンドル多項式の紹介の話
+<div><video controls src="https://github.com/user-attachments/assets/f3f99645-a1a5-4395-b083-e220539991ab"></video></div>
+
 <!-- <div><video controls src=""></video></div> -->
 
