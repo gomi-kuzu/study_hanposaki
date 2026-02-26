@@ -85,9 +85,9 @@ class WeightedInnerProduct(Scene):
         # 問題の強調
         problem_text = VGroup(
             Text("全部発散してしまう！", color=RED, font_size=28, weight=BOLD),
-            Text("このままでは内積が定義できない", color=RED, font_size=26),
+            Text("このままでは（ノルムの定義に）使えない", color=RED, font_size=26),
         ).arrange(DOWN, buff=0.2)
-        problem_text.shift(DOWN * 0.3 + RIGHT * 2.5)
+        problem_text.shift(DOWN + RIGHT * 3)
         problem_box = SurroundingRectangle(problem_text, color=RED, buff=0.2)
         
         self.play(Write(problem_text), Create(problem_box), run_time=0.9)
@@ -110,17 +110,17 @@ class WeightedInnerProduct(Scene):
         
         # アイデア説明
         idea_text = VGroup(
-            Text("被積分関数に「重み関数」を掛けて", color=WHITE, font_size=26),
+            Text("被積分関数に「重み関数:ρ」を掛けて", color=WHITE, font_size=26),
             Text("発散を抑え込めないか？", color=YELLOW, font_size=26, weight=BOLD),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        idea_text.shift(UP * 2.0)
+        idea_text.shift(UP * 1.5)
         
         self.play(Write(idea_text), run_time=0.8)
         self.wait(0.8)
         
         # 新しい定義
         weighted_def_label = Text("重み付き内積:", color=ORANGE, font_size=26, weight=BOLD)
-        weighted_def_label.shift(UP * 0.9)
+        weighted_def_label.shift(LEFT * 4)
         self.play(Write(weighted_def_label), run_time=0.5)
         self.wait(0.3)
         
@@ -129,7 +129,7 @@ class WeightedInnerProduct(Scene):
             color=ORANGE, font_size=32
         )
         weighted_def.shift(UP * 0.2)
-        weighted_box = SurroundingRectangle(weighted_def, color=ORANGE, buff=0.2)
+        weighted_box = SurroundingRectangle(weighted_def, color=ORANGE, buff=0.12)
         
         self.play(Write(weighted_def), Create(weighted_box), run_time=0.9)
         self.wait(0.8)
@@ -145,7 +145,7 @@ class WeightedInnerProduct(Scene):
         
         # 具体的な候補
         rho_choice_label = Text("仮に:", color=YELLOW, font_size=26, weight=BOLD)
-        rho_choice_label.shift(DOWN * 1.4 + LEFT * 3)
+        rho_choice_label.shift(DOWN * 2 + LEFT * 3)
         rho_choice = MathTex(
             r"\rho(x) = e^{-x^2}",
             color=GREEN, font_size=36
@@ -157,7 +157,7 @@ class WeightedInnerProduct(Scene):
         self.wait(0.5)
         
         # としてみよう
-        try_text = Text("としてみよう", color=YELLOW, font_size=26, weight=BOLD)
+        try_text = Text("(ガウス関数)としてみよう", color=YELLOW, font_size=26, weight=BOLD)
         try_text.next_to(rho_choice_box, RIGHT, buff=0.3)
         self.play(Write(try_text), run_time=0.5)
         self.wait(1.0)
@@ -201,8 +201,8 @@ class WeightedInnerProduct(Scene):
             color=GREEN,
             stroke_width=4
         )
-        gauss_label = MathTex(r"\rho(x) = e^{-x^2}", color=GREEN, font_size=26)
-        gauss_label.next_to(gauss_graph, UP, buff=0.2).shift(RIGHT * 1.5)
+        gauss_label = MathTex(r"\rho(x) = e^{-x^2}", color=GREEN, font_size=30)
+        gauss_label.next_to(gauss_graph, buff=0.2).move_to(axes.c2p(1.5, 0.75))
         
         self.play(Create(gauss_graph), Write(gauss_label), run_time=0.8)
         self.wait(0.5)
@@ -214,8 +214,8 @@ class WeightedInnerProduct(Scene):
             color=RED,
             stroke_width=3
         )
-        x2_label = MathTex(r"x^2", color=RED, font_size=24)
-        x2_label.move_to(axes.c2p(1.3, 1.1))
+        x2_label = MathTex(r"x^2", color=RED, font_size=30)
+        x2_label.move_to(axes.c2p(-1.6, 1.1))
         
         self.play(Create(x2_graph), Write(x2_label), run_time=0.6)
         self.wait(0.3)
@@ -227,8 +227,8 @@ class WeightedInnerProduct(Scene):
             color=YELLOW,
             stroke_width=3
         )
-        weighted_label = MathTex(r"x^2 \cdot e^{-x^2}", color=YELLOW, font_size=24)
-        weighted_label.move_to(axes.c2p(2.5, 0.5))
+        weighted_label = MathTex(r"x^2 \cdot e^{-x^2}", color=YELLOW, font_size=30)
+        weighted_label.move_to(axes.c2p(2.5, 0.4))
         
         self.play(Create(weighted_graph), Write(weighted_label), run_time=0.6)
         self.wait(0.5)
@@ -263,7 +263,7 @@ class WeightedInnerProduct(Scene):
             r"\langle f_1 | f_2 \rangle = \int_{-\infty}^{\infty} f_1(x) \cdot f_2(x) \cdot e^{-x^2} \, dx",
             color=ORANGE, font_size=28
         )
-        def_recall.shift(UP * 2.0)
+        def_recall.shift(UP * 1.8)
         self.play(Write(def_recall), run_time=0.7)
         self.wait(0.5)
         
@@ -424,10 +424,10 @@ class WeightedInnerProduct(Scene):
         
         # エルミート多項式の一覧（sec8_2から）
         hermite_list = VGroup(
-            MathTex(r"H_0(x) = 1", color=BLUE, font_size=26),
-            MathTex(r"H_1(x) = 2x", color=BLUE, font_size=26),
-            MathTex(r"H_2(x) = 4x^2 - 2", color=BLUE, font_size=26),
-            MathTex(r"H_3(x) = 8x^3 - 12x", color=BLUE, font_size=26),
+            MathTex(r"H_0(x) = 1", color=BLUE, font_size=30),
+            MathTex(r"H_1(x) = 2x", color=BLUE, font_size=30),
+            MathTex(r"H_2(x) = 4x^2 - 2", color=BLUE, font_size=30),
+            MathTex(r"H_3(x) = 8x^3 - 12x", color=BLUE, font_size=30),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         hermite_list.shift(UP * 0.6 + LEFT * 3.5)
         
@@ -444,19 +444,19 @@ class WeightedInnerProduct(Scene):
         norm_results = VGroup(
             MathTex(
                 r"\langle H_0 | H_0 \rangle = \sqrt{\pi}",
-                color=GREEN, font_size=24
+                color=GREEN, font_size=30
             ),
             MathTex(
                 r"\langle H_1 | H_1 \rangle = 2\sqrt{\pi}",
-                color=GREEN, font_size=24
+                color=GREEN, font_size=30
             ),
             MathTex(
                 r"\langle H_2 | H_2 \rangle = 8\sqrt{\pi}",
-                color=GREEN, font_size=24
+                color=GREEN, font_size=30
             ),
             MathTex(
                 r"\langle H_3 | H_3 \rangle = 48\sqrt{\pi}",
-                color=GREEN, font_size=24
+                color=GREEN, font_size=30
             ),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         norm_results.next_to(norm_label, DOWN, buff=0.3, aligned_edge=LEFT)
@@ -497,10 +497,10 @@ class WeightedInnerProduct(Scene):
         self.wait(0.3)
         
         verify = VGroup(
-            MathTex(r"n=0: \quad 2^0 \cdot 0! \cdot \sqrt{\pi} = \sqrt{\pi}", color=WHITE, font_size=24),
-            MathTex(r"n=1: \quad 2^1 \cdot 1! \cdot \sqrt{\pi} = 2\sqrt{\pi}", color=WHITE, font_size=24),
-            MathTex(r"n=2: \quad 2^2 \cdot 2! \cdot \sqrt{\pi} = 8\sqrt{\pi}", color=WHITE, font_size=24),
-            MathTex(r"n=3: \quad 2^3 \cdot 3! \cdot \sqrt{\pi} = 48\sqrt{\pi}", color=WHITE, font_size=24),
+            MathTex(r"n=0: \quad 2^0 \cdot 0! \cdot \sqrt{\pi} = \sqrt{\pi}", color=WHITE, font_size=28),
+            MathTex(r"n=1: \quad 2^1 \cdot 1! \cdot \sqrt{\pi} = 2\sqrt{\pi}", color=WHITE, font_size=28),
+            MathTex(r"n=2: \quad 2^2 \cdot 2! \cdot \sqrt{\pi} = 8\sqrt{\pi}", color=WHITE, font_size=28),
+            MathTex(r"n=3: \quad 2^3 \cdot 3! \cdot \sqrt{\pi} = 48\sqrt{\pi}", color=WHITE, font_size=28),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         verify.next_to(verify_label, DOWN, buff=0.3, aligned_edge=LEFT)
         
@@ -616,7 +616,7 @@ class WeightedInnerProduct(Scene):
                 Text("3.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
                     Text("エルミート多項式と組み合わせると", color=WHITE, font_size=24),
-                    Text("ノルムが公式で求まる", color=ORANGE, font_size=24, weight=BOLD),
+                    Text("積分やノルムが公式的に求まる", color=ORANGE, font_size=24, weight=BOLD),
                 ).arrange(DOWN, buff=0.15, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.5, aligned_edge=LEFT)
