@@ -18,5 +18,15 @@
 ### エルミート多項式・ルジャンドル多項式の紹介の話
 <div><video controls src="https://github.com/user-attachments/assets/f3f99645-a1a5-4395-b083-e220539991ab"></video></div>
 
+# 第9話
+## 9.1
+### 多項式空間での内積の定義を試みる話
+<div><video controls src="https://github.com/user-attachments/assets/165688ec-3627-4e7d-9f9d-71a791be2e7c"></video></div>
+
+## 9.2
+### 引き続き、重み関数を導入した内積の定義
+<div><video controls src="https://github.com/user-attachments/assets/aae18371-815a-4e3c-bda0-a2a257e1b3f6"></video></div>
+
+
 <!-- <div><video controls src=""></video></div> -->
 
