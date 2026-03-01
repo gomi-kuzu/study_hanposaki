@@ -435,7 +435,7 @@ class WeightedInnerProduct(Scene):
         self.wait(0.6)
         
         # 同じ重み関数でエルミート多項式のノルムを計算
-        norm_label = Text("この重みでノルム²を計算:", color=YELLOW, font_size=24, weight=BOLD)
+        norm_label = Text("この重みでノルムを計算:", color=YELLOW, font_size=24, weight=BOLD)
         norm_label.shift(UP * 0.6 + RIGHT * 1.5)
         self.play(Write(norm_label), run_time=0.5)
         self.wait(0.3)
@@ -475,7 +475,7 @@ class WeightedInnerProduct(Scene):
         self.wait(0.3)
         
         # 一般公式
-        general_label = Text("実は驚くべき一般公式がある！", color=YELLOW, font_size=28, weight=BOLD)
+        general_label = Text("実はこれには一般公式がある！", color=YELLOW, font_size=28, weight=BOLD)
         general_label.shift(UP * 1.8)
         self.play(Write(general_label), run_time=0.7)
         self.wait(0.5)
