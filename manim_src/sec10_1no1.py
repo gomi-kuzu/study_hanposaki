@@ -56,7 +56,7 @@ class OrthogonalBasisPolynomials(Scene):
         # 内積の定義再掲（コンパクト）
         def_recall = MathTex(
             r"\langle x^m | x^n \rangle = \int_{-\infty}^{\infty} x^{m+n} \, e^{-x^2} \, dx",
-            color=GRAY, font_size=24
+            color=GRAY, font_size=30
         )
         def_recall.shift(UP * 0.5)
         self.play(Write(def_recall), run_time=0.6)
@@ -70,7 +70,7 @@ class OrthogonalBasisPolynomials(Scene):
         
         calc_ortho1 = MathTex(
             r"\langle 1 | x \rangle = \int_{-\infty}^{\infty} x \, e^{-x^2} dx = 0",
-            color=GREEN, font_size=26
+            color=GREEN, font_size=28
         )
         calc_ortho1.next_to(calc_ortho_label, DOWN, buff=0.25, aligned_edge=LEFT)
         calc_ortho1_note = Text("(奇関数)", color=GRAY, font_size=16)
@@ -80,7 +80,7 @@ class OrthogonalBasisPolynomials(Scene):
         
         calc_ortho2 = MathTex(
             r"\langle x | x^2 \rangle = \int_{-\infty}^{\infty} x^3 \, e^{-x^2} dx = 0",
-            color=GREEN, font_size=26
+            color=GREEN, font_size=28
         )
         calc_ortho2.next_to(calc_ortho1, DOWN, buff=0.25, aligned_edge=LEFT)
         calc_ortho2_note = Text("(奇関数)", color=GRAY, font_size=16)
@@ -98,13 +98,13 @@ class OrthogonalBasisPolynomials(Scene):
         
         # 直交していない例: <x|x^3>
         calc_not_label = Text("直交しない組:", color=RED, font_size=24, weight=BOLD)
-        calc_not_label.next_to(calc_ortho2, DOWN, buff=0.4, aligned_edge=LEFT)
+        calc_not_label.next_to(calc_ortho_label, RIGHT*10, buff=0.4, aligned_edge=LEFT)
         self.play(Write(calc_not_label), run_time=0.4)
         self.wait(0.2)
         
         calc_not1 = MathTex(
             r"\langle x | x^3 \rangle = \int_{-\infty}^{\infty} x^4 \, e^{-x^2} dx = \frac{3\sqrt{\pi}}{4} \neq 0",
-            color=RED, font_size=26
+            color=RED, font_size=28
         )
         calc_not1.next_to(calc_not_label, DOWN, buff=0.25, aligned_edge=LEFT)
         self.play(Write(calc_not1), run_time=0.7)
@@ -117,7 +117,7 @@ class OrthogonalBasisPolynomials(Scene):
         
         calc_not2 = MathTex(
             r"\langle 1 | x^2 \rangle = \int_{-\infty}^{\infty} x^2 \, e^{-x^2} dx = \frac{\sqrt{\pi}}{2} \neq 0",
-            color=RED, font_size=26
+            color=RED, font_size=28
         )
         calc_not2.next_to(calc_not1, DOWN, buff=0.25, aligned_edge=LEFT)
         self.play(Write(calc_not2), run_time=0.7)
@@ -225,19 +225,19 @@ class OrthogonalBasisPolynomials(Scene):
             Text("ここ数回で何度も登場したエルミート多項式", color=WHITE, font_size=26),
             Text("実は直交基底になっている！", color=YELLOW, font_size=28, weight=BOLD),
         ).arrange(DOWN, buff=0.3)
-        hermite_intro.shift(UP * 2.0)
+        hermite_intro.shift(UP * 1.2)
         self.play(Write(hermite_intro), run_time=0.9)
         self.wait(0.8)
         
         # エルミート多項式の一覧
         hermite_list = VGroup(
-            MathTex(r"H_0(x) = 1", color=BLUE, font_size=28),
-            MathTex(r"H_1(x) = 2x", color=BLUE, font_size=28),
-            MathTex(r"H_2(x) = 4x^2 - 2", color=BLUE, font_size=28),
-            MathTex(r"H_3(x) = 8x^3 - 12x", color=BLUE, font_size=28),
-            MathTex(r"H_4(x) = 16x^4 - 48x^2 + 12", color=BLUE, font_size=28),
+            MathTex(r"H_0(x) = 1", color=BLUE, font_size=30),
+            MathTex(r"H_1(x) = 2x", color=BLUE, font_size=30),
+            MathTex(r"H_2(x) = 4x^2 - 2", color=BLUE, font_size=30),
+            MathTex(r"H_3(x) = 8x^3 - 12x", color=BLUE, font_size=30),
+            MathTex(r"H_4(x) = 16x^4 - 48x^2 + 12", color=BLUE, font_size=30),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        hermite_list.shift(DOWN * 0.3 + LEFT * 2)
+        hermite_list.shift(DOWN * 0.8 + LEFT * 2)
         
         for h in hermite_list:
             self.play(Write(h), run_time=0.4)
@@ -275,8 +275,8 @@ class OrthogonalBasisPolynomials(Scene):
         self.wait(1.0)
         
         # クロネッカーのデルタの説明
-        delta_label = Text("クロネッカーのデルタ:", color=YELLOW, font_size=24, weight=BOLD)
-        delta_label.shift(UP * 0.0 + LEFT * 4)
+        delta_label = Text("（復習）クロネッカーのデルタ:", color=YELLOW, font_size=24, weight=BOLD)
+        delta_label.shift(DOWN * 0.2 + LEFT * 4)
         self.play(Write(delta_label), run_time=0.5)
         self.wait(0.3)
         
@@ -332,19 +332,19 @@ class OrthogonalBasisPolynomials(Scene):
         diff_calcs = VGroup(
             MathTex(
                 r"\langle H_0 | H_1 \rangle = \int_{-\infty}^{\infty} 1 \cdot 2x \cdot e^{-x^2} dx = 0",
-                color=RED, font_size=24
+                color=RED, font_size=28
             ),
             MathTex(
                 r"\langle H_0 | H_2 \rangle = \int_{-\infty}^{\infty} 1 \cdot (4x^2-2) \cdot e^{-x^2} dx = 0",
-                color=RED, font_size=24
+                color=RED, font_size=28
             ),
             MathTex(
                 r"\langle H_1 | H_2 \rangle = \int_{-\infty}^{\infty} 2x \cdot (4x^2-2) \cdot e^{-x^2} dx = 0",
-                color=RED, font_size=24
+                color=RED, font_size=28
             ),
             MathTex(
                 r"\langle H_1 | H_3 \rangle = \int_{-\infty}^{\infty} 2x \cdot (8x^3-12x) \cdot e^{-x^2} dx = 0",
-                color=RED, font_size=24
+                color=RED, font_size=28
             ),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         diff_calcs.next_to(diff_label, DOWN, buff=0.3, aligned_edge=LEFT)
@@ -445,7 +445,7 @@ class OrthogonalBasisPolynomials(Scene):
             r"0 & \frac{\sqrt{\pi}}{2} & 0 \\"
             r"\frac{\sqrt{\pi}}{2} & 0 & \frac{3\sqrt{\pi}}{4}"
             r"\end{pmatrix}",
-            color=RED, font_size=24
+            color=RED, font_size=26
         )
         mono_matrix.next_to(mono_matrix_label, DOWN, buff=0.3)
         
@@ -468,7 +468,7 @@ class OrthogonalBasisPolynomials(Scene):
             r"0 & 2\sqrt{\pi} & 0 \\"
             r"0 & 0 & 8\sqrt{\pi}"
             r"\end{pmatrix}",
-            color=GREEN, font_size=24
+            color=GREEN, font_size=26
         )
         herm_matrix.next_to(herm_matrix_label, DOWN, buff=0.3)
         
