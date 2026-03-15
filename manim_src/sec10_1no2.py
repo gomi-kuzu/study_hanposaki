@@ -89,7 +89,7 @@ class PolynomialGramSchmidt(Scene):
             MathTex(
                 r"\text{proj}_{|u\rangle} |v\rangle"
                 r" = \frac{\langle u | v \rangle}{\langle u | u \rangle} \, |u\rangle",
-                color=ORANGE, font_size=28
+                color=ORANGE, font_size=32
             ),
         ).arrange(RIGHT, buff=0.1)
         gs_formula_general.shift(DOWN * 1.2)
@@ -218,8 +218,8 @@ class PolynomialGramSchmidt(Scene):
         
         # 以降の注記
         note_unnorm = Text(
-            "以降の直交化は正規化前の u₁ = |1⟩ のまま進める",
-            color=GRAY, font_size=20
+            "※この動画では以降の直交化は正規化前の u₁ = |1⟩ のまま進める",
+            color=GRAY, font_size=32
         )
         note_unnorm.shift(DOWN * 2.2)
         self.play(Write(note_unnorm), run_time=0.5)
@@ -279,7 +279,7 @@ class PolynomialGramSchmidt(Scene):
             r" - \frac{0}{2} \, |1\rangle = |x\rangle",
             color=GREEN, font_size=30
         )
-        result2.shift(DOWN * 1.0)
+        result2.shift(DOWN * 1.5)
         result2_box = SurroundingRectangle(result2, color=GREEN, buff=0.15)
         
         self.play(Write(result2), Create(result2_box), run_time=0.8)
@@ -290,7 +290,7 @@ class PolynomialGramSchmidt(Scene):
             "|x⟩ はもとから |1⟩ と直交していた！ 修正不要",
             color=YELLOW, font_size=26, weight=BOLD
         )
-        interpretation2.shift(DOWN * 2.2)
+        interpretation2.shift(DOWN * 2.6)
         self.play(Write(interpretation2), run_time=0.7)
         self.wait(1.0)
         
@@ -333,7 +333,7 @@ class PolynomialGramSchmidt(Scene):
             r" = \frac{1}{3} - \left(-\frac{1}{3}\right) = \frac{2}{3}",
             color=BLUE, font_size=22
         )
-        calc3_item1.shift(UP * 0.3)
+        calc3_item1.shift(UP * 1.3)
         self.play(Write(calc3_item1), run_time=0.8)
         self.wait(0.4)
         
@@ -405,7 +405,7 @@ class PolynomialGramSchmidt(Scene):
                 color=WHITE, font_size=26
             ),
         ).arrange(DOWN, buff=0.3)
-        basis_result.shift(UP * 2.0)
+        basis_result.shift(UP*1.5)
         
         self.play(Write(basis_result), run_time=0.8)
         self.wait(0.6)
@@ -451,10 +451,10 @@ class PolynomialGramSchmidt(Scene):
         
         # 成功
         success = Text(
-            "すべて直交！ グラム-シュミット法 成功！",
+            "すべて直交！！",
             color=GREEN, font_size=28, weight=BOLD
         )
-        success.shift(DOWN * 2.3)
+        success.shift(DOWN * 2.5)
         success_box = SurroundingRectangle(success, color=GREEN, buff=0.15)
         self.play(Write(success), Create(success_box), run_time=0.8)
         self.wait(1.2)

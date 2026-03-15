@@ -43,7 +43,7 @@ class OrthogonalityAdvantage(Scene):
         # 直交基底 g_0, g_1, g_2 がある
         basis_box_text = VGroup(
             Text("直交基底:", color=ORANGE, font_size=26, weight=BOLD),
-            MathTex(r"g_0(x),\; g_1(x),\; g_2(x)", color=ORANGE, font_size=28),
+            MathTex(r"g_0(x),\; g_1(x),\; g_2(x)", color=ORANGE, font_size=30),
         ).arrange(RIGHT, buff=0.3)
         basis_box_text.shift(UP * 1.8)
         basis_surr = SurroundingRectangle(basis_box_text, color=ORANGE, buff=0.1)
@@ -53,7 +53,7 @@ class OrthogonalityAdvantage(Scene):
         # 直交性の条件
         orth_cond = MathTex(
             r"\langle g_i | g_j \rangle = 0 \quad (i \neq j)",
-            color=ORANGE, font_size=24
+            color=ORANGE, font_size=28
         )
         orth_cond.next_to(basis_surr, DOWN, buff=0.2)
         self.play(Write(orth_cond), run_time=0.6)
@@ -63,11 +63,11 @@ class OrthogonalityAdvantage(Scene):
         f_expand = VGroup(
             MathTex(
                 r"f_1(x) = c_{1,0}\,g_0 + c_{1,1}\,g_1 + c_{1,2}\,g_2",
-                color=BLUE, font_size=26
+                color=BLUE, font_size=30
             ),
             MathTex(
                 r"f_2(x) = c_{2,0}\,g_0 + c_{2,1}\,g_1 + c_{2,2}\,g_2",
-                color=GREEN, font_size=26
+                color=GREEN, font_size=30
             ),
         ).arrange(DOWN, buff=0.3)
         f_expand.shift(DOWN * 0.2)
@@ -121,7 +121,7 @@ class OrthogonalityAdvantage(Scene):
         self.wait(0.3)
 
         # 対角: GREEN, 非対角: RED
-        fs = 18  # font_size for terms
+        fs = 24  # font_size for terms
 
         row0 = VGroup(
             MathTex(r"c_{1,0}c_{2,0}\langle g_0|g_0\rangle", color=GREEN, font_size=fs),
@@ -190,9 +190,9 @@ class OrthogonalityAdvantage(Scene):
 
         # 交差項の例
         cross_examples = VGroup(
-            MathTex(r"\langle g_0|g_1\rangle = 0", color=RED, font_size=24),
-            MathTex(r"\langle g_0|g_2\rangle = 0", color=RED, font_size=24),
-            MathTex(r"\langle g_1|g_2\rangle = 0", color=RED, font_size=24),
+            MathTex(r"\langle g_0|g_1\rangle = 0", color=RED, font_size=28),
+            MathTex(r"\langle g_0|g_2\rangle = 0", color=RED, font_size=28),
+            MathTex(r"\langle g_1|g_2\rangle = 0", color=RED, font_size=28),
         ).arrange(RIGHT, buff=0.6)
         cross_examples.shift(UP * 0.6)
 
@@ -214,7 +214,7 @@ class OrthogonalityAdvantage(Scene):
             r"= c_{1,0}c_{2,0}\langle g_0|g_0\rangle"
             r"+ c_{1,1}c_{2,1}\langle g_1|g_1\rangle"
             r"+ c_{1,2}c_{2,2}\langle g_2|g_2\rangle",
-            color=GREEN, font_size=24
+            color=GREEN, font_size=28
         )
         simplified.shift(DOWN * 0.9)
         simp_box = SurroundingRectangle(simplified, color=GREEN, buff=0.15)
@@ -302,7 +302,7 @@ class OrthogonalityAdvantage(Scene):
             r"= c_{1,0}c_{2,0}\sqrt{\pi}"
             r"+ c_{1,1}c_{2,1}\cdot 2\sqrt{\pi}"
             r"+ c_{1,2}c_{2,2}\cdot 8\sqrt{\pi}",
-            color=WHITE, font_size=22
+            color=WHITE, font_size=26
         )
         final_hermite.shift(DOWN * 2.8)
         fh_box = SurroundingRectangle(final_hermite, color=WHITE, buff=0.12)
@@ -373,7 +373,7 @@ class OrthogonalityAdvantage(Scene):
             r"= (1 \cdot 1)\,\sqrt{\pi}"
             r"+ \bigl(2 \cdot (-1)\bigr)\cdot 2\sqrt{\pi}"
             r"+ (3 \cdot 2)\cdot 8\sqrt{\pi}",
-            color=WHITE, font_size=22
+            color=WHITE, font_size=26
         )
         step1.shift(DOWN * 0.8)
         self.play(Write(step1), run_time=0.9)
@@ -442,7 +442,7 @@ class OrthogonalityAdvantage(Scene):
 
         func_formula = MathTex(
             r"\langle f_1|f_2\rangle = \sum_k c_{1,k}\,c_{2,k}\,\langle g_k|g_k\rangle",
-            color=GREEN, font_size=22
+            color=GREEN, font_size=26
         )
         func_formula.next_to(func_label, DOWN, buff=0.3)
 
@@ -478,7 +478,7 @@ class OrthogonalityAdvantage(Scene):
             r"D = \mathrm{diag}\!\left(\langle g_0|g_0\rangle,\;"
             r"\langle g_1|g_1\rangle,\;"
             r"\langle g_2|g_2\rangle\right)",
-            color=GRAY, font_size=22
+            color=GRAY, font_size=26
         )
         D_def.next_to(matrix_form, DOWN, buff=0.25)
 
@@ -489,12 +489,12 @@ class OrthogonalityAdvantage(Scene):
 
         # 特に正規直交基底の場合
         onb_note = VGroup(
-            Text("特に正規直交基底 (", color=WHITE, font_size=20),
-            MathTex(r"\langle g_k|g_k\rangle = 1", color=WHITE, font_size=20),
-            Text(") の場合:", color=WHITE, font_size=20),
+            Text("特に正規直交基底 (", color=WHITE, font_size=24),
+            MathTex(r"\langle g_k|g_k\rangle = 1", color=WHITE, font_size=24),
+            Text(") の場合:", color=WHITE, font_size=24),
             MathTex(
                 r"D = I \;\Rightarrow\; \langle f_1|f_2\rangle = \vec{c}_1 \cdot \vec{c}_2",
-                color=YELLOW, font_size=22
+                color=YELLOW, font_size=24
             ),
         ).arrange(RIGHT, buff=0.1)
         onb_note.shift(DOWN * 2.8)
@@ -532,7 +532,7 @@ class OrthogonalityAdvantage(Scene):
                     Text("残るのは対角項のみ:", color=WHITE, font_size=24),
                     MathTex(
                         r"\langle f_1|f_2\rangle = \sum_k c_{1,k}\,c_{2,k}\,\langle g_k|g_k\rangle",
-                        color=GREEN, font_size=22
+                        color=GREEN, font_size=24
                     ),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
