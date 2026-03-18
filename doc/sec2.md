@@ -27,6 +27,18 @@
 ### 引き続き、重み関数を導入した内積の定義
 <div><video controls src="https://github.com/user-attachments/assets/aae18371-815a-4e3c-bda0-a2a257e1b3f6"></video></div>
 
+# 第10話
+## 10.1
+### "直交"を多項式の空間で再考する話
+<div><video controls src="https://github.com/user-attachments/assets/ae5c1d35-a2dd-442d-9c14-b404159d27c3"></video></div>
+
+### 多項式の空間でシュミットの直交化をする話
+<div><video controls src="https://github.com/user-attachments/assets/52d004be-982e-42ae-8793-166113a922ac"></video></div>
+
+## 10.2
+### 直交基底の嬉しさをもう一回考える話
+<div><video controls src=""></video></div>
+
 
 <!-- <div><video controls src=""></video></div> -->
 
