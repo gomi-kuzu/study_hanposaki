@@ -37,7 +37,7 @@
 
 ## 10.2
 ### 直交基底の嬉しさをもう一回考える話
-<div><video controls src=""></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/5bffb273-adf5-4500-ba78-b25bc543ee34"></video></div>
 
 
 <!-- <div><video controls src=""></video></div> -->
