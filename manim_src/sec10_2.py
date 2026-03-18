@@ -22,7 +22,7 @@ class OrthogonalityAdvantage(Scene):
             Text("関数 f₁, f₂ を直交基底で展開したとき...", color=WHITE, font_size=26, slant=ITALIC),
             MathTex(
                 r"\langle f_1 | f_2 \rangle = \int_{-\infty}^{\infty} f_1(x)\,f_2(x)\,\rho(x)\,dx",
-                color=ORANGE, font_size=28
+                color=ORANGE, font_size=32
             ),
             Text("この積分が --- 係数の掛け算と足し算だけで求まる！", color=YELLOW, font_size=26, weight=BOLD),
         ).arrange(DOWN, buff=0.4)
@@ -43,7 +43,7 @@ class OrthogonalityAdvantage(Scene):
         # 直交基底 g_0, g_1, g_2 がある
         basis_box_text = VGroup(
             Text("直交基底:", color=ORANGE, font_size=26, weight=BOLD),
-            MathTex(r"g_0(x),\; g_1(x),\; g_2(x)", color=ORANGE, font_size=30),
+            MathTex(r"g_0(x),\; g_1(x),\; g_2(x)", color=ORANGE, font_size=32),
         ).arrange(RIGHT, buff=0.3)
         basis_box_text.shift(UP * 1.8)
         basis_surr = SurroundingRectangle(basis_box_text, color=ORANGE, buff=0.1)
@@ -63,11 +63,11 @@ class OrthogonalityAdvantage(Scene):
         f_expand = VGroup(
             MathTex(
                 r"f_1(x) = c_{1,0}\,g_0 + c_{1,1}\,g_1 + c_{1,2}\,g_2",
-                color=BLUE, font_size=30
+                color=BLUE, font_size=34
             ),
             MathTex(
                 r"f_2(x) = c_{2,0}\,g_0 + c_{2,1}\,g_1 + c_{2,2}\,g_2",
-                color=GREEN, font_size=30
+                color=GREEN, font_size=34
             ),
         ).arrange(DOWN, buff=0.3)
         f_expand.shift(DOWN * 0.2)
@@ -77,7 +77,7 @@ class OrthogonalityAdvantage(Scene):
         # 問: 内積を求めよ
         question = VGroup(
             Text("問:", color=YELLOW, font_size=28, weight=BOLD),
-            MathTex(r"\langle f_1 | f_2 \rangle = \; ?", color=YELLOW, font_size=30),
+            MathTex(r"\langle f_1 | f_2 \rangle = \; ?", color=YELLOW, font_size=34),
         ).arrange(RIGHT, buff=0.3)
         question.shift(DOWN * 1.8)
         q_box = SurroundingRectangle(question, color=YELLOW, buff=0.15)
@@ -121,7 +121,7 @@ class OrthogonalityAdvantage(Scene):
         self.wait(0.3)
 
         # 対角: GREEN, 非対角: RED
-        fs = 24  # font_size for terms
+        fs = 28  # font_size for terms
 
         row0 = VGroup(
             MathTex(r"c_{1,0}c_{2,0}\langle g_0|g_0\rangle", color=GREEN, font_size=fs),
@@ -349,14 +349,14 @@ class OrthogonalityAdvantage(Scene):
         coeff_label.shift(UP * 0.6 + LEFT * 5)
 
         coeff_c1 = MathTex(
-            r"\vec{c}_1 = (1,\; 2,\; 3)",
-            color=BLUE, font_size=26
+            r"\mathbf{c}_1 = [1\; 2\; 3]^T",
+            color=BLUE, font_size=28
         )
         coeff_c1.shift(UP * 0.6 + LEFT * 0.5)
 
         coeff_c2 = MathTex(
-            r"\vec{c}_2 = (1,\; -1,\; 2)",
-            color=GREEN, font_size=26
+            r"\mathbf{c}_2 = [1\; -1\; 2]^T",
+            color=GREEN, font_size=28
         )
         coeff_c2.next_to(coeff_c1, RIGHT, buff=1.0)
 
@@ -431,7 +431,7 @@ class OrthogonalityAdvantage(Scene):
         vec_label.shift(UP * 1.0 + LEFT * 3.5)
 
         vec_formula = MathTex(
-            r"\vec{a} \cdot \vec{b} = \sum_k a_k b_k",
+            r"\mathbf{a} \cdot \mathbf{b} = \sum_k a_k b_k",
             color=BLUE, font_size=26
         )
         vec_formula.next_to(vec_label, DOWN, buff=0.3)
@@ -469,7 +469,7 @@ class OrthogonalityAdvantage(Scene):
 
         matrix_form = MathTex(
             r"\langle f_1 | f_2 \rangle"
-            r"= \vec{c}_1^{\,T} \, D \, \vec{c}_2",
+            r"= \mathbf{c}_1^{\,T} \, D \, \mathbf{c}_2",
             color=WHITE, font_size=28
         )
         matrix_form.shift(DOWN * 1.6)
@@ -493,7 +493,7 @@ class OrthogonalityAdvantage(Scene):
             MathTex(r"\langle g_k|g_k\rangle = 1", color=WHITE, font_size=24),
             Text(") の場合:", color=WHITE, font_size=24),
             MathTex(
-                r"D = I \;\Rightarrow\; \langle f_1|f_2\rangle = \vec{c}_1 \cdot \vec{c}_2",
+                r"D = I \;\Rightarrow\; \langle f_1|f_2\rangle = \mathbf{c}_1 \cdot \mathbf{c}_2",
                 color=YELLOW, font_size=24
             ),
         ).arrange(RIGHT, buff=0.1)
