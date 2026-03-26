@@ -592,7 +592,7 @@ class OperatorIntroduction(Scene):
         self.play(Write(diff_down), run_time=0.4)
 
         h2_eq = MathTex(
-            r"h_2(x) = c_{1,1}|1\rangle + 2c_{1,2}|x\rangle + 0\cdot|x^2\rangle",
+            r"h_2(x) = \mathcal{L} h_1(x) = c_{1,1}|1\rangle + 2c_{1,2}|x\rangle + 0\cdot|x^2\rangle",
             color=GREEN, font_size=26
         )
         h2_eq.shift(DOWN * 0.4)
