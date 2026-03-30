@@ -27,33 +27,33 @@ class OperatorIntroduction(Scene):
         # 入力ベクトルの数式
         input_vec_text = MathTex(
             r"\mathbf{v} = \begin{pmatrix} 1 \\ 2 \end{pmatrix}",
-            color=BLUE, font_size=26
+            color=BLUE, font_size=30
         )
         input_vec_text.shift(UP * 0.9 + LEFT * 3.7)
 
         # 変換行列
         transform_vec = MathTex(
             r"A = \begin{pmatrix} 2 & 0 \\ 0 & 1.5 \end{pmatrix}",
-            color=YELLOW, font_size=24
+            color=YELLOW, font_size=30
         )
-        transform_vec.shift(UP * 0.9 + LEFT * 1.3)
+        transform_vec.shift(UP * 0.9 + LEFT * 0.3)
 
         # 出力ベクトルの数式
         output_vec_text = MathTex(
             r"\mathbf{w} = \begin{pmatrix} 2 \\ 3 \end{pmatrix}",
-            color=GREEN, font_size=26
+            color=GREEN, font_size=30
         )
-        output_vec_text.shift(UP * 0.9 + RIGHT * 1.0)
+        output_vec_text.shift(UP * 0.9 + RIGHT * 3)
 
         # 矢印
         arrow_to_transform = Arrow(
             LEFT * 2.7 + UP * 0.9,
-            LEFT * 2.0 + UP * 0.9,
+            LEFT * 1.5 + UP * 0.9,
             color=YELLOW, buff=0.1, stroke_width=3
         )
         arrow_to_output = Arrow(
-            LEFT * 0.5 + UP * 0.9,
-            RIGHT * 0.0 + UP * 0.9,
+            RIGHT * 0.9 + UP * 0.9,
+            RIGHT * 1.9 + UP * 0.9,
             color=YELLOW, buff=0.1, stroke_width=3
         )
 
@@ -150,7 +150,7 @@ class OperatorIntroduction(Scene):
         # 入力関数
         input_func = MathTex(
             r"f(x)",
-            color=BLUE, font_size=28
+            color=BLUE, font_size=34
         )
         input_func.shift(UP * 0.8 + LEFT * 3.5)
 
@@ -164,7 +164,7 @@ class OperatorIntroduction(Scene):
         # 作用素
         operator_label = MathTex(
             r"\mathcal{L}",
-            color=YELLOW, font_size=28
+            color=YELLOW, font_size=34
         )
         operator_label.next_to(arrow_func, UP, buff=0.2)
 
@@ -174,7 +174,7 @@ class OperatorIntroduction(Scene):
         # 出力関数
         output_func = MathTex(
             r"g(x)",
-            color=GREEN, font_size=28
+            color=GREEN, font_size=34
         )
         output_func.shift(UP * 0.8 + RIGHT * 1.0)
 
@@ -329,7 +329,7 @@ class OperatorIntroduction(Scene):
         diff_linearity = MathTex(
             r"\frac{d}{dx}\bigl(\alpha f(x) + \beta g(x)\bigr) = "
             r"\alpha \frac{df}{dx} + \beta \frac{dg}{dx}",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=32
         )
         diff_linearity.shift(UP * 1.0)
         self.play(Write(diff_linearity), run_time=0.8)
@@ -499,7 +499,7 @@ class OperatorIntroduction(Scene):
         cvec_label = MathTex(r"\mathbf{c}", color=WHITE, font_size=26)
         cvec_label.shift(LEFT * 1.5)
         cvec_box = SurroundingRectangle(cvec_label, color=WHITE, buff=0.2)
-        cvec_sub = Text("係数ベクトル", color=GRAY, font_size=14)
+        cvec_sub = Text("係数ベクトル", color=BLUE, font_size=19)
         cvec_sub.next_to(cvec_box, DOWN, buff=0.1)
 
         Lc_label = MathTex(r"L\mathbf{c}", color=YELLOW, font_size=26)
@@ -511,15 +511,15 @@ class OperatorIntroduction(Scene):
         gx_box = SurroundingRectangle(gx_label, color=GREEN, buff=0.2)
 
         arr_f_c = Arrow(fx_box.get_right(), cvec_box.get_left(), buff=0.1, color=GRAY)
-        arr_f_c_lbl = Text("基底展開", color=GRAY, font_size=15)
+        arr_f_c_lbl = Text("基底展開", color=GRAY, font_size=19)
         arr_f_c_lbl.next_to(arr_f_c, UP, buff=0.1)
 
         arr_c_Lc = Arrow(cvec_box.get_right(), Lc_box.get_left(), buff=0.1, color=GRAY)
-        arr_c_Lc_lbl = Text("行列をかける", color=GRAY, font_size=15)
+        arr_c_Lc_lbl = Text("行列をかける", color=GRAY, font_size=19)
         arr_c_Lc_lbl.next_to(arr_c_Lc, UP, buff=0.1)
 
         arr_Lc_g = Arrow(Lc_box.get_right(), gx_box.get_left(), buff=0.1, color=GRAY)
-        arr_Lc_g_lbl = Text("基底で合成", color=GRAY, font_size=15)
+        arr_Lc_g_lbl = Text("基底で合成", color=GRAY, font_size=19)
         arr_Lc_g_lbl.next_to(arr_Lc_g, UP, buff=0.1)
 
         self.play(FadeIn(fx_label), Create(fx_box), run_time=0.5)
@@ -541,8 +541,8 @@ class OperatorIntroduction(Scene):
         self.wait(0.7)
 
         flow_comment = VGroup(
-            Text("基底を決めると", color=WHITE, font_size=22),
-            Text("→ 作用素が行列に化ける！", color=YELLOW, font_size=22, weight=BOLD),
+            Text("基底を決めると", color=WHITE, font_size=28),
+            Text("→ 作用素が行列に化ける！", color=YELLOW, font_size=28, weight=BOLD),
         ).arrange(RIGHT, buff=0.2)
         flow_comment.shift(DOWN * 1.5)
         self.play(Write(flow_comment), run_time=0.6)
@@ -578,7 +578,7 @@ class OperatorIntroduction(Scene):
 
         h1_eq = MathTex(
             r"h_1(x) = c_{1,0}|1\rangle + c_{1,1}|x\rangle + c_{1,2}|x^2\rangle",
-            color=BLUE, font_size=26
+            color=BLUE, font_size=30
         )
         h1_eq.shift(UP * 1.0)
         self.play(Write(h1_eq), run_time=0.7)
@@ -586,32 +586,32 @@ class OperatorIntroduction(Scene):
 
         diff_down = MathTex(
             r"\downarrow \;\; \mathcal{L} = \frac{d}{dx}",
-            color=YELLOW, font_size=24
+            color=YELLOW, font_size=28
         )
         diff_down.shift(UP * 0.3 + LEFT * 3.5)
         self.play(Write(diff_down), run_time=0.4)
 
         h2_eq = MathTex(
             r"h_2(x) = \mathcal{L} h_1(x) = c_{1,1}|1\rangle + 2c_{1,2}|x\rangle + 0\cdot|x^2\rangle",
-            color=GREEN, font_size=26
+            color=GREEN, font_size=30
         )
         h2_eq.shift(DOWN * 0.4)
         self.play(Write(h2_eq), run_time=0.8)
         self.wait(0.8)
 
         # Phase 2: h1・diff_downを消し、係数変換と行列を表示
-        self.play(FadeOut(h1_eq), FadeOut(diff_down))
+        self.play(FadeOut(h1_eq), FadeOut(diff_down), FadeOut(h2_eq))
         self.wait(0.2)
 
         coeff_note = Text("係数ベクトルで見ると:", color=YELLOW, font_size=22, weight=BOLD)
-        coeff_note.shift(UP * 0.9 + LEFT * 3.5)
+        coeff_note.shift(UP + LEFT * 3.5)
         self.play(Write(coeff_note), run_time=0.5)
 
         coeff_tf = MathTex(
             r"\begin{pmatrix} c_{1,0} \\ c_{1,1} \\ c_{1,2} \end{pmatrix}"
             r"\;\longrightarrow\;"
             r"\begin{pmatrix} c_{1,1} \\ 2c_{1,2} \\ 0 \end{pmatrix}",
-            color=WHITE, font_size=26
+            color=WHITE, font_size=30
         )
         coeff_tf.shift(UP * 0.1)
         self.play(Write(coeff_tf), run_time=0.8)
@@ -646,7 +646,7 @@ class OperatorIntroduction(Scene):
         self.wait(1.2)
 
         self.play(
-            FadeOut(basis_row), FadeOut(h2_eq),
+            FadeOut(basis_row),# FadeOut(h2_eq),
             FadeOut(coeff_note), FadeOut(coeff_tf),
             FadeOut(matrix_intro), FadeOut(matrix_L), FadeOut(matrix_L_box),
             FadeOut(repr_label), FadeOut(repr_box),
@@ -662,39 +662,39 @@ class OperatorIntroduction(Scene):
 
         summary = VGroup(
             VGroup(
-                Text("1.", color=WHITE, font_size=26, weight=BOLD),
+                Text("1.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("作用素は「関数を関数に変える操作」", color=WHITE, font_size=24),
-                    Text("線形性を持つものを線形作用素という", color=YELLOW, font_size=22, weight=BOLD),
+                    Text("作用素は「関数を関数に変える操作」", color=WHITE, font_size=28),
+                    Text("線形性を持つものを線形作用素という", color=YELLOW, font_size=28, weight=BOLD),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("2.", color=WHITE, font_size=26, weight=BOLD),
+                Text("2.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("線形作用素は必ず行列で表現できる", color=WHITE, font_size=24),
-                    Text("手順: 関数 → 係数ベクトル → 行列積 → 関数", color=GREEN, font_size=22, weight=BOLD),
+                    Text("線形作用素は必ず行列で表現できる", color=WHITE, font_size=28),
+                    Text("手順: 関数 → 係数ベクトル → 行列積 → 関数", color=GREEN, font_size=28, weight=BOLD),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("3.", color=WHITE, font_size=26, weight=BOLD),
+                Text("3.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("具体例: 微分の表現行列 (2次多項式基底)", color=WHITE, font_size=24),
+                    Text("具体例: 微分の表現行列 (2次多項式基底)", color=WHITE, font_size=28),
                     MathTex(
                         r"L = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}",
-                        color=TEAL, font_size=20
+                        color=TEAL, font_size=28
                     ),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("4.", color=WHITE, font_size=26, weight=BOLD),
+                Text("4.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("この行列を「表現行列」と呼ぶ", color=WHITE, font_size=24),
-                    Text("※ 基底が変わると表現行列も変わる", color=ORANGE, font_size=22, weight=BOLD),
+                    Text("この行列を「表現行列」と呼ぶ", color=WHITE, font_size=28),
+                    Text("※ 基底が変わると表現行列も変わる", color=ORANGE, font_size=28, weight=BOLD),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
         summary.scale(0.9)
-        summary.shift(UP * 0.3)
+        summary.shift(DOWN * 0.5)
 
         for point in summary:
             self.play(Write(point), run_time=0.7)
