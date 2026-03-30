@@ -38,7 +38,7 @@ class BasisChangeRepresentation(Scene):
         self.wait(0.5)
 
         # 説明
-        prev_note = Text("微分作用素の表現行列（単項式基底）", color=GRAY, font_size=20, slant=ITALIC)
+        prev_note = Text("微分作用素の表現行列（単項式基底）", color=WHITE, font_size=20, slant=ITALIC)
         prev_note.next_to(prev_matrix_box, DOWN, buff=0.2)
         self.play(Write(prev_note), run_time=0.5)
         self.wait(0.6)
@@ -94,14 +94,14 @@ class BasisChangeRepresentation(Scene):
         self.wait(0.5)
 
         # 微分の結果
-        diff_title = Text("これらを微分すると:", color=YELLOW, font_size=22, weight=BOLD)
+        diff_title = Text("これらを微分すると:", color=YELLOW, font_size=26, weight=BOLD)
         diff_title.shift(DOWN * 1.8 + LEFT * 4)
         self.play(Write(diff_title), run_time=0.4)
 
         diff_results = VGroup(
-            MathTex(r"\frac{d}{dx}H_0 = 0", color=GREEN, font_size=22),
-            MathTex(r"\frac{d}{dx}H_1 = 2 = 2H_0", color=GREEN, font_size=22),
-            MathTex(r"\frac{d}{dx}H_2 = 8x = 4H_1", color=GREEN, font_size=22),
+            MathTex(r"\frac{d}{dx}H_0 = 0", color=GREEN, font_size=28),
+            MathTex(r"\frac{d}{dx}H_1 = 2 = 2H_0", color=GREEN, font_size=28),
+            MathTex(r"\frac{d}{dx}H_2 = 8x = 4H_1", color=GREEN, font_size=28),
         ).arrange(RIGHT, buff=0.5)
         diff_results.shift(DOWN * 2.5)
         
@@ -131,33 +131,33 @@ class BasisChangeRepresentation(Scene):
         self.wait(0.4)
 
         # 単項式基底での展開
-        mono_label = Text("単項式基底:", color=BLUE, font_size=22, weight=BOLD)
+        mono_label = Text("単項式基底:", color=BLUE, font_size=26, weight=BOLD)
         mono_label.shift(UP * 1.0 + LEFT * 5)
         self.play(Write(mono_label), run_time=0.4)
 
         h1_mono = MathTex(
             r"h_1(x) = c_{1,0}|1\rangle + c_{1,1}|x\rangle + c_{1,2}|x^2\rangle",
-            color=BLUE, font_size=24
+            color=BLUE, font_size=30
         )
         h1_mono.shift(UP * 0.4)
         self.play(Write(h1_mono), run_time=0.7)
         self.wait(0.3)
 
         # エルミート基底での展開
-        herm_label = Text("エルミート基底:", color=PURPLE, font_size=22, weight=BOLD)
+        herm_label = Text("エルミート基底:", color=PURPLE, font_size=26, weight=BOLD)
         herm_label.shift(DOWN * 0.3 + LEFT * 4.8)
         self.play(Write(herm_label), run_time=0.4)
 
         h1_herm = MathTex(
             r"h_1(x) = \tilde{c}_{1,0}|H_0\rangle + \tilde{c}_{1,1}|H_1\rangle + \tilde{c}_{1,2}|H_2\rangle",
-            color=PURPLE, font_size=24
+            color=PURPLE, font_size=30
         )
         h1_herm.shift(DOWN * 0.9)
         self.play(Write(h1_herm), run_time=0.7)
         self.wait(0.5)
 
         # 係数の関係
-        coeff_rel_title = Text("係数の関係:", color=ORANGE, font_size=22, weight=BOLD)
+        coeff_rel_title = Text("係数の関係:", color=ORANGE, font_size=26, weight=BOLD)
         coeff_rel_title.shift(DOWN * 1.7 + LEFT * 5)
         self.play(Write(coeff_rel_title), run_time=0.4)
 
@@ -166,7 +166,7 @@ class BasisChangeRepresentation(Scene):
             r"\tilde{c}_{1,0} - 2\tilde{c}_{1,2} = c_{1,0}, \quad "
             r"2\tilde{c}_{1,1} = c_{1,1}, \quad "
             r"4\tilde{c}_{1,2} = c_{1,2}",
-            color=WHITE, font_size=22
+            color=WHITE, font_size=30
         )
         coeff_rel.shift(DOWN * 2.4)
         self.play(Write(coeff_rel), run_time=0.9)
@@ -189,40 +189,40 @@ class BasisChangeRepresentation(Scene):
         # h_2 = L h_1
         h2_def = MathTex(
             r"h_2(x) = \mathcal{L} h_1(x) = \frac{d}{dx} h_1(x)",
-            color=YELLOW, font_size=26
+            color=YELLOW, font_size=30
         )
         h2_def.shift(UP * 1.6)
         self.play(Write(h2_def), run_time=0.6)
         self.wait(0.4)
 
         # 単項式基底での h_2
-        h2_mono_label = Text("単項式基底:", color=BLUE, font_size=22, weight=BOLD)
+        h2_mono_label = Text("単項式基底:", color=BLUE, font_size=26, weight=BOLD)
         h2_mono_label.shift(UP * 0.9 + LEFT * 5)
         self.play(Write(h2_mono_label), run_time=0.4)
 
         h2_mono = MathTex(
             r"h_2(x) = c_{1,1}|1\rangle + 2c_{1,2}|x\rangle + 0|x^2\rangle",
-            color=BLUE, font_size=24
+            color=BLUE, font_size=30
         )
         h2_mono.shift(UP * 0.3)
         self.play(Write(h2_mono), run_time=0.7)
         self.wait(0.3)
 
         # エルミート基底での h_2
-        h2_herm_label = Text("エルミート基底:", color=PURPLE, font_size=22, weight=BOLD)
+        h2_herm_label = Text("エルミート基底:", color=PURPLE, font_size=26, weight=BOLD)
         h2_herm_label.shift(DOWN * 0.4 + LEFT * 4.8)
         self.play(Write(h2_herm_label), run_time=0.4)
 
         h2_herm = MathTex(
             r"h_2(x) = \tilde{c}_{2,0}|H_0\rangle + \tilde{c}_{2,1}|H_1\rangle + \tilde{c}_{2,2}|H_2\rangle",
-            color=PURPLE, font_size=24
+            color=PURPLE, font_size=30
         )
         h2_herm.shift(DOWN * 1.0)
         self.play(Write(h2_herm), run_time=0.7)
         self.wait(0.5)
 
         # 係数の関係（h_2）
-        coeff_rel2_title = Text("係数の関係:", color=ORANGE, font_size=22, weight=BOLD)
+        coeff_rel2_title = Text("係数の関係:", color=ORANGE, font_size=26, weight=BOLD)
         coeff_rel2_title.shift(DOWN * 1.8 + LEFT * 5)
         self.play(Write(coeff_rel2_title), run_time=0.4)
 
@@ -230,7 +230,7 @@ class BasisChangeRepresentation(Scene):
             r"\tilde{c}_{2,0} - 2\tilde{c}_{2,2} = c_{1,1}, \quad "
             r"2\tilde{c}_{2,1} = 2c_{1,2}, \quad "
             r"4\tilde{c}_{2,2} = 0",
-            color=WHITE, font_size=22
+            color=WHITE, font_size=30
         )
         coeff_rel2.shift(DOWN * 2.5)
         self.play(Write(coeff_rel2), run_time=0.9)
@@ -259,7 +259,7 @@ class BasisChangeRepresentation(Scene):
         # h_2のエルミート係数を h_1のエルミート係数で表す
         solve_step1 = MathTex(
             r"\tilde{c}_{2,2} = 0",
-            color=WHITE, font_size=24
+            color=WHITE, font_size=28
         )
         solve_step1.shift(UP * 0.9)
         self.play(Write(solve_step1), run_time=0.5)
@@ -267,7 +267,7 @@ class BasisChangeRepresentation(Scene):
 
         solve_step2 = MathTex(
             r"\tilde{c}_{2,1} = c_{1,2} = 4\tilde{c}_{1,2}",
-            color=WHITE, font_size=24
+            color=WHITE, font_size=28
         )
         solve_step2.shift(UP * 0.3)
         self.play(Write(solve_step2), run_time=0.5)
@@ -275,7 +275,7 @@ class BasisChangeRepresentation(Scene):
 
         solve_step3 = MathTex(
             r"\tilde{c}_{2,0} = c_{1,1} = 2\tilde{c}_{1,1}",
-            color=WHITE, font_size=24
+            color=WHITE, font_size=28
         )
         solve_step3.shift(DOWN * 0.3)
         self.play(Write(solve_step3), run_time=0.5)
@@ -289,7 +289,7 @@ class BasisChangeRepresentation(Scene):
         vec_form = MathTex(
             r"\begin{pmatrix} \tilde{c}_{2,0} \\ \tilde{c}_{2,1} \\ \tilde{c}_{2,2} \end{pmatrix}"
             r"= \begin{pmatrix} 2\tilde{c}_{1,1} \\ 4\tilde{c}_{1,2} \\ 0 \end{pmatrix}",
-            color=GREEN, font_size=26
+            color=GREEN, font_size=32
         )
         vec_form.shift(DOWN * 2.3)
         vec_form_box = SurroundingRectangle(vec_form, color=GREEN, buff=0.15)
@@ -361,22 +361,22 @@ class BasisChangeRepresentation(Scene):
 
         # 左: 単項式基底
         mono_side = VGroup(
-            Text("単項式基底", color=BLUE, font_size=22, weight=BOLD),
-            MathTex(r"|1\rangle, |x\rangle, |x^2\rangle", color=BLUE, font_size=20),
+            Text("単項式基底", color=BLUE, font_size=26, weight=BOLD),
+            MathTex(r"|1\rangle, |x\rangle, |x^2\rangle", color=BLUE, font_size=28),
             MathTex(
                 r"L_{\text{mono}} = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}",
-                color=YELLOW, font_size=26
+                color=YELLOW, font_size=32
             ),
         ).arrange(DOWN, buff=0.3)
         mono_side.shift(LEFT * 3.5 + DOWN * 0.3)
 
         # 右: エルミート基底
         herm_side = VGroup(
-            Text("エルミート基底", color=PURPLE, font_size=22, weight=BOLD),
-            MathTex(r"|H_0\rangle, |H_1\rangle, |H_2\rangle", color=PURPLE, font_size=20),
+            Text("エルミート基底", color=PURPLE, font_size=26, weight=BOLD),
+            MathTex(r"|H_0\rangle, |H_1\rangle, |H_2\rangle", color=PURPLE, font_size=28),
             MathTex(
                 r"L_{\text{Hermite}} = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
-                color=RED, font_size=26
+                color=RED, font_size=32
             ),
         ).arrange(DOWN, buff=0.3)
         herm_side.shift(RIGHT * 3.5 + DOWN * 0.3)
@@ -466,28 +466,28 @@ class BasisChangeRepresentation(Scene):
             VGroup(
                 Text("1.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("同じ微分作用素でも基底によって表現行列が異なる", color=WHITE, font_size=22),
+                    Text("同じ微分作用素でも基底によって表現行列が異なる", color=WHITE, font_size=29),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("単項式基底:", color=BLUE, font_size=22),
-                    MathTex(r"L = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}", color=BLUE, font_size=20),
+                    Text("単項式基底:", color=BLUE, font_size=29),
+                    MathTex(r"L = \begin{pmatrix} 0 & 1 & 0 \\ 0 & 0 & 2 \\ 0 & 0 & 0 \end{pmatrix}", color=BLUE, font_size=29),
                 ).arrange(RIGHT, buff=0.2),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("エルミート基底:", color=PURPLE, font_size=22),
-                    MathTex(r"L = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}", color=PURPLE, font_size=20),
+                    Text("エルミート基底:", color=PURPLE, font_size=29),
+                    MathTex(r"L = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}", color=PURPLE, font_size=29),
                 ).arrange(RIGHT, buff=0.2),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("4.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("行列は違っても操作の本質は同じ", color=WHITE, font_size=22),
-                    Text("→ これが「表現」の意味", color=YELLOW, font_size=22, weight=BOLD),
+                    Text("行列は違っても操作の本質は同じ", color=WHITE, font_size=29),
+                    Text("→ これが「表現」の意味", color=YELLOW, font_size=29, weight=BOLD),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
