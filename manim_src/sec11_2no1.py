@@ -259,7 +259,7 @@ class BasisChangeRepresentation(Scene):
         # h_2のエルミート係数を h_1のエルミート係数で表す
         solve_step1 = MathTex(
             r"\tilde{c}_{2,2} = 0",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=32
         )
         solve_step1.shift(UP * 0.9)
         self.play(Write(solve_step1), run_time=0.5)
@@ -267,7 +267,7 @@ class BasisChangeRepresentation(Scene):
 
         solve_step2 = MathTex(
             r"\tilde{c}_{2,1} = c_{1,2} = 4\tilde{c}_{1,2}",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=32
         )
         solve_step2.shift(UP * 0.3)
         self.play(Write(solve_step2), run_time=0.5)
@@ -275,7 +275,7 @@ class BasisChangeRepresentation(Scene):
 
         solve_step3 = MathTex(
             r"\tilde{c}_{2,0} = c_{1,1} = 2\tilde{c}_{1,1}",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=32
         )
         solve_step3.shift(DOWN * 0.3)
         self.play(Write(solve_step3), run_time=0.5)
