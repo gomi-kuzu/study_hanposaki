@@ -67,7 +67,7 @@ class SystematicRepresentationMatrix(Scene):
 
         original_formula = MathTex(
             r"\langle H_n | H_m \rangle = \int_{-\infty}^{\infty} H_n(x) H_m(x) e^{-x^2} dx = 2^n n! \sqrt{\pi} \, \delta_{nm}",
-            color=WHITE, font_size=24
+            color=WHITE, font_size=28
         )
         original_formula.shift(UP * 1.1)
         self.play(Write(original_formula), run_time=0.8)
@@ -80,7 +80,7 @@ class SystematicRepresentationMatrix(Scene):
 
         braket_formula = MathTex(
             r"\langle n | m \rangle = 2^n n! \sqrt{\pi} \, \delta_{nm}",
-            color=TEAL, font_size=28
+            color=TEAL, font_size=32
         )
         braket_formula.shift(DOWN * 0.3)
         braket_box = SurroundingRectangle(braket_formula, color=TEAL, buff=0.15)
@@ -167,9 +167,9 @@ class SystematicRepresentationMatrix(Scene):
         self.play(Write(examples_label), run_time=0.3)
 
         examples = VGroup(
-            MathTex(r"\frac{d}{dx}|1\rangle = 2|0\rangle", color=GRAY, font_size=22),
-            MathTex(r"\frac{d}{dx}|2\rangle = 4|1\rangle", color=GRAY, font_size=22),
-            MathTex(r"\frac{d}{dx}|3\rangle = 6|2\rangle", color=GRAY, font_size=22),
+            MathTex(r"\frac{d}{dx}|1\rangle = 2|0\rangle", color=GRAY, font_size=26),
+            MathTex(r"\frac{d}{dx}|2\rangle = 4|1\rangle", color=GRAY, font_size=26),
+            MathTex(r"\frac{d}{dx}|3\rangle = 6|2\rangle", color=GRAY, font_size=26),
         ).arrange(RIGHT, buff=0.6)
         examples.shift(DOWN * 2.6)
         self.play(Write(examples), run_time=0.7)
@@ -219,11 +219,11 @@ class SystematicRepresentationMatrix(Scene):
         # 成分抽出の式
         extraction = VGroup(
             MathTex(r"\alpha_n \langle n | f \rangle", color=GREEN, font_size=24),
-            Text("＝", color=GREEN, font_size=20),
-            MathTex(r"|f\rangle", color=GREEN, font_size=24),
-            Text("の", color=GREEN, font_size=20),
-            MathTex(r"|n\rangle", color=GREEN, font_size=24),
-            Text("方向の成分", color=GREEN, font_size=20),
+            Text("＝", color=GREEN, font_size=28),
+            MathTex(r"|f\rangle", color=GREEN, font_size=28),
+            Text("の", color=GREEN, font_size=24),
+            MathTex(r"|n\rangle", color=GREEN, font_size=28),
+            Text("方向の成分", color=GREEN, font_size=24),
         ).arrange(RIGHT, buff=0.15)
         extraction.shift(DOWN * 1.2)
         self.play(Write(extraction), run_time=0.7)
@@ -259,9 +259,9 @@ class SystematicRepresentationMatrix(Scene):
 
         # スカラーなので順序交換可能
         scalar_note = VGroup(
-            MathTex(r"\langle n | f \rangle", color=ORANGE, font_size=26),
-            Text("はスカラーなので", color=WHITE, font_size=22),
-            Text("積の順番を入れ替えられる", color=WHITE, font_size=22),
+            MathTex(r"\langle n | f \rangle", color=ORANGE, font_size=30),
+            Text("はスカラーなので", color=WHITE, font_size=26),
+            Text("積の順番を入れ替えられる", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.2)
         scalar_note.shift(UP * 0.0)
         self.play(Write(scalar_note), run_time=0.7)
@@ -322,17 +322,16 @@ class SystematicRepresentationMatrix(Scene):
 
         # 利用法の説明
         usage_text = VGroup(
-            Text("任意の作用素をこの恒等演算子で「挟んでも」", color=WHITE, font_size=22),
-            Text("結果は変わらない", color=WHITE, font_size=22),
+            Text("任意の作用素をこの恒等演算子で「挟んでも」結果は変わらない", color=WHITE, font_size=26),
         ).arrange(DOWN, buff=0.15)
-        usage_text.shift(DOWN * 0.1)
+        usage_text.shift(DOWN * 0.5)
         self.play(Write(usage_text), run_time=0.7)
         self.wait(0.4)
 
         # 挟む式
         sandwich = MathTex(
             r"\mathcal{L} = \hat{I} \, \mathcal{L} \, \hat{I}",
-            color=TEAL, font_size=28
+            color=TEAL, font_size=30
         )
         sandwich.shift(DOWN * 1.0)
         self.play(Write(sandwich), run_time=0.6)
@@ -341,7 +340,7 @@ class SystematicRepresentationMatrix(Scene):
         # 展開した式
         expanded_L = MathTex(
             r"\mathcal{L} = \sum_{n,m} \alpha_m |m\rangle \langle m| \mathcal{L} |n\rangle \alpha_n \langle n|",
-            color=GREEN, font_size=26
+            color=GREEN, font_size=32
         )
         expanded_L.shift(DOWN * 2.0)
         expanded_L_box = SurroundingRectangle(expanded_L, color=GREEN, buff=0.15)
@@ -460,9 +459,9 @@ class SystematicRepresentationMatrix(Scene):
 
         index_note = VGroup(
             MathTex(r"\tilde{m} = m + 1", color=ORANGE, font_size=22),
-            Text("行", color=ORANGE, font_size=18),
+            Text("行", color=ORANGE, font_size=24),
             MathTex(r"\tilde{n} = n + 1", color=ORANGE, font_size=22),
-            Text("列", color=ORANGE, font_size=18),
+            Text("列", color=ORANGE, font_size=24),
         ).arrange(RIGHT, buff=0.15)
         index_note.shift(DOWN * 1.7)
         self.play(Write(index_note), run_time=0.6)
@@ -471,7 +470,7 @@ class SystematicRepresentationMatrix(Scene):
         # 調整後の公式
         adjusted = MathTex(
             r"L_{\tilde{m}\tilde{n}} = 2(\tilde{n}-1) \, \delta_{\tilde{m}-1, \tilde{n}-2}",
-            color=RED, font_size=26
+            color=RED, font_size=30
         )
         adjusted.shift(DOWN * 2.5)
         adjusted_box = SurroundingRectangle(adjusted, color=RED, buff=0.15)
@@ -496,7 +495,7 @@ class SystematicRepresentationMatrix(Scene):
         # 公式の再掲
         formula_recall = MathTex(
             r"L_{mn} = 2n \, \delta_{m, n-1}",
-            color=YELLOW, font_size=26
+            color=YELLOW, font_size=30
         )
         formula_recall.shift(UP * 1.8)
         self.play(Write(formula_recall), run_time=0.5)
@@ -509,15 +508,15 @@ class SystematicRepresentationMatrix(Scene):
 
         # 各成分の計算
         calcs = VGroup(
-            MathTex(r"L_{00} = 2 \cdot 0 \cdot \delta_{0,-1} = 0", color=WHITE, font_size=22),
-            MathTex(r"L_{01} = 2 \cdot 1 \cdot \delta_{0,0} = 2", color=GREEN, font_size=22),
-            MathTex(r"L_{02} = 2 \cdot 2 \cdot \delta_{0,1} = 0", color=WHITE, font_size=22),
-            MathTex(r"L_{10} = 2 \cdot 0 \cdot \delta_{1,-1} = 0", color=WHITE, font_size=22),
-            MathTex(r"L_{11} = 2 \cdot 1 \cdot \delta_{1,0} = 0", color=WHITE, font_size=22),
-            MathTex(r"L_{12} = 2 \cdot 2 \cdot \delta_{1,1} = 4", color=GREEN, font_size=22),
-            MathTex(r"L_{20} = 2 \cdot 0 \cdot \delta_{2,-1} = 0", color=WHITE, font_size=22),
-            MathTex(r"L_{21} = 2 \cdot 1 \cdot \delta_{2,0} = 0", color=WHITE, font_size=22),
-            MathTex(r"L_{22} = 2 \cdot 2 \cdot \delta_{2,1} = 0", color=WHITE, font_size=22),
+            MathTex(r"L_{00} = 2 \cdot 0 \cdot \delta_{0,-1} = 0", color=WHITE, font_size=30),
+            MathTex(r"L_{01} = 2 \cdot 1 \cdot \delta_{0,0} = 2", color=GREEN, font_size=30),
+            MathTex(r"L_{02} = 2 \cdot 2 \cdot \delta_{0,1} = 0", color=WHITE, font_size=30),
+            MathTex(r"L_{10} = 2 \cdot 0 \cdot \delta_{1,-1} = 0", color=WHITE, font_size=30),
+            MathTex(r"L_{11} = 2 \cdot 1 \cdot \delta_{1,0} = 0", color=WHITE, font_size=30),
+            MathTex(r"L_{12} = 2 \cdot 2 \cdot \delta_{1,1} = 4", color=GREEN, font_size=30),
+            MathTex(r"L_{20} = 2 \cdot 0 \cdot \delta_{2,-1} = 0", color=WHITE, font_size=30),
+            MathTex(r"L_{21} = 2 \cdot 1 \cdot \delta_{2,0} = 0", color=WHITE, font_size=30),
+            MathTex(r"L_{22} = 2 \cdot 2 \cdot \delta_{2,1} = 0", color=WHITE, font_size=30),
         )
         
         # 3x3に配置
@@ -536,7 +535,7 @@ class SystematicRepresentationMatrix(Scene):
 
         # 結果の行列
         result_matrix = MathTex(
-            r"L = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
+            r"L_{\text{Hermite}} = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
             color=GREEN, font_size=32
         )
         result_matrix.shift(DOWN * 2.5)
@@ -568,8 +567,8 @@ class SystematicRepresentationMatrix(Scene):
             Text("発見的方法（前回）", color=BLUE, font_size=22, weight=BOLD),
             Text("個別に計算して求めた", color=GRAY, font_size=18),
             MathTex(
-                r"L = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
-                color=BLUE, font_size=26
+                r"L_{\text{Hermite}} = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
+                color=BLUE, font_size=30
             ),
         ).arrange(DOWN, buff=0.25)
         prev_side.shift(LEFT * 3.5 + DOWN * 0.2)
@@ -579,8 +578,8 @@ class SystematicRepresentationMatrix(Scene):
             Text("系統的方法（今回）", color=GREEN, font_size=22, weight=BOLD),
             Text("単位の分解から導出", color=GRAY, font_size=18),
             MathTex(
-                r"L = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
-                color=GREEN, font_size=26
+                r"L_{\text{Hermite}} = \begin{pmatrix} 0 & 2 & 0 \\ 0 & 0 & 4 \\ 0 & 0 & 0 \end{pmatrix}",
+                color=GREEN, font_size=30
             ),
         ).arrange(DOWN, buff=0.25)
         sys_side.shift(RIGHT * 3.5 + DOWN * 0.2)
@@ -672,29 +671,29 @@ class SystematicRepresentationMatrix(Scene):
             VGroup(
                 Text("1.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("内積公式をブラケット表記で整理:", color=WHITE, font_size=22),
-                    MathTex(r"\alpha_n \langle n | m \rangle = \delta_{nm}", color=TEAL, font_size=22),
+                    Text("内積公式をブラケット表記で整理:", color=WHITE, font_size=28),
+                    MathTex(r"\alpha_n \langle n | m \rangle = \delta_{nm}", color=TEAL, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("エルミート多項式の微分公式:", color=WHITE, font_size=22),
-                    MathTex(r"\frac{d}{dx}|n\rangle = 2n|n-1\rangle", color=YELLOW, font_size=22),
+                    Text("エルミート多項式の微分公式:", color=WHITE, font_size=28),
+                    MathTex(r"\frac{d}{dx}|n\rangle = 2n|n-1\rangle", color=YELLOW, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("単位の分解で作用素を展開:", color=WHITE, font_size=22),
-                    MathTex(r"\mathcal{L} = \sum_{n,m} \alpha_m |m\rangle \langle m|\mathcal{L}|n\rangle \alpha_n \langle n|", color=GREEN, font_size=20),
+                    Text("単位の分解で作用素を展開:", color=WHITE, font_size=28),
+                    MathTex(r"\mathcal{L} = \sum_{n,m} \alpha_m |m\rangle \langle m|\mathcal{L}|n\rangle \alpha_n \langle n|", color=GREEN, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("4.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("行列要素が系統的に求まる:", color=WHITE, font_size=22),
-                    MathTex(r"L_{mn} = 2n \, \delta_{m,n-1}", color=RED, font_size=22),
+                    Text("行列要素が系統的に求まる:", color=WHITE, font_size=28),
+                    MathTex(r"L_{mn} = 2n \, \delta_{m,n-1}", color=RED, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
