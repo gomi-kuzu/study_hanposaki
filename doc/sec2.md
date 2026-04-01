@@ -39,6 +39,17 @@
 ### 直交基底の嬉しさをもう一回考える話
 <div><video controls src="https://github.com/user-attachments/assets/5bffb273-adf5-4500-ba78-b25bc543ee34"></video></div>
 
+# 第11話
+## 11.1
+### 作用素とは
+<div><video controls src="https://github.com/user-attachments/assets/b77d2234-835a-4518-b24a-6c79f684e4a1"></video></div>
+
+## 11.2
+### 基底が変わると表現行列も変わるって話
+<div><video controls src="https://github.com/user-attachments/assets/e2cc4462-cc34-42ed-814a-f1653e0a2112"></video></div>
+
+### 微分線形作用素の表現行列を系統的に導く話
+<div><video controls src="https://github.com/user-attachments/assets/92333523-8ad7-4bda-9685-9b5fde72cdbe"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
 
