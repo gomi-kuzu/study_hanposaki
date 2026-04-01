@@ -50,6 +50,7 @@
 
 ### 微分線形作用素の表現行列を系統的に導く話
 <div><video controls src="https://github.com/user-attachments/assets/1acee017-9023-4143-af09-49a910c55805"></video></div>
+
 - 結局、なんで真ん中のあたりが表現行列の成分になるのかがきっちり分かっていない…
 
 
