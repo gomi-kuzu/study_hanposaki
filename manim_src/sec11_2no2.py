@@ -250,7 +250,7 @@ class SystematicRepresentationMatrix(Scene):
 
         # 展開式
         expansion = MathTex(
-            r"|f\rangle = \sum_{n=0}^{\infty} \left( \alpha_n \langle n | f \rangle \right) |n\rangle",
+            r"|f\rangle = \sum_{n=0} \left( \alpha_n \langle n | f \rangle \right) |n\rangle",
             color=WHITE, font_size=28
         )
         expansion.shift(UP * 0.8)
@@ -269,7 +269,7 @@ class SystematicRepresentationMatrix(Scene):
 
         # 順序を入れ替えた式
         reordered = MathTex(
-            r"|f\rangle = \sum_{n=0}^{\infty} \alpha_n |n\rangle \langle n | f \rangle",
+            r"|f\rangle = \sum_{n=0} \alpha_n |n\rangle \langle n | f \rangle",
             color=TEAL, font_size=28
         )
         reordered.shift(DOWN * 0.8)
@@ -284,7 +284,7 @@ class SystematicRepresentationMatrix(Scene):
 
         # 恒等演算子の発見
         identity_discovery = VGroup(
-            MathTex(r"\sum_{n=0}^{\infty} \alpha_n |n\rangle \langle n|", color=GREEN, font_size=26),
+            MathTex(r"\sum_{n=0} \alpha_n |n\rangle \langle n|", color=GREEN, font_size=26),
             Text("は「何もしない作用素」", color=GREEN, font_size=22),
         ).arrange(RIGHT, buff=0.2)
         identity_discovery.shift(DOWN * 2.4)
@@ -312,7 +312,7 @@ class SystematicRepresentationMatrix(Scene):
         self.play(Write(identity_title), run_time=0.5)
 
         identity_eq = MathTex(
-            r"\hat{I} = \sum_{n=0}^{\infty} \alpha_n |n\rangle \langle n|",
+            r"\mathbf{1} = \sum_{n=0} \alpha_n |n\rangle \langle n|",
             color=YELLOW, font_size=30
         )
         identity_eq.shift(UP * 0.9)
@@ -330,7 +330,7 @@ class SystematicRepresentationMatrix(Scene):
 
         # 挟む式
         sandwich = MathTex(
-            r"\mathcal{L} = \hat{I} \, \mathcal{L} \, \hat{I}",
+            r"\mathcal{L} = \mathbf{1} \, \mathcal{L} \, \mathbf{1}",
             color=TEAL, font_size=30
         )
         sandwich.shift(DOWN * 1.0)
@@ -494,7 +494,7 @@ class SystematicRepresentationMatrix(Scene):
 
         # 公式の再掲
         formula_recall = MathTex(
-            r"L_{mn} = 2n \, \delta_{m, n-1}",
+            r"L_{\tilde{m}\tilde{n}} = 2(\tilde{n}-1) \, \delta_{\tilde{m}-1, \tilde{n}-2}",
             color=YELLOW, font_size=30
         )
         formula_recall.shift(UP * 1.8)
@@ -502,7 +502,7 @@ class SystematicRepresentationMatrix(Scene):
         self.wait(0.3)
 
         # 具体的な値
-        calc_title = Text("m, n = 0, 1, 2 の場合:", color=WHITE, font_size=22, weight=BOLD)
+        calc_title = Text("1から3行、1から3列で考えて:", color=WHITE, font_size=22, weight=BOLD)
         calc_title.shift(UP * 1.1 + LEFT * 4)
         self.play(Write(calc_title), run_time=0.4)
 
