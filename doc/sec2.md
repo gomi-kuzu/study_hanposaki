@@ -49,7 +49,7 @@
 <div><video controls src="https://github.com/user-attachments/assets/e2cc4462-cc34-42ed-814a-f1653e0a2112"></video></div>
 
 ### 微分線形作用素の表現行列を系統的に導く話
-<div><video controls src="https://github.com/user-attachments/assets/1acee017-9023-4143-af09-49a910c55805"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/3308af18-9976-4ce3-8e6c-4ab99fa90349"></video></div>
 
 - 結局、なんで真ん中のあたりが表現行列の成分になるのかがきっちり分かっていない…
 
