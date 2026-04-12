@@ -29,20 +29,20 @@ class FourierTransform(Scene):
 
         # 直交性の式
         orthogonal_eq = VGroup(
-            MathTex(r"\langle \sin_n | \sin_m \rangle = \frac{T}{2} \delta_{nm}", color=TEAL, font_size=28),
-            MathTex(r"\langle \cos_n | \cos_m \rangle = \frac{T}{2} \delta_{nm}", color=TEAL, font_size=28),
-            MathTex(r"\langle \sin_n | \cos_m \rangle = 0", color=TEAL, font_size=28),
+            MathTex(r"\langle \sin_n | \sin_m \rangle = \frac{T}{2} \delta_{nm}", color=TEAL, font_size=30),
+            MathTex(r"\langle \cos_n | \cos_m \rangle = \frac{T}{2} \delta_{nm}", color=TEAL, font_size=30),
+            MathTex(r"\langle \sin_n | \cos_m \rangle = 0", color=TEAL, font_size=30),
         ).arrange(DOWN, buff=0.2)
-        orthogonal_eq.shift(DOWN * 0.3)
+        orthogonal_eq.shift(DOWN * 0.6)
         orthogonal_box = SurroundingRectangle(orthogonal_eq, color=TEAL, buff=0.15)
         self.play(Write(orthogonal_eq), Create(orthogonal_box), run_time=0.9)
         self.wait(0.5)
 
         # これを発展させる
         develop_note = Text("→ これを発展させて「フーリエ変換」を導く", color=ORANGE, font_size=22)
-        develop_note.shift(DOWN * 1.8)
+        develop_note.shift(DOWN * 2.4)
         self.play(Write(develop_note), run_time=0.6)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(prev_result), FadeOut(orthogonal_eq), FadeOut(orthogonal_box),
@@ -76,9 +76,9 @@ class FourierTransform(Scene):
 
         # 係数の意味
         coeff_meaning = VGroup(
-            MathTex(r"c_n", color=GREEN, font_size=28),
+            MathTex(r"c_n", color=WHITE, font_size=30),
             Text("は基底", color=WHITE, font_size=24),
-            MathTex(r"|e_n\rangle", color=GREEN, font_size=28),
+            MathTex(r"|e_n\rangle", color=WHITE, font_size=30),
             Text("方向の成分（係数）", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.15)
         coeff_meaning.shift(DOWN * 0.3)
@@ -91,7 +91,7 @@ class FourierTransform(Scene):
             Text("波（周波数）を基底として信号を分解する", color=ORANGE, font_size=24),
             Text("→ これがフーリエ変換！", color=YELLOW, font_size=26, weight=BOLD),
         ).arrange(DOWN, buff=0.2)
-        idea_box.shift(DOWN * 1.5)
+        idea_box.shift(DOWN * 2.0)
         idea_rect = SurroundingRectangle(idea_box, color=ORANGE, buff=0.2)
         self.play(Write(idea_box), Create(idea_rect), run_time=0.9)
         self.wait(1.0)
@@ -130,8 +130,8 @@ class FourierTransform(Scene):
 
         # 複素正弦波の意味
         complex_meaning = VGroup(
-            Text("複素正弦波は cos と sin を同時に表現", color=TEAL, font_size=22),
-            Text("→ 計算が簡潔になり、位相情報も扱える", color=TEAL, font_size=22),
+            Text("複素正弦波は cos と sin を同時に表現", color=TEAL, font_size=24),
+            Text("→ 計算が簡潔になり、位相情報も扱える", color=TEAL, font_size=24),
         ).arrange(DOWN, buff=0.15)
         complex_meaning.shift(DOWN * 0.5)
         self.play(Write(complex_meaning), run_time=0.7)
@@ -139,13 +139,13 @@ class FourierTransform(Scene):
 
         # j について
         j_note = VGroup(
-            Text("※ j は虚数単位（", color=GRAY, font_size=20),
+            Text("※ j は虚数単位（", color=GRAY, font_size=22),
             MathTex(r"j^2 = -1", color=GRAY, font_size=22),
-            Text("）、工学では i の代わりに j を使う", color=GRAY, font_size=20),
+            Text("）、工学では j を使うことが多い", color=GRAY, font_size=22),
         ).arrange(RIGHT, buff=0.1)
         j_note.shift(DOWN * 1.3)
         self.play(Write(j_note), run_time=0.6)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(euler_intro), FadeOut(euler_title),
@@ -179,8 +179,10 @@ class FourierTransform(Scene):
 
         # 複素共役の説明
         conj_explain = VGroup(
-            MathTex(r"\overline{g(t)}", color=TEAL, font_size=28),
-            Text("は g(t) の複素共役", color=TEAL, font_size=22),
+            MathTex(r"\overline{g(t)}", color=TEAL, font_size=30),
+            Text("は", color=TEAL, font_size=22),
+            MathTex(r"g(t)", color=TEAL, font_size=30),
+            Text("の複素共役", color=TEAL, font_size=22),
         ).arrange(RIGHT, buff=0.2)
         conj_explain.shift(DOWN * 0.2)
         self.play(Write(conj_explain), run_time=0.6)
@@ -189,17 +191,17 @@ class FourierTransform(Scene):
         # 複素共役の例
         conj_example = MathTex(
             r"\overline{e^{jm\omega_0 t}} = e^{-jm\omega_0 t}",
-            color=ORANGE, font_size=28
+            color=TEAL, font_size=32
         )
         conj_example.shift(DOWN * 1.0)
         self.play(Write(conj_example), run_time=0.6)
         self.wait(0.5)
 
         # なぜ複素共役？
-        why_conj = Text("（複素共役を使うことで内積の性質を保つ）", color=GRAY, font_size=18)
+        why_conj = Text("（複素共役を使うことで、非負を返すという内積の性質を保つ）", color=GRAY, font_size=22)
         why_conj.shift(DOWN * 1.7)
         self.play(Write(why_conj), run_time=0.5)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(inner_intro), FadeOut(inner_def), FadeOut(inner_def_box),
@@ -219,51 +221,56 @@ class FourierTransform(Scene):
         orthog_title.shift(UP * 1.8 + LEFT * 2)
         self.play(Write(orthog_title), run_time=0.5)
 
+        # 1周期での積分として説明
+        period_note = Text("（1周期 T での積分を考える）", color=GRAY, font_size=20)
+        period_note.shift(UP)
+        self.play(Write(period_note), run_time=0.4)
+
         orthog_calc1 = MathTex(
-            r"\langle m | n \rangle = \int_{-\infty}^{\infty} e^{jn\omega_0 t} \, \overline{e^{jm\omega_0 t}} \, dt",
-            color=WHITE, font_size=26
+            r"\langle m | n \rangle = \int_0^T e^{jn\omega_0 t} \, \overline{e^{jm\omega_0 t}} \, dt",
+            color=WHITE, font_size=30
         )
-        orthog_calc1.shift(UP * 1.0)
+        orthog_calc1.shift(UP * 0.4)
         self.play(Write(orthog_calc1), run_time=0.8)
         self.wait(0.4)
 
         # 計算過程
         orthog_calc2 = MathTex(
-            r"= \int_{-\infty}^{\infty} e^{jn\omega_0 t} \, e^{-jm\omega_0 t} \, dt",
-            color=WHITE, font_size=26
+            r"= \int_0^T e^{jn\omega_0 t} \, e^{-jm\omega_0 t} \, dt",
+            color=WHITE, font_size=30
         )
-        orthog_calc2.shift(UP * 0.3)
+        orthog_calc2.shift(DOWN * 0.4)
         self.play(Write(orthog_calc2), run_time=0.7)
         self.wait(0.3)
 
         orthog_calc3 = MathTex(
-            r"= \int_{-\infty}^{\infty} e^{j(n-m)\omega_0 t} \, dt",
-            color=TEAL, font_size=28
+            r"= \int_0^T e^{j(n-m)\omega_0 t} \, dt",
+            color=YELLOW, font_size=30
         )
-        orthog_calc3.shift(DOWN * 0.4)
+        orthog_calc3.shift(DOWN * 1.2)
         self.play(Write(orthog_calc3), run_time=0.7)
         self.wait(0.5)
 
         # 結果
         orthog_result = VGroup(
-            MathTex(r"n \neq m", color=RED, font_size=26),
-            Text("のとき: 振動して打ち消し合う →", color=RED, font_size=22),
-            MathTex(r"0", color=RED, font_size=28),
+            MathTex(r"n \neq m", color=RED, font_size=30),
+            Text("のとき: 振動して打ち消し合う →", color=RED, font_size=26),
+            MathTex(r"0", color=RED, font_size=30),
         ).arrange(RIGHT, buff=0.15)
-        orthog_result.shift(DOWN * 1.2)
+        orthog_result.shift(DOWN * 2.5)
         self.play(Write(orthog_result), run_time=0.7)
         self.wait(0.4)
 
         # === 打ち消し合うイメージのアニメーション ===
         self.play(
-            FadeOut(orthog_title), FadeOut(orthog_calc1), FadeOut(orthog_calc2),
+            FadeOut(orthog_title), FadeOut(period_note), FadeOut(orthog_calc1), FadeOut(orthog_calc2),
             FadeOut(orthog_calc3), FadeOut(orthog_result)
         )
         self.wait(0.2)
 
         # n≠mの場合の説明
-        cancel_title = Text("n ≠ m のとき、なぜ積分が0になるか？", color=YELLOW, font_size=26, weight=BOLD)
-        cancel_title.shift(UP * 3.0)
+        cancel_title = Text("n ≠ m のとき、なぜ積分が0になる？", color=YELLOW, font_size=24, weight=BOLD)
+        cancel_title.shift(UP * 2.0 )
         self.play(Write(cancel_title), run_time=0.6)
         self.wait(0.3)
 
@@ -272,12 +279,12 @@ class FourierTransform(Scene):
             r"e^{j(n-m)\omega_0 t} = \cos((n-m)\omega_0 t) + j\sin((n-m)\omega_0 t)",
             color=WHITE, font_size=24
         )
-        cancel_explain.shift(UP * 2.3)
+        cancel_explain.shift(UP * 1.5)
         self.play(Write(cancel_explain), run_time=0.7)
         self.wait(0.3)
 
         real_part_note = Text("実部 cos((n-m)ω₀t) を見てみると...", color=TEAL, font_size=22)
-        real_part_note.shift(UP * 1.7)
+        real_part_note.shift(UP * 1)
         self.play(Write(real_part_note), run_time=0.5)
         self.wait(0.3)
 
@@ -317,31 +324,55 @@ class FourierTransform(Scene):
         # 正の部分（青）と負の部分（赤）を塗りつぶし
         positive_area = cancel_axes.get_area(
             cos_wave,
-            x_range=[0, PI/2],
+            x_range=[0, PI/4],
             color=BLUE,
             opacity=0.5
         )
         negative_area1 = cancel_axes.get_area(
             cos_wave,
-            x_range=[PI/2, 3*PI/2],
+            x_range=[PI/4, 3*PI/4],
             color=RED,
             opacity=0.5
         )
         positive_area2 = cancel_axes.get_area(
             cos_wave,
-            x_range=[3*PI/2, 5*PI/2],
+            x_range=[3*PI/4, 5*PI/4],
             color=BLUE,
             opacity=0.5
         )
         negative_area2 = cancel_axes.get_area(
             cos_wave,
-            x_range=[5*PI/2, 7*PI/2],
+            x_range=[5*PI/4, 7*PI/4],
             color=RED,
             opacity=0.5
         )
         positive_area3 = cancel_axes.get_area(
             cos_wave,
-            x_range=[7*PI/2, 4*PI],
+            x_range=[7*PI/4, 9*PI/4],
+            color=BLUE,
+            opacity=0.5
+        )
+        negative_area3 = cancel_axes.get_area(
+            cos_wave,
+            x_range=[9*PI/4, 11*PI/4],
+            color=RED,
+            opacity=0.5
+        )
+        positive_area4 = cancel_axes.get_area(
+            cos_wave,
+            x_range=[11*PI/4, 13*PI/4],
+            color=BLUE,
+            opacity=0.5
+        )
+        negative_area4 = cancel_axes.get_area(
+            cos_wave,
+            x_range=[13*PI/4, 15*PI/4],
+            color=RED,
+            opacity=0.5
+        )
+        positive_area5 = cancel_axes.get_area(
+            cos_wave,
+            x_range=[15*PI/4, 4*PI],
             color=BLUE,
             opacity=0.5
         )
@@ -357,12 +388,14 @@ class FourierTransform(Scene):
                 Text("負の部分", color=RED, font_size=18),
             ).arrange(RIGHT, buff=0.1),
         ).arrange(RIGHT, buff=0.5)
-        legend.shift(DOWN * 2.3)
+        legend.shift(DOWN * 1.8)
 
         self.play(
             FadeIn(positive_area), FadeIn(negative_area1), 
             FadeIn(positive_area2), FadeIn(negative_area2),
-            FadeIn(positive_area3),
+            FadeIn(positive_area3), FadeIn(negative_area3),
+            FadeIn(positive_area4), FadeIn(negative_area4),
+            FadeIn(positive_area5),
             Write(legend),
             run_time=0.8
         )
@@ -376,7 +409,7 @@ class FourierTransform(Scene):
         cancel_text.shift(DOWN * 3.0)
         cancel_box = SurroundingRectangle(cancel_text, color=YELLOW, buff=0.1)
         self.play(Write(cancel_text), Create(cancel_box), run_time=0.7)
-        self.wait(1.0)
+        self.wait(1.5)
 
         # クリーンアップ
         self.play(
@@ -385,13 +418,15 @@ class FourierTransform(Scene):
             FadeOut(cos_wave), FadeOut(cos_label),
             FadeOut(positive_area), FadeOut(negative_area1),
             FadeOut(positive_area2), FadeOut(negative_area2), FadeOut(positive_area3),
+            FadeOut(negative_area3), FadeOut(positive_area4), FadeOut(negative_area4),
+            FadeOut(positive_area5),
             FadeOut(legend), FadeOut(cancel_text), FadeOut(cancel_box)
         )
         self.wait(0.3)
 
         # === n = m の場合 ===
         equal_title = Text("n = m のとき", color=GREEN, font_size=26, weight=BOLD)
-        equal_title.shift(UP * 3.0)
+        equal_title.shift(UP*2)
         self.play(Write(equal_title), run_time=0.5)
         self.wait(0.3)
 
@@ -399,7 +434,7 @@ class FourierTransform(Scene):
             r"e^{j(n-n)\omega_0 t} = e^{0} = 1",
             color=WHITE, font_size=28
         )
-        equal_explain.shift(UP * 2.2)
+        equal_explain.shift(UP)
         self.play(Write(equal_explain), run_time=0.6)
         self.wait(0.3)
 
@@ -429,13 +464,13 @@ class FourierTransform(Scene):
         self.wait(0.4)
 
         equal_result = VGroup(
-            Text("常に正なので、積分すると", color=WHITE, font_size=22),
-            Text("非ゼロの値になる！", color=GREEN, font_size=24, weight=BOLD),
+            Text("常に正なので、1周期で積分すると", color=WHITE, font_size=22),
+            MathTex(r"\int_0^T 1 \, dt = T", color=GREEN, font_size=28),
         ).arrange(DOWN, buff=0.15)
         equal_result.shift(DOWN * 2.0)
         equal_box = SurroundingRectangle(equal_result, color=GREEN, buff=0.1)
         self.play(Write(equal_result), Create(equal_box), run_time=0.7)
-        self.wait(1.0)
+        self.wait(1.5)
 
         # クリーンアップ
         self.play(
@@ -446,13 +481,32 @@ class FourierTransform(Scene):
         self.wait(0.3)
 
         # 結論
-        orthog_conclusion = Text("→ 複素正弦波も直交基底として使える！", color=YELLOW, font_size=24, weight=BOLD)
-        orthog_conclusion.shift(UP * 0.5)
-        self.play(Write(orthog_conclusion), run_time=0.6)
+        orthog_conclusion = MathTex(
+            r"\langle m | n \rangle = T \delta_{nm}",
+            color=YELLOW, font_size=32
+        )
+        orthog_conclusion.shift(UP * 1.0)
+        orthog_conclusion_box = SurroundingRectangle(orthog_conclusion, color=YELLOW, buff=0.15)
+        self.play(Write(orthog_conclusion), Create(orthog_conclusion_box), run_time=0.7)
+        self.wait(0.5)
+
+        orthog_meaning = Text("→ 複素正弦波も直交基底として使える！", color=YELLOW, font_size=24, weight=BOLD)
+        orthog_meaning.shift(UP * 0.2)
+        self.play(Write(orthog_meaning), run_time=0.6)
         self.wait(1.0)
 
+        # 補足：フーリエ変換への橋渡し
+        bridge_note = VGroup(
+            Text("※ フーリエ変換では非周期信号を扱うため", color=WHITE, font_size=22),
+            Text("積分区間は -∞ ~ ∞ になるが、直交性の本質は同じ", color=WHITE, font_size=22),
+        ).arrange(DOWN, buff=0.1)
+        bridge_note.shift(DOWN * 0.8)
+        self.play(Write(bridge_note), run_time=0.8)
+        self.wait(1.5)
+
         self.play(
-            FadeOut(orthog_conclusion), FadeOut(subtitle5)
+            FadeOut(orthog_conclusion), FadeOut(orthog_conclusion_box),
+            FadeOut(orthog_meaning), FadeOut(bridge_note), FadeOut(subtitle5)
         )
         self.wait(0.3)
 
@@ -476,7 +530,7 @@ class FourierTransform(Scene):
             Text("は", color=WHITE, font_size=24),
             MathTex(r"|f\rangle", color=TEAL, font_size=30),
             Text("を", color=WHITE, font_size=24),
-            MathTex(r"\langle g |", color=ORANGE, font_size=30),
+            MathTex(r"|g \rangle ", color=ORANGE, font_size=30),
             Text("で「観測」するイメージ", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.1)
         inner_meaning.shift(UP * 0.8)
@@ -485,7 +539,7 @@ class FourierTransform(Scene):
 
         # 射影のイメージ
         projection_text = VGroup(
-            MathTex(r"\langle g |", color=ORANGE, font_size=28),
+            MathTex(r"|g \rangle", color=ORANGE, font_size=28),
             Text("方向への", color=WHITE, font_size=24),
             MathTex(r"|f\rangle", color=TEAL, font_size=28),
             Text("の「射影」（影の長さ）", color=WHITE, font_size=24),
@@ -496,12 +550,12 @@ class FourierTransform(Scene):
 
         # 視覚的イメージ（簡単なベクトル図）
         arrow_f = Arrow(ORIGIN, RIGHT * 2.5 + UP * 1.5, color=TEAL, buff=0)
-        arrow_f.shift(DOWN * 1.0 + LEFT * 2)
+        arrow_f.shift(DOWN * 2.5 + LEFT * 2)
         label_f = MathTex(r"|f\rangle", color=TEAL, font_size=24)
         label_f.next_to(arrow_f.get_end(), RIGHT, buff=0.1)
 
         arrow_g = Arrow(ORIGIN, RIGHT * 3, color=ORANGE, buff=0)
-        arrow_g.shift(DOWN * 1.0 + LEFT * 2)
+        arrow_g.shift(DOWN * 2.5 + LEFT * 2)
         label_g = MathTex(r"|g\rangle", color=ORANGE, font_size=24)
         label_g.next_to(arrow_g.get_end(), DOWN, buff=0.1)
 
@@ -522,7 +576,7 @@ class FourierTransform(Scene):
         self.play(Create(arrow_f), Write(label_f), run_time=0.5)
         self.play(Create(arrow_g), Write(label_g), run_time=0.5)
         self.play(Create(proj_line), Create(proj_arrow), Write(proj_label), run_time=0.6)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(recall_intro), FadeOut(inner_meaning), FadeOut(projection_text),
@@ -585,7 +639,7 @@ class FourierTransform(Scene):
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         parts_explain.shift(DOWN * 1.8)
         self.play(Write(parts_explain), run_time=0.9)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(idea_text), FadeOut(meaning_text),
@@ -651,7 +705,7 @@ class FourierTransform(Scene):
         spectrum_note = Text("各周波数の成分の大きさがわかる", color=GREEN, font_size=20)
         spectrum_note.shift(DOWN * 3.0)
         self.play(Write(spectrum_note), run_time=0.5)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(spectrum_intro), FadeOut(spectrum_meaning), FadeOut(spectrum_box),
@@ -707,7 +761,7 @@ class FourierTransform(Scene):
         lpf_example.shift(DOWN * 1.8)
         lpf_box = SurroundingRectangle(lpf_example, color=ORANGE, buff=0.15)
         self.play(Write(lpf_example), Create(lpf_box), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(app_intro), FadeOut(applications),
@@ -717,66 +771,66 @@ class FourierTransform(Scene):
         self.wait(0.3)
 
         # === Part 10: 時間領域と周波数領域 ===
-        subtitle10 = Text("時間領域と周波数領域", font_size=30, color=PURPLE)
-        subtitle10.next_to(title, DOWN)
-        self.play(Write(subtitle10), run_time=0.6)
-        self.wait(0.5)
+        # subtitle10 = Text("時間領域と周波数領域", font_size=30, color=PURPLE)
+        # subtitle10.next_to(title, DOWN)
+        # self.play(Write(subtitle10), run_time=0.6)
+        # self.wait(0.5)
 
-        # 2つの見方
-        two_views = VGroup(
-            Text("同じ信号を2つの視点で見る:", color=YELLOW, font_size=24, weight=BOLD),
-        )
-        two_views.shift(UP * 1.6)
-        self.play(Write(two_views), run_time=0.6)
-        self.wait(0.4)
+        # # 2つの見方
+        # two_views = VGroup(
+        #     Text("同じ信号を2つの視点で見る:", color=YELLOW, font_size=24, weight=BOLD),
+        # )
+        # two_views.shift(UP * 1.6)
+        # self.play(Write(two_views), run_time=0.6)
+        # self.wait(0.4)
 
-        # 左: 時間領域
-        time_side = VGroup(
-            Text("時間領域", color=BLUE, font_size=24, weight=BOLD),
-            MathTex(r"f(t)", color=BLUE, font_size=28),
-            Text("時間とともに値が変化", color=GRAY, font_size=18),
-        ).arrange(DOWN, buff=0.2)
-        time_side.shift(LEFT * 3.5 + UP * 0.5)
+        # # 左: 時間領域
+        # time_side = VGroup(
+        #     Text("時間領域", color=BLUE, font_size=24, weight=BOLD),
+        #     MathTex(r"f(t)", color=BLUE, font_size=28),
+        #     Text("時間とともに値が変化", color=GRAY, font_size=18),
+        # ).arrange(DOWN, buff=0.2)
+        # time_side.shift(LEFT * 3.5 + UP * 0.5)
 
-        # 右: 周波数領域
-        freq_side = VGroup(
-            Text("周波数領域", color=RED, font_size=24, weight=BOLD),
-            MathTex(r"F(\omega)", color=RED, font_size=28),
-            Text("各周波数成分の大きさ", color=GRAY, font_size=18),
-        ).arrange(DOWN, buff=0.2)
-        freq_side.shift(RIGHT * 3.5 + UP * 0.5)
+        # # 右: 周波数領域
+        # freq_side = VGroup(
+        #     Text("周波数領域", color=RED, font_size=24, weight=BOLD),
+        #     MathTex(r"F(\omega)", color=RED, font_size=28),
+        #     Text("各周波数成分の大きさ", color=GRAY, font_size=18),
+        # ).arrange(DOWN, buff=0.2)
+        # freq_side.shift(RIGHT * 3.5 + UP * 0.5)
 
-        # 矢印
-        arrow_ft = Arrow(LEFT * 1.5 + UP * 0.5, RIGHT * 1.5 + UP * 0.5, color=GREEN)
-        arrow_label = Text("フーリエ変換", color=GREEN, font_size=20)
-        arrow_label.next_to(arrow_ft, UP, buff=0.1)
+        # # 矢印
+        # arrow_ft = Arrow(LEFT * 1.5 + UP * 0.5, RIGHT * 1.5 + UP * 0.5, color=GREEN)
+        # arrow_label = Text("フーリエ変換", color=GREEN, font_size=20)
+        # arrow_label.next_to(arrow_ft, UP, buff=0.1)
 
-        self.play(Write(time_side), run_time=0.7)
-        self.play(Create(arrow_ft), Write(arrow_label), run_time=0.5)
-        self.play(Write(freq_side), run_time=0.7)
-        self.wait(0.5)
+        # self.play(Write(time_side), run_time=0.7)
+        # self.play(Create(arrow_ft), Write(arrow_label), run_time=0.5)
+        # self.play(Write(freq_side), run_time=0.7)
+        # self.wait(0.5)
 
-        # 逆変換
-        arrow_ift = Arrow(RIGHT * 1.5 + DOWN * 0.5, LEFT * 1.5 + DOWN * 0.5, color=ORANGE)
-        arrow_ift_label = Text("逆フーリエ変換", color=ORANGE, font_size=20)
-        arrow_ift_label.next_to(arrow_ift, DOWN, buff=0.1)
+        # # 逆変換
+        # arrow_ift = Arrow(RIGHT * 1.5 + DOWN * 0.5, LEFT * 1.5 + DOWN * 0.5, color=ORANGE)
+        # arrow_ift_label = Text("逆フーリエ変換", color=ORANGE, font_size=20)
+        # arrow_ift_label.next_to(arrow_ift, DOWN, buff=0.1)
 
-        self.play(Create(arrow_ift), Write(arrow_ift_label), run_time=0.6)
-        self.wait(0.5)
+        # self.play(Create(arrow_ift), Write(arrow_ift_label), run_time=0.6)
+        # self.wait(0.5)
 
-        # 補足
-        dual_note = Text("両方の表現は等価（情報は失われない）", color=TEAL, font_size=22, weight=BOLD)
-        dual_note.shift(DOWN * 2.0)
-        self.play(Write(dual_note), run_time=0.6)
-        self.wait(1.0)
+        # # 補足
+        # dual_note = Text("両方の表現は等価（情報は失われない）", color=TEAL, font_size=22, weight=BOLD)
+        # dual_note.shift(DOWN * 2.0)
+        # self.play(Write(dual_note), run_time=0.6)
+        # self.wait(1.0)
 
-        self.play(
-            FadeOut(two_views), FadeOut(time_side), FadeOut(freq_side),
-            FadeOut(arrow_ft), FadeOut(arrow_label),
-            FadeOut(arrow_ift), FadeOut(arrow_ift_label),
-            FadeOut(dual_note), FadeOut(subtitle10)
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(two_views), FadeOut(time_side), FadeOut(freq_side),
+        #     FadeOut(arrow_ft), FadeOut(arrow_label),
+        #     FadeOut(arrow_ift), FadeOut(arrow_ift_label),
+        #     FadeOut(dual_note), FadeOut(subtitle10)
+        # )
+        # self.wait(0.3)
 
         # === まとめ ===
         subtitle_end = Text("まとめ", font_size=36, color=GOLD, weight=BOLD)
@@ -788,29 +842,29 @@ class FourierTransform(Scene):
             VGroup(
                 Text("1.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("複素正弦波を基底として導入", color=WHITE, font_size=24),
-                    MathTex(r"e^{j\omega t} = \cos\omega t + j\sin\omega t", color=TEAL, font_size=24),
+                    Text("複素正弦波を基底として導入", color=WHITE, font_size=28),
+                    MathTex(r"e^{j\omega t} = \cos\omega t + j\sin\omega t", color=TEAL, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("複素正弦波は直交基底", color=WHITE, font_size=24),
-                    MathTex(r"\int e^{j(n-m)\omega_0 t} dt = 0 \quad (n \neq m)", color=YELLOW, font_size=22),
+                    Text("複素正弦波は直交基底", color=WHITE, font_size=28),
+                    MathTex(r"\int_0^T e^{j(n-m)\omega_0 t} dt = T\delta_{nm}", color=YELLOW, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("内積で各周波数成分を抽出（射影）", color=WHITE, font_size=24),
-                    MathTex(r"F(\omega) = \int f(t) e^{-j\omega t} dt", color=GREEN, font_size=24),
+                    Text("内積で各周波数成分を抽出（射影）", color=WHITE, font_size=28),
+                    MathTex(r"F(\omega) = \int f(t) e^{-j\omega t} dt", color=GREEN, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("4.", color=WHITE, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("スペクトルで周波数組成がわかる", color=WHITE, font_size=24),
-                    Text("→ フィルタ設計などに応用", color=RED, font_size=22),
+                    Text("スペクトルで周波数組成がわかる", color=WHITE, font_size=28),
+                    Text("→ フィルタ設計などに応用", color=RED, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
