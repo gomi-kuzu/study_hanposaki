@@ -130,7 +130,7 @@ class WaveDecomposition(Scene):
                 Text(": サイン成分", color=BLUE, font_size=20),
             ).arrange(RIGHT, buff=0.2),
         ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
-        terms_explain.shift(DOWN * 0.8)
+        terms_explain.shift(DOWN * 1.1)
         self.play(Write(terms_explain), run_time=0.9)
         self.wait(1.0)
 
@@ -141,7 +141,7 @@ class WaveDecomposition(Scene):
         self.wait(0.3)
 
         # === Part 4: 波の合成（視覚的デモ） ===
-        subtitle4 = Text("波の合成：視覚的に理解する", font_size=30, color=GOLD)
+        subtitle4 = Text("波の合成（重ね合わせの原理）を視覚的に理解する", font_size=30, color=GOLD)
         subtitle4.next_to(title, DOWN)
         self.play(Write(subtitle4), run_time=0.6)
         self.wait(0.5)
@@ -158,8 +158,8 @@ class WaveDecomposition(Scene):
 
         # 基本波
         wave1 = axes2.plot(lambda x: np.sin(x), color=BLUE)
-        wave1_label = MathTex(r"\sin(t)", color=BLUE, font_size=22)
-        wave1_label.next_to(axes2, UP, buff=0.1).shift(LEFT * 4)
+        wave1_label = MathTex(r"\sin(t)", color=BLUE, font_size=28)
+        wave1_label.next_to(axes2, UP*3.0, buff=0.1).shift(LEFT * 3.4)
 
         self.play(Create(axes2), run_time=0.5)
         self.play(Create(wave1), Write(wave1_label), run_time=0.6)
@@ -167,7 +167,7 @@ class WaveDecomposition(Scene):
 
         # 2倍周波数の波を追加
         wave2 = axes2.plot(lambda x: 0.5 * np.sin(2 * x), color=RED)
-        wave2_label = MathTex(r"+ \frac{1}{2}\sin(2t)", color=RED, font_size=22)
+        wave2_label = MathTex(r"+ \frac{1}{2}\sin(2t)", color=RED, font_size=28)
         wave2_label.next_to(wave1_label, RIGHT, buff=0.3)
 
         self.play(Create(wave2), Write(wave2_label), run_time=0.6)
@@ -175,7 +175,7 @@ class WaveDecomposition(Scene):
 
         # 3倍周波数の波を追加
         wave3 = axes2.plot(lambda x: 0.3 * np.sin(3 * x), color=PURPLE)
-        wave3_label = MathTex(r"+ \frac{1}{3}\sin(3t)", color=PURPLE, font_size=22)
+        wave3_label = MathTex(r"+ \frac{1}{3}\sin(3t)", color=PURPLE, font_size=28)
         wave3_label.next_to(wave2_label, RIGHT, buff=0.3)
 
         self.play(Create(wave3), Write(wave3_label), run_time=0.6)
@@ -187,7 +187,7 @@ class WaveDecomposition(Scene):
             color=YELLOW,
             stroke_width=3
         )
-        combined_label = Text("= 合成波", color=YELLOW, font_size=22, weight=BOLD)
+        combined_label = Text("= 合成波", color=YELLOW, font_size=26, weight=BOLD)
         combined_label.next_to(wave3_label, RIGHT, buff=0.3)
 
         self.play(
@@ -198,8 +198,8 @@ class WaveDecomposition(Scene):
         self.wait(0.5)
 
         # 強調
-        synthesis_note = Text("異なる周波数の波を重ね合わせて、複雑な波形を作れる！", color=GREEN, font_size=22, weight=BOLD)
-        synthesis_note.shift(DOWN * 3.0)
+        synthesis_note = Text("異なる周波数の波を重ね合わせて、複雑な波形を作れる！", color=GREEN, font_size=24, weight=BOLD)
+        synthesis_note.shift(DOWN * 2.8)
         self.play(Write(synthesis_note), run_time=0.7)
         self.wait(1.0)
 
@@ -344,7 +344,7 @@ class WaveDecomposition(Scene):
         self.wait(0.5)
 
         # 意味
-        sin_meaning = Text("→ 周波数が異なれば直交、同じなら内積はT/2", color=ORANGE, font_size=22)
+        sin_meaning = Text("→ 周波数が異なれば直交、同じなら内積はT/2", color=ORANGE, font_size=26)
         sin_meaning.shift(DOWN * 2.3)
         self.play(Write(sin_meaning), run_time=0.6)
         self.wait(1.0)
@@ -389,7 +389,7 @@ class WaveDecomposition(Scene):
         # 意味
         cos_meaning = VGroup(
             Text("sin同士と同じ結果！", color=TEAL, font_size=24, weight=BOLD),
-            Text("→ 周波数が異なれば直交、同じなら内積はT/2", color=ORANGE, font_size=22),
+            Text("→ 周波数が異なれば直交、同じなら内積はT/2", color=ORANGE, font_size=26),
         ).arrange(DOWN, buff=0.2)
         cos_meaning.shift(DOWN * 0.8)
         self.play(Write(cos_meaning), run_time=0.7)
@@ -567,36 +567,36 @@ class WaveDecomposition(Scene):
 
         summary = VGroup(
             VGroup(
-                Text("1.", color=WHITE, font_size=26, weight=BOLD),
+                Text("1.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("周期関数（波）も基底で分解できる", color=WHITE, font_size=26),
-                    MathTex(r"f(t+T) = f(t)", color=TEAL, font_size=26),
+                    Text("周期関数（波）も基底で分解できる", color=WHITE, font_size=28),
+                    MathTex(r"f(t+T) = f(t)", color=TEAL, font_size=30),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("2.", color=WHITE, font_size=26, weight=BOLD),
+                Text("2.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("三角関数を基底に使う（フーリエ級数）", color=WHITE, font_size=26),
-                    MathTex(r"f(t) = \frac{a_0}{2} + \sum_{n} (a_n \cos + b_n \sin)", color=YELLOW, font_size=24),
+                    Text("三角関数を基底に使う（フーリエ級数）", color=WHITE, font_size=28),
+                    MathTex(r"f(t) = \frac{a_0}{2} + \sum_{n} (a_n \cos + b_n \sin)", color=YELLOW, font_size=30),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("3.", color=WHITE, font_size=26, weight=BOLD),
+                Text("3.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("内積を定義して直交性を確認", color=WHITE, font_size=26),
-                    MathTex(r"\langle h | g \rangle = \int_0^T h(t) g(t) dt", color=GREEN, font_size=26),
+                    Text("内積を定義して直交性を確認", color=WHITE, font_size=28),
+                    MathTex(r"\langle h | g \rangle = \int_0^T h(t) g(t) dt", color=GREEN, font_size=30),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("4.", color=WHITE, font_size=26, weight=BOLD),
+                Text("4.", color=WHITE, font_size=28, weight=BOLD),
                 VGroup(
-                    Text("sin, cos, 定数は互いに直交！", color=WHITE, font_size=26),
-                    MathTex(r"\langle \sin_n | \cos_m \rangle = 0, \quad \langle \sin_n | \sin_m \rangle = \frac{T}{2}\delta_{nm}", color=RED, font_size=22),
+                    Text("sin, cos, 定数は互いに直交！", color=WHITE, font_size=28),
+                    MathTex(r"\langle \sin_n | \cos_m \rangle = 0, \quad \langle \sin_n | \sin_m \rangle = \frac{T}{2}\delta_{nm}", color=RED, font_size=30),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
         summary.scale(0.85)
-        summary.shift(UP * 0.1)
+        summary.shift(-UP * 0.1)
 
         for point in summary:
             self.play(Write(point), run_time=0.7)
