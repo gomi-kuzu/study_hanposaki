@@ -13,7 +13,7 @@ class FourierTransform(Scene):
         self.wait(0.8)
 
         # === Part 1: 前回の復習 ===
-        subtitle1 = Text("前回の復習: 三角関数の直交性", font_size=30, color=BLUE)
+        subtitle1 = Text("さっきの復習: 三角関数の直交性", font_size=30, color=BLUE)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.5)
@@ -502,16 +502,21 @@ class FourierTransform(Scene):
         ).arrange(DOWN, buff=0.1)
         bridge_note.shift(DOWN * 0.8)
         self.play(Write(bridge_note), run_time=0.8)
+        self.wait(0.5)
+
+        key_point = Text("実は、クロネッカーのデルタの前のTがnやmに依存しないのがポイント！", color=YELLOW, font_size=22, weight=BOLD)
+        key_point.shift(DOWN * 1.8)
+        self.play(Write(key_point), run_time=0.6)
         self.wait(1.5)
 
         self.play(
             FadeOut(orthog_conclusion), FadeOut(orthog_conclusion_box),
-            FadeOut(orthog_meaning), FadeOut(bridge_note), FadeOut(subtitle5)
+            FadeOut(orthog_meaning), FadeOut(bridge_note), FadeOut(key_point), FadeOut(subtitle5)
         )
         self.wait(0.3)
 
         # === Part 6: 内積の意味（射影）の復習 ===
-        subtitle6 = Text("復習: 内積の幾何学的意味", font_size=30, color=PURPLE)
+        subtitle6 = Text("準備④: 内積の幾何学的意味", font_size=30, color=PURPLE)
         subtitle6.next_to(title, DOWN)
         self.play(Write(subtitle6), run_time=0.6)
         self.wait(0.5)
@@ -526,11 +531,12 @@ class FourierTransform(Scene):
 
         # 内積の意味
         inner_meaning = VGroup(
-            MathTex(r"\langle g | f \rangle", color=WHITE, font_size=30),
+            Text("内積", color=WHITE, font_size=24),
+            MathTex(r"\langle e | f \rangle", color=WHITE, font_size=30),
             Text("は", color=WHITE, font_size=24),
             MathTex(r"|f\rangle", color=TEAL, font_size=30),
             Text("を", color=WHITE, font_size=24),
-            MathTex(r"|g \rangle ", color=ORANGE, font_size=30),
+            MathTex(r"|e \rangle ", color=ORANGE, font_size=30),
             Text("で「観測」するイメージ", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.1)
         inner_meaning.shift(UP * 0.8)
@@ -539,10 +545,17 @@ class FourierTransform(Scene):
 
         # 射影のイメージ
         projection_text = VGroup(
-            MathTex(r"|g \rangle", color=ORANGE, font_size=28),
+            MathTex(r"|e \rangle", color=ORANGE, font_size=28),
             Text("方向への", color=WHITE, font_size=24),
             MathTex(r"|f\rangle", color=TEAL, font_size=28),
-            Text("の「射影」（影の長さ）", color=WHITE, font_size=24),
+            Text("の「射影」（", color=WHITE, font_size=24),
+            MathTex(r"|e \rangle", color=ORANGE, font_size=28),
+            Text("に垂直に降りる", color=WHITE, font_size=24),
+            MathTex(r"|f\rangle", color=TEAL, font_size=28),
+            Text("の影の長さ×", color=WHITE, font_size=24),
+            MathTex(r"|e \rangle", color=ORANGE, font_size=28),
+            Text("のノルム）", color=WHITE, font_size=24),
+
         ).arrange(RIGHT, buff=0.1)
         projection_text.shift(UP * 0.0)
         self.play(Write(projection_text), run_time=0.7)
@@ -570,7 +583,7 @@ class FourierTransform(Scene):
             arrow_f.get_start() + RIGHT * 2.5,
             color=GREEN, buff=0, stroke_width=4
         )
-        proj_label = Text("射影", color=GREEN, font_size=20)
+        proj_label = Text("垂直に降りる影", color=GREEN, font_size=20)
         proj_label.next_to(proj_arrow, DOWN, buff=0.1)
 
         self.play(Create(arrow_f), Write(label_f), run_time=0.5)
@@ -626,7 +639,7 @@ class FourierTransform(Scene):
         parts_explain = VGroup(
             VGroup(
                 MathTex(r"F(\omega)", color=ORANGE, font_size=26),
-                Text(": 周波数 ω の成分（スペクトル）", color=ORANGE, font_size=20),
+                Text(": 周波数 ω の成分の強さ（スペクトル）", color=ORANGE, font_size=20),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
                 MathTex(r"f(t)", color=TEAL, font_size=26),
@@ -702,7 +715,7 @@ class FourierTransform(Scene):
         self.play(LaggedStart(*[GrowFromEdge(bar, DOWN) for bar in bars], lag_ratio=0.1), run_time=0.8)
         self.wait(0.5)
 
-        spectrum_note = Text("各周波数の成分の大きさがわかる", color=GREEN, font_size=20)
+        spectrum_note = Text("各周波数の成分の強さがわかる", color=GREEN, font_size=20)
         spectrum_note.shift(DOWN * 3.0)
         self.play(Write(spectrum_note), run_time=0.5)
         self.wait(1.5)
@@ -711,6 +724,167 @@ class FourierTransform(Scene):
             FadeOut(spectrum_intro), FadeOut(spectrum_meaning), FadeOut(spectrum_box),
             FadeOut(axes), FadeOut(x_label), FadeOut(y_label), FadeOut(bars),
             FadeOut(spectrum_note), FadeOut(subtitle8)
+        )
+        self.wait(0.3)
+
+        # === Part 8.5: なぜ内積が「成分の強さ」なのか ===
+        subtitle8_5 = Text("スペクトルについて考える", font_size=30, color=PURPLE)
+        subtitle8_5.next_to(title, DOWN)
+        self.play(Write(subtitle8_5), run_time=0.6)
+        self.wait(0.5)
+
+        # 疑問の提示
+        question_text = Text("なぜ ⟨ω|f⟩ を「成分の強さ」と呼んでよいのか？", color=YELLOW, font_size=24, weight=BOLD)
+        question_text.shift(UP * 2)
+        self.play(Write(question_text), run_time=0.7)
+        self.wait(0.5)
+
+        # 準備③の復習
+        recall_orthog = Text("準備③で学んだこと: 複素正弦波は直交する", color=WHITE, font_size=24)
+        recall_orthog.shift(UP * 1.5)
+        self.play(Write(recall_orthog), run_time=0.6)
+        self.wait(0.4)
+
+        # 直交性の式を再掲
+        orthog_recap = MathTex(
+            r"\langle \omega_m | \omega_n \rangle = T \delta_{mn}",
+            color=TEAL, font_size=28
+        )
+        orthog_recap.shift(UP * 0.8)
+        orthog_recap_box = SurroundingRectangle(orthog_recap, color=TEAL, buff=0.15)
+        self.play(Write(orthog_recap), Create(orthog_recap_box), run_time=0.8)
+        self.wait(0.5)
+
+        # 直交するからこそ分離できる
+        separation_text = VGroup(
+            Text("直交するからこそ、各周波数成分を", color=ORANGE, font_size=22),
+            Text("きれいに分離できる↓", color=ORANGE, font_size=24, weight=BOLD),
+        ).arrange(DOWN, buff=0.1)
+        separation_text.shift(DOWN * 0.1)
+        decomp_formula = MathTex(
+            r"|f\rangle = \sum_\omega \frac{\langle \omega | f \rangle}{\sqrt{T}} |\omega \rangle",
+            color=GREEN, font_size=32
+        )
+        decomp_formula.shift(DOWN * 1.7)
+        decomp_formula_box = SurroundingRectangle(decomp_formula, color=GREEN, buff=0.2)
+
+        self.play(Write(separation_text), Write(decomp_formula), Create(decomp_formula_box), run_time=0.7)
+        self.wait(1.5)
+
+        self.play(
+            FadeOut(recall_orthog), FadeOut(orthog_recap), FadeOut(orthog_recap_box),
+            FadeOut(separation_text), FadeOut(question_text)
+        )
+        self.wait(0.3)
+
+        # 基底のノルムについて
+        # norm_title = Text("基底のノルムを調べてみる", color=YELLOW, font_size=24, weight=BOLD)
+        # norm_title.shift(UP * 1.6)
+        # self.play(Write(norm_title), run_time=0.6)
+        # self.wait(0.4)
+
+        # # ノルムの計算
+        # norm_calc = MathTex(
+        #     r"\| |\omega \rangle \| = \sqrt{\langle \omega | \omega \rangle} = \sqrt{T}",
+        #     color=WHITE, font_size=30
+        # )
+        # norm_calc.shift(UP * 0.8)
+        # self.play(Write(norm_calc), run_time=0.7)
+        # self.wait(0.5)
+
+        # # 重要なポイント
+        # norm_point = VGroup(
+        #     Text("ポイント:", color=YELLOW, font_size=22, weight=BOLD),
+        #     Text("√T は積分区間の長さで決まり、", color=WHITE, font_size=22),
+        #     Text("周波数には依存しない定数！", color=ORANGE, font_size=24, weight=BOLD),
+        # ).arrange(DOWN, buff=0.15)
+        # norm_point.shift(UP * 0.0)
+        # norm_point_box = SurroundingRectangle(norm_point, color=ORANGE, buff=0.15)
+        # self.play(Write(norm_point), Create(norm_point_box), run_time=0.8)
+        # self.wait(0.6)
+
+        # self.play(
+        #     FadeOut(norm_title), FadeOut(norm_calc),
+        #     FadeOut(norm_point), FadeOut(norm_point_box)
+        # )
+        # self.wait(0.3)
+
+        # 信号の基底分解
+        # decomp_title = Text("信号 f(t) を周波数基底で分解すると", color=YELLOW, font_size=24, weight=BOLD)
+        # decomp_title.shift(UP * 1.6)
+        # self.play(Write(decomp_title), run_time=0.6)
+        # self.wait(0.4)
+
+        # 分解の式
+        # decomp_formula = MathTex(
+        #     r"|f\rangle = \sum_\omega \frac{\langle \omega | f \rangle}{\sqrt{T}} |\omega \rangle",
+        #     color=GREEN, font_size=32
+        # )
+        # decomp_formula.shift(UP * 0.7)
+        # decomp_formula_box = SurroundingRectangle(decomp_formula, color=GREEN, buff=0.2)
+        # self.play(Write(decomp_formula), Create(decomp_formula_box), run_time=0.9)
+        # self.wait(0.5)
+
+        # 各部分の説明
+        # decomp_parts = VGroup(
+        #     VGroup(
+        #         MathTex(r"\langle \omega | f \rangle", color=ORANGE, font_size=26),
+        #         Text(": 基底 |ω⟩ 方向への射影", color=ORANGE, font_size=20),
+        #     ).arrange(RIGHT, buff=0.15),
+        #     VGroup(
+        #         MathTex(r"\frac{1}{\sqrt{T}}", color=TEAL, font_size=26),
+        #         Text(": 基底の長さで割って正規化", color=TEAL, font_size=20),
+        #     ).arrange(RIGHT, buff=0.15),
+        # ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+        # decomp_parts.shift(DOWN * 0.5)
+        # self.play(Write(decomp_parts), run_time=0.8)
+        # self.wait(0.6)
+
+        # self.play(
+        #     FadeOut(decomp_title), FadeOut(decomp_formula), FadeOut(decomp_formula_box),
+        #     FadeOut(decomp_parts)
+        # )
+        # self.wait(0.3)
+
+        # 結論
+        conclusion_title = Text("成分の強さの意味", color=YELLOW, font_size=26, weight=BOLD)
+        conclusion_title.shift(UP *2.1)
+        self.play(Write(conclusion_title), run_time=0.6)
+        self.wait(0.4)
+
+        # 強さは相対的
+        relative_text = VGroup(
+            Text("成分の「強さ」は相対的な関係性（順序）", color=WHITE, font_size=24),
+            Text("→ 定数 √T を除いて考えてよい", color=TEAL, font_size=24),
+        ).arrange(DOWN, buff=0.2)
+        relative_text.shift(UP * 1.2)
+        self.play(Write(relative_text), run_time=0.7)
+        self.wait(0.5)
+
+        # 結論の式
+        conclusion_formula = VGroup(
+            Text("結局、スペクトル", color=WHITE, font_size=24),
+            MathTex(r"\langle \omega | f \rangle", color=YELLOW, font_size=30),
+            Text("が", color=WHITE, font_size=24),
+            Text("成分の強さそのもの", color=YELLOW, font_size=26, weight=BOLD),
+            Text("となる！", color=WHITE, font_size=24),
+        ).arrange(RIGHT, buff=0.15)
+        conclusion_formula.shift(UP * 0.1)
+        conclusion_box = SurroundingRectangle(conclusion_formula, color=YELLOW, buff=0.2)
+        self.play(Write(conclusion_formula), Create(conclusion_box), run_time=0.9)
+        self.wait(0.6)
+
+        # 補足
+        supplement = Text("※フーリエ変換の定義上積分区間は無限だが、通常f(t) が有限区間で定義されているので同様の議論が成り立つ", color=GRAY, font_size=18)
+        supplement.shift(DOWN * 0.6)
+        self.play(Write(supplement), run_time=0.6)
+        self.wait(1.5)
+
+        self.play(
+            FadeOut(question_text), FadeOut(conclusion_title),
+            FadeOut(relative_text), FadeOut(conclusion_formula), FadeOut(conclusion_box),
+            FadeOut(supplement), FadeOut(subtitle8_5),FadeOut(decomp_formula),
+            FadeOut(decomp_formula_box)
         )
         self.wait(0.3)
 
