@@ -545,7 +545,7 @@ class WaveDecomposition(Scene):
         # 最終結論
         final_conclusion = VGroup(
             Text("各基底は互いに直交している！", color=YELLOW, font_size=28, weight=BOLD),
-            Text("→ フーリエ級数の基底は正規直交系", color=GREEN, font_size=24),
+            Text("→ フーリエ級数展開の基底は直交系", color=GREEN, font_size=24),
         ).arrange(DOWN, buff=0.2)
         final_conclusion.shift(DOWN * 2.0)
         final_box = SurroundingRectangle(final_conclusion, color=YELLOW, buff=0.2)
