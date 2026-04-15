@@ -56,10 +56,10 @@
 # 第12話
 ## 12.2
 ### 波を分解してみる話
-<div><video controls src="https://github.com/user-attachments/assets/7978639e-e836-4bca-9a90-e864704f2ba2"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/ff8e110d-9f9a-40d6-8cb4-6e49cc40d90a"></video></div>
 
 ### フーリエ変換を線形代数的に考える話
-<div><video controls src="https://github.com/user-attachments/assets/be5c9f3a-3e6c-44f3-9b65-2f7b1c8c5946"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/495d5310-8652-47d7-ba13-9424db0bf555"></video></div>
 
 ### おまけ
 <div><video controls src="https://github.com/user-attachments/assets/61fef3ba-2b03-4baa-8e08-07ea1bcdd74e"></video></div>
