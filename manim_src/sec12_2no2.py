@@ -169,7 +169,7 @@ class FourierTransform(Scene):
 
         # 内積の定義
         inner_def = MathTex(
-            r"\langle g | f \rangle = \int_{-\infty}^{\infty} f(t) \, \overline{g(t)} \, dt",
+            r"\langle g | f \rangle = \int f(t) \, \overline{g(t)} \, dt",
             color=YELLOW, font_size=32
         )
         inner_def.shift(UP * 0.7)
@@ -432,7 +432,7 @@ class FourierTransform(Scene):
 
         equal_explain = MathTex(
             r"e^{j(n-n)\omega_0 t} = e^{0} = 1",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=32
         )
         equal_explain.shift(UP)
         self.play(Write(equal_explain), run_time=0.6)
@@ -504,7 +504,7 @@ class FourierTransform(Scene):
         self.play(Write(bridge_note), run_time=0.8)
         self.wait(0.5)
 
-        key_point = Text("実は、クロネッカーのデルタの前のTがnやmに依存しないのがポイント！", color=YELLOW, font_size=22, weight=BOLD)
+        key_point = Text("実は、クロネッカーのデルタの前のTがnやmに依存しない事がこの後重要になる！", color=GRAY, font_size=22, weight=BOLD)
         key_point.shift(DOWN * 1.8)
         self.play(Write(key_point), run_time=0.6)
         self.wait(1.5)
@@ -523,7 +523,7 @@ class FourierTransform(Scene):
 
         # 6話と11話の復習
         recall_intro = VGroup(
-            Text("6話・11話で学んだ内積の意味:", color=YELLOW, font_size=24, weight=BOLD),
+            Text("6話や11話で学んだ内積の意味:", color=YELLOW, font_size=24, weight=BOLD),
         )
         recall_intro.shift(UP * 1.6)
         self.play(Write(recall_intro), run_time=0.6)
@@ -673,7 +673,7 @@ class FourierTransform(Scene):
             Text("スペクトル", color=YELLOW, font_size=28, weight=BOLD),
             Text("と呼ぶ", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.15)
-        spectrum_intro.shift(UP * 1.6)
+        spectrum_intro.shift(UP * 1.8)
         self.play(Write(spectrum_intro), run_time=0.7)
         self.wait(0.4)
 
@@ -682,7 +682,7 @@ class FourierTransform(Scene):
             Text("スペクトル = 信号の「周波数組成」", color=TEAL, font_size=26, weight=BOLD),
             Text("どの周波数成分がどれだけ含まれているか", color=TEAL, font_size=22),
         ).arrange(DOWN, buff=0.2)
-        spectrum_meaning.shift(UP * 0.7)
+        spectrum_meaning.shift(UP * 0.9)
         spectrum_box = SurroundingRectangle(spectrum_meaning, color=TEAL, buff=0.15)
         self.play(Write(spectrum_meaning), Create(spectrum_box), run_time=0.8)
         self.wait(0.5)
@@ -881,7 +881,7 @@ class FourierTransform(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(question_text), FadeOut(conclusion_title),
+            FadeOut(conclusion_title),
             FadeOut(relative_text), FadeOut(conclusion_formula), FadeOut(conclusion_box),
             FadeOut(supplement), FadeOut(subtitle8_5),FadeOut(decomp_formula),
             FadeOut(decomp_formula_box)
