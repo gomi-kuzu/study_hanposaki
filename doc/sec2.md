@@ -53,6 +53,17 @@
 
 - 結局、なんで真ん中のあたりが表現行列の成分になるのかがきっちり分かっていない…
 
+# 第12話
+## 12.2
+### 波を分解してみる話
+<div><video controls src="https://github.com/user-attachments/assets/7978639e-e836-4bca-9a90-e864704f2ba2"></video></div>
+
+### フーリエ変換を線形代数的に考える話
+<div><video controls src="https://github.com/user-attachments/assets/be5c9f3a-3e6c-44f3-9b65-2f7b1c8c5946"></video></div>
+
+### おまけ
+<div><video controls src="https://github.com/user-attachments/assets/61fef3ba-2b03-4baa-8e08-07ea1bcdd74e"></video></div>
+
 
 <!-- <div><video controls src=""></video></div> -->
 
