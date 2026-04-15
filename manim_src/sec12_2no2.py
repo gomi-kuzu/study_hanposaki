@@ -569,7 +569,7 @@ class FourierTransform(Scene):
 
         arrow_g = Arrow(ORIGIN, RIGHT * 3, color=ORANGE, buff=0)
         arrow_g.shift(DOWN * 2.5 + LEFT * 2)
-        label_g = MathTex(r"|g\rangle", color=ORANGE, font_size=24)
+        label_g = MathTex(r"|e\rangle", color=ORANGE, font_size=24)
         label_g.next_to(arrow_g.get_end(), DOWN, buff=0.1)
 
         # 射影
