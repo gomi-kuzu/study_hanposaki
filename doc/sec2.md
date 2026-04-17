@@ -3,7 +3,7 @@
 # 第7話
 ## 7.1
 ### 抽象的なものの集合を考える話
-<div><video controls src="https://github.com/user-attachments/assets/9d58f2ef-1103-4230-8dd2-8459ef2e7032"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/43135270-8cf8-464a-a730-a6819bc33a2f"></video></div>
 
 ## 7.2
 ### 多項式を元とする空間を考える話
