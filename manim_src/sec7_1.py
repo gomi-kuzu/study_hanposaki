@@ -66,7 +66,7 @@ class AbstractVectorSpace(Scene):
         
         axis_labels_2d = VGroup(
             MathTex("const.", font_size=24).next_to(axes_2d.get_x_axis().get_end(), DOWN),
-            MathTex("2", font_size=24).next_to(axes_2d.get_y_axis().get_end(), LEFT),
+            MathTex("x", font_size=24).next_to(axes_2d.get_y_axis().get_end(), LEFT),
         )
         
         self.play(Create(axes_2d), Write(axis_labels_2d), run_time=0.8)
