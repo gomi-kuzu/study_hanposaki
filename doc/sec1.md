@@ -3,7 +3,7 @@
 # 第1話
 ## 1.1
 ### とりあえず基本的な話
-<div><video controls src="https://github.com/user-attachments/assets/a144184f-032c-4b3d-9245-972a6e0dd0ef" muted="true"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/729d594c-6af8-40cf-ac03-2c7aedc27c20" muted="true"></video></div>
 
 - あたり前だが、ベクトル空間も集合の一種
 ## 1.2
@@ -31,7 +31,7 @@
 ### ”線形独立”ってなんだって話
 <div><video controls src="https://github.com/user-attachments/assets/0d84b634-d750-41b7-bf42-e46cd505bbcf"></video></div>
 
-<div><video controls src="https://github.com/user-attachments/assets/272ee6e9-bb56-41ca-9025-5ee35379de53"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/66c1a153-74fd-4eff-9014-0034ab9b9e9d"></video></div>
 
 - 従属してなければ独立
 - 従属は「組」に対する概念
