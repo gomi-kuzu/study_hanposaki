@@ -22,9 +22,15 @@ class VectorAsNumbers(Scene):
         self.add(plane)
         
         # タイトル
-        title = Text("矢印（ベクトル）は数字の組で表現できる", font_size=32, color=WHITE)
+        title = Text("ベクトルってなんだっけ", font_size=36, color=WHITE)
         title.to_edge(UP)
-        self.play(Write(title))
+        self.play(Write(title), run_time=0.8)
+        self.wait(0.8)
+        
+        # サブタイトル
+        subtitle = Text("矢印は数字の組で表現できる→ベクトル", font_size=32, color=YELLOW)
+        subtitle.next_to(title, DOWN)
+        self.play(Write(subtitle))
         self.wait(1)
         
         # ベクトルを描画（右に1、上に2）- スケールを座標系に合わせる
@@ -34,15 +40,15 @@ class VectorAsNumbers(Scene):
         self.wait(1)
         
         # 移動の説明
-        explanation1 = Text("右に「1」", font_size=24, color=YELLOW)
-        explanation1.move_to([2, -0.5, 0])
+        explanation1 = Text("右に「1」", font_size=28, color=RED)
+        explanation1.move_to([1.5, 0.5, 0])
         
-        explanation2 = Text("上に「2」", font_size=24, color=YELLOW)
-        explanation2.move_to([-1, 1, 0])
+        explanation2 = Text("上に「2」", font_size=28, color=GREEN)
+        explanation2.move_to([1.5, -0.5, 0])
         
         # 右方向の矢印とラベル - 座標系に合わせる
         right_arrow = Arrow(plane.c2p(0, 0), plane.c2p(1, 0), color=RED, buff=0)
-        right_label = MathTex("1", color=RED).next_to(right_arrow, DOWN, buff=0.1)
+        right_label = MathTex("1", color=RED).next_to(right_arrow, UP, buff=0.1)
         
         # 上方向の矢印とラベル - 座標系に合わせる
         up_arrow = Arrow(plane.c2p(1, 0), plane.c2p(1, 2), color=GREEN, buff=0)
@@ -63,7 +69,7 @@ class VectorAsNumbers(Scene):
         self.wait(1)
         
         # 数学的表記の導入
-        math_explanation = Text("これを数字の組で表すと:", font_size=28, color=WHITE)
+        math_explanation = Text("これを数字の組で表すと…", font_size=28, color=WHITE)
         math_explanation.move_to([0, -2, 0])
         self.play(Write(math_explanation))
         self.wait(1)
