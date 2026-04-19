@@ -217,7 +217,7 @@ class WorldDataModel(Scene):
         # 情報劣化の注釈
         annot = VGroup(
             Text("ユークリッド空間の事象 → 1次元の距離値に情報が落ちる", color=WHITE, font_size=19),
-            Text("電気信号変換でノイズが混入する", color=RED, font_size=19),
+            Text("+電気信号変換でノイズが混入する", color=RED, font_size=19),
         ).arrange(DOWN, buff=0.15)
         annot.shift(DOWN * 2.5)
         annot_box = SurroundingRectangle(annot, color=RED, buff=0.1)
@@ -510,22 +510,22 @@ class WorldDataModel(Scene):
             VGroup(
                 Text("1.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("データは世界の一部を観測した結果にすぎない", color=WHITE, font_size=22),
-                    Text("情報劣化（次元削減＋ノイズ）が必ず伴う", color=TEAL, font_size=20),
+                    Text("データは世界の一部を観測した結果にすぎない", color=WHITE, font_size=28),
+                    Text("情報劣化（次元削減＋ノイズ）が必ず伴う", color=TEAL, font_size=26),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("何をどう観測したかの理解が解析の出発点", color=WHITE, font_size=22),
-                    Text("センサの特性・限界を把握することが重要", color=ORANGE, font_size=20),
+                    Text("何をどう観測したかの理解が解析の出発点", color=WHITE, font_size=28),
+                    Text("センサの特性・限界を把握することが重要", color=ORANGE, font_size=26),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("モデル ＝ パラメータ付き関数、骨格は解析者が設計", color=WHITE, font_size=22),
-                    Text("識別的 / 生成的 など多様なアプローチがある", color=YELLOW, font_size=20),
+                    Text("モデル ＝ パラメータ付き関数、骨格は解析者が設計", color=WHITE, font_size=28),
+                    Text("識別的 / 生成的 など多様なアプローチがある", color=YELLOW, font_size=26),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
