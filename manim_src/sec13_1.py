@@ -70,21 +70,21 @@ class WorldDataModel(Scene):
         # フロー図: 世界 → センサ → データ
         box_world = VGroup(
             RoundedRectangle(width=2.2, height=1.0, corner_radius=0.15, color=TEAL, fill_opacity=0.15),
-            Text("世界の状態", color=TEAL, font_size=20),
+            Text("世界の状態", color=TEAL, font_size=22, weight=BOLD),
         )
         box_world[1].move_to(box_world[0])
         box_world.shift(LEFT * 4.5 + DOWN * 0.1)
 
         box_sensor = VGroup(
             RoundedRectangle(width=2.2, height=1.0, corner_radius=0.15, color=ORANGE, fill_opacity=0.15),
-            Text("センサ", color=ORANGE, font_size=20),
+            Text("センシング", color=ORANGE, font_size=22),
         )
         box_sensor[1].move_to(box_sensor[0])
         box_sensor.shift(DOWN * 0.1)
 
         box_data = VGroup(
             RoundedRectangle(width=2.2, height=1.0, corner_radius=0.15, color=YELLOW, fill_opacity=0.15),
-            Text("データ", color=YELLOW, font_size=20),
+            Text("データ", color=YELLOW, font_size=22, weight=BOLD),
         )
         box_data[1].move_to(box_data[0])
         box_data.shift(RIGHT * 4.5 + DOWN * 0.1)
@@ -100,21 +100,21 @@ class WorldDataModel(Scene):
         self.wait(0.5)
 
         # 情報劣化の2要素
-        degrade_title = Text("この過程で必ず情報劣化が生じる:", color=RED, font_size=22, weight=BOLD)
+        degrade_title = Text("この過程で必ず情報劣化が生じる:", color=RED, font_size=26, weight=BOLD)
         degrade_title.shift(DOWN * 1.2)
         self.play(Write(degrade_title), run_time=0.5)
         self.wait(0.3)
 
         degrade_items = VGroup(
             VGroup(
-                Text("①", color=RED, font_size=22),
-                Text("未観測情報の喪失", color=WHITE, font_size=22, weight=BOLD),
-                Text("（次元の落ちた部分空間への射影）", color=GRAY, font_size=18),
+                Text("①", color=RED, font_size=26),
+                Text("未観測情報の喪失", color=WHITE, font_size=26, weight=BOLD),
+                # Text("（次元の落ちた部分空間への射影）", color=GRAY, font_size=18),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
-                Text("②", color=RED, font_size=22),
-                Text("ノイズの混入", color=WHITE, font_size=22, weight=BOLD),
-                Text("（電気信号変換時の誤差）", color=GRAY, font_size=18),
+                Text("②", color=RED, font_size=26),
+                Text("ノイズの混入", color=WHITE, font_size=26, weight=BOLD),
+                # Text("（電気信号変換時の誤差）", color=GRAY, font_size=18),
             ).arrange(RIGHT, buff=0.15),
         ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
         degrade_items.shift(DOWN * 2.0)
@@ -138,7 +138,7 @@ class WorldDataModel(Scene):
         self.wait(0.3)
 
         # --- 左側: ユークリッド空間の事象（2D/3Dの車の動き）---
-        left_label = Text("世界（3D空間）", color=TEAL, font_size=20, weight=BOLD)
+        left_label = Text("世界（ユークリッド空間）", color=TEAL, font_size=20, weight=BOLD)
         left_label.shift(UP * 1.2 + LEFT * 4)
         self.play(Write(left_label), run_time=0.4)
 
@@ -216,7 +216,7 @@ class WorldDataModel(Scene):
 
         # 情報劣化の注釈
         annot = VGroup(
-            Text("3D空間の事象 → 1次元の距離値に情報が落ちる", color=WHITE, font_size=19),
+            Text("ユークリッド空間の事象 → 1次元の距離値に情報が落ちる", color=WHITE, font_size=19),
             Text("電気信号変換でノイズが混入する", color=RED, font_size=19),
         ).arrange(DOWN, buff=0.15)
         annot.shift(DOWN * 2.5)
@@ -397,7 +397,7 @@ class WorldDataModel(Scene):
         # ============================================================
         # Part 6: 2つのモデリングの方向性（アニメーション）
         # ============================================================
-        subtitle6 = Text("2つのモデリングの方向性", font_size=30, color=TEAL)
+        subtitle6 = Text("モデリングの方向性の種類", font_size=30, color=TEAL)
         subtitle6.next_to(title, DOWN)
         self.play(Write(subtitle6), run_time=0.6)
         self.wait(0.5)
