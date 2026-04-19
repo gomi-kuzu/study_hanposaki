@@ -12,7 +12,7 @@ class LinearIndependence(Scene):
         self.wait(0.8)
         
         # === パート1: 1次独立の定義 ===
-        subtitle1 = Text("1次独立とは？", font_size=28, color=YELLOW)
+        subtitle1 = Text("ベクトルの1次独立とは？", font_size=28, color=YELLOW)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.5)
@@ -20,8 +20,8 @@ class LinearIndependence(Scene):
         # 定義を表示
         definition1 = VGroup(
             Text("1次独立 = 1次従属でない", color=WHITE, font_size=24),
-            Text("↓", color=YELLOW, font_size=20),
-            Text("互いに従属し合っていない", color=GREEN, font_size=22)
+            Text("↓", color=YELLOW, font_size=26),
+            Text("互いに従属し合っていない", color=GREEN, font_size=26)
         ).arrange(DOWN, buff=0.3)
         definition1.shift(DOWN * 0.5)
         
@@ -36,8 +36,8 @@ class LinearIndependence(Scene):
         self.wait(0.3)
         
         # === パート2: 1次従属の説明 ===
-        subtitle2 = Text("1次従属とは「組」に対する概念", font_size=28, color=YELLOW)
-        subtitle2.next_to(title, DOWN)
+        subtitle2 = Text("1次従属はベクトルの”組”に対する概念", font_size=28, color=RED)
+        subtitle2.next_to(title, DOWN*0.8)
         self.play(Write(subtitle2), run_time=0.6)
         self.wait(0.5)
         
@@ -61,9 +61,9 @@ class LinearIndependence(Scene):
         self.wait(0.4)
         
         # === パート3: 従属の例1 - a₁とa₃は従属 ===
-        self.play(FadeOut(subtitle2))
+        # self.play(FadeOut(subtitle2))
         subtitle3 = Text("例1: a₁ = [0, 1], a₃ = [0, -1]", font_size=26, color=YELLOW)
-        subtitle3.next_to(title, DOWN)
+        subtitle3.next_to(title, DOWN*2.5)
         self.play(Write(subtitle3), run_time=0.6)
         self.wait(0.4)
         
@@ -141,7 +141,7 @@ class LinearIndependence(Scene):
         
         # === パート4: 従属の例2 - a₄は従属 ===
         subtitle4 = Text("例2: a₁ = [0, 1], a₂ = [1, 0], a₄ = [1, 2]", font_size=26, color=YELLOW)
-        subtitle4.next_to(title, DOWN)
+        subtitle4.next_to(title, DOWN*2.5)
         self.play(Write(subtitle4), run_time=0.6)
         self.wait(0.4)
         
@@ -235,7 +235,7 @@ class LinearIndependence(Scene):
         
         # === パート5: 1次独立の例 ===
         subtitle5 = Text("例3: a₁ = [0, 1], a₂ = [1, 0]", font_size=26, color=YELLOW)
-        subtitle5.next_to(title, DOWN)
+        subtitle5.next_to(title, DOWN*2.5)
         self.play(Write(subtitle5), run_time=0.6)
         self.wait(0.4)
         
@@ -316,6 +316,7 @@ class LinearIndependence(Scene):
         
         # クリーンアップ
         self.play(
+            FadeOut(subtitle2),
             FadeOut(a1_vec3), FadeOut(a1_label3),
             FadeOut(a2_vec2), FadeOut(a2_label2),
             FadeOut(explanation3), FadeOut(question1),
@@ -324,17 +325,17 @@ class LinearIndependence(Scene):
             FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
         )
         # === パート6: まとめ ===
-        subtitle6 = Text("まとめ", font_size=32, color=GREEN)
+        subtitle6 = Text("まとめ", font_size=36, color=GREEN)
         subtitle6.next_to(title, DOWN)
         self.play(Write(subtitle6), run_time=0.6)
         self.wait(0.5)
         
         summary = VGroup(
-            Text("1. 1次従属は「組」に対する概念", color=WHITE, font_size=26),
-            Text("2. 互いに他のベクトルで表現できる", color=WHITE, font_size=26),
-            Text("   → 1次従属", color=YELLOW, font_size=24),
-            Text("3. 互いに他のベクトルで表現できない", color=WHITE, font_size=26),
-            Text("   → 1次独立", color=GREEN, font_size=24),
+            Text("1. 1次従属はベクトルの「組」に対する概念", color=WHITE, font_size=30),
+            Text("2. 互いに他のベクトルで表現できる", color=WHITE, font_size=30),
+            Text("   → 1次従属", color=YELLOW, font_size=28),
+            Text("3. 互いに他のベクトルで表現できない", color=WHITE, font_size=30),
+            Text("   → 1次独立", color=GREEN, font_size=28),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
         summary.shift(DOWN * 0.5)
         
