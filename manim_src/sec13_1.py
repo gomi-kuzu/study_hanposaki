@@ -26,21 +26,21 @@ class WorldDataModel(Scene):
         world_label.next_to(world_circle, UP, buff=0.1)
 
         # データの小さな円（世界の部分集合）
-        data_circle = Circle(radius=0.9, color=YELLOW, fill_opacity=0.15, stroke_width=2)
+        data_circle = Circle(radius=0.34, color=YELLOW, fill_opacity=0.15, stroke_width=2)
         data_circle.shift(DOWN * 0.8 + RIGHT * 0.5)
         data_label = Text("データ", color=YELLOW, font_size=20, weight=BOLD)
         data_label.next_to(data_circle, DOWN, buff=0.1)
 
         self.play(Create(world_circle), Write(world_label), run_time=0.8)
-        self.wait(0.3)
+        self.wait(1.3)
         self.play(Create(data_circle), Write(data_label), run_time=0.7)
         self.wait(0.3)
 
         part1_note = VGroup(
             Text("世界には膨大な情報が存在するが、", color=WHITE, font_size=22),
-            Text("人間が観測できるのはその極一部にすぎない", color=WHITE, font_size=22),
+            Text("人間が観測できるのはそのごく「一部にすぎない", color=WHITE, font_size=22),
         ).arrange(DOWN, buff=0.15)
-        part1_note.shift(DOWN * 2.8)
+        part1_note.shift(DOWN * 2.0)
         self.play(Write(part1_note), run_time=0.7)
         self.wait(1.5)
 
@@ -60,8 +60,8 @@ class WorldDataModel(Scene):
         self.wait(0.5)
 
         obs_intro = VGroup(
-            Text("神のみぞ知る世界の状態変化を", color=WHITE, font_size=22),
-            Text("何らかのセンサで観測して初めて人間はデータを得る", color=WHITE, font_size=22),
+            Text("神のみぞ知る世界の状態変化を", color=WHITE, font_size=26),
+            Text("何らかのセンサで観測して初めて人間はデータを得る", color=WHITE, font_size=26),
         ).arrange(DOWN, buff=0.15)
         obs_intro.shift(UP * 1.5)
         self.play(Write(obs_intro), run_time=0.7)
@@ -217,7 +217,7 @@ class WorldDataModel(Scene):
         # 情報劣化の注釈
         annot = VGroup(
             Text("ユークリッド空間の事象 → 1次元の距離値に情報が落ちる", color=WHITE, font_size=19),
-            Text("+電気信号変換でノイズが混入する", color=RED, font_size=19),
+            Text("+電気信号変換でノイズが混入する", color=WHITE, font_size=19),
         ).arrange(DOWN, buff=0.15)
         annot.shift(DOWN * 2.5)
         annot_box = SurroundingRectangle(annot, color=RED, buff=0.1)
@@ -244,9 +244,9 @@ class WorldDataModel(Scene):
         self.wait(0.5)
 
         caution_text = VGroup(
-            Text("センサの種類・状態によってもデータは変質する", color=WHITE, font_size=24),
+            Text("センサの種類・状態によってもデータは変質する", color=WHITE, font_size=26),
             Text("", font_size=10),
-            Text("何を、どんなふうに観測して得られたデータなのかを", color=YELLOW, font_size=24),
+            Text("何を、どんなふうに観測して得られたデータなのかを", color=YELLOW, font_size=24, weight=BOLD),
             Text("きちんと把握しておくことが大切", color=YELLOW, font_size=24, weight=BOLD),
         ).arrange(DOWN, buff=0.2)
         caution_text.shift(UP * 0.5)
@@ -256,15 +256,15 @@ class WorldDataModel(Scene):
         caution_examples = VGroup(
             VGroup(
                 Text("●", color=TEAL, font_size=20),
-                Text("計測対象と無関係なバイアスがのっていないか？", color=WHITE, font_size=20),
+                Text("計測対象と無関係なバイアスがのっていないか？", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
                 Text("●", color=TEAL, font_size=20),
-                Text("サンプリング周波数は十分か？（エイリアシング）", color=WHITE, font_size=20),
+                Text("サンプリング周波数は十分か？（エイリアシング）", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
                 Text("●", color=TEAL, font_size=20),
-                Text("センサの飽和・非線形性は考慮されているか？", color=WHITE, font_size=20),
+                Text("センサの飽和・非線形性は考慮されているか？", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         caution_examples.shift(DOWN * 1.5)
@@ -300,15 +300,15 @@ class WorldDataModel(Scene):
 
         parts_desc = VGroup(
             VGroup(
-                MathTex(r"x", color=ORANGE, font_size=30),
+                MathTex(r"x", color=WHITE, font_size=30),
                 Text(": 入力", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
-                MathTex(r"y", color=GREEN, font_size=30),
+                MathTex(r"y", color=WHITE, font_size=30),
                 Text(": 出力", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
-                MathTex(r"\theta", color=YELLOW, font_size=30),
+                MathTex(r"\theta", color=WHITE, font_size=30),
                 Text(": パラメータ（学習で調整）", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
@@ -343,8 +343,8 @@ class WorldDataModel(Scene):
         self.wait(0.5)
 
         design_text = VGroup(
-            Text("モデルの骨格（どんな式・どんなパラメータ）を決めるのは解析者", color=WHITE, font_size=22),
-            Text("目的やポリシーによって様々な選択肢がある", color=WHITE, font_size=22),
+            Text("モデルの骨格（どんな式・どんなパラメータ）を決めるのは解析者", color=WHITE, font_size=26),
+            Text("目的やポリシーによって様々な選択肢がある", color=WHITE, font_size=26),
         ).arrange(DOWN, buff=0.15)
         design_text.shift(UP * 1.3)
         self.play(Write(design_text), run_time=0.7)
@@ -354,8 +354,8 @@ class WorldDataModel(Scene):
         choice_a = VGroup(
             RoundedRectangle(width=3, height=1.6, corner_radius=0.15, color=BLUE, fill_opacity=0.1),
             VGroup(
-                Text("線形回帰", color=BLUE, font_size=20, weight=BOLD),
-                MathTex(r"y = w^T x + b", color=BLUE, font_size=22),
+                Text("線形回帰", color=BLUE, font_size=24, weight=BOLD),
+                MathTex(r"y = w^T x + b", color=BLUE, font_size=28),
             ).arrange(DOWN, buff=0.15),
         )
         choice_a[1].move_to(choice_a[0])
@@ -363,8 +363,8 @@ class WorldDataModel(Scene):
         choice_b = VGroup(
             RoundedRectangle(width=3, height=1.6, corner_radius=0.15, color=GREEN, fill_opacity=0.1),
             VGroup(
-                Text("ニューラルネット", color=GREEN, font_size=20, weight=BOLD),
-                MathTex(r"y = \sigma(W_2 \sigma(W_1 x))", color=GREEN, font_size=18),
+                Text("ニューラルネット", color=GREEN, font_size=24, weight=BOLD),
+                MathTex(r"y = \sigma(W_2 \sigma(W_1 x))", color=GREEN, font_size=28),
             ).arrange(DOWN, buff=0.15),
         )
         choice_b[1].move_to(choice_b[0])
@@ -372,8 +372,8 @@ class WorldDataModel(Scene):
         choice_c = VGroup(
             RoundedRectangle(width=3, height=1.6, corner_radius=0.15, color=RED, fill_opacity=0.1),
             VGroup(
-                Text("ガウス過程", color=RED, font_size=20, weight=BOLD),
-                MathTex(r"f \sim \mathcal{GP}(m, k)", color=RED, font_size=22),
+                Text("ガウス過程", color=RED, font_size=24, weight=BOLD),
+                MathTex(r"f \sim \mathcal{GP}(m, k)", color=RED, font_size=28),
             ).arrange(DOWN, buff=0.15),
         )
         choice_c[1].move_to(choice_c[0])
@@ -383,7 +383,7 @@ class WorldDataModel(Scene):
         self.play(FadeIn(choices, lag_ratio=0.3), run_time=1.0)
         self.wait(0.5)
 
-        design_note = Text("→ 問題に適した骨格の選択がモデリングの鍵", color=YELLOW, font_size=22, weight=BOLD)
+        design_note = Text("→ 問題に適した骨格の選択がモデリングの鍵", color=YELLOW, font_size=26, weight=BOLD)
         design_note.shift(DOWN * 2.3)
         self.play(Write(design_note), run_time=0.6)
         self.wait(1.5)
@@ -403,9 +403,9 @@ class WorldDataModel(Scene):
         self.wait(0.5)
 
         # --- 左: 識別的モデリング ---
-        left_title = Text("① 識別的モデリング", color=BLUE, font_size=22, weight=BOLD)
+        left_title = Text("① 識別的モデリング", color=BLUE, font_size=26, weight=BOLD)
         left_title.shift(UP * 1.3 + LEFT * 3.5)
-        left_desc = Text("入力 → ラベル/値 への変換関数", color=WHITE, font_size=18)
+        left_desc = Text("入力 → ラベル/値 への変換関数をモデル化", color=WHITE, font_size=22)
         left_desc.next_to(left_title, DOWN, buff=0.15)
         self.play(Write(left_title), Write(left_desc), run_time=0.6)
 
@@ -436,9 +436,9 @@ class WorldDataModel(Scene):
         self.wait(0.5)
 
         # --- 右: 生成的モデリング（ベイズ推論）---
-        right_title = Text("② 生成的モデリング", color=RED, font_size=22, weight=BOLD)
+        right_title = Text("② 生成的モデリング", color=RED, font_size=26, weight=BOLD)
         right_title.shift(UP * 1.3 + RIGHT * 3.5)
-        right_desc = Text("データが従う確率分布をモデル化", color=WHITE, font_size=18)
+        right_desc = Text("データの生成過程の確率分布をモデル化", color=WHITE, font_size=22)
         right_desc.next_to(right_title, DOWN, buff=0.15)
         self.play(Write(right_title), Write(right_desc), run_time=0.6)
 
@@ -463,7 +463,7 @@ class WorldDataModel(Scene):
             lambda x: 0.44 * np.exp(-0.5 * ((x - 0.3) / 0.9) ** 2),
             x_range=[-3, 3], color=RED, stroke_width=3,
         )
-        gauss_label = MathTex(r"p(x|\theta) = \mathcal{N}(\mu, \sigma^2)", color=RED, font_size=20)
+        gauss_label = MathTex(r"p(x|z) = \mathcal{N}(\mu, \sigma^2)", color=RED, font_size=20)
         gauss_label.next_to(gen_axes, DOWN, buff=0.1)
 
         self.play(Create(gen_axes), FadeIn(gen_dots, lag_ratio=0.15), run_time=0.7)
@@ -479,7 +479,7 @@ class WorldDataModel(Scene):
             ).arrange(RIGHT, buff=0.15),
             VGroup(
                 Text("生成的:", color=RED, font_size=20, weight=BOLD),
-                MathTex(r"p(x|\theta)", color=RED, font_size=24),
+                MathTex(r"p(x|z)", color=RED, font_size=24),
                 Text("データの生成過程を学習", color=WHITE, font_size=18),
             ).arrange(RIGHT, buff=0.15),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
@@ -510,22 +510,22 @@ class WorldDataModel(Scene):
             VGroup(
                 Text("1.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("データは世界の一部を観測した結果にすぎない", color=WHITE, font_size=28),
-                    Text("情報劣化（次元削減＋ノイズ）が必ず伴う", color=TEAL, font_size=26),
+                    Text("データは世界の一部を観測した結果にすぎない", color=WHITE, font_size=32),
+                    Text("情報劣化（次元圧縮＋ノイズ）が必ず伴う", color=TEAL, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("何をどう観測したかの理解が解析の出発点", color=WHITE, font_size=28),
-                    Text("センサの特性・限界を把握することが重要", color=ORANGE, font_size=26),
+                    Text("何をどう観測したかの理解が解析の出発点", color=WHITE, font_size=32),
+                    Text("センサの特性・限界を把握することが重要", color=ORANGE, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("モデル ＝ パラメータ付き関数、骨格は解析者が設計", color=WHITE, font_size=28),
-                    Text("識別的 / 生成的 など多様なアプローチがある", color=YELLOW, font_size=26),
+                    Text("モデル ＝ パラメータ付き関数、骨格は解析者が設計", color=WHITE, font_size=32),
+                    Text("識別的 / 生成的 など多様なアプローチがある", color=YELLOW, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
