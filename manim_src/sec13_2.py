@@ -37,15 +37,15 @@ class ModelMathExpression(Scene):
 
         parts_desc = VGroup(
             VGroup(
-                MathTex(r"x", color=ORANGE, font_size=30),
+                MathTex(r"x", color=WHITE, font_size=30),
                 Text(": 入力", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
-                MathTex(r"y", color=GREEN, font_size=30),
+                MathTex(r"y", color=WHITE, font_size=30),
                 Text(": 出力", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
             VGroup(
-                MathTex(r"\theta", color=YELLOW, font_size=30),
+                MathTex(r"\theta", color=WHITE, font_size=30),
                 Text(": パラメータ", color=WHITE, font_size=22),
             ).arrange(RIGHT, buff=0.15),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
@@ -62,62 +62,62 @@ class ModelMathExpression(Scene):
         # ============================================================
         # Part 2: 関数系は自由に設計できる
         # ============================================================
-        subtitle2 = Text("関数系は目的に応じて自由に設計", font_size=30, color=GREEN)
-        subtitle2.next_to(title, DOWN)
-        self.play(Write(subtitle2), run_time=0.6)
-        self.wait(0.5)
+        # subtitle2 = Text("関数系は目的に応じて自由に設計", font_size=30, color=GREEN)
+        # subtitle2.next_to(title, DOWN)
+        # self.play(Write(subtitle2), run_time=0.6)
+        # self.wait(0.5)
 
-        design_text = VGroup(
-            Text("モデルの関数形は解析者が決める", color=WHITE, font_size=24),
-            Text("データの特性や目的に応じて様々な選択肢がある", color=WHITE, font_size=24),
-        ).arrange(DOWN, buff=0.15)
-        design_text.shift(UP * 1.3)
-        self.play(Write(design_text), run_time=0.7)
-        self.wait(0.5)
+        # design_text = VGroup(
+        #     Text("モデルの関数形は解析者が決める", color=WHITE, font_size=24),
+        #     Text("データの特性や目的に応じて様々な選択肢がある", color=WHITE, font_size=24),
+        # ).arrange(DOWN, buff=0.15)
+        # design_text.shift(UP * 1.3)
+        # self.play(Write(design_text), run_time=0.7)
+        # self.wait(0.5)
 
-        # 具体例を3つ並べる
-        example1 = VGroup(
-            RoundedRectangle(width=3.5, height=1.4, corner_radius=0.15, color=BLUE, fill_opacity=0.1),
-            VGroup(
-                Text("線形モデル", color=BLUE, font_size=20, weight=BOLD),
-                MathTex(r"f(x) = w_0 + w_1 x", color=BLUE, font_size=22),
-            ).arrange(DOWN, buff=0.12),
-        )
-        example1[1].move_to(example1[0])
+        # # 具体例を3つ並べる
+        # example1 = VGroup(
+        #     RoundedRectangle(width=3.5, height=1.4, corner_radius=0.15, color=BLUE, fill_opacity=0.1),
+        #     VGroup(
+        #         Text("線形モデル", color=BLUE, font_size=20, weight=BOLD),
+        #         MathTex(r"f(x) = w_0 + w_1 x", color=BLUE, font_size=22),
+        #     ).arrange(DOWN, buff=0.12),
+        # )
+        # example1[1].move_to(example1[0])
 
-        example2 = VGroup(
-            RoundedRectangle(width=3.5, height=1.4, corner_radius=0.15, color=ORANGE, fill_opacity=0.1),
-            VGroup(
-                Text("多項式モデル", color=ORANGE, font_size=20, weight=BOLD),
-                MathTex(r"f(x) = w_0 + w_1 x + w_2 x^2", color=ORANGE, font_size=20),
-            ).arrange(DOWN, buff=0.12),
-        )
-        example2[1].move_to(example2[0])
+        # example2 = VGroup(
+        #     RoundedRectangle(width=3.5, height=1.4, corner_radius=0.15, color=ORANGE, fill_opacity=0.1),
+        #     VGroup(
+        #         Text("多項式モデル", color=ORANGE, font_size=20, weight=BOLD),
+        #         MathTex(r"f(x) = w_0 + w_1 x + w_2 x^2", color=ORANGE, font_size=20),
+        #     ).arrange(DOWN, buff=0.12),
+        # )
+        # example2[1].move_to(example2[0])
 
-        example3 = VGroup(
-            RoundedRectangle(width=3.5, height=1.4, corner_radius=0.15, color=RED, fill_opacity=0.1),
-            VGroup(
-                Text("ガウス基底", color=RED, font_size=20, weight=BOLD),
-                MathTex(r"f(x) = \sum_i w_i e^{-(x-\mu_i)^2}", color=RED, font_size=19),
-            ).arrange(DOWN, buff=0.12),
-        )
-        example3[1].move_to(example3[0])
+        # example3 = VGroup(
+        #     RoundedRectangle(width=3.5, height=1.4, corner_radius=0.15, color=RED, fill_opacity=0.1),
+        #     VGroup(
+        #         Text("ガウス基底", color=RED, font_size=20, weight=BOLD),
+        #         MathTex(r"f(x) = \sum_i w_i e^{-(x-\mu_i)^2}", color=RED, font_size=19),
+        #     ).arrange(DOWN, buff=0.12),
+        # )
+        # example3[1].move_to(example3[0])
 
-        examples = VGroup(example1, example2, example3).arrange(DOWN, buff=0.35)
-        examples.shift(DOWN * 0.3)
-        self.play(FadeIn(examples, lag_ratio=0.3), run_time=1.0)
-        self.wait(0.5)
+        # examples = VGroup(example1, example2, example3).arrange(DOWN, buff=0.35)
+        # examples.shift(DOWN * 0.3)
+        # self.play(FadeIn(examples, lag_ratio=0.3), run_time=1.0)
+        # self.wait(0.5)
 
-        note_freedom = Text("→ 選択の自由度が解析者の腕の見せ所", color=YELLOW, font_size=22, weight=BOLD)
-        note_freedom.shift(DOWN * 2.5)
-        self.play(Write(note_freedom), run_time=0.6)
-        self.wait(1.5)
+        # note_freedom = Text("→ 選択の自由度が解析者の腕の見せ所", color=YELLOW, font_size=22, weight=BOLD)
+        # note_freedom.shift(DOWN * 2.5)
+        # self.play(Write(note_freedom), run_time=0.6)
+        # self.wait(1.5)
 
-        self.play(
-            FadeOut(design_text), FadeOut(examples), FadeOut(note_freedom),
-            FadeOut(subtitle2),
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(design_text), FadeOut(examples), FadeOut(note_freedom),
+        #     FadeOut(subtitle2),
+        # )
+        # self.wait(0.3)
 
         # ============================================================
         # Part 3: 多項式モデルの具体例
@@ -242,7 +242,7 @@ class ModelMathExpression(Scene):
             Text("基底関数:", color=YELLOW, font_size=22, weight=BOLD),
             MathTex(r"\{1, x, x^2\}", color=YELLOW, font_size=26),
         ).arrange(RIGHT, buff=0.2)
-        basis_desc.shift(DOWN * 1.8)
+        basis_desc.shift(DOWN * 2.0)
         self.play(Write(basis_desc), run_time=0.6)
         self.wait(1.0)
 
@@ -289,19 +289,9 @@ class ModelMathExpression(Scene):
         self.play(Write(merit_list[2]), run_time=0.7)
         self.wait(0.8)
 
-        # 強調ボックス
-        highlight = VGroup(
-            Text("特にメリット1、2が実用上大きい:", color=YELLOW, font_size=22, weight=BOLD),
-            Text("ノイマン型コンピュータや数値計算ライブラリとの親和性が高い", color=YELLOW, font_size=22),
-        ).arrange(DOWN, buff=0.1)
-        highlight.shift(DOWN * 2.2)
-        highlight_box = SurroundingRectangle(highlight, color=YELLOW, buff=0.12)
-        self.play(Write(highlight), Create(highlight_box), run_time=0.7)
-        self.wait(1.5)
 
         self.play(
             FadeOut(merit_text), FadeOut(merit_list),
-            FadeOut(highlight), FadeOut(highlight_box),
             FadeOut(subtitle5),
         )
         self.wait(0.3)
@@ -417,22 +407,22 @@ class ModelMathExpression(Scene):
             VGroup(
                 Text("1.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("モデルの関数形は目的に応じて自由に設計できる", color=WHITE, font_size=26),
-                    Text("多項式モデルはその代表例の一つ", color=ORANGE, font_size=24),
+                    Text("モデルの関数形は目的に応じて自由に設計できる", color=WHITE, font_size=32),
+                    Text("多項式モデルはその代表例の一つ", color=ORANGE, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("関数をベクトル空間と対応させることができる", color=WHITE, font_size=26),
-                    Text("コンピュータ計算が容易になる", color=TEAL, font_size=24),
+                    Text("関数をベクトル空間と対応させることができる", color=WHITE, font_size=32),
+                    Text("コンピュータ計算が容易になる", color=TEAL, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=WHITE, font_size=24, weight=BOLD),
                 VGroup(
-                    Text("基底をうまくとれば線形代数の範疇で扱える", color=WHITE, font_size=26),
-                    Text("線形回帰は次回以降で詳しく学ぶ", color=GREEN, font_size=24),
+                    Text("基底をうまくとれば線形代数の範疇で扱える", color=WHITE, font_size=32),
+                    Text("線形回帰は次回以降で詳しく学ぶ", color=GREEN, font_size=28),
                 ).arrange(DOWN, buff=0.1, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
