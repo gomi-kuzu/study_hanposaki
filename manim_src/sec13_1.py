@@ -38,7 +38,7 @@ class WorldDataModel(Scene):
 
         part1_note = VGroup(
             Text("世界には膨大な情報が存在するが、", color=WHITE, font_size=22),
-            Text("人間が観測できるのはそのごく「一部にすぎない", color=WHITE, font_size=22),
+            Text("人間が観測できるのはそのごく一部にすぎない", color=WHITE, font_size=22),
         ).arrange(DOWN, buff=0.15)
         part1_note.shift(DOWN * 2.0)
         self.play(Write(part1_note), run_time=0.7)
@@ -116,8 +116,13 @@ class WorldDataModel(Scene):
                 Text("ノイズの混入", color=WHITE, font_size=26, weight=BOLD),
                 # Text("（電気信号変換時の誤差）", color=GRAY, font_size=18),
             ).arrange(RIGHT, buff=0.15),
+            VGroup(
+                Text("③", color=RED, font_size=26),
+                Text("コンテキストの欠落", color=WHITE, font_size=26, weight=BOLD),
+                Text("…など", color=GRAY, font_size=22),
+            ).arrange(RIGHT, buff=0.15),
         ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
-        degrade_items.shift(DOWN * 2.0)
+        degrade_items.shift(DOWN * 2.5)
         self.play(Write(degrade_items), run_time=0.7)
         self.wait(1.5)
 
