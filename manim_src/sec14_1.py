@@ -38,33 +38,43 @@ class VectorDifferentiation(Scene):
         self.wait(0.5)
 
         # x_1での偏微分
-        partial_x_label = Text("x_1で偏微分（x_2は定数として扱う）", color=ORANGE, font_size=24)
+        partial_x_label = VGroup(
+            MathTex(r"x_1", color=ORANGE, font_size=36),
+            Text("で偏微分（", color=ORANGE, font_size=24),
+            MathTex(r"x_2", color=ORANGE, font_size=36),
+            Text("は定数として扱う）", color=ORANGE, font_size=24),
+        ).arrange(RIGHT, buff=0.1)
         partial_x_label.shift(DOWN * 0.2)
         self.play(Write(partial_x_label), run_time=0.6)
         self.wait(1.0)
 
         partial_x = MathTex(
             r"\frac{\partial f}{\partial x_1} = 2x_1 + 3x_2",
-            color=ORANGE, font_size=34
+            color=ORANGE, font_size=36
         )
-        partial_x.shift(DOWN * 0.8)
+        partial_x.shift(DOWN)
         self.play(Write(partial_x), run_time=0.7)
-        self.wait(0.6)
+        self.wait(1.0)
 
         self.play(FadeOut(partial_x_label), FadeOut(partial_x))
         self.wait(0.2)
 
         # x_2での偏微分
-        partial_y_label = Text("x_2で偏微分（x_1は定数として扱う）", color=GREEN, font_size=24)
+        partial_y_label = VGroup(
+            MathTex(r"x_2", color=GREEN, font_size=36),
+            Text("で偏微分（", color=GREEN, font_size=24),
+            MathTex(r"x_1", color=GREEN, font_size=36),
+            Text("は定数として扱う）", color=GREEN, font_size=24),
+        ).arrange(RIGHT, buff=0.1)
         partial_y_label.shift(DOWN * 0.2)
         self.play(Write(partial_y_label), run_time=0.6)
         self.wait(1)
 
         partial_y = MathTex(
             r"\frac{\partial f}{\partial x_2} = 3x_1 + 2x_2",
-            color=GREEN, font_size=34
+            color=GREEN, font_size=36
         )
-        partial_y.shift(DOWN * 0.8)
+        partial_y.shift(DOWN)
         self.play(Write(partial_y), run_time=0.7)
         self.wait(1.0)
 
@@ -91,7 +101,7 @@ class VectorDifferentiation(Scene):
         # 元の関数
         original_func = MathTex(
             r"f(x_1, x_2) = x_1^2 + 3x_1 x_2 + x_2^2",
-            color=WHITE, font_size=32
+            color=WHITE, font_size=36
         )
         original_func.shift(UP * 0.7)
         self.play(Write(original_func), run_time=0.6)
@@ -99,7 +109,7 @@ class VectorDifferentiation(Scene):
 
         # 矢印
         arrow_down = Arrow(UP * 0.3, DOWN * 0.1, color=TEAL, buff=0.05)
-        rewrite_text = Text("書き換え", color=TEAL, font_size=20)
+        rewrite_text = Text("書き換え", color=TEAL, font_size=24)
         rewrite_text.next_to(arrow_down, RIGHT, buff=0.15)
         self.play(Create(arrow_down), Write(rewrite_text), run_time=0.5)
         self.wait(0.3)
@@ -107,9 +117,9 @@ class VectorDifferentiation(Scene):
         # ベクトル表記
         vector_def = MathTex(
             r"\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}",
-            color=TEAL, font_size=32
+            color=TEAL, font_size=36
         )
-        vector_def.shift(DOWN * 0.5 + LEFT * 2.5)
+        vector_def.shift(DOWN * 0.8 + LEFT * 2.0)
         self.play(Write(vector_def), run_time=0.6)
         self.wait(0.3)
 
@@ -117,13 +127,13 @@ class VectorDifferentiation(Scene):
             r"f(\mathbf{x})",
             color=TEAL, font_size=36
         )
-        vector_func.shift(DOWN * 0.5 + RIGHT * 1.5)
+        vector_func.shift(DOWN * 0.8 + RIGHT * 1.5)
         vector_func_box = SurroundingRectangle(vector_func, color=TEAL, buff=0.15)
         self.play(Write(vector_func), Create(vector_func_box), run_time=0.7)
         self.wait(0.5)
 
         note_vector = Text("※列ベクトルとして定義", color=YELLOW, font_size=22, weight=BOLD)
-        note_vector.shift(DOWN * 1.3)
+        note_vector.shift(DOWN * 2)
         self.play(Write(note_vector), run_time=0.6)
         self.wait(1.0)
 
@@ -154,7 +164,7 @@ class VectorDifferentiation(Scene):
         # 関数の再表示
         func_recall = MathTex(
             r"f(\mathbf{x}) = f(x_1, x_2) = x_1^2 + 3x_1 x_2 + x_2^2",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=36
         )
         func_recall.shift(UP * 0.7)
         self.play(Write(func_recall), run_time=0.6)
@@ -166,7 +176,7 @@ class VectorDifferentiation(Scene):
             r"\begin{pmatrix} \frac{\partial f}{\partial x_1} \\ \frac{\partial f}{\partial x_2} \end{pmatrix}",
             color=ORANGE, font_size=34
         )
-        gradient_def.shift(DOWN * 0.3)
+        gradient_def.shift(DOWN * 0.5)
         # gradient_box = SurroundingRectangle(gradient_def, color=ORANGE, buff=0.18)
         self.play(Write(gradient_def), run_time=0.8)
         self.wait(0.6)
@@ -176,13 +186,13 @@ class VectorDifferentiation(Scene):
             r"= \begin{pmatrix} 2x_1 + 3x_2 \\ 3x_1 + 2x_2 \end{pmatrix}",
             color=ORANGE, font_size=34
         )
-        gradient_result.shift(DOWN * 1.4)
+        gradient_result.shift(DOWN * 1.5)
         self.play(Write(gradient_result), run_time=0.7)
         self.wait(0.6)
 
         # 重要な注意
         note_column = Text("結果も列ベクトル！", color=YELLOW, font_size=24, weight=BOLD)
-        note_column.shift(DOWN * 2.5)
+        note_column.shift(DOWN * 2.7)
         note_box = SurroundingRectangle(note_column, color=YELLOW, buff=0.12)
         self.play(Write(note_column), Create(note_box), run_time=0.6)
         self.wait(1.2)
@@ -224,24 +234,24 @@ class VectorDifferentiation(Scene):
         vector_defs = MathTex(
             r"\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}, \quad "
             r"\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}",
-            color=WHITE, font_size=28
+            color=WHITE, font_size=34
         )
-        vector_defs.shift(UP * 0.3)
+        vector_defs.shift(DOWN * 0.3)
         self.play(Write(vector_defs), run_time=0.6)
         self.wait(0.4)
 
         # 展開形
-        expanded_form = MathTex(
-            r"f(\mathbf{x}) = a_1 x_1 + a_2 x_2",
-            color=WHITE, font_size=30
-        )
-        expanded_form.shift(DOWN * 0.3)
-        self.play(Write(expanded_form), run_time=0.6)
-        self.wait(0.5)
+        # expanded_form = MathTex(
+        #     r"f(\mathbf{x}) = a_1 x_1 + a_2 x_2",
+        #     color=WHITE, font_size=34
+        # )
+        # expanded_form.shift(DOWN * 1.0)
+        # self.play(Write(expanded_form), run_time=0.6)
+        # self.wait(0.5)
 
         # 問題提起
         question = Text("これをxで微分すると？", color=YELLOW, font_size=26, weight=BOLD)
-        question.shift(DOWN * 0.9)
+        question.shift(DOWN * 1.2)
         self.play(Write(question), run_time=0.6)
         self.wait(0.6)
 
@@ -250,12 +260,12 @@ class VectorDifferentiation(Scene):
 
         # 間違った答え
         wrong_answer_label = Text("❌ 間違い：", color=RED, font_size=24, weight=BOLD)
-        wrong_answer_label.shift(DOWN * 0.9 + LEFT * 3.0)
+        wrong_answer_label.shift(DOWN * 1.2 + LEFT * 3.0)
         wrong_answer = MathTex(
             r"\mathbf{a}^{\top}",
             color=RED, font_size=34
         )
-        wrong_answer.shift(DOWN * 0.9 + RIGHT * 0.5)
+        wrong_answer.shift(DOWN * 1.2 + RIGHT * 0.5)
         wrong_box = SurroundingRectangle(
             VGroup(wrong_answer_label, wrong_answer), 
             color=RED, buff=0.15
@@ -267,7 +277,7 @@ class VectorDifferentiation(Scene):
         self.wait(0.6)
 
         wrong_note = Text("係数をそのまま残してしまう", color=RED, font_size=20)
-        wrong_note.shift(DOWN * 1.5)
+        wrong_note.shift(DOWN * 1.8)
         self.play(Write(wrong_note), run_time=0.6)
         self.wait(1.0)
 
@@ -279,12 +289,12 @@ class VectorDifferentiation(Scene):
 
         # 正しい答え
         correct_answer_label = Text("✓ 正しい：", color=GREEN, font_size=24, weight=BOLD)
-        correct_answer_label.shift(DOWN * 0.9 + LEFT * 3.0)
+        correct_answer_label.shift(DOWN * 1.2 + LEFT * 3.0)
         correct_answer = MathTex(
             r"\mathbf{a}",
             color=GREEN, font_size=38
         )
-        correct_answer.shift(DOWN * 0.9 + RIGHT * 0.5)
+        correct_answer.shift(DOWN * 1.2 + RIGHT * 0.5)
         correct_box = SurroundingRectangle(
             VGroup(correct_answer_label, correct_answer), 
             color=GREEN, buff=0.15
@@ -293,14 +303,14 @@ class VectorDifferentiation(Scene):
             Write(correct_answer_label), Write(correct_answer), 
             Create(correct_box), run_time=0.7
         )
-        self.wait(0.6)
+        self.wait(1.0)
 
         # 理由の説明
         reason = VGroup(
             Text("理由：列ベクトルで微分しているため", color=GREEN, font_size=22),
             Text("結果も列ベクトルになる", color=GREEN, font_size=22),
         ).arrange(DOWN, buff=0.1)
-        reason.shift(DOWN * 1.6)
+        reason.shift(DOWN * 2.0)
         self.play(Write(reason), run_time=0.7)
         self.wait(1.0)
 
@@ -312,7 +322,7 @@ class VectorDifferentiation(Scene):
 
         # 詳細な計算
         detail_label = Text("確認：", color=TEAL, font_size=24, weight=BOLD)
-        detail_label.shift(DOWN * 0.7)
+        detail_label.shift(DOWN* 1.2)
         self.play(Write(detail_label), run_time=0.6)
         self.wait(0.4)
 
@@ -322,13 +332,13 @@ class VectorDifferentiation(Scene):
             r"\begin{pmatrix} a_1 \\ a_2 \end{pmatrix} = \mathbf{a}",
             color=TEAL, font_size=30
         )
-        detail_calc.shift(DOWN * 1.4)
+        detail_calc.shift(DOWN * 2.0)
         self.play(Write(detail_calc), run_time=0.9)
         self.wait(1.5)
 
         self.play(
             FadeOut(mistake_intro), FadeOut(linear_form), FadeOut(linear_box),
-            FadeOut(vector_defs), FadeOut(expanded_form),
+            FadeOut(vector_defs),# FadeOut(expanded_form),
             FadeOut(detail_label), FadeOut(detail_calc),
             FadeOut(subtitle4),
         )
@@ -363,7 +373,9 @@ class VectorDifferentiation(Scene):
                     Text("を", color=WHITE, font_size=28),
                     MathTex(r"\mathbf{x}", color=WHITE, font_size=32),
                     Text("で微分すると", color=WHITE, font_size=28),
-                    MathTex(r"\mathbf{a}", color=GREEN, font_size=32),
+                    MathTex(r"\mathbf{a}^{\top}", color=GREEN, font_size=36),
+                    Text("ではなく", color=WHITE, font_size=28),
+                    MathTex(r"\mathbf{a}", color=GREEN, font_size=36)
                 ).arrange(RIGHT, buff=0.15),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
