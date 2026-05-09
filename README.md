@@ -28,4 +28,4 @@ manim -iqm sec1_1.py VectorAsNumbers
 - [3部](./doc/sec3.md)
 
 # その他
-- [勉強会リンク](https://majime-ni-study.connpass.com/event/)
+- [勉強会リンク](https://connpass.com/search/?q=%E6%95%B0%E5%AD%A6%E3%81%8B%E3%81%9F%E3%82%89%E3%83%8A%E3%82%A4%E3%83%88&start_from=2026%2F05%2F09&start_to=2026%2F11%2F09)
