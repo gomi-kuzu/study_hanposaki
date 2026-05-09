@@ -46,7 +46,7 @@ class OptimalSearch(Scene):
             self.play(Write(item), run_time=0.6)
             self.wait(0.3)
 
-        next_note = Text("詳しくは次回以降で！", color=GREEN, font_size=22, weight=BOLD)
+        next_note = Text("最適化についてより詳しくは次回以降で！", color=GREEN, font_size=22, weight=BOLD)
         next_note.shift(DOWN * 2.0)
         self.play(Write(next_note), run_time=0.6)
         self.wait(1.5)
@@ -84,11 +84,11 @@ class OptimalSearch(Scene):
         mono_curve = axes_mono.plot(
             lambda x: x, x_range=[-2.3, 2.3], color=ORANGE, stroke_width=3
         )
-        mono_label = MathTex(r"f(x) = x", color=ORANGE, font_size=26)
+        mono_label = MathTex(r"f(x) = x", color=ORANGE, font_size=32)
         mono_label.next_to(axes_mono, RIGHT, buff=0.2).shift(UP * 0.5)
 
         mono_note = VGroup(
-            Text("→ どこまでも大きく・小さくなる（最大値も最小値も存在しない）", color=ORANGE, font_size=22),
+            Text("→ どこまでも大きく・小さくなる（最大値も最小値も存在しない）", color=ORANGE, font_size=26),
         )
         mono_note.next_to(axes_mono, DOWN, buff=0.15)
 
@@ -112,22 +112,29 @@ class OptimalSearch(Scene):
         self.play(Write(subtitle3), run_time=0.6)
         self.wait(0.5)
 
-        sup_intro = VGroup(
-            Text("上界（upper bound）", color=YELLOW, font_size=26, weight=BOLD),
-            Text("関数のすべての値 f(x) 以上となる値 M", color=WHITE, font_size=24),
+        upper_intro = VGroup(
+            Text("上界（upper bound）：関数のすべての値 f(x) 以上となる値 M", color=RED, font_size=26, weight=BOLD),
         ).arrange(DOWN, buff=0.12)
-        sup_intro.shift(UP * 1.6)
-        self.play(Write(sup_intro), run_time=0.7)
-        self.wait(0.5)
+        upper_intro.shift(UP * 1.9)
+        self.play(Write(upper_intro), run_time=0.7)
+        self.wait(0.2)
 
-        sup_def = MathTex(
+        upper_def = MathTex(
             r"f(x) \leq M \quad \text{for all } x",
-            color=YELLOW, font_size=30
+            color=RED, font_size=30
         )
-        sup_def.shift(UP * 0.9)
-        sup_box = SurroundingRectangle(sup_def, color=YELLOW, buff=0.15)
-        self.play(Write(sup_def), Create(sup_box), run_time=0.6)
+        upper_def.shift(UP * 1.3)
+        upper_box = SurroundingRectangle(upper_def, color=RED, buff=0.15)
+        self.play(Write(upper_def), Create(upper_box), run_time=0.6)
         self.wait(1.2)
+
+        sup_intro = VGroup(
+            Text("上限（supremum）：上界の中で最小のもの", color=GOLD, font_size=26, weight=BOLD),
+        ).arrange(DOWN, buff=0.12)
+        sup_intro.shift(UP * 0.7)
+        self.play(Write(sup_intro), run_time=0.7)
+        self.wait(0.2)
+
 
         # 図示
         axes_sup = Axes(
@@ -137,14 +144,14 @@ class OptimalSearch(Scene):
             x_axis_config={"include_numbers": True},
             y_axis_config={"include_numbers": True},
         ).scale(0.75)
-        axes_sup.shift(DOWN * 1.0)
+        axes_sup.shift(DOWN * 1.0 + LEFT * 4)
 
         # f(x) = x, x ∈ [0, 1) （開区間）
         sup_curve = axes_sup.plot(
             lambda x: x, x_range=[0, 0.97], color=TEAL, stroke_width=3
         )
-        sup_curve_label = MathTex(r"f(x) = x,\ x \in [0,\, 1)", color=TEAL, font_size=20)
-        sup_curve_label.next_to(axes_sup, RIGHT, buff=0.15).shift(UP * 0.2)
+        sup_curve_label = MathTex(r"f(x) = x,\ x \in [0,\, 1)", color=TEAL, font_size=30)
+        sup_curve_label.next_to(axes_sup, RIGHT, buff=0.15).shift(UP * 0.2 )
 
         # 右端の開点（x=1に到達しない）
         open_dot = Circle(radius=0.08, color=TEAL, stroke_width=2.5)
@@ -156,10 +163,10 @@ class OptimalSearch(Scene):
             num_dashes=18
         )
         sup_label = VGroup(
-            MathTex(r"\sup f = 1", color=GOLD, font_size=22),
-            Text("（上限・最大値なし）", color=GOLD, font_size=17),
+            MathTex(r"\sup f = 1", color=GOLD, font_size=26),
+            Text("（上限）", color=GOLD, font_size=22),
         ).arrange(RIGHT, buff=0.08)
-        sup_label.next_to(axes_sup, RIGHT, buff=0.15).shift(DOWN * 0.4)
+        sup_label.next_to(axes_sup, RIGHT, buff=0.15).shift(DOWN * 0.4 )
 
         # 上界の例（y=1.2）
         upper_bound_line = DashedVMobject(
@@ -167,10 +174,10 @@ class OptimalSearch(Scene):
             num_dashes=18
         )
         M_label = VGroup(
-            MathTex(r"M = 1.2", color=RED, font_size=20),
-            Text("（上界の一例）", color=RED, font_size=17),
+            MathTex(r"M = 1.2", color=RED, font_size=26),
+            Text("（上界の一例）", color=RED, font_size=22),
         ).arrange(RIGHT, buff=0.08)
-        M_label.next_to(axes_sup, RIGHT, buff=0.15).shift(DOWN * 1.0)
+        M_label.next_to(axes_sup, RIGHT, buff=0.15).shift(DOWN * 1.0 )
 
         self.play(Create(axes_sup), run_time=0.5)
         self.play(Create(sup_curve), Write(sup_curve_label), run_time=0.6)
@@ -180,10 +187,11 @@ class OptimalSearch(Scene):
         self.wait(0.5)
 
         sup_explain = VGroup(
-            Text("上界は複数存在しうる（例：1.2, 1.5, 100, ...）", color=RED, font_size=20),
-            Text("その中で最小の上界が「上限（supremum）」", color=GOLD, font_size=20, weight=BOLD),
+            Text("上界は複数存在しうる", color=RED, font_size=22),
+            Text("（例：1.2, 1.5, 100, ...）", color=RED, font_size=22),
+            Text("その中で最小の上界が上限", color=GOLD, font_size=22, weight=BOLD),
         ).arrange(DOWN, buff=0.1)
-        sup_explain.next_to(axes_sup, DOWN, buff=0.15)
+        sup_explain.shift( DOWN *1.5 +RIGHT * 3.5)
         self.play(Write(sup_explain), run_time=0.7)
         self.wait(0.5)
 
@@ -191,15 +199,15 @@ class OptimalSearch(Scene):
         self.wait(1.5)
 
         # 最大値との違い
-        max_diff = Text("x=1 には届かない → 最大値は存在しないが、上限 sup f = 1 は存在する", color=WHITE, font_size=18)
-        max_diff.next_to(sup_explain, DOWN, buff=0.1)
+        max_diff = Text("1 には届かない → 最大値は存在しないが、上限 sup f = 1 は存在する", color=WHITE, font_size=22)
+        max_diff.shift(DOWN*3.1)
         self.play(Write(max_diff), run_time=0.6)
         self.wait(1.5)
 
         self.play(
-            FadeOut(sup_intro), FadeOut(sup_def), FadeOut(sup_box),
+            FadeOut(upper_intro), FadeOut(upper_def), FadeOut(upper_box),
             FadeOut(axes_sup), FadeOut(sup_curve), FadeOut(sup_curve_label),
-            FadeOut(open_dot),
+            FadeOut(open_dot), FadeOut(sup_intro),
             FadeOut(upper_bound_line), FadeOut(M_label),
             FadeOut(sup_bound_line), FadeOut(sup_label),
             FadeOut(sup_explain), FadeOut(max_diff),
@@ -343,8 +351,7 @@ class OptimalSearch(Scene):
         self.wait(0.5)
 
         quad_intro = VGroup(
-            Text("非線形なベクトル関数の微分の例として", color=WHITE, font_size=24),
-            Text("次の二次形式を考える", color=WHITE, font_size=24),
+            Text("非線形なベクトル関数の微分の例として次の二次形式を考える", color=WHITE, font_size=24),
         ).arrange(DOWN, buff=0.12)
         quad_intro.shift(UP * 1.6)
         self.play(Write(quad_intro), run_time=0.7)
@@ -366,7 +373,7 @@ class OptimalSearch(Scene):
             MathTex(r"S = S^{\top}", color=YELLOW, font_size=26),
             Text("）", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.1)
-        S_desc.shift(UP * 0.2)
+        S_desc.shift(UP * 0.1)
         self.play(Write(S_desc), run_time=0.6)
         self.wait(0.4)
 
@@ -380,13 +387,13 @@ class OptimalSearch(Scene):
             r"\frac{\partial f}{\partial \mathbf{x}} = 2S\mathbf{x}",
             color=ORANGE, font_size=38
         )
-        quad_diff.shift(DOWN * 1.0)
+        quad_diff.shift(DOWN * 1.5)
         quad_diff_box = SurroundingRectangle(quad_diff, color=ORANGE, buff=0.18)
         self.play(Write(quad_diff), Create(quad_diff_box), run_time=0.7)
         self.wait(1.5)
 
         quad_note = Text("この結果は第15話以降で活用する", color=GREEN, font_size=22, weight=BOLD)
-        quad_note.shift(DOWN * 1.9)
+        quad_note.shift(DOWN * 2.5)
         self.play(Write(quad_note), run_time=0.6)
         self.wait(1.5)
 
@@ -406,7 +413,7 @@ class OptimalSearch(Scene):
         self.play(Write(subtitle7), run_time=0.6)
         self.wait(0.5)
 
-        pd_def_intro = Text("正定値行列（Positive Definite Matrix）の定義：", color=WHITE, font_size=24, weight=BOLD)
+        pd_def_intro = Text("正定値行列の定義：", color=WHITE, font_size=24, weight=BOLD)
         pd_def_intro.shift(UP * 1.7)
         self.play(Write(pd_def_intro), run_time=0.6)
         self.wait(0.4)
@@ -461,7 +468,7 @@ class OptimalSearch(Scene):
             Text("直観：H が正定値 ⟺ 関数が「下に凸の椀型」", color=WHITE, font_size=21),
             Text("→ 微分が0になる点は一意な大域最小値", color=TEAL, font_size=21),
         ).arrange(DOWN, buff=0.1)
-        pd_intuition.shift(DOWN * 2.1)
+        pd_intuition.shift(DOWN * 2.3)
         self.play(Write(pd_intuition), run_time=0.7)
         self.wait(1.5)
 
@@ -483,28 +490,28 @@ class OptimalSearch(Scene):
 
         summary = VGroup(
             VGroup(
-                Text("1.", color=WHITE, font_size=22, weight=BOLD),
-                Text("勾配を使った最大・最小探索が機械学習の基本（詳しくは次回）", color=WHITE, font_size=24),
+                Text("1.", color=WHITE, font_size=30, weight=BOLD),
+                Text("勾配を使った最大・最小探索が機械学習の基本（詳しくは次回）", color=WHITE, font_size=28),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("2.", color=WHITE, font_size=22, weight=BOLD),
+                Text("2.", color=WHITE, font_size=30, weight=BOLD),
                 VGroup(
-                    Text("上限・下限：関数値の「限界」を表す概念", color=WHITE, font_size=24),
-                    Text("上限 = 最小の上界、下限 = 最大の下界", color=ORANGE, font_size=22),
+                    Text("上限・下限：関数値の「限界」を表す概念", color=WHITE, font_size=28),
+                    Text("上限 = 最小の上界、下限 = 最大の下界", color=ORANGE, font_size=26),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("3.", color=WHITE, font_size=22, weight=BOLD),
+                Text("3.", color=WHITE, font_size=30, weight=BOLD),
                 VGroup(
-                    Text("極大・極小（1変数）：「微分=0 かつ 2次微分の符号」で判定", color=WHITE, font_size=24),
-                    Text("最大・最小の手がかりとなる", color=ORANGE, font_size=22),
+                    Text("極大・極小（1変数）：「微分=0 かつ 2次微分の符号」で判定", color=WHITE, font_size=28),
+                    Text("最大・最小の手がかりとなる", color=ORANGE, font_size=26),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
-                Text("4.", color=WHITE, font_size=22, weight=BOLD),
+                Text("4.", color=WHITE, font_size=30, weight=BOLD),
                 VGroup(
-                    MathTex(r"\mathbf{x}^{\top} H \mathbf{x}", color=TEAL, font_size=24),
-                    Text("の停留点は、H が正定値なら一意な大域最小値", color=WHITE, font_size=22),
+                    MathTex(r"\mathbf{x}^{\top} H \mathbf{x}", color=TEAL, font_size=32),
+                    Text("の停留点は、H が正定値なら一意な大域最小値", color=WHITE, font_size=28),
                 ).arrange(RIGHT, buff=0.1),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
