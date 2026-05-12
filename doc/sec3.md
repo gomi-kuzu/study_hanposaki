@@ -11,6 +11,16 @@
 
 <div><video controls src="https://github.com/user-attachments/assets/f29ad1f8-e1e0-4f43-85c7-ae68f32d32ba"></video></div>
 
+# 第14話
+## 14.1
+### ベクトルで微分する話
+
+<div><video controls src="https://github.com/user-attachments/assets/96c7c00b-1083-4818-a915-0261cd2ac2ad"></video></div>
+
+## 14.2
+### 最適な場所の探し方のイメージの話
+
+<div><video controls src="https://github.com/user-attachments/assets/523db80c-b630-4e3e-94d1-ad39f4e4e1b9"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
 
