@@ -20,8 +20,8 @@ class OptimalSearch(Scene):
         self.wait(0.5)
 
         motiv_text = VGroup(
-            Text("前回、ベクトルによる微分を学んだが", color=WHITE, font_size=24),
-            Text("そもそも何のために微分が必要だったのか？", color=YELLOW, font_size=24, weight=BOLD),
+            Text("前節、少し唐突にベクトルによる微分を学んだが", color=WHITE, font_size=24),
+            Text("そもそも今後、何のために微分が必要なのか？", color=YELLOW, font_size=24, weight=BOLD),
         ).arrange(DOWN, buff=0.15)
         motiv_text.shift(UP * 1.3)
         self.play(Write(motiv_text), run_time=0.7)
@@ -71,7 +71,7 @@ class OptimalSearch(Scene):
         ).arrange(DOWN, buff=0.12)
         no_max_note.shift(UP * 1.5)
         self.play(Write(no_max_note), run_time=0.7)
-        self.wait(0.5)
+        self.wait(1.0)
 
         # 単調増加関数の例
         axes_mono = Axes(
@@ -189,7 +189,7 @@ class OptimalSearch(Scene):
         sup_explain = VGroup(
             Text("上界は複数存在しうる", color=RED, font_size=22),
             Text("（例：1.2, 1.5, 100, ...）", color=RED, font_size=22),
-            Text("その中で最小の上界が上限", color=GOLD, font_size=22, weight=BOLD),
+            Text("その中で最小のものが上限", color=GOLD, font_size=22, weight=BOLD),
         ).arrange(DOWN, buff=0.1)
         sup_explain.shift( DOWN *1.5 +RIGHT * 3.5)
         self.play(Write(sup_explain), run_time=0.7)
