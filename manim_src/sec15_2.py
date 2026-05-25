@@ -34,9 +34,9 @@ class PolynomialRegression(Scene):
         ).scale(0.85)
         ax_curve.shift(RIGHT * 2.3 + DOWN * 0.7)
 
-        lin_title = Text("線形なデータ", font_size=22, color=TEAL)
+        lin_title = Text("線形なデータ", font_size=24, color=TEAL)
         lin_title.next_to(ax_lin, UP, buff=0.15)
-        curve_title = Text("非線形なデータ", font_size=22, color=ORANGE)
+        curve_title = Text("非線形なデータ", font_size=24, color=ORANGE)
         curve_title.next_to(ax_curve, UP, buff=0.15)
 
         # 直線データ（ノイズ付き）
@@ -103,7 +103,7 @@ class PolynomialRegression(Scene):
 
         poly_model = MathTex(
             r"f^{(4)}(x) = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + w_4 x^4",
-            color=ORANGE, font_size=30
+            color=ORANGE, font_size=32
         )
         poly_model.shift(UP * 1.0)
         poly_model_box = SurroundingRectangle(poly_model, color=ORANGE, buff=0.15)
@@ -111,7 +111,7 @@ class PolynomialRegression(Scene):
         self.wait(0.5)
 
         # 行ベクトル × 列ベクトルの形式
-        vec_form_label = Text("これは行ベクトルと列ベクトルの積として：", color=WHITE, font_size=22)
+        vec_form_label = Text("これは行ベクトルと列ベクトルの積として以下のように書ける", color=WHITE, font_size=22)
         vec_form_label.shift(UP * 0.1)
         self.play(Write(vec_form_label), run_time=0.5)
         self.wait(0.3)
@@ -127,20 +127,20 @@ class PolynomialRegression(Scene):
 
         # 基底との対応
         basis_note = VGroup(
-            Text("ここで２部で学んだ「単項式基底の張る関数空間」を思い出そう：", color=TEAL, font_size=21),
+            Text("ここで２部で学んだ「単項式基底の張る関数空間」を思い出そう", color=TEAL, font_size=24),
         )
-        basis_note.shift(DOWN * 2.0)
+        basis_note.shift(DOWN * 2.2)
         self.play(Write(basis_note), run_time=0.5)
         self.wait(0.3)
 
         basis_eq = VGroup(
-            Text("すると、", color=WHITE, font_size=20),
-            MathTex(r"\{|1\rangle,\ |x\rangle,\ |x^2\rangle,\ |x^3\rangle,\ |x^4\rangle\}", color=YELLOW, font_size=22),
-            Text("が基底、", color=WHITE, font_size=20),
-            MathTex(r"\mathbf{w}", color=YELLOW, font_size=22),
-            Text("がその空間上の座標であることに気づく", color=WHITE, font_size=20),
+            Text("すると、", color=WHITE, font_size=24),
+            MathTex(r"\{|1\rangle,\ |x\rangle,\ |x^2\rangle,\ |x^3\rangle,\ |x^4\rangle\}", color=YELLOW, font_size=28),
+            Text("が基底、", color=WHITE, font_size=24),
+            MathTex(r"\mathbf{w}", color=YELLOW, font_size=28),
+            Text("がその空間上の座標であることに気づく", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.1)
-        basis_eq.shift(DOWN * 2.6)
+        basis_eq.shift(DOWN * 2.7)
         self.play(Write(basis_eq), run_time=0.6)
         self.wait(1.5)
 
@@ -160,8 +160,8 @@ class PolynomialRegression(Scene):
         self.play(Write(subtitle3), run_time=0.6)
         self.wait(0.4)
 
-        phi_intro = Text("列ベクトル部分をまとめて書こう：", color=WHITE, font_size=22)
-        phi_intro.shift(UP * 1.7)
+        phi_intro = Text("列ベクトル部分をまとめて書こう：", color=WHITE, font_size=24)
+        phi_intro.shift(UP * 1.8)
         self.play(Write(phi_intro), run_time=0.5)
         self.wait(0.3)
 
@@ -171,37 +171,37 @@ class PolynomialRegression(Scene):
             color=TEAL, font_size=30
         )
         phi_def.shift(UP * 0.5)
-        phi_def_box = SurroundingRectangle(phi_def, color=TEAL, buff=0.2)
-        self.play(Write(phi_def), Create(phi_def_box), run_time=0.8)
+        # phi_def_box = SurroundingRectangle(phi_def, color=TEAL, buff=0.2)
+        self.play(Write(phi_def), run_time=0.8)
         self.wait(0.5)
 
         phi_name_note = VGroup(
-            Text("機械学習では", color=WHITE, font_size=22),
-            MathTex(r"\boldsymbol{\phi}(x)", color=TEAL, font_size=26),
-            Text("を", color=WHITE, font_size=22),
-            Text("特徴量 / 基底関数", color=YELLOW, font_size=22, weight=BOLD),
-            Text("などと呼ぶ", color=WHITE, font_size=22),
+            Text("機械学習では", color=WHITE, font_size=24),
+            MathTex(r"\boldsymbol{\phi}(x)", color=TEAL, font_size=28),
+            Text("を", color=WHITE, font_size=24),
+            Text("特徴量ベクトル / 基底関数", color=YELLOW, font_size=24, weight=BOLD),
+            Text("などと呼ぶ", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.12)
-        phi_name_note.shift(DOWN * 0.65)
+        phi_name_note.shift(DOWN * 0.7)
         self.play(Write(phi_name_note), run_time=0.6)
         self.wait(0.4)
 
         phi_nonlinear = VGroup(
-            Text("●", color=ORANGE, font_size=20),
-            Text("x に対しては", color=WHITE, font_size=22),
-            Text("非線形", color=ORANGE, font_size=22, weight=BOLD),
-            Text("な写像（x → x², x³, …）", color=WHITE, font_size=22),
+            Text("●", color=ORANGE, font_size=22),
+            Text("x に対しては", color=WHITE, font_size=24),
+            Text("非線形", color=ORANGE, font_size=24, weight=BOLD),
+            Text("な写像（x → x², x³, …）", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.12)
-        phi_nonlinear.shift(DOWN * 1.3)
+        phi_nonlinear.shift(DOWN * 1.5)
         phi_linear = VGroup(
-            Text("●", color=GREEN, font_size=20),
-            Text("パラメータ", color=WHITE, font_size=22),
-            MathTex(r"\mathbf{w}", color=YELLOW, font_size=24),
-            Text("に対しては", color=WHITE, font_size=22),
-            Text("線形", color=GREEN, font_size=22, weight=BOLD),
-            Text("な式", color=WHITE, font_size=22),
+            Text("●", color=GREEN, font_size=22),
+            Text("パラメータ", color=WHITE, font_size=24),
+            MathTex(r"\mathbf{w}", color=YELLOW, font_size=28),
+            Text("に対しては", color=WHITE, font_size=24),
+            Text("線形", color=GREEN, font_size=24, weight=BOLD),
+            Text("な式", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.12)
-        phi_linear.shift(DOWN * 1.9)
+        phi_linear.shift(DOWN * 2.0)
         self.play(Write(phi_nonlinear), run_time=0.5)
         self.wait(0.2)
         self.play(Write(phi_linear), run_time=0.5)
@@ -218,7 +218,7 @@ class PolynomialRegression(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(phi_intro), FadeOut(phi_def), FadeOut(phi_def_box),
+            FadeOut(phi_intro), FadeOut(phi_def), #FadeOut(phi_def_box),
             FadeOut(phi_name_note), FadeOut(phi_nonlinear), FadeOut(phi_linear),
             FadeOut(simple_model), FadeOut(simple_model_box),
             FadeOut(subtitle3),
@@ -234,11 +234,11 @@ class PolynomialRegression(Scene):
         self.wait(0.4)
 
         dual_intro = VGroup(
-            Text("同じモデル", color=WHITE, font_size=23),
-            MathTex(r"f^{(4)}(x) = \mathbf{w}^\top \boldsymbol{\phi}(x)", color=YELLOW, font_size=26),
-            Text("を2つの視点で見ると：", color=WHITE, font_size=23),
+            Text("同じモデル", color=WHITE, font_size=26),
+            MathTex(r"f^{(4)}(x) = \mathbf{w}^\top \boldsymbol{\phi}(x)", color=YELLOW, font_size=30),
+            Text("を2つの視点で見ると：", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.12)
-        dual_intro.shift(UP * 1.7)
+        dual_intro.shift(UP * 1.8)
         self.play(Write(dual_intro), run_time=0.6)
         self.wait(0.4)
 
@@ -284,7 +284,7 @@ class PolynomialRegression(Scene):
         ).arrange(RIGHT, buff=0.12)
         dual_insight.shift(DOWN * 1.5)
         dual_insight2 = VGroup(
-            Text("特徴量空間では線形モデルとして扱うことができるってこと", color=ORANGE, font_size=26),
+            Text("特徴量空間やパラメータ空間では線形モデルとして扱うことができるってこと", color=ORANGE, font_size=26),
         ).arrange(RIGHT, buff=0.12)
         dual_insight2.shift(DOWN * 2.0)
         self.play(Write(dual_insight), run_time=0.5)
@@ -333,22 +333,22 @@ class PolynomialRegression(Scene):
         self.wait(0.5)
 
         design_name = VGroup(
-            Text("この", color=WHITE, font_size=22),
-            MathTex(r"\Phi", color=YELLOW, font_size=26),
-            Text("を", color=WHITE, font_size=22),
-            Text("計画行列", color=YELLOW, font_size=22, weight=BOLD),
-            Text("（Design Matrix）と呼ぶ", color=WHITE, font_size=22),
+            Text("この", color=WHITE, font_size=24),
+            MathTex(r"\Phi", color=YELLOW, font_size=30),
+            Text("を", color=WHITE, font_size=24),
+            Text("計画行列", color=YELLOW, font_size=24, weight=BOLD),
+            Text("（Design Matrix）と呼ぶ", color=WHITE, font_size=24),
         ).arrange(RIGHT, buff=0.12)
         design_name.shift(DOWN * 1.55)
         self.play(Write(design_name), run_time=0.5)
         self.wait(0.4)
 
         x_replace_note = VGroup(
-            Text("前の動画の", color=WHITE, font_size=22),
-            MathTex(r"X", color=TEAL, font_size=26),
-            Text("が", color=WHITE, font_size=22),
-            MathTex(r"\Phi", color=YELLOW, font_size=26),
-            Text("に置き換わるだけ！", color=GREEN, font_size=22, weight=BOLD),
+            Text("前の動画の", color=WHITE, font_size=24),
+            MathTex(r"X", color=TEAL, font_size=30),
+            Text("が", color=WHITE, font_size=24),
+            MathTex(r"\Phi", color=YELLOW, font_size=30),
+            Text("に置き換わるだけ！", color=GREEN, font_size=24, weight=BOLD),
         ).arrange(RIGHT, buff=0.12)
         x_replace_note.shift(DOWN * 2.1)
         self.play(Write(x_replace_note), run_time=0.5)
@@ -368,7 +368,7 @@ class PolynomialRegression(Scene):
 
         cost_phi = MathTex(
             r"J(\mathbf{w}) = (\mathbf{y} - \Phi\mathbf{w})^\top (\mathbf{y} - \Phi\mathbf{w})",
-            color=ORANGE, font_size=28
+            color=ORANGE, font_size=32
         )
         cost_phi.shift(UP * 0.9)
         self.play(Write(cost_phi), run_time=0.6)
@@ -511,40 +511,40 @@ class PolynomialRegression(Scene):
             VGroup(
                 Text("1.", color=GOLD, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("曲がったデータには直線回帰では不十分", color=WHITE, font_size=23),
-                    Text("→ 多項式などの非線形モデルが必要", color=ORANGE, font_size=22),
+                    Text("曲がったデータには直線回帰では不十分", color=WHITE, font_size=28),
+                    Text("→ 多項式などの非線形モデルが必要", color=ORANGE, font_size=26),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("2.", color=GOLD, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("特徴量ベクトル（基底関数）φ(x) の導入", color=WHITE, font_size=23),
+                    Text("特徴量ベクトル（基底関数）φ(x) の導入", color=WHITE, font_size=28),
                     MathTex(
                         r"\boldsymbol{\phi}(x) = [1,\ x,\ x^2,\ \ldots,\ x^D]^\top",
-                        color=TEAL, font_size=22
+                        color=TEAL, font_size=30
                     ),
-                    Text("x に非線形、パラメータ w に線形（双対な関係）", color=TEAL, font_size=21),
+                    Text("x に非線形、パラメータ w に線形（双対な関係）", color=TEAL, font_size=26),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("3.", color=GOLD, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("シンプルなモデル表現：", color=WHITE, font_size=23),
+                    Text("シンプルなモデル表現：", color=WHITE, font_size=28),
                     MathTex(
                         r"f^{(D)}(x) = \mathbf{w}^\top \boldsymbol{\phi}(x)",
-                        color=YELLOW, font_size=24
+                        color=YELLOW, font_size=30
                     ),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
                 Text("4.", color=GOLD, font_size=26, weight=BOLD),
                 VGroup(
-                    Text("計画行列 Φ を使えば解析解もそのまま：", color=WHITE, font_size=23),
+                    Text("計画行列 Φ を使えば解析解もそのまま：", color=WHITE, font_size=28),
                     MathTex(
                         r"\hat{\mathbf{w}} = (\Phi^\top \Phi)^{-1} \Phi^\top \mathbf{y}",
-                        color=YELLOW, font_size=24
+                        color=YELLOW, font_size=30
                     ),
-                    Text("（X → Φ に置き換えるだけ！）", color=GREEN, font_size=21, weight=BOLD),
+                    Text("（X → Φ に置き換えるだけ！）", color=GREEN, font_size=26, weight=BOLD),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
