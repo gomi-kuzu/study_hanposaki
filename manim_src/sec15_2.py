@@ -251,12 +251,12 @@ class PolynomialRegression(Scene):
             Line(LEFT * 5, RIGHT * 5, color=GRAY, stroke_width=1),
             VGroup(
                 Text("1", color=WHITE, font_size=21),
-                MathTex(r"\mathbf{w}", color=YELLOW, font_size=23),
+                MathTex(r"\mathbf{w}", color=YELLOW, font_size=26),
                 Text("パラメータに線形なモデル", color=GREEN, font_size=21),
             ).arrange(RIGHT, buff=0.6),
             VGroup(
                 Text("2", color=WHITE, font_size=21),
-                MathTex(r"\boldsymbol{\phi}(x)", color=TEAL, font_size=23),
+                MathTex(r"\boldsymbol{\phi}(x)", color=TEAL, font_size=26),
                 Text("特徴量に線形なモデル", color=TEAL, font_size=21),
             ).arrange(RIGHT, buff=0.6),
         ).arrange(DOWN, buff=0.22, aligned_edge=LEFT)
@@ -344,7 +344,7 @@ class PolynomialRegression(Scene):
         self.wait(0.4)
 
         x_replace_note = VGroup(
-            Text("前の動画の", color=WHITE, font_size=24),
+            Text("※前の動画の", color=WHITE, font_size=24),
             MathTex(r"X", color=TEAL, font_size=30),
             Text("が", color=WHITE, font_size=24),
             MathTex(r"\Phi", color=YELLOW, font_size=30),
