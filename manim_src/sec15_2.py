@@ -14,7 +14,7 @@ class PolynomialRegression(Scene):
         # ============================================================
         # Part 1: 動機 ── 直線では合わないデータ
         # ============================================================
-        subtitle1 = Text("直線回帰の限界：曲がったデータへの対応", font_size=28, color=BLUE)
+        subtitle1 = Text("直線回帰の限界：直線では表現できないデータへの対応", font_size=28, color=BLUE)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.4)
