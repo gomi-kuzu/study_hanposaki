@@ -26,7 +26,7 @@
 ## 15.1
 ### 線型回帰と最小二乗法の話
 
-<div><video controls src="https://github.com/user-attachments/assets/9c292102-268d-4abe-aa01-5505797a9f8f"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/199be0a9-4ea9-453f-80e3-4a3c6afbe3ac"></video></div>
 
 ### 誤差関数のアート性の話
 
@@ -35,7 +35,7 @@
 ## 15.2
 ### 線型回帰の”線形”の意味
 
-<div><video controls src="https://github.com/user-attachments/assets/9f71d347-bf15-485f-909a-8edc5c4fdf00"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/abd5fad1-5aaf-40ca-ae05-9a1e0f4d3448"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
 
