@@ -349,7 +349,7 @@ class RegressionAndCost(Scene):
 
         cost_name_list = VGroup(
             VGroup(Text("● コスト関数 (cost function)", color=ORANGE, font_size=23)).arrange(RIGHT, buff=0.2),
-            VGroup(Text("● 誤差関数 (error function)", color=ORANGE, font_size=23)).arrange(RIGHT, buff=0.2),
+            VGroup(Text("● 誤差関数 (loss function)", color=ORANGE, font_size=23)).arrange(RIGHT, buff=0.2),
             VGroup(Text("● 目的関数 (objective function)", color=ORANGE, font_size=23)).arrange(RIGHT, buff=0.2),
         ).arrange(DOWN, buff=0.18, aligned_edge=LEFT)
         # cost_name_list.shift(UP * 0.2)
