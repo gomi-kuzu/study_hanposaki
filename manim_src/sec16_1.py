@@ -284,7 +284,7 @@ class OverfittingAndRank(Scene):
         self.wait(0.5)
 
         fullrank_stmt = VGroup(
-            Text("D×D 行列はランクが D（", color=WHITE, font_size=25),
+            Text("m×m 行列はランクが m（", color=WHITE, font_size=25),
             Text("フルランク", color=GREEN, font_size=25, weight=BOLD),
             Text("）のとき、かつそのときに限り逆行列をもつ", color=WHITE, font_size=25),
         ).arrange(RIGHT, buff=0.08)
@@ -325,6 +325,14 @@ class OverfittingAndRank(Scene):
         )
         x_col_def.shift(UP * 0.9)
         self.play(Write(x_col_def), run_time=0.6)
+        x_dim = VGroup(
+            Text("ここで", color=WHITE, font_size=22),
+            MathTex(r"X \in \mathbb{R}^{N \times (D+1)}", color=TEAL, font_size=28),
+            Text("なので", color=WHITE, font_size=22),
+            MathTex(r"X^\top X \in \mathbb{R}^{(D+1) \times (D+1)}", color=YELLOW, font_size=28),
+        ).arrange(RIGHT, buff=0.12)
+        x_dim.shift(UP * 0.5)
+        self.play(Write(x_dim), run_time=0.6)
         self.wait(0.3)
 
         xtx_text = VGroup(
@@ -333,7 +341,7 @@ class OverfittingAndRank(Scene):
             MathTex(r"(d, d')", color=YELLOW, font_size=30),
             Text("成分を書き下すと：", color=WHITE, font_size=24)
         ).arrange(RIGHT, buff=0.1)
-        xtx_text.shift(UP * 0.1)
+        xtx_text.shift(DOWN * 0.05)
         self.play(Write(xtx_text), run_time=0.5)
         self.wait(0.2)
 
@@ -375,6 +383,7 @@ class OverfittingAndRank(Scene):
 
         self.play(
             FadeOut(x_col_text), FadeOut(x_col_def),
+            FadeOut(x_dim),
             FadeOut(xtx_text), FadeOut(xtx_matrix), FadeOut(xtx_comp_group),
         )
         self.wait(0.2)
@@ -523,7 +532,7 @@ class OverfittingAndRank(Scene):
                 Text("3.", color=GOLD, font_size=26, weight=BOLD),
                 VGroup(
                     Text("行列のランク＝本質的な情報の数（1次独立な行／列の数）", color=WHITE, font_size=28),
-                    Text("D×D 行列はフルランクのときのみ逆行列をもつ", color=TEAL, font_size=28),
+                    Text("m×m 行列はフルランクのときのみ逆行列をもつ", color=TEAL, font_size=28),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
