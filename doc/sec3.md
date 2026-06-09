@@ -37,5 +37,23 @@
 
 <div><video controls src="https://github.com/user-attachments/assets/abd5fad1-5aaf-40ca-ae05-9a1e0f4d3448"></video></div>
 
+
+# 第16話
+## 16.1
+### ああ
+
+<div><video controls src="https://github.com/user-attachments/assets/22ad9c6f-b35a-4838-9d62-f46e387be11d"></video></div>
+
+## 16.2
+
+### a
+<div><video controls src=""></video></div>
+
+### a
+<div><video controls src=""></video></div>
+
+### おまけ：ロボティクスにおける最小二乗法の一例
+
+
 <!-- <div><video controls src=""></video></div> -->
 
