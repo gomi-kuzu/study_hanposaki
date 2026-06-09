@@ -8,7 +8,7 @@ class OverfittingAndRank(Scene):
         self.camera.background_color = "#012817"
 
         # タイトル
-        title = Text("手元のデータがすべてではない", font_size=32, color=WHITE)
+        title = Text("最小二乗法の諸問題", font_size=32, color=WHITE)
         title.to_edge(UP)
         self.play(Write(title), run_time=0.8)
         self.wait(0.8)
@@ -156,7 +156,7 @@ class OverfittingAndRank(Scene):
         # ============================================================
         # Part 3: X^TXの逆行列問題
         # ============================================================
-        subtitle3 = Text("最小二乗法のもう一つの問題：逆行列が存在しない場合", font_size=24, color=TEAL)
+        subtitle3 = Text("もう一つの問題：逆行列が存在しない場合", font_size=28, color=TEAL)
         subtitle3.next_to(title, DOWN)
         self.play(Write(subtitle3), run_time=0.6)
         self.wait(0.4)
@@ -240,7 +240,7 @@ class OverfittingAndRank(Scene):
 
         # 具体例：4×5行列
         example_label = Text("具体例（4×5 行列）：", color=WHITE, font_size=23)
-        example_label.shift(UP * 0.2 + LEFT * 3.8)
+        example_label.shift(UP * 0.2 + LEFT * 5.0)
         self.play(Write(example_label), run_time=0.4)
 
         mat_vals = [
@@ -251,11 +251,11 @@ class OverfittingAndRank(Scene):
         ]
         mat_mob = Matrix(
             mat_vals,
-            element_to_mobject_config={"font_size": 26},
+            element_to_mobject_config={"font_size": 28},
             h_buff=0.9,
         )
         mat_mob.scale(0.88)
-        mat_mob.shift(DOWN * 0.8 + LEFT * 1.8)
+        mat_mob.shift(DOWN * 0.8 + LEFT )
         self.play(Write(mat_mob), run_time=0.8)
         self.wait(0.3)
 
@@ -266,13 +266,13 @@ class OverfittingAndRank(Scene):
         self.play(Create(row1_rect), Create(row3_rect), run_time=0.5)
         self.wait(0.2)
 
-        same_note = Text("1行目と3行目が同じ！\n→ 3行目は独立な情報を持たない", color=TEAL, font_size=22)
+        same_note = Text("1行目と3行目が同じ！\n→ 独立な情報は3行分しかない", color=TEAL, font_size=22)
         same_note.next_to(mat_mob, RIGHT, buff=0.5)
         self.play(Write(same_note), run_time=0.5)
         self.wait(0.4)
 
-        rank_result = Text("独立な行は 1行目, 2行目, 4行目 の 3本", color=WHITE, font_size=24)
-        rank_result.shift(DOWN * 2.0 + LEFT * 0.5)
+        rank_result = Text("独立な行は 1or3行目, 2行目, 4行目 の 合計3本", color=WHITE, font_size=24)
+        rank_result.shift(DOWN * 2.5 + LEFT * 0.5)
         rank_result2 = VGroup(
             Text("→ この行列のランク ＝ ", color=WHITE, font_size=26),
             Text("3", color=GREEN, font_size=32, weight=BOLD),
@@ -288,7 +288,7 @@ class OverfittingAndRank(Scene):
             Text("フルランク", color=GREEN, font_size=25, weight=BOLD),
             Text("）のとき、かつそのときに限り逆行列をもつ", color=WHITE, font_size=25),
         ).arrange(RIGHT, buff=0.08)
-        fullrank_stmt.shift(DOWN * 2.95)
+        fullrank_stmt.shift(DOWN * 3.5)
         fullrank_box = SurroundingRectangle(fullrank_stmt, color=GREEN, buff=0.12)
         self.play(Write(fullrank_stmt), Create(fullrank_box), run_time=0.7)
         self.wait(1.5)
@@ -314,7 +314,7 @@ class OverfittingAndRank(Scene):
         self.wait(0.4)
 
         # X を列ベクトルで書き直す
-        x_col_text = Text("データ行列 X を列ベクトルで書き直すと：", color=WHITE, font_size=24)
+        x_col_text = Text("データ行列 X を列ベクトルで書き直すと：", color=WHITE, font_size=26)
         x_col_text.shift(UP * 1.7)
         self.play(Write(x_col_text), run_time=0.5)
         self.wait(0.2)
@@ -365,9 +365,9 @@ class OverfittingAndRank(Scene):
             r"\tilde{\mathbf{x}}_D^\top \tilde{\mathbf{x}}_2 & \cdots & "
             r"\tilde{\mathbf{x}}_D^\top \tilde{\mathbf{x}}_D"
             r"\end{bmatrix}",
-            color=WHITE, font_size=24
+            color=WHITE, font_size=30
         )
-        xtx_matrix.shift(DOWN * 1.2)
+        xtx_matrix.shift(DOWN * 1.4)
 
         xtx_comp_label = Text("すなわち：", color=YELLOW, font_size=22)
         xtx_comp = MathTex(
@@ -375,7 +375,7 @@ class OverfittingAndRank(Scene):
             color=YELLOW, font_size=26
         )
         xtx_comp_group = VGroup(xtx_comp_label, xtx_comp).arrange(RIGHT, buff=0.15)
-        xtx_comp_group.shift(DOWN * 2.85)
+        xtx_comp_group.shift(DOWN * 2.9)
 
         self.play(Write(xtx_matrix), run_time=0.9)
         self.play(Write(xtx_comp_group), run_time=0.6)
@@ -397,7 +397,7 @@ class OverfittingAndRank(Scene):
         # Case 1
         case1_label = Text("【ケース1】", color=TEAL, font_size=26, weight=BOLD)
         case1_label.shift(UP * 1.0 + LEFT * 4.5)
-        case1_eq = MathTex(r"\tilde{\mathbf{x}}_1 = \tilde{\mathbf{x}}_2", color=TEAL, font_size=30)
+        case1_eq = MathTex(r"\tilde{\mathbf{x}}_1 = \tilde{\mathbf{x}}_2", color=TEAL, font_size=32)
         case1_eq.next_to(case1_label, RIGHT, buff=0.2)
         self.play(Write(case1_label), Write(case1_eq), run_time=0.5)
         self.wait(0.2)
@@ -406,14 +406,15 @@ class OverfittingAndRank(Scene):
             r"(X^\top X)_{1,\,d'} = \tilde{\mathbf{x}}_1^\top \tilde{\mathbf{x}}_{d'}"
             r"= \tilde{\mathbf{x}}_2^\top \tilde{\mathbf{x}}_{d'}"
             r"= (X^\top X)_{2,\,d'}",
-            color=TEAL, font_size=24
+            color=TEAL, font_size=30
         )
         case1_result_tex.shift(UP * 0.2)
         self.play(Write(case1_result_tex), run_time=0.7)
         self.wait(0.3)
 
         case1_conclude = VGroup(
-            Text("→ X^TX の2行目と3行目が完全一致", color=WHITE, font_size=24),
+            MathTex(r"(X^\top X)",color=WHITE, font_size=26),
+            Text("→ の2行目と3行目が完全一致", color=WHITE, font_size=24),
             Text("→ ランクが落ちて逆行列を持たない！", color=RED, font_size=24, weight=BOLD),
         ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
         case1_conclude.shift(DOWN * 0.7)
@@ -423,14 +424,14 @@ class OverfittingAndRank(Scene):
         # Case 2
         case2_label = Text("【ケース2】", color=ORANGE, font_size=26, weight=BOLD)
         case2_label.shift(DOWN * 1.6 + LEFT * 4.5)
-        case2_eq = MathTex(r"\tilde{\mathbf{x}}_1 = 4\,\tilde{\mathbf{x}}_2", color=ORANGE, font_size=30)
+        case2_eq = MathTex(r"\tilde{\mathbf{x}}_1 = 4\,\tilde{\mathbf{x}}_2", color=ORANGE, font_size=32)
         case2_eq.next_to(case2_label, RIGHT, buff=0.2)
         self.play(Write(case2_label), Write(case2_eq), run_time=0.5)
         self.wait(0.2)
 
         case2_note = Text(
             "→ 1次従属なので、やはりランクが落ちて逆行列を持たない",
-            color=ORANGE, font_size=22
+            color=ORANGE, font_size=24
         )
         case2_note.shift(DOWN * 2.2)
         self.play(Write(case2_note), run_time=0.5)
@@ -484,13 +485,13 @@ class OverfittingAndRank(Scene):
 
         # 数値的不安定性への言及
         instab = VGroup(
-            Text("● ", color=GRAY, font_size=22),
+            Text("● ", color=GRAY, font_size=24),
             Text("実際の計算では全く同じ列ベクトルが現れることは少ないが、", color=WHITE, font_size=23),
         ).arrange(RIGHT, buff=0.05)
         instab.shift(DOWN * 1.1)
         instab2 = VGroup(
-            Text("    ", font_size=22),
-            Text("似ているベクトルが存在するだけでも計算が不安定になる場合がある", color=YELLOW, font_size=23),
+            Text("    ", font_size=24),
+            Text("似ているベクトルが存在するだけでも計算が不安定になる場合がある", color=YELLOW, font_size=24),
         ).arrange(RIGHT, buff=0.05)
         instab2.next_to(instab, DOWN, buff=0.08).align_to(instab, LEFT)
         self.play(Write(instab), run_time=0.5)
@@ -532,7 +533,7 @@ class OverfittingAndRank(Scene):
                 Text("3.", color=GOLD, font_size=26, weight=BOLD),
                 VGroup(
                     Text("行列のランク＝本質的な情報の数（1次独立な行／列の数）", color=WHITE, font_size=28),
-                    Text("m×m 行列はフルランクのときのみ逆行列をもつ", color=TEAL, font_size=28),
+                    Text("正方行列はフルランクのときのみ逆行列をもつ", color=TEAL, font_size=28),
                 ).arrange(DOWN, buff=0.08, aligned_edge=LEFT),
             ).arrange(RIGHT, buff=0.3, aligned_edge=UP),
             VGroup(
