@@ -53,7 +53,7 @@ class OverfittingAndRank(Scene):
         label_l = Text("4次多項式モデル", font_size=21, color=YELLOW)
         label_l.next_to(ax_l, UP, buff=0.1)
         label_r = Text("13次多項式モデル", font_size=21, color=RED)
-        label_r.next_to(ax_r, UP, buff=0.1)
+        label_r.next_to(ax_r, UP+RIGHT*0.02, buff=0.1)
 
         dots_l = VGroup(*[
             Dot(ax_l.c2p(x, y), color=ORANGE, radius=0.08)
