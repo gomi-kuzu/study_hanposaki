@@ -42,6 +42,11 @@
 "></video></div>
 
 - "注目している"空間を表現するのに必定十分な線形独立のベクトルが基底
+
+### おまけ：ロボティクスとの関連
+
+作業空間を$`\mathcal{P}`$、関節空間を$`\mathcal{Q}`$とし、$`\boldsymbol{p}\in\mathcal{P},\boldsymbol{q}\in\mathcal{Q}`$とする。
+
 ## 2.2
 ### 座標ってなんだって話
 <div><video controls src="https://github.com/user-attachments/assets/db7ddbe9-a834-4d06-a9df-aa5bc3d5862b"></video></div>
