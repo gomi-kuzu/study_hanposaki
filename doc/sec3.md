@@ -55,6 +55,15 @@
 
 ### おまけ：ロボティクスにおける最小二乗法の一例
 
+[1部のおまけ](https://github.com/gomi-kuzu/study_hanposaki/blob/main/doc/sec1.md#%E3%81%8A%E3%81%BE%E3%81%91%E3%83%AD%E3%83%9C%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9%E3%81%A8%E3%81%AE%E9%96%A2%E9%80%A3)で出てきたヤコビ行列に関してもう少し考える
+
+<img width="1001" height="205" alt="image" src="https://github.com/user-attachments/assets/a08bee73-ba69-48dc-a68c-08adb32b9814" />
+<img width="1078" height="528" alt="image" src="https://github.com/user-attachments/assets/75455281-bd01-4ef5-8582-ff228ca65a40" />
+<img width="1067" height="521" alt="image" src="https://github.com/user-attachments/assets/e69b4086-36c1-40d7-bc8c-e4a2261d1b7e" />
+<img width="1050" height="493" alt="image" src="https://github.com/user-attachments/assets/71956958-b7cb-4bfd-b48b-a91edfa7a34c" />
+<img width="1077" height="159" alt="image" src="https://github.com/user-attachments/assets/664b3587-5d51-4a59-9219-fe2caa6caf99" />
+<img width="795" height="563" alt="image" src="https://github.com/user-attachments/assets/1d8953fe-218d-4d5d-ad1d-e1466a0614c7" />
+
 
 <!-- <div><video controls src=""></video></div> -->
 
