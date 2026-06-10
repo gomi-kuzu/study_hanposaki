@@ -45,7 +45,14 @@
 
 ### おまけ：ロボティクスとの関連
 
-作業空間を$`\mathcal{P}`$、関節空間を$`\mathcal{Q}`$とし、$`\boldsymbol{p}\in\mathcal{P},\boldsymbol{q}\in\mathcal{Q}`$とする。
+<img width="1082" height="411" alt="image" src="https://github.com/user-attachments/assets/ffb28d19-130c-4333-82ff-6c2b2fae6efa" />
+<img width="1127" height="212" alt="image" src="https://github.com/user-attachments/assets/394051e9-e70d-4c0f-be24-044fc69db831" />
+<img width="1072" height="475" alt="image" src="https://github.com/user-attachments/assets/eebbf8bd-909c-4434-bbd1-07d91049d82b" />
+<img width="1114" height="319" alt="image" src="https://github.com/user-attachments/assets/1313f4fe-1782-45ce-a595-a3a4c52855ee" />
+<img width="1109" height="608" alt="image" src="https://github.com/user-attachments/assets/f10e1a03-f669-4fa8-90e6-41332f37f241" />
+<img width="1167" height="579" alt="image" src="https://github.com/user-attachments/assets/6d6d2ec7-2eb8-4f5d-a443-02bc9c0f4825" />
+<img width="1056" height="237" alt="image" src="https://github.com/user-attachments/assets/79ee5714-16f5-4409-ae14-d4ba4e4a363a" />
+
 
 ## 2.2
 ### 座標ってなんだって話
