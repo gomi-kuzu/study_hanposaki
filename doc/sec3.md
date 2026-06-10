@@ -40,17 +40,18 @@
 
 # 第16話
 ## 16.1
-### ああ
+### 過学習とか非正則とか、最小二乗法やるときにある問題の話
 
-<div><video controls src="https://github.com/user-attachments/assets/22ad9c6f-b35a-4838-9d62-f46e387be11d"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/d2426cf6-3776-437b-8c69-a0eec2b1ecc1"></video></div>
 
 ## 16.2
+### 標準化、中心化、正規化、前処理の話
 
-### a
-<div><video controls src=""></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/2993fff5-c6e7-4791-ab76-e1ba701afe5d"></video></div>
 
-### a
-<div><video controls src=""></video></div>
+### リッジ回帰、ラッソ回帰、正則化の話
+
+<div><video controls src="https://github.com/user-attachments/assets/5f369b0a-33de-45fc-ae33-2236723e2157"></video></div>
 
 ### おまけ：ロボティクスにおける最小二乗法の一例
 
