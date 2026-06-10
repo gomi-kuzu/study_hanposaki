@@ -64,6 +64,8 @@
 <img width="1077" height="159" alt="image" src="https://github.com/user-attachments/assets/664b3587-5d51-4a59-9219-fe2caa6caf99" />
 <img width="795" height="563" alt="image" src="https://github.com/user-attachments/assets/1d8953fe-218d-4d5d-ad1d-e1466a0614c7" />
 
+特異点回避方法については、[コチラ](https://github.com/gomi-kuzu/three_d_mouse_leader/blob/main/README.md#%E7%89%B9%E7%95%B0%E7%82%B9%E5%9B%9E%E9%81%BF-damped-least-squares)を参照
+
 
 <!-- <div><video controls src=""></video></div> -->
 
