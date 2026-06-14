@@ -201,7 +201,10 @@ class AxisForSeparability(Scene):
         )
         mean_vec.shift(UP * 1.9 + RIGHT * 2.0)
 
-        centered_label = Text("特徴量ごとに中心化：~X = X - 1\mu", color=WHITE, font_size=24)
+        centered_label =VGroup(
+        Text("特徴量ごとに中心化：", color=WHITE, font_size=24),
+        MathTex(r"\tilde{X}=X-\mu", color=ORANGE, font_size=30),
+        ).arrange(RIGHT, buff=0.3, aligned_edge=UP)
         centered_label.shift(UP * 1.3 + RIGHT * 2.0)
 
         xt_mat = MathTex(
@@ -462,11 +465,11 @@ class AxisForSeparability(Scene):
         summary = VGroup(
             Text("1. 軸を変えると特徴を捉えやすくなることがある", color=WHITE, font_size=28),
             Text("2. 新軸は z = Wx（元変数の線形結合）で作れる", color=WHITE, font_size=28),
-            Text("3. SVD: X=UΣV^T（この動画は N×R, R×R, R×D の分解）", color=WHITE, font_size=28),
+            Text("3. 特異値分解は行列を3つの行列に分解する手法", color=WHITE, font_size=28),
             Text("4. 特異値が偏ると、少数軸で特徴を表現しやすい", color=WHITE, font_size=28),
             Text("5. 特異値分解と主成分分析は密接な関係がある", color=GREEN, font_size=28),
             Text("主成分分析の話は第18話でもう一度扱う", color=ORANGE, font_size=25),
-        ).arrange(DOWN, buff=0.18, aligned_edge=LEFT)
+        ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         summary.scale(0.85)
         summary.shift(DOWN * 0.45)
 
