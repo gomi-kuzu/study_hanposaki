@@ -370,7 +370,7 @@ class LowRankApproximation(Scene):
                 color=ORANGE, font_size=26,
             ),
             Text(
-                "射影 → スケール（σᵣ）→ 別の方向（|uᵣ⟩）に配置、という流れが見える",
+                "射影 (⟨vᵣ|) → スケール（σᵣ）→ 別の方向に配置、という流れが見える",
                 color=WHITE, font_size=24,
             ),
         ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
