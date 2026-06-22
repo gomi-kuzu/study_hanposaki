@@ -89,7 +89,7 @@ class AxisForSeparability(Scene):
         z2_label.next_to(z2_axis.get_end(), UL, buff=0.05)
 
         axis_note = VGroup(
-            Text("たとえば、", color=WHITE, font_size=23),
+            Text("←たとえば、", color=WHITE, font_size=23),
             Text("データに沿って新第1軸を", color=TEAL, font_size=23),
             Text("その直交方向に新第2軸を", color=ORANGE, font_size=23),
         ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
@@ -118,19 +118,18 @@ class AxisForSeparability(Scene):
             MathTex(r"z_1 = w_{11}x_1 + w_{12}x_2", color=TEAL, font_size=42),
             MathTex(r"z_2 = w_{21}x_1 + w_{22}x_2", color=ORANGE, font_size=42),
         ).arrange(DOWN, buff=0.28, aligned_edge=LEFT)
-        transform_eqs.shift(UP * 0.2)
+        transform_eqs.shift(UP * 1.2)
 
         transform_note = VGroup(
-            Text("係数 w をどう選ぶかで、", color=WHITE, font_size=25),
-            Text("『区別しやすい軸』が得られるかが決まる", color=YELLOW, font_size=25),
+            Text("係数wをどう選ぶかで、『区別しやすい軸』が得られるかが決まる", color=YELLOW, font_size=25),
         ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
-        transform_note.shift(DOWN * 1.6)
+        transform_note.shift(DOWN * 0.1)
 
         pca_note = VGroup(
             Text("この係数を " + "データを区別しやすいように" + " 決めるのが主成分分析", color=GREEN, font_size=24),
             Text("主成分分析の本格的な話は第18話で扱う", color=GRAY_B, font_size=22),
-        ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
-        pca_note.shift(DOWN * 2.55)
+        ).arrange(DOWN, buff=0.5, aligned_edge=LEFT)
+        pca_note.shift(DOWN)
 
         self.play(Write(transform_eqs), run_time=0.8)
         self.play(Write(transform_note), run_time=0.6)
@@ -154,7 +153,7 @@ class AxisForSeparability(Scene):
         shape_note = VGroup(
             MathTex(r"X\in\mathbb{R}^{N\times D}", color=WHITE, font_size=32),
             MathTex(r"U\in\mathbb{R}^{N\times R},\ \Sigma\in\mathbb{R}^{R\times R},\ V^{\top}\in\mathbb{R}^{R\times D}", color=TEAL, font_size=30),
-            Text("この動画ではコンパクトSVD（N×R, R×R, R×D）で説明", color=WHITE, font_size=24),
+            Text("※この動画ではコンパクトな（N×R, R×R, R×D）で説明", color=WHITE, font_size=24),
         ).arrange(DOWN, buff=0.14, aligned_edge=LEFT)
         shape_note.shift(DOWN * 0.25)
 
@@ -192,12 +191,12 @@ class AxisForSeparability(Scene):
             color=WHITE,
             font_size=34,
         )
-        x_mat.shift(UP * 0.85 + LEFT * 3.5)
+        x_mat.shift(UP * 0.1 + LEFT * 3.5)
 
         mean_vec = MathTex(
             r"\mu=\left[4.8,\ 4.4,\ 4.6,\ 3.4\right]",
             color=YELLOW,
-            font_size=30,
+            font_size=32,
         )
         mean_vec.shift(UP * 1.9 + RIGHT * 2.0)
 
@@ -216,105 +215,112 @@ class AxisForSeparability(Scene):
             r"-4.8&-4.4&-4.6&4.6"
             r"\end{bmatrix}",
             color=TEAL,
-            font_size=27,
+            font_size=32,
         )
-        xt_mat.shift(DOWN * 0.5 + RIGHT * 2.0)
+        xt_mat.shift(DOWN * 0.8 + RIGHT * 2.0)
 
         self.play(Write(x_label), Write(x_mat), run_time=0.8)
         self.play(Write(mean_vec), Write(centered_label), run_time=0.7)
         self.play(Write(xt_mat), run_time=0.9)
         self.wait(0.8)
 
-        svd_small = MathTex(r"\tilde{X}=\tilde{U}\tilde{\Sigma}\tilde{V}^{\top}", color=YELLOW, font_size=38)
-        svd_small.shift(DOWN * 2.55)
+        svd_small = VGroup(
+            Text("これを", color=WHITE, font_size=28),
+            MathTex(r"\tilde{X}=\tilde{U}\tilde{\Sigma}\tilde{V}^{\top}", color=YELLOW, font_size=34),
+                Text("と特異値分解する", color=WHITE, font_size=28),
+        ).arrange(RIGHT, buff=0.2, aligned_edge=UP)
+        svd_small.shift(DOWN * 2.3)
         self.play(Write(svd_small), run_time=0.6)
         self.wait(1.5)
 
-        self.play(FadeOut(x_label), FadeOut(x_mat), FadeOut(mean_vec), FadeOut(centered_label), FadeOut(xt_mat), FadeOut(svd_small))
+        self.play(FadeOut(x_label), FadeOut(x_mat), FadeOut(mean_vec), FadeOut(centered_label), FadeOut(xt_mat), FadeOut(svd_small), FadeOut(subtitle4))
         self.wait(0.3)
 
         # ============================================================
         # Part 4b: 分解行列の成分表示（U, Σ, V^T を横並び）
         # ============================================================
-        subtitle4b = Text("分解された各行列の成分", font_size=28, color=TEAL)
-        subtitle4b.next_to(title, DOWN)
-        self.play(ReplacementTransform(subtitle4, subtitle4b), run_time=0.5)
+        # subtitle4b = Text("分解された各行列の成分", font_size=28, color=TEAL)
+        # subtitle4b.next_to(title, DOWN)
+        # self.play(ReplacementTransform(subtitle4, subtitle4b), run_time=0.5)
 
-        u_label_tex = MathTex(r"\tilde{U}\;(5\times 4)", color=TEAL, font_size=24)
-        u_label_tex.shift(UP * 2.05 + LEFT * 4.6)
-        u_mat_tex = MathTex(
-            r"\begin{bmatrix}"
-            r"-0.318 &  0.474 & -0.672 &  0.153 \\\\"
-            r"-0.370 & -0.773 & -0.123 & -0.223 \\\\"
-            r"-0.405 &  0.313 &  0.729 &  0.081 \\\\"
-            r" 0.550 & -0.206 &  0.046 &  0.673 \\\\"
-            r" 0.543 &  0.192 &  0.021 & -0.684"
-            r"\end{bmatrix}",
-            color=TEAL,
-            font_size=18,
-        )
-        u_mat_tex.shift(UP * 0.42 + LEFT * 4.6)
+        # u_label_tex = MathTex(r"\tilde{U}\;(5\times 4)", color=TEAL, font_size=24)
+        # u_label_tex.shift(UP * 2.05 + LEFT * 4.6)
+        # u_mat_tex = MathTex(
+        #     r"\begin{bmatrix}"
+        #     r"-0.318 &  0.474 & -0.672 &  0.153 \\\\"
+        #     r"-0.370 & -0.773 & -0.123 & -0.223 \\\\"
+        #     r"-0.405 &  0.313 &  0.729 &  0.081 \\\\"
+        #     r" 0.550 & -0.206 &  0.046 &  0.673 \\\\"
+        #     r" 0.543 &  0.192 &  0.021 & -0.684"
+        #     r"\end{bmatrix}",
+        #     color=TEAL,
+        #     font_size=26,
+        # )
+        # u_mat_tex.shift(UP * 0.42 + LEFT * 4.6)
 
-        sigma_label_tex = MathTex(r"\tilde{\Sigma}\;(4\times 4)", color=ORANGE, font_size=24)
-        sigma_label_tex.shift(UP * 2.05)
-        sigma_mat_tex = MathTex(
-            r"\begin{bmatrix}"
-            r"16.887 & 0 & 0 & 0 \\\\"
-            r"0 & 1.736 & 0 & 0 \\\\"
-            r"0 & 0 & 1.179 & 0 \\\\"
-            r"0 & 0 & 0 & 0.906"
-            r"\end{bmatrix}",
-            color=ORANGE,
-            font_size=18,
-        )
-        sigma_mat_tex.shift(UP * 0.42)
+        # sigma_label_tex = MathTex(r"\tilde{\Sigma}\;(4\times 4)", color=ORANGE, font_size=24)
+        # sigma_label_tex.shift(UP * 2.05)
+        # sigma_mat_tex = MathTex(
+        #     r"\begin{bmatrix}"
+        #     r"16.887 & 0 & 0 & 0 \\\\"
+        #     r"0 & 1.736 & 0 & 0 \\\\"
+        #     r"0 & 0 & 1.179 & 0 \\\\"
+        #     r"0 & 0 & 0 & 0.906"
+        #     r"\end{bmatrix}",
+        #     color=ORANGE,
+        #     font_size=26,
+        # )
+        # sigma_mat_tex.shift(UP * 0.42)
 
-        vt_label_tex = MathTex(r"\tilde{V}^{\top}\;(4\times 4)", color=GREEN_B, font_size=24)
-        vt_label_tex.shift(UP * 2.05 + RIGHT * 4.6)
-        vt_mat_tex = MathTex(
-            r"\begin{bmatrix}"
-            r"-0.520 & -0.480 & -0.443 &  0.550 \\\\"
-            r" 0.689 & -0.483 & -0.509 & -0.181 \\\\"
-            r" 0.272 &  0.689 & -0.460 &  0.489 \\\\"
-            r" 0.426 & -0.246 &  0.577 &  0.652"
-            r"\end{bmatrix}",
-            color=GREEN_B,
-            font_size=18,
-        )
-        vt_mat_tex.shift(UP * 0.42 + RIGHT * 4.6)
+        # vt_label_tex = MathTex(r"\tilde{V}^{\top}\;(4\times 4)", color=GREEN_B, font_size=24)
+        # vt_label_tex.shift(UP * 2.05 + RIGHT * 4.6)
+        # vt_mat_tex = MathTex(
+        #     r"\begin{bmatrix}"
+        #     r"-0.520 & -0.480 & -0.443 &  0.550 \\\\"
+        #     r" 0.689 & -0.483 & -0.509 & -0.181 \\\\"
+        #     r" 0.272 &  0.689 & -0.460 &  0.489 \\\\"
+        #     r" 0.426 & -0.246 &  0.577 &  0.652"
+        #     r"\end{bmatrix}",
+        #     color=GREEN_B,
+        #     font_size=26,
+        # )
+        # vt_mat_tex.shift(UP * 0.42 + RIGHT * 4.6)
 
-        vt_note = Text(
-            "V^T の各行が新しい軸の方向ベクトル（第1行が第1主成分方向）",
-            color=WHITE, font_size=22,
-        )
-        vt_note.shift(DOWN * 1.85)
+        # vt_note = VGroup(
+        #     MathTex(r"\tilde{V}^{\top}", color=WHITE, font_size=30),
+        #     Text(
+        #     "の各行が新しい軸の方向ベクトル（第1行が第1主成分方向）",
+        #     color=WHITE, font_size=26,
+        # )).arrange(RIGHT, buff=0.12, aligned_edge=LEFT)
+        # vt_note.shift(DOWN * 1.85)
 
-        self.play(
-            Write(u_label_tex), Write(u_mat_tex),
-            Write(sigma_label_tex), Write(sigma_mat_tex),
-            Write(vt_label_tex), Write(vt_mat_tex),
-            run_time=1.3,
-        )
-        self.play(Write(vt_note), run_time=0.6)
-        self.wait(1.5)
+        # self.play(
+        #     Write(u_label_tex), Write(u_mat_tex),
+        #     Write(sigma_label_tex), Write(sigma_mat_tex),
+        #     Write(vt_label_tex), Write(vt_mat_tex),
+        #     run_time=1.3,
+        # )
+        # self.play(Write(vt_note), run_time=0.6)
+        # self.wait(1.5)
 
-        self.play(
-            FadeOut(u_label_tex), FadeOut(u_mat_tex),
-            FadeOut(sigma_label_tex), FadeOut(sigma_mat_tex),
-            FadeOut(vt_label_tex), FadeOut(vt_mat_tex),
-            FadeOut(vt_note), FadeOut(subtitle4b),
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(u_label_tex), FadeOut(u_mat_tex),
+        #     FadeOut(sigma_label_tex), FadeOut(sigma_mat_tex),
+        #     FadeOut(vt_label_tex), FadeOut(vt_mat_tex),
+        #     FadeOut(vt_note), FadeOut(subtitle4b),
+        # )
+        # self.wait(0.3)
 
         # ============================================================
         # Part 5: SVDの結果からPCAの意味を読み解く（行列を再表示してハイライト）
         # ============================================================
-        subtitle5 = Text("SVDの結果からPCAの意味を読み解く", font_size=28, color=BLUE)
+        subtitle5 = Text("SVDとPCAの関連性", font_size=28, color=BLUE)
         subtitle5.next_to(title, DOWN)
         self.play(Write(subtitle5), run_time=0.6)
+        # self.play(ReplacementTransform(subtitle4, subtitle5), run_time=0.5)
 
-        # 行列を画面上部に再表示（コンパクト）
-        u5_label = MathTex(r"\tilde{U}", color=TEAL, font_size=20)
+
+        u5_label = MathTex(r"\tilde{U}", color=TEAL, font_size=32)
         u5_label.shift(UP * 2.1 + LEFT * 4.7)
         u5_mat = MathTex(
             r"\begin{bmatrix}"
@@ -324,11 +330,11 @@ class AxisForSeparability(Scene):
             r" 0.550 & -0.206 &  0.046 &  0.673 \\"
             r" 0.543 &  0.192 &  0.021 & -0.684"
             r"\end{bmatrix}",
-            color=TEAL, font_size=15,
+            color=TEAL, font_size=28,
         )
         u5_mat.next_to(u5_label, DOWN, buff=0.06)
 
-        sig5_label = MathTex(r"\tilde{\Sigma}", color=ORANGE, font_size=20)
+        sig5_label = MathTex(r"\tilde{\Sigma}", color=ORANGE, font_size=32)
         sig5_label.shift(UP * 2.1)
         sig5_mat = MathTex(
             r"\begin{bmatrix}"
@@ -337,11 +343,11 @@ class AxisForSeparability(Scene):
             r"0 & 0 & 1.179 & 0 \\"
             r"0 & 0 & 0 & 0.906"
             r"\end{bmatrix}",
-            color=ORANGE, font_size=15,
+            color=ORANGE, font_size=28,
         )
         sig5_mat.next_to(sig5_label, DOWN, buff=0.06)
 
-        vt5_label = MathTex(r"\tilde{V}^{\top}", color=GREEN_B, font_size=20)
+        vt5_label = MathTex(r"\tilde{V}^{\top}", color=GREEN_B, font_size=32)
         vt5_label.shift(UP * 2.1 + RIGHT * 4.7)
         vt5_mat = MathTex(
             r"\begin{bmatrix}"
@@ -350,7 +356,7 @@ class AxisForSeparability(Scene):
             r" 0.272 &  0.689 & -0.460 &  0.489 \\"
             r" 0.426 & -0.246 &  0.577 &  0.652"
             r"\end{bmatrix}",
-            color=GREEN_B, font_size=15,
+            color=GREEN_B, font_size=28,
         )
         vt5_mat.next_to(vt5_label, DOWN, buff=0.06)
 
@@ -367,16 +373,16 @@ class AxisForSeparability(Scene):
         sigma_step = VGroup(
             MathTex(
                 r"\sigma_1=16.887\;\gg\;\sigma_2=1.736,\ \sigma_3=1.179,\ \sigma_4=0.906",
-                color=YELLOW, font_size=27,
+                color=YELLOW, font_size=34,
             ),
-            Text("第1特異値が圧倒的に大きい → 第1軸1本で大部分の情報を表せる",
-                 color=GREEN, font_size=23),
+            Text("第1特異値が圧倒的に大きい → 第1軸1本で大部分の情報を表せるとわかる",
+                 color=GREEN, font_size=26),
         ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
         sigma_step.move_to(DOWN * 1.8)
 
         self.play(Create(sig5_box), run_time=0.4)
         self.play(Write(sigma_step), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.4)
         self.play(FadeOut(sig5_box), FadeOut(sigma_step))
         self.wait(0.2)
 
@@ -392,19 +398,19 @@ class AxisForSeparability(Scene):
 
         vt_row_eq = MathTex(
             r"\tilde{v}_1^{\top}=[-0.520,\ -0.480,\ -0.443,\ 0.550]",
-            color=GREEN_B, font_size=28,
+            color=GREEN_B, font_size=34,
         )
         vt_row_eq.move_to(DOWN * 1.35)
         vt_row_note = Text(
             "V\u1d40 の第1行 = 新しい第1軸の方向（x\u2081〜x\u2084 それぞれへの重み係数）",
-            color=WHITE, font_size=22,
+            color=WHITE, font_size=26,
         )
         vt_row_note.next_to(vt_row_eq, DOWN, buff=0.12)
 
         self.play(Create(vt5_box), FadeIn(vt5_row1_hl), run_time=0.5)
         self.play(Write(vt_row_eq), run_time=0.6)
         self.play(Write(vt_row_note), run_time=0.5)
-        self.wait(1.2)
+        self.wait(1.4)
         self.play(
             FadeOut(vt5_box), FadeOut(vt5_row1_hl),
             FadeOut(vt_row_eq), FadeOut(vt_row_note),
@@ -423,26 +429,31 @@ class AxisForSeparability(Scene):
 
         u_col_eq = MathTex(
             r"\tilde{u}_1=[-0.318,\ -0.370,\ -0.405,\ 0.550,\ 0.543]^{\top}",
-            color=TEAL, font_size=27,
+            color=TEAL, font_size=34,
         )
-        u_col_eq.move_to(DOWN * 1.05)
+        u_col_eq.move_to(DOWN)
 
-        score_eq = MathTex(
-            r"t_1=\sigma_1\,\tilde{u}_1\approx[-5.37,\ -6.25,\ -6.85,\ 9.29,\ 9.18]^{\top}",
-            color=TEAL, font_size=26,
+        # score_eq = MathTex(
+        #     r"t_1=\sigma_1\,\tilde{u}_1\approx[-5.37,\ -6.25,\ -6.85,\ 9.29,\ 9.18]^{\top}",
+        #     color=TEAL, font_size=26,
+        # )
+        # score_eq.next_to(u_col_eq, DOWN, buff=0.14)
+        score_note1 = Text(
+            "Uの第1列は、新しい第1軸における各データの座標。これをよく見ると…",
+            color=WHITE, font_size=26,
         )
-        score_eq.next_to(u_col_eq, DOWN, buff=0.14)
-
-        score_note = Text(
-            "1〜3本目は負（−）・4〜5本目は正（＋）→ 第1軸の符号でデータが2群に分かれる",
-            color=YELLOW, font_size=22,
+        score_note1.next_to(u_col_eq, DOWN, buff=0.3)
+        score_note2 = Text(
+            "1〜3本目は負（−）・4〜5本目は正（＋）→ 第1軸の符号でデータが2クラスに識別可能",
+            color=YELLOW, font_size=24,
         )
-        score_note.next_to(score_eq, DOWN, buff=0.1)
+        score_note2.next_to(score_note1, DOWN, buff=0.2)
 
         self.play(Create(u5_box), FadeIn(u5_col1_hl), run_time=0.5)
         self.play(Write(u_col_eq), run_time=0.6)
-        self.play(Write(score_eq), run_time=0.6)
-        self.play(Write(score_note), run_time=0.5)
+        # self.play(Write(score_eq), run_time=0.6)
+        self.play(Write(score_note1), run_time=0.5)
+        self.play(Write(score_note2), run_time=0.5)
         self.wait(1.5)
 
         self.play(
@@ -450,8 +461,8 @@ class AxisForSeparability(Scene):
             FadeOut(sig5_label), FadeOut(sig5_mat),
             FadeOut(vt5_label), FadeOut(vt5_mat),
             FadeOut(u5_box), FadeOut(u5_col1_hl),
-            FadeOut(u_col_eq), FadeOut(score_eq),
-            FadeOut(score_note), FadeOut(subtitle5),
+            FadeOut(u_col_eq), #FadeOut(score_eq),
+            FadeOut(score_note1), FadeOut(score_note2), FadeOut(subtitle5),
         )
         self.wait(0.3)
 
@@ -464,11 +475,11 @@ class AxisForSeparability(Scene):
 
         summary = VGroup(
             Text("1. 軸を変えると特徴を捉えやすくなることがある", color=WHITE, font_size=28),
-            Text("2. 新軸は z = Wx（元変数の線形結合）で作れる", color=WHITE, font_size=28),
+            Text("2. 新軸は z = Wx（もとの変数の線形結合）で作れる", color=WHITE, font_size=28),
             Text("3. 特異値分解は行列を3つの行列に分解する手法", color=WHITE, font_size=28),
             Text("4. 特異値が偏ると、少数軸で特徴を表現しやすい", color=WHITE, font_size=28),
-            Text("5. 特異値分解と主成分分析は密接な関係がある", color=GREEN, font_size=28),
-            Text("主成分分析の話は第18話でもう一度扱う", color=ORANGE, font_size=25),
+            Text("5. 特異値分解と主成分分析は密接な関係がある", color=WHITE, font_size=28),
+            Text("主成分分析の話は第18話でもう一度扱う", color=ORANGE, font_size=26),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         summary.scale(0.85)
         summary.shift(DOWN * 0.45)
