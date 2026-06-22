@@ -284,7 +284,7 @@ class LowRankApproximation(Scene):
             ),
             Text(
                 "列ベクトル u₁ × 行ベクトル v₁ᵀ → ランク1",
-                color=TEAL, font_size=21,
+                color=TEAL, font_size=24,
             ),
         ).arrange(DOWN, buff=0.1, aligned_edge=LEFT)
         term1_note.shift(DOWN * 1.5 + LEFT * 1.0)
@@ -299,18 +299,18 @@ class LowRankApproximation(Scene):
             Text("第2項 σ₂ u₂ v₂ᵀ も同様にランク1", color=ORANGE, font_size=22),
             Text(
                 "U, V は直交行列 → u₁ ⊥ u₂, v₁ ⊥ v₂",
-                color=WHITE, font_size=22,
+                color=WHITE, font_size=24,
             ),
             Text(
-                "2つの項は本質的に独立（同じ方向を含まない）",
-                color=WHITE, font_size=22,
+                "であり、2つの項は本質的に独立（同じ方向を含まない）",
+                color=WHITE, font_size=24,
             ),
             Text(
                 "∴ ランク1 ＋ ランク1（独立）= ランク2 →もとの4から落ちている",
-                color=GREEN, font_size=23, weight=BOLD,
+                color=GREEN, font_size=26, weight=BOLD,
             ),
-        ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
-        term2_note.shift(DOWN * 2.25)
+        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+        term2_note.shift(DOWN * 1.5)
 
         for item in term2_note:
             self.play(Write(item), run_time=0.5)
@@ -335,14 +335,14 @@ class LowRankApproximation(Scene):
             color=YELLOW,
             font_size=42,
         )
-        outer_sum.shift(UP * 1.3)
+        outer_sum.shift(UP * 1.4)
         # outer_box = SurroundingRectangle(outer_sum, color=YELLOW, buff=0.2)
 
         outer_note = VGroup(
-            Text("各項は『方向 uᵣ に投影し σᵣ 倍してから方向 vᵣᵀ に配置する』操作", color=WHITE, font_size=22),
-            Text("特異値が小さい項は寄与が小さく、省いてもほぼ影響がない", color=GREEN, font_size=22),
+            # Text("各項は『方向 uᵣ に投影し σᵣ 倍してから方向 vᵣᵀ に配置する』操作", color=WHITE, font_size=22),
+            Text("特異値が小さい項は寄与が小さく、省いてもほぼ影響がないことがわかりやすい", color=GREEN, font_size=26),
         ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
-        outer_note.shift(UP * 0.2)
+        outer_note.shift(UP * 0.3)
 
         self.play(Write(outer_sum), run_time=0.8)
         self.play(Write(outer_note), run_time=0.7)
@@ -350,31 +350,31 @@ class LowRankApproximation(Scene):
 
         # ブラケット表記
         bracket_label = Text("ブラケット記法で書くと：", color=WHITE, font_size=24)
-        bracket_label.shift(DOWN * 0.9)
+        bracket_label.shift(DOWN * 0.5)
 
         bracket_eq = MathTex(
             r"X = \sum_{r=1}^{R}\sigma_r\,|\boldsymbol{u}_r\rangle\langle\boldsymbol{v}_r|",
             color=TEAL,
             font_size=42,
         )
-        bracket_eq.shift(DOWN * 1.8)
+        bracket_eq.shift(DOWN * 1.4)
         # bracket_box = SurroundingRectangle(bracket_eq, color=TEAL, buff=0.2)
 
         bracket_note = VGroup(
-            MathTex(
-                r"\langle\boldsymbol{v}_r|\;=\;\boldsymbol{v}_r^{\top}",
-                color=WHITE, font_size=24,
-            ),
+            # MathTex(
+            #     r"\langle\boldsymbol{v}_r|\;=\;\boldsymbol{v}_r^{\top}",
+            #     color=WHITE, font_size=24,
+            # ),
             Text(
                 "⟨vᵣ| はベクトルを vᵣ 方向へ射影する操作を表す",
-                color=ORANGE, font_size=22,
+                color=ORANGE, font_size=26,
             ),
             Text(
                 "射影 → スケール（σᵣ）→ 別の方向（|uᵣ⟩）に配置、という流れが見える",
-                color=WHITE, font_size=21,
+                color=WHITE, font_size=24,
             ),
         ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
-        bracket_note.shift(DOWN * 3.0)
+        bracket_note.shift(DOWN * 2.8)
 
         self.play(Write(bracket_label), run_time=0.4)
         self.play(Write(bracket_eq), run_time=0.7)
