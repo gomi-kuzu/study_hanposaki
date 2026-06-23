@@ -60,11 +60,20 @@
 <img width="1001" height="205" alt="image" src="https://github.com/user-attachments/assets/a08bee73-ba69-48dc-a68c-08adb32b9814" />
 <img width="1078" height="528" alt="image" src="https://github.com/user-attachments/assets/75455281-bd01-4ef5-8582-ff228ca65a40" />
 <img width="1067" height="521" alt="image" src="https://github.com/user-attachments/assets/e69b4086-36c1-40d7-bc8c-e4a2261d1b7e" />
-<!-- <img width="1050" height="493" alt="image" src="https://github.com/user-attachments/assets/71956958-b7cb-4bfd-b48b-a91edfa7a34c" /> -->
 <img width="1407" height="657" alt="image" src="https://github.com/user-attachments/assets/4806272a-d357-4c53-b727-1ca934228545" />
+<img width="1077" height="159" alt="image" src="https://github.com/user-attachments/assets/664b3587-5d51-4a59-9219-fe2caa6caf99" />
 <img width="795" height="563" alt="image" src="https://github.com/user-attachments/assets/1d8953fe-218d-4d5d-ad1d-e1466a0614c7" />
 
-特異点回避方法については、[コチラ](https://github.com/gomi-kuzu/three_d_mouse_leader/blob/main/README.md#%E7%89%B9%E7%95%B0%E7%82%B9%E5%9B%9E%E9%81%BF-damped-least-squares)を参照
+# 第17話
+## 17.1
+### aa
+## 17.2
+### aa
+### おまけ１：音響のアナロジー
+
+### おまけ２：ロボティクスでの使いどころ
+
+このように、特異点への接近具合に応じた特異点回避方法については、[コチラ](https://github.com/gomi-kuzu/three_d_mouse_leader/blob/main/README.md#%E7%89%B9%E7%95%B0%E7%82%B9%E5%9B%9E%E9%81%BF-damped-least-squares)を参照
 
 
 <!-- <div><video controls src=""></video></div> -->
