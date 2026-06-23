@@ -49,10 +49,17 @@
 <img width="1127" height="212" alt="image" src="https://github.com/user-attachments/assets/394051e9-e70d-4c0f-be24-044fc69db831" />
 <img width="1072" height="475" alt="image" src="https://github.com/user-attachments/assets/eebbf8bd-909c-4434-bbd1-07d91049d82b" />
 <img width="1114" height="319" alt="image" src="https://github.com/user-attachments/assets/1313f4fe-1782-45ce-a595-a3a4c52855ee" />
-<img width="1082" height="627" alt="image" src="https://github.com/user-attachments/assets/54f2d5b1-ba52-407f-861f-7afd0a455c90" />
-<img width="1167" height="579" alt="image" src="https://github.com/user-attachments/assets/6d6d2ec7-2eb8-4f5d-a443-02bc9c0f4825" />
-<img width="1056" height="237" alt="image" src="https://github.com/user-attachments/assets/79ee5714-16f5-4409-ae14-d4ba4e4a363a" />
+<img width="1082" height="627" alt="image" src="https://github.com/user-attachments/assets/54f2d5b1-ba52-407f-861f-7afd0a455c90" />  -->
+<img width="1218" height="608" alt="image" src="https://github.com/user-attachments/assets/346632b0-8c97-4012-9e84-ce3846d3ac98" />
+<!--<img width="1167" height="579" alt="image" src="https://github.com/user-attachments/assets/6d6d2ec7-2eb8-4f5d-a443-02bc9c0f4825" />  -->
+<img width="1154" height="558" alt="image" src="https://github.com/user-attachments/assets/4cd913e3-dac6-4e34-9ef5-b65b95c19115" />
+<!--<img width="1056" height="237" alt="image" src="https://github.com/user-attachments/assets/79ee5714-16f5-4409-ae14-d4ba4e4a363a" /> -->
+<img width="1189" height="255" alt="image" src="https://github.com/user-attachments/assets/3d219213-f269-44ad-8801-95dafc279470" />
 
+
+
+
+ヤコビアンの話は、3部のおまけでももう一度扱う👉[◆](https://github.com/gomi-kuzu/study_hanposaki/blob/main/doc/sec3.md#%E3%81%8A%E3%81%BE%E3%81%91%E3%83%AD%E3%83%9C%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%97%E6%B3%95%E3%81%AE%E4%B8%80%E4%BE%8B),[◇](https://github.com/gomi-kuzu/study_hanposaki/blob/main/doc/sec3.md#%E3%81%8A%E3%81%BE%E3%81%91%EF%BC%92%E3%83%AD%E3%83%9C%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9%E3%81%A7%E3%81%AE%E4%BD%BF%E3%81%84%E3%81%A9%E3%81%93%E3%82%8D)
 
 ## 2.2
 ### 座標ってなんだって話
