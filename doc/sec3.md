@@ -66,9 +66,14 @@
 
 # 第17話
 ## 17.1
-### aa
+### 特異値分解を通してわかるデータ行列の特性の話
+<div><video controls src="https://github.com/user-attachments/assets/ca23e668-6865-4835-8ffc-64990f7f0c5b"></video></div>
+
+
 ## 17.2
-### aa
+### 特異値分解を応用した低ランク近似の話
+<div><video controls src="https://github.com/user-attachments/assets/f5f433ea-087c-4adf-b1ac-fc4494ef282e"></video></div>
+
 ### おまけ１：音響のアナロジー
 
 ### おまけ２：ロボティクスでの使いどころ
