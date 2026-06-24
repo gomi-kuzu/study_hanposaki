@@ -81,7 +81,8 @@
 
 ### おまけ２：ロボティクスでの使いどころ
 <img width="1273" height="609" alt="image" src="https://github.com/user-attachments/assets/77d3f32a-345d-462b-8432-65aaabdb6794" />
-<img width="935" height="283" alt="image" src="https://github.com/user-attachments/assets/96d78536-4cfe-4fe1-968b-2fbc63068982" />
+<!--<img width="935" height="283" alt="image" src="https://github.com/user-attachments/assets/96d78536-4cfe-4fe1-968b-2fbc63068982" />-->
+<img width="955" height="307" alt="image" src="https://github.com/user-attachments/assets/8fc46f8e-5300-45aa-b516-cd6efb09cb15" />
 <img width="927" height="625" alt="image" src="https://github.com/user-attachments/assets/70d8fe99-a89c-4c90-82e8-31125a86979d" />
 <!-- <img width="1141" height="534" alt="image" src="https://github.com/user-attachments/assets/b070708c-7e63-46cb-be29-cde0d0029568" /> -->
 <img width="1029" height="441" alt="image" src="https://github.com/user-attachments/assets/a0499bb3-dc59-4894-9f3e-0c7afd327855" />
