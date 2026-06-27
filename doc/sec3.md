@@ -66,14 +66,31 @@
 
 # 第17話
 ## 17.1
-### aa
+### 特異値分解を通してわかるデータ行列の特性の話
+<div><video controls src="https://github.com/user-attachments/assets/ca23e668-6865-4835-8ffc-64990f7f0c5b"></video></div>
+
+
 ## 17.2
-### aa
+### 特異値分解を応用した低ランク近似の話
+<div><video controls src="https://github.com/user-attachments/assets/f5f433ea-087c-4adf-b1ac-fc4494ef282e"></video></div>
+
 ### おまけ１：音響のアナロジー
+特異値分解は、ベクトルをベクトルに写像する「行列」を「検出器」、「増幅器」、「発信器」の３つに分解する操作である。
+このイメージは、「マイク」、「アンプ」、「スピーカー」で例えれるかもしれない。
+<img width="2816" height="1536" alt="Gemini_Generated_Image_p6yd0rp6yd0rp6yd" src="https://github.com/user-attachments/assets/bb5fed03-14a7-4e90-920f-80fe8e3d3fdd" />
 
 ### おまけ２：ロボティクスでの使いどころ
+<img width="1273" height="609" alt="image" src="https://github.com/user-attachments/assets/77d3f32a-345d-462b-8432-65aaabdb6794" />
+<!--<img width="935" height="283" alt="image" src="https://github.com/user-attachments/assets/96d78536-4cfe-4fe1-968b-2fbc63068982" />-->
+<img width="955" height="307" alt="image" src="https://github.com/user-attachments/assets/8fc46f8e-5300-45aa-b516-cd6efb09cb15" />
+<img width="927" height="625" alt="image" src="https://github.com/user-attachments/assets/70d8fe99-a89c-4c90-82e8-31125a86979d" />
+<!-- <img width="1141" height="534" alt="image" src="https://github.com/user-attachments/assets/b070708c-7e63-46cb-be29-cde0d0029568" /> -->
+<img width="1029" height="441" alt="image" src="https://github.com/user-attachments/assets/a0499bb3-dc59-4894-9f3e-0c7afd327855" />
+<!-- <img width="934" height="716" alt="image" src="https://github.com/user-attachments/assets/8325a67d-7e86-44ab-8e52-8d33540357f5" /> -->
+<div><video controls src="https://github.com/user-attachments/assets/4099856c-4d81-4f2f-9ecd-d5af4b0e78bb"></video></div>
 
-このように、特異点への接近具合に応じた特異点回避方法については、[コチラ](https://github.com/gomi-kuzu/three_d_mouse_leader/blob/main/README.md#%E7%89%B9%E7%95%B0%E7%82%B9%E5%9B%9E%E9%81%BF-damped-least-squares)を参照
+
+ちなみに、可操作度を使って、特異点への接近具合に応じて正則化加減を調整する特異点回避方法もある👉[コチラ](https://github.com/gomi-kuzu/three_d_mouse_leader/blob/main/README.md#%E7%89%B9%E7%95%B0%E7%82%B9%E5%9B%9E%E9%81%BF-damped-least-squares)を参照
 
 
 <!-- <div><video controls src=""></video></div> -->
