@@ -340,7 +340,7 @@ class LowRankApproximation(Scene):
 
         outer_note = VGroup(
             # Text("各項は『方向 uᵣ に投影し σᵣ 倍してから方向 vᵣᵀ に配置する』操作", color=WHITE, font_size=22),
-            Text("特異値が小さい項は寄与が小さく、省いてもほぼ影響がないことがわかりやすい", color=GREEN, font_size=26),
+            Text("特異値が小さい項は寄与が小さく、省いてもほぼ影響がないことがわかる", color=GREEN, font_size=26),
         ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
         outer_note.shift(UP * 0.3)
 
@@ -366,11 +366,11 @@ class LowRankApproximation(Scene):
             #     color=WHITE, font_size=24,
             # ),
             Text(
-                "⟨vᵣ| はベクトルを vᵣ 方向へ射影する操作を表す",
+                "⟨vᵣ| は入力ベクトルを vᵣ 方向へ射影する操作を表す(6話のはなし)",
                 color=ORANGE, font_size=26,
             ),
             Text(
-                "射影 (⟨vᵣ|) → スケール（σᵣ）→ 別の方向に配置、という流れが見える",
+                "射影 (⟨vᵣ|) → スケール（σᵣ）→ 出力空間に配置、という流れが見える",
                 color=WHITE, font_size=24,
             ),
         ).arrange(DOWN, buff=0.12, aligned_edge=LEFT)
