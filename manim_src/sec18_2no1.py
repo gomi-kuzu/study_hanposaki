@@ -20,7 +20,7 @@ class PCAAndEigenvalues(Scene):
 
         eigen_intro = Text(
             "正方行列には特別な性質を持つベクトルとスカラーが存在する",
-            color=WHITE, font_size=26,
+            color=WHITE, font_size=28,
         )
         eigen_intro.shift(UP * 1.8)
         self.play(Write(eigen_intro), run_time=0.7)
@@ -38,17 +38,17 @@ class PCAAndEigenvalues(Scene):
 
         eigen_label_a = VGroup(
             MathTex(r"A:", color=WHITE, font_size=32),
-            Text("正方行列", color=WHITE, font_size=24),
+            Text("正方行列", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.2)
         
         eigen_label_v = VGroup(
             MathTex(r"\boldsymbol{v}_i:", color=TEAL, font_size=32),
-            Text("固有ベクトル（特別な方向）", color=TEAL, font_size=24),
+            Text("固有ベクトル（特別な方向）", color=TEAL, font_size=26),
         ).arrange(RIGHT, buff=0.2)
         
         eigen_label_lambda = VGroup(
             MathTex(r"\lambda_i:", color=ORANGE, font_size=32),
-            Text("固有値（スケール倍率）", color=ORANGE, font_size=24),
+            Text("固有値（スケール倍率）", color=ORANGE, font_size=26),
         ).arrange(RIGHT, buff=0.2)
         
         eigen_labels = VGroup(eigen_label_a, eigen_label_v, eigen_label_lambda)
@@ -61,11 +61,11 @@ class PCAAndEigenvalues(Scene):
 
         eigen_note = Text(
             "つまり、行列Aをかけても方向が変わらない特別なベクトル",
-            color=GREEN, font_size=26,
+            color=GREEN, font_size=28,
         )
         eigen_note.shift(DOWN * 2.2)
         self.play(Write(eigen_note), run_time=0.6)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(eigen_intro), FadeOut(eigen_def),
@@ -84,7 +84,7 @@ class PCAAndEigenvalues(Scene):
         pca_intro = VGroup(
             Text("データの特徴をより「扱いやすい」軸で表現したい", color=WHITE, font_size=26),
             Text("※「扱いやすい」の定義は目的によって変わる（アート的）", color=YELLOW, font_size=22),
-            Text("ここでは「データのばらつきをよく捉える」軸を考える", color=GREEN, font_size=24),
+            Text("ここでは「データのばらつきをよく捉える」軸を考える", color=GREEN, font_size=26),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         pca_intro.shift(UP * 1.5)
 
@@ -101,7 +101,7 @@ class PCAAndEigenvalues(Scene):
             y_length=5,
             axis_config={"color": GREY, "include_tip": False},
         ).scale(0.6)
-        axes.shift(DOWN * 0.8)
+        axes.shift(DOWN)
 
         # データ点の生成（楕円状の分布）
         np.random.seed(42)
@@ -170,7 +170,7 @@ class PCAAndEigenvalues(Scene):
 
         pca_note = Text(
             "データのばらつきが最も大きい方向が第1主成分（黄色）",
-            color=YELLOW, font_size=24,
+            color=YELLOW, font_size=26,
         )
         pca_note.shift(DOWN * 3.0)
 
@@ -185,7 +185,7 @@ class PCAAndEigenvalues(Scene):
         pca_note2.next_to(pca_note, DOWN, buff=0.1)
         self.play(Create(pc2_arrow), Write(pc2_label), run_time=0.6)
         self.play(Write(pca_note2), run_time=0.5)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(pca_intro), FadeOut(axes), FadeOut(dots),
@@ -206,16 +206,18 @@ class PCAAndEigenvalues(Scene):
         self.play(Write(subtitle3), run_time=0.6)
 
         formulation_intro = VGroup(
-            Text("17話で見たように、新しい軸は元の基底の線形和で作れる", color=WHITE, font_size=24),
-            Text("簡単のため2次元で考える", color=YELLOW, font_size=22),
-        ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
-        formulation_intro.shift(UP * 2.0)
+            Text("17話で見たように、新しい軸は元の基底の線形和で作れるので、それを", color=WHITE, font_size=26),
+            MathTex(r"\boldsymbol{w}", color=WHITE, font_size=34),
+            Text("とする", color=WHITE, font_size=26),
+            # Text("簡単のため2次元で考える", color=YELLOW, font_size=22),
+        ).arrange(RIGHT, buff=0.5, aligned_edge=RIGHT)
+        formulation_intro.shift(UP * 1.8)
         self.play(Write(formulation_intro), run_time=0.7)
         self.wait(0.5)
 
         # データを中心化
         centering_note = Text(
-            "データ行列Xを予め中心化しておくと…", color=WHITE, font_size=26,
+            "データ行列Xを予め中心化しておくと、新しい1軸目（w₁方向）での座標の分散は…", color=WHITE, font_size=26,
         )
         centering_note.shift(UP * 1.2)
         self.play(Write(centering_note), run_time=0.6)
@@ -231,18 +233,18 @@ class PCAAndEigenvalues(Scene):
         self.play(Write(variance_formula), run_time=0.7)
         self.wait(0.5)
 
-        variance_note = Text(
-            "新しい1軸目（w₁方向）での座標の分散",
-            color=GREEN, font_size=24,
-        )
-        variance_note.next_to(variance_formula, DOWN, buff=0.3)
-        self.play(Write(variance_note), run_time=0.5)
-        self.wait(0.7)
+        # variance_note = Text(
+        #     "新しい1軸目（w₁方向）での座標の分散",
+        #     color=GREEN, font_size=24,
+        # )
+        # variance_note.next_to(variance_formula, DOWN, buff=0.3)
+        # self.play(Write(variance_note), run_time=0.5)
+        # self.wait(0.7)
 
         # 制約条件
         constraint_formula = VGroup(
             MathTex(r"\Rightarrow\quad \|\boldsymbol{w}_1\| = 1", color=ORANGE, font_size=32),
-            Text("という制約を課す", color=ORANGE, font_size=26),
+            Text("という制約を課す（正規基底という自然な制約）", color=ORANGE, font_size=26),
         ).arrange(RIGHT, buff=0.2)
         
         constraint_intro = VGroup(
@@ -259,8 +261,8 @@ class PCAAndEigenvalues(Scene):
 
         # ラグランジュ未定乗数法
         lagrange_note = Text(
-            "ラグランジュの未定乗数法を使って解を導く（詳細は次の動画）",
-            color=YELLOW, font_size=24,
+            "この最適化問題をラグランジュの未定乗数法を使って解く（詳細は次の動画）",
+            color=YELLOW, font_size=26,
         )
         lagrange_note.shift(DOWN * 2.3)
         self.play(Write(lagrange_note), run_time=0.6)
@@ -268,7 +270,7 @@ class PCAAndEigenvalues(Scene):
 
         self.play(
             FadeOut(formulation_intro), FadeOut(centering_note),
-            FadeOut(variance_formula), FadeOut(variance_note),
+            FadeOut(variance_formula),
             FadeOut(constraint_intro), FadeOut(lagrange_note),
         )
         self.wait(0.3)
@@ -290,11 +292,11 @@ class PCAAndEigenvalues(Scene):
         self.wait(0.8)
 
         result_note = VGroup(
-            Text("この式をよく見ると…", color=WHITE, font_size=26),
+            Text("この式をよく見てみよう…", color=WHITE, font_size=26),
         )
         result_note.shift(DOWN * 0.8)
         self.play(Write(result_note), run_time=0.5)
-        self.wait(1.0)
+        self.wait(1.2)
 
         self.play(
             FadeOut(result_intro), FadeOut(result_eq), FadeOut(result_box),
@@ -343,9 +345,9 @@ class PCAAndEigenvalues(Scene):
                 r"\boldsymbol{v}_i = \boldsymbol{w}_i",
                 color=YELLOW, font_size=32,
             ),
-            Text("つまり、両者は等価な式！", color=YELLOW, font_size=28, weight=BOLD),
-        ).arrange(DOWN, buff=0.2)
-        correspondence.shift(DOWN * 1.5)
+            Text("と置き換えれる。つまり、両者は等価な式！", color=YELLOW, font_size=28, weight=BOLD),
+        ).arrange(DOWN, buff=0.5)
+        correspondence.shift(DOWN * 1.7)
 
         for line in correspondence:
             self.play(Write(line), run_time=0.6)
@@ -404,12 +406,12 @@ class PCAAndEigenvalues(Scene):
         self.play(Write(subtitle_end), run_time=0.7)
 
         summary = VGroup(
-            Text("1. 固有ベクトルは行列をかけても方向が変わらない特別なベクトル", color=WHITE, font_size=26),
-            Text("2. 主成分分析では「データのばらつきを最大化する」軸を探す", color=WHITE, font_size=26),
-            Text("3. 分散最大化を制約条件下で解くと固有値問題に帰着する", color=WHITE, font_size=26),
-            Text("4. つまり、X^{\top}X の固有ベクトルが主成分となる", color=WHITE, font_size=26),
-            Text("5. 固有値の大きさが分散の大きさに対応（次回詳しく）", color=YELLOW, font_size=26),
-        ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
+            Text("1. 固有ベクトルは行列をかけても方向が変わらない特別なベクトル", color=WHITE, font_size=28),
+            Text("2. 主成分分析では「データのばらつきを最大化する」軸を探す", color=WHITE, font_size=28),
+            Text("3. 分散最大化を制約条件下で解くと固有値問題に帰着する", color=WHITE, font_size=28),
+            Text("4. すると、XᵀX の固有ベクトルが主成分となる", color=WHITE, font_size=28),
+            Text("5. 固有値の大きさが分散の大きさに対応（次の動画で詳しく）", color=YELLOW, font_size=28),
+        ).arrange(DOWN, buff=0.5, aligned_edge=LEFT)
         summary.scale(0.90)
         summary.shift(DOWN * 0.4)
 
