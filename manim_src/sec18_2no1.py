@@ -352,7 +352,7 @@ class PCAAndEigenvalues(Scene):
         for line in correspondence:
             self.play(Write(line), run_time=0.6)
             self.wait(0.2)
-        self.wait(1.0)
+        self.wait(1.2)
 
         self.play(
             FadeOut(comparison_title), FadeOut(eigen_eq_again), FadeOut(eigen_label),
@@ -419,6 +419,6 @@ class PCAAndEigenvalues(Scene):
             self.play(Write(row), run_time=0.6)
             self.wait(0.15)
 
-        self.wait(1.5)
+        self.wait(2)
         self.play(FadeOut(VGroup(title, subtitle_end, summary)), run_time=1.0)
         self.wait(0.5)
