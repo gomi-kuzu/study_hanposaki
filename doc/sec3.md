@@ -92,6 +92,15 @@
 
 ちなみに、可操作度を使って、特異点への接近具合に応じて正則化加減を調整する特異点回避方法もある👉[コチラ](https://github.com/gomi-kuzu/three_d_mouse_leader/blob/main/README.md#%E7%89%B9%E7%95%B0%E7%82%B9%E5%9B%9E%E9%81%BF-damped-least-squares)を参照
 
+# 第18話
+## 18.2
+### a
+<div><video controls src=""></video></div>
+
+### a
+<div><video controls src=""></video></div>
+
+### おまけ：ロボティクスでの使いどころ
 
 <!-- <div><video controls src=""></video></div> -->
 
