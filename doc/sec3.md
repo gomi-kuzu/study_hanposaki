@@ -100,10 +100,16 @@
 ### ラグランジュ未定乗数法
 <div><video controls src="https://github.com/user-attachments/assets/4dc9ca7a-a608-4934-897a-7c25a5d680c5"></video></div>
 
-
 ### おまけ：ロボティクスでの使いどころ
-
-
+<!-- <img width="1084" height="518" alt="image" src="https://github.com/user-attachments/assets/61e52fcf-3bd7-47f4-8c57-8a4458acebcd" /> -->
+<img width="1085" height="519" alt="image" src="https://github.com/user-attachments/assets/596a80b7-2edd-4bec-9dd3-68905623185d" />
+<img width="1096" height="403" alt="image" src="https://github.com/user-attachments/assets/213229f5-2bc8-4943-abad-94caedee2074" />
+<img width="1138" height="537" alt="image" src="https://github.com/user-attachments/assets/761ac91d-fccf-4b1b-9217-372de7a74c5a" />
+<img width="1144" height="178" alt="image" src="https://github.com/user-attachments/assets/408d41bb-b68b-4210-9a67-94df9a58818b" />
+<img width="1100" height="478" alt="image" src="https://github.com/user-attachments/assets/08505a55-b627-4630-8ed0-2e052224b781" />
+<img width="1105" height="417" alt="image" src="https://github.com/user-attachments/assets/bab8ee3b-b739-44d9-928b-d5af16d6575c" />
+<img width="1173" height="565" alt="image" src="https://github.com/user-attachments/assets/24dae528-5717-4524-8e6a-4b1edf6ddcd9" />
+<!-- <img width="1192" height="456" alt="image" src="https://github.com/user-attachments/assets/a473f00a-6623-4022-ae5c-52395937f39b" /> -->
 
 <!-- <div><video controls src=""></video></div> -->
 
