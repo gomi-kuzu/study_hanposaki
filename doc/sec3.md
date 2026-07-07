@@ -94,13 +94,16 @@
 
 # 第18話
 ## 18.2
-### a
-<div><video controls src=""></video></div>
+### 主成分分析と固有値の話
+<div><video controls src="https://github.com/user-attachments/assets/68da88d9-a679-49e2-96b1-cc93ab3fb390"></video></div>
 
-### a
-<div><video controls src=""></video></div>
+### ラグランジュ未定乗数法
+<div><video controls src="https://github.com/user-attachments/assets/4dc9ca7a-a608-4934-897a-7c25a5d680c5"></video></div>
+
 
 ### おまけ：ロボティクスでの使いどころ
+
+
 
 <!-- <div><video controls src=""></video></div> -->
 
