@@ -101,9 +101,10 @@
 <div><video controls src="https://github.com/user-attachments/assets/4dc9ca7a-a608-4934-897a-7c25a5d680c5"></video></div>
 
 ### おまけ：ロボティクスでの使いどころ
-<!-- <img width="1084" height="518" alt="image" src="https://github.com/user-attachments/assets/61e52fcf-3bd7-47f4-8c57-8a4458acebcd" /> -->
-<img width="1085" height="519" alt="image" src="https://github.com/user-attachments/assets/596a80b7-2edd-4bec-9dd3-68905623185d" />
-<img width="1096" height="403" alt="image" src="https://github.com/user-attachments/assets/213229f5-2bc8-4943-abad-94caedee2074" />
+<img width="1325" height="645" alt="image" src="https://github.com/user-attachments/assets/c44c7b95-9bc2-4bba-9fed-a03990de71a8" />
+<img width="1340" height="516" alt="image" src="https://github.com/user-attachments/assets/8d9fbc33-7ecb-4402-8af5-8af0125bdfa8" />
+<!-- <img width="1085" height="519" alt="image" src="https://github.com/user-attachments/assets/596a80b7-2edd-4bec-9dd3-68905623185d" /> -->
+<!-- <img width="1096" height="403" alt="image" src="https://github.com/user-attachments/assets/213229f5-2bc8-4943-abad-94caedee2074" /> -->
 <img width="1138" height="537" alt="image" src="https://github.com/user-attachments/assets/761ac91d-fccf-4b1b-9217-372de7a74c5a" />
 <img width="1112" height="155" alt="image" src="https://github.com/user-attachments/assets/fbf7fd7a-a335-4506-9d85-618207c25eeb" />
 <img width="1100" height="478" alt="image" src="https://github.com/user-attachments/assets/08505a55-b627-4630-8ed0-2e052224b781" />
