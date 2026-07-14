@@ -87,7 +87,7 @@ class TimeEvolutionIntro(Scene):
             "化学反応は濃度が濃いほど起きやすい",
             color=WHITE, font_size=26,
         )
-        example_intro.shift(UP * 2.0)
+        example_intro.shift(DOWN)
         self.play(Write(example_intro), run_time=0.7)
         self.wait(0.5)
 
@@ -101,7 +101,7 @@ class TimeEvolutionIntro(Scene):
         damper_box = SurroundingRectangle(damper_eq, color=YELLOW, buff=0.2)
 
         self.play(Write(damper_eq), run_time=0.8)
-        self.play(Create(damper_box), run_time=0.4)
+        self.play(Create(damper_box),  run_time=0.4)
         self.wait(0.6)
 
         # 説明
@@ -115,6 +115,103 @@ class TimeEvolutionIntro(Scene):
             self.play(Write(line), run_time=0.5)
             self.wait(0.2)
 
+        # 濃度減少のポンチ絵アニメーション
+        self.play(
+            FadeOut(damper_eq), FadeOut(damper_box), FadeOut(explanation),
+            run_time=0.5
+        )
+        self.wait(0.2)
+
+        visual_title = Text("濃度の時間変化のイメージ", color=YELLOW, font_size=28)
+        visual_title.shift(UP * 2.5)
+        self.play(Write(visual_title), run_time=0.5)
+        self.wait(0.3)
+
+        # 容器の枠
+        container = Rectangle(width=8, height=4, color=WHITE, stroke_width=3)
+        container.shift(DOWN * 0.2)
+        self.play(Create(container), run_time=0.5)
+        self.wait(0.3)
+
+        # 初期状態：多数の分子を配置
+        np.random.seed(42)
+        num_molecules = 80
+        molecules = VGroup()
+        
+        for i in range(num_molecules):
+            x_pos = np.random.uniform(-3.8, 3.8)
+            y_pos = np.random.uniform(-1.8, 1.8)
+            molecule = Dot(
+                point=container.get_center() + np.array([x_pos, y_pos, 0]),
+                radius=0.08,
+                color=BLUE,
+            )
+            molecules.add(molecule)
+        
+        self.play(FadeIn(molecules), run_time=0.8)
+        self.wait(0.5)
+
+        time_label = MathTex("t = 0", font_size=32, color=YELLOW)
+        time_label.next_to(container, DOWN, buff=0.4)
+        self.play(Write(time_label), run_time=0.4)
+        self.wait(0.5)
+
+        # 指数関数的に分子を消していく（4段階）
+        alpha_visual = 3
+        time_steps = [0.5, 1.0, 1.5, 2.0]
+        
+        for t in time_steps:
+            # 残存率を計算（指数関数的減少）
+            survival_rate = np.exp(-alpha_visual * t)
+            num_remaining = int(num_molecules * survival_rate)
+            
+            # ランダムに分子を選んで消す
+            num_to_remove = len(molecules) - num_remaining
+            if num_to_remove > 0 and len(molecules) > 0:
+                # インデックスをランダムに選択
+                num_current = len(molecules)
+                indices_to_remove = np.random.choice(
+                    num_current, 
+                    size=min(num_to_remove, num_current), 
+                    replace=False
+                )
+                
+                # 選択されたインデックスの分子を取得
+                molecules_list = list(molecules)
+                molecules_to_remove = VGroup(*[molecules_list[i] for i in indices_to_remove])
+                
+                # 時刻表示を更新
+                new_time_label = MathTex(f"t = {t}", font_size=32, color=YELLOW)
+                new_time_label.next_to(container, DOWN, buff=0.4)
+                
+                self.play(
+                    FadeOut(molecules_to_remove),
+                    Transform(time_label, new_time_label),
+                    run_time=0.8
+                )
+                
+                # 消えた分子をVGroupから除去
+                for mol in molecules_to_remove:
+                    molecules.remove(mol)
+                
+                self.wait(0.4)
+
+        self.wait(0.8)
+
+        # ポンチ絵を片付ける
+        self.play(
+            FadeOut(container), FadeOut(molecules), 
+            FadeOut(time_label), FadeOut(visual_title),
+            FadeOut(example_intro),
+            run_time=0.6
+        )
+        self.wait(0.3)
+
+        # 元の要素を戻す
+        self.play(Write(damper_eq), Create(damper_box), run_time=0.6)
+        self.play(Write(explanation), run_time=0.5)
+        self.wait(0.4)
+
         initial_condition = Text(
             "初期状態 x(0) を与えれば、その後の時間発展が全て計算できる",
             color=GREEN, font_size=26, weight=BOLD,
@@ -124,7 +221,7 @@ class TimeEvolutionIntro(Scene):
         self.wait(1.2)
 
         self.play(
-            FadeOut(example_intro), FadeOut(damper_eq), FadeOut(damper_box),
+            FadeOut(damper_eq), FadeOut(damper_box),
             FadeOut(explanation), FadeOut(initial_condition), FadeOut(subtitle2),
         )
         self.wait(0.3)
