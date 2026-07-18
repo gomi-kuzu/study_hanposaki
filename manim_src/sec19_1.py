@@ -67,7 +67,7 @@ class TimeEvolutionIntro(Scene):
 
         self.play(Write(pde_eq), run_time=0.8)
         self.play(Write(pde_note), run_time=0.6)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(intro_text), FadeOut(vector_eq), FadeOut(vector_note),
@@ -89,7 +89,7 @@ class TimeEvolutionIntro(Scene):
         )
         example_intro.shift(DOWN)
         self.play(Write(example_intro), run_time=0.7)
-        self.wait(0.5)
+        self.wait(1.5)
 
         # 時間発展方程式
         damper_eq = MathTex(
@@ -108,8 +108,8 @@ class TimeEvolutionIntro(Scene):
         explanation = VGroup(
             Text("x(t)：時刻tでの濃度", color=TEAL, font_size=26),
             Text("α：反応速度定数（正の定数）", color=TEAL, font_size=26),
-        ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
-        explanation.shift(DOWN * 0.2)
+        ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
+        explanation.shift(DOWN * 0.3)
 
         for line in explanation:
             self.play(Write(line), run_time=0.5)
@@ -123,7 +123,7 @@ class TimeEvolutionIntro(Scene):
         self.wait(0.2)
 
         visual_title = Text("濃度の時間変化のイメージ", color=YELLOW, font_size=28)
-        visual_title.shift(UP * 2.5)
+        visual_title.shift(UP)
         self.play(Write(visual_title), run_time=0.5)
         self.wait(0.3)
 
@@ -151,7 +151,7 @@ class TimeEvolutionIntro(Scene):
         self.play(FadeIn(molecules), run_time=0.8)
         self.wait(0.5)
 
-        time_label = MathTex("t = 0", font_size=32, color=YELLOW)
+        time_label = MathTex("t = 0", font_size=34, color=YELLOW)
         time_label.next_to(container, DOWN, buff=0.4)
         self.play(Write(time_label), run_time=0.4)
         self.wait(0.5)
@@ -181,7 +181,7 @@ class TimeEvolutionIntro(Scene):
                 molecules_to_remove = VGroup(*[molecules_list[i] for i in indices_to_remove])
                 
                 # 時刻表示を更新
-                new_time_label = MathTex(f"t = {t}", font_size=32, color=YELLOW)
+                new_time_label = MathTex(f"t = {t}", font_size=34, color=YELLOW)
                 new_time_label.next_to(container, DOWN, buff=0.4)
                 
                 self.play(
@@ -218,7 +218,7 @@ class TimeEvolutionIntro(Scene):
         )
         initial_condition.shift(DOWN * 1.5)
         self.play(Write(initial_condition), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(damper_eq), FadeOut(damper_box),
@@ -241,7 +241,7 @@ class TimeEvolutionIntro(Scene):
         # 通常プロット
         axes_normal = Axes(
             x_range=[0, 2, 0.5],
-            y_range=[0, 5, 1],
+            y_range=[0, 4.5, 1],
             x_length=6,
             y_length=4,
             axis_config={"color": GREY, "include_tip": True},
@@ -263,7 +263,7 @@ class TimeEvolutionIntro(Scene):
         
         for x0, color in zip(initial_values, colors):
             curve = axes_normal.plot(
-                lambda t: x0 * np.exp(-alpha * t),
+                lambda t, x0=x0: x0 * np.exp(-alpha * t),
                 x_range=[0, 2],
                 color=color,
                 stroke_width=3,
@@ -305,19 +305,22 @@ class TimeEvolutionIntro(Scene):
         self.play(Write(alpha_note2), run_time=0.5)
         self.wait(0.3)
 
-        # 片対数プロット
+        # 片対数プロット（縦軸が対数目盛り）
         axes_log = Axes(
-            x_range=[0, 2, 0.5],
-            y_range=[0, 1.6, 0.4],  # log10(1) = 0, log10(4) ≈ 0.6
+            x_range=[0, 1.5, 0.5],
+            y_range=[-2, 1, 1],  # 10^-4 ~ 10^1 の範囲（指数で指定）
             x_length=6,
             y_length=4,
             axis_config={"color": GREY, "include_tip": True},
+            y_axis_config={
+                "scaling": LogBase(base=10),
+            },
             tips=True,
         )
         axes_log.shift(DOWN * 0.3)
 
         x_label_log = MathTex("t", font_size=28).next_to(axes_log.x_axis, RIGHT, buff=0.1)
-        y_label_log = MathTex(r"\log_{10} x(t)", font_size=28).next_to(axes_log.y_axis, UP, buff=0.1)
+        y_label_log = MathTex("x(t)", font_size=28).next_to(axes_log.y_axis, UP, buff=0.1)
 
         self.play(Create(axes_log), Write(x_label_log), Write(y_label_log), run_time=0.6)
         self.wait(0.4)
@@ -327,8 +330,8 @@ class TimeEvolutionIntro(Scene):
         
         for x0, color in zip(initial_values, colors):
             curve = axes_log.plot(
-                lambda t: np.log10(x0 * np.exp(-alpha * t)),
-                x_range=[0, min(2, -np.log10(0.1)/alpha + np.log(x0)/alpha/np.log(10))],
+                lambda t, x0=x0: x0 * np.exp(-alpha * t),
+                x_range=[0, 1.5],
                 color=color,
                 stroke_width=3,
             )
@@ -336,7 +339,7 @@ class TimeEvolutionIntro(Scene):
             
             # 初期値ラベル
             label = MathTex(f"x(0)={x0}", font_size=24, color=color)
-            label.next_to(axes_log.c2p(0, np.log10(x0)), LEFT, buff=0.15)
+            label.next_to(axes_log.c2p(0, x0), LEFT, buff=0.15)
             curves_log.add(label)
 
         self.play(Create(curves_log), run_time=1.2)
