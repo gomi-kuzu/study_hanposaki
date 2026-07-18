@@ -14,12 +14,12 @@ class MultiVariableTimeEvolution(Scene):
         # ============================================================
         # Part 1: イントロダクション
         # ============================================================
-        subtitle1 = Text("前回の復習", font_size=28, color=BLUE)
+        subtitle1 = Text("前の動画の復習", font_size=28, color=BLUE)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
 
         review_text = Text(
-            "前回：1変数の時間発展は指数関数で記述できた",
+            "1変数の時間発展は指数関数で記述できた",
             color=WHITE, font_size=26,
         )
         review_text.shift(UP * 1.5)
@@ -49,7 +49,7 @@ class MultiVariableTimeEvolution(Scene):
         )
         answer.shift(DOWN * 1.2)
         self.play(Write(answer), run_time=0.7)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(review_text), FadeOut(review_eq),
@@ -64,13 +64,13 @@ class MultiVariableTimeEvolution(Scene):
         subtitle2.next_to(title, DOWN)
         self.play(Write(subtitle2), run_time=0.6)
 
-        system_intro = Text(
-            "横倒しにしたバネ付き重りの運動を考える",
-            color=WHITE, font_size=26,
-        )
-        system_intro.shift(UP * 2.3)
-        self.play(Write(system_intro), run_time=0.7)
-        self.wait(0.5)
+        # system_intro = Text(
+        #     "横倒しにしたバネ付き重りの運動を考える",
+        #     color=WHITE, font_size=26,
+        # )
+        # system_intro.shift(UP * 2.3)
+        # self.play(Write(system_intro), run_time=0.7)
+        # self.wait(0.5)
 
         # ポンチ絵：マスバネダンパ系
         # 左側の壁
@@ -184,8 +184,8 @@ class MultiVariableTimeEvolution(Scene):
         )
         self.wait(0.8)
 
-        self.play(FadeOut(system_intro), run_time=0.5)
-        self.wait(0.3)
+        # self.play(FadeOut(system_intro), run_time=0.5)
+        # self.wait(0.3)
 
         # ============================================================
         # Part 3: 運動方程式
@@ -485,16 +485,18 @@ class MultiVariableTimeEvolution(Scene):
         x1_curve = VMobject(color=BLUE, stroke_width=3)
         x1_curve.set_points_as_corners(x1_points)
         
-        x1_label = MathTex("x_1(t)", color=BLUE, font_size=24)
+        x1_label = MathTex("x_1(t)", color=BLUE, font_size=28)
         x1_label.next_to(axes.c2p(10, x1_vals[-1]), RIGHT, buff=0.1)
+        x1_label.shift(UP * 0.1)
         
         # プロット（速度）
         x2_points = [axes.c2p(t, x) for t, x in zip(t_vals[::10], x2_vals[::10])]
         x2_curve = VMobject(color=RED, stroke_width=3)
         x2_curve.set_points_as_corners(x2_points)
         
-        x2_label = MathTex("x_2(t)", color=RED, font_size=24)
+        x2_label = MathTex("x_2(t)", color=RED, font_size=28)
         x2_label.next_to(axes.c2p(10, x2_vals[-1]), RIGHT, buff=0.1)
+        x2_label.shift(DOWN * 0.1)
 
         # 系のポンチ絵（右側に小さく配置）
         mini_wall = Line(UP * 0.8, DOWN * 0.8, color=GREY, stroke_width=6)
@@ -563,12 +565,12 @@ class MultiVariableTimeEvolution(Scene):
             )
             mob[2].become(new_spring)
         
-        animation_text = Text(
-            "系が減衰振動している！",
-            color=GREEN, font_size=22, weight=BOLD,
-        )
-        animation_text.shift(RIGHT * 4.5 + DOWN * 1.0)
-        self.play(Write(animation_text), run_time=0.6)
+        # animation_text = Text(
+        #     "系が減衰振動している！",
+        #     color=GREEN, font_size=22, weight=BOLD,
+        # )
+        # animation_text.shift(RIGHT * 4.5 + DOWN * 1.0)
+        # self.play(Write(animation_text), run_time=0.6)
         
         self.play(
             UpdateFromAlphaFunc(mini_system, update_mini_system),
@@ -581,15 +583,15 @@ class MultiVariableTimeEvolution(Scene):
             "これが減衰振動：時間発展の典型例",
             color=YELLOW, font_size=24,
         )
-        damped_note.shift(DOWN * 2.5)
+        damped_note.shift(DOWN * 2.5 + RIGHT * 1.3)
         self.play(Write(damped_note), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
             FadeOut(x1_curve), FadeOut(x1_label),
             FadeOut(x2_curve), FadeOut(x2_label),
-            FadeOut(mini_system), FadeOut(animation_text), FadeOut(damped_note),
+            FadeOut(mini_system), FadeOut(damped_note),
             FadeOut(params_text), FadeOut(initial_text),
             FadeOut(matrix_form), FadeOut(matrix_box),
         )
@@ -598,23 +600,23 @@ class MultiVariableTimeEvolution(Scene):
         # ============================================================
         # Part 7: まとめと次回予告
         # ============================================================
-        subtitle7 = Text("まとめと次回予告", font_size=28, color=GOLD)
+        subtitle7 = Text("まとめ", font_size=36, color=GOLD)
         subtitle7.next_to(title, DOWN)
         self.play(Transform(subtitle2, subtitle7), run_time=0.6)
         self.wait(0.4)
 
-        summary_intro = Text(
-            "今回学んだこと",
-            color=WHITE, font_size=26, weight=BOLD,
-        )
-        summary_intro.shift(UP * 1.8)
-        self.play(Write(summary_intro), run_time=0.6)
-        self.wait(0.4)
+        # summary_intro = Text(
+        #     "今回学んだこと",
+        #     color=WHITE, font_size=26, weight=BOLD,
+        # )
+        # summary_intro.shift(UP * 1.8)
+        # self.play(Write(summary_intro), run_time=0.6)
+        # self.wait(0.4)
 
         summary = VGroup(
-            Text("• 変数が複数の場合、連立微分方程式になる", color=WHITE, font_size=24),
-            Text("• ベクトルと行列を使って1つの式にまとめられる", color=WHITE, font_size=24),
-            Text("• マスバネダンパ系は減衰振動を示す", color=WHITE, font_size=24),
+            Text("• 変数が複数の場合、連立微分方程式になる", color=WHITE, font_size=28),
+            Text("• ベクトルと行列を使って1つの式にまとめられる", color=WHITE, font_size=28),
+            Text("• マスバネダンパ系は減衰振動を示す", color=WHITE, font_size=28),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         summary.shift(UP * 0.5)
         
@@ -624,16 +626,16 @@ class MultiVariableTimeEvolution(Scene):
         
         self.wait(0.7)
 
-        question_text = Text(
-            "前回：1変数の時間発展は指数関数 e⁻ᵅᵗ で表せた",
-            color=BLUE, font_size=24,
-        )
-        question_text.shift(DOWN * 0.8)
-        self.play(Write(question_text), run_time=0.7)
-        self.wait(0.5)
+        # question_text = Text(
+        #     "前回：1変数の時間発展は指数関数 e⁻ᵅᵗ で表せた",
+        #     color=BLUE, font_size=24,
+        # )
+        # question_text.shift(DOWN * 0.8)
+        # self.play(Write(question_text), run_time=0.7)
+        # self.wait(0.5)
 
         next_question = Text(
-            "では、多変数の場合はどう書けばよいのか…？",
+            "さて、多変数の場合はどう微分方程式を解くのか…？",
             color=ORANGE, font_size=26, weight=BOLD,
         )
         next_question.shift(DOWN * 1.5)
@@ -641,8 +643,8 @@ class MultiVariableTimeEvolution(Scene):
         self.wait(0.6)
 
         next_topic = Text(
-            "→ 次回以降、行列の指数関数を使った解法を学びます",
-            color=GREEN, font_size=24, weight=BOLD,
+            "→ これを段階的に学ぶために、次回は行列の指数関数を導入する",
+            color=GREEN, font_size=26, weight=BOLD,
         )
         next_topic.shift(DOWN * 2.2)
         self.play(Write(next_topic), run_time=0.8)
@@ -650,8 +652,8 @@ class MultiVariableTimeEvolution(Scene):
 
         self.play(
             FadeOut(VGroup(
-                title, subtitle2, summary_intro, summary,
-                question_text, next_question, next_topic
+                title, subtitle2, summary,
+                next_question, next_topic
             )),
             run_time=1.0
         )
