@@ -114,6 +114,7 @@ class TimeEvolutionIntro(Scene):
         for line in explanation:
             self.play(Write(line), run_time=0.5)
             self.wait(0.2)
+        self.wait(1.2)
 
         # 濃度減少のポンチ絵アニメーション
         self.play(
@@ -279,7 +280,7 @@ class TimeEvolutionIntro(Scene):
         self.wait(0.8)
 
         observation1 = Text(
-            "一見、初期値によって減少の傾向が異なるように見える",
+            "一見、初期値によって減少の傾向が異なるように見えるが…",
             color=WHITE, font_size=24,
         )
         observation1.shift(DOWN * 2.8)
@@ -359,7 +360,7 @@ class TimeEvolutionIntro(Scene):
         )
         conclusion_exp.shift(DOWN * 3.1)
         self.play(Write(conclusion_exp), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(axes_log), FadeOut(x_label_log), FadeOut(y_label_log),
@@ -450,7 +451,7 @@ class TimeEvolutionIntro(Scene):
             Text("5. 解は指数関数の形 x(t) = x(0)e⁻ᵅᵗ", color=YELLOW, font_size=28),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
         summary.scale(0.90)
-        summary.shift(DOWN * 0.4)
+        summary.shift(DOWN * 0.1)
 
         for row in summary:
             self.play(Write(row), run_time=0.6)
