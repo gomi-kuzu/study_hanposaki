@@ -223,7 +223,7 @@ class MultiVariableTimeEvolution(Scene):
 
         # 運動方程式
         eq1 = MathTex(
-            r"m\frac{d^2}{dt^2}x(t) = -kx(t) - \gamma m v(t)",
+            r"m\frac{d^2}{dt^2}x(t) = -kx(t) - \gamma v(t)",
             color=YELLOW,
             font_size=36,
         )
@@ -303,7 +303,7 @@ class MultiVariableTimeEvolution(Scene):
         coupled_eqs = MathTex(
             r"\begin{cases} "
             r"\frac{d}{dt}x_1(t) = x_2(t) \\ "
-            r"\frac{d}{dt}x_2(t) = -\frac{k}{m}x_1(t) - \gamma x_2(t) "
+            r"\frac{d}{dt}x_2(t) = -\frac{k}{m}x_1(t) - \frac{\gamma}{m} x_2(t) "
             r"\end{cases}",
             color=YELLOW,
             font_size=36,
@@ -383,7 +383,7 @@ class MultiVariableTimeEvolution(Scene):
 
         # 行列Lの定義
         matrix_L = MathTex(
-            r"L = \begin{pmatrix} 0 & 1 \\ -\frac{k}{m} & -\gamma \end{pmatrix}",
+            r"L = \begin{pmatrix} 0 & 1 \\ -\frac{k}{m} & -\frac{\gamma}{m} \end{pmatrix}",
             color=TEAL,
             font_size=32,
         )
@@ -454,7 +454,7 @@ class MultiVariableTimeEvolution(Scene):
             
             for i in range(1, len(t_vals)):
                 dx1 = x2_vals[i-1]
-                dx2 = -(k/m) * x1_vals[i-1] - gamma * x2_vals[i-1]
+                dx2 = -(k/m) * x1_vals[i-1] - (gamma/m) * x2_vals[i-1]
                 
                 x1_vals[i] = x1_vals[i-1] + dx1 * dt
                 x2_vals[i] = x2_vals[i-1] + dx2 * dt
