@@ -336,7 +336,7 @@ class MatrixExponentialDefinition(Scene):
         self.wait(0.6)
 
         note_computation = Text(
-            "※ 具体的にA^nを求める方法は次回説明",
+            "※ 具体的にA^nの極限を求める方法は次回説明",
             color=ORANGE, font_size=24,
         )
         note_computation.shift(DOWN * 1.1)
