@@ -112,7 +112,7 @@ class MatrixExponentialDefinition(Scene):
         self.wait(0.5)
 
         reason_text = Text(
-            "理由：微分方程式 𝐱̇ = A𝐱 では、Aは同一次元空間の写像",
+            "理由：微分方程式 d𝐱/dt = A𝐱 では、Aは同一次元空間の写像",
             color=TEAL, font_size=24,
         )
         reason_text.shift(DOWN * 1.5)
@@ -125,7 +125,7 @@ class MatrixExponentialDefinition(Scene):
         )
         reason_text2.shift(DOWN * 2.1)
         self.play(Write(reason_text2), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(notation_text), FadeOut(notation_eq), FadeOut(notation_box),
@@ -145,7 +145,7 @@ class MatrixExponentialDefinition(Scene):
             "スカラの指数関数をマクローリン展開してみる",
             color=WHITE, font_size=26,
         )
-        maclaurin_text.shift(UP * 2.2)
+        maclaurin_text.shift(UP * 2.1)
         self.play(Write(maclaurin_text), run_time=0.7)
         self.wait(0.5)
 
@@ -161,7 +161,7 @@ class MatrixExponentialDefinition(Scene):
 
         arrow1 = MathTex(r"\Downarrow", color=WHITE, font_size=36)
         arrow1.shift(UP * 0.4)
-        apply_text = Text("指数関数 f(x) = eˣ に適用", color=ORANGE, font_size=24)
+        apply_text = Text("この公式を指数関数 f(x) = eˣ に適用すると…", color=ORANGE, font_size=22)
         apply_text.next_to(arrow1, RIGHT, buff=0.3)
         self.play(Write(arrow1), Write(apply_text), run_time=0.6)
         self.wait(0.5)
@@ -187,14 +187,15 @@ class MatrixExponentialDefinition(Scene):
         self.play(
             FadeOut(maclaurin_text), FadeOut(apply_text), FadeOut(explanation),
         )
-        self.wait(0.2)
+        self.wait(1.0)
 
         # 展開結果
         arrow2 = MathTex(r"\Downarrow", color=WHITE, font_size=36)
-        arrow2.shift(DOWN * 1.8)
+        # arrow2.shift(DOWN * 0.8)
         self.play(
             maclaurin_general.animate.shift(UP * 0.8).scale(0.85),
-            derivative_note.animate.shift(UP * 0.8).scale(0.85),
+            derivative_note.animate.shift(UP *1.1).scale(0.85),
+            arrow1.animate.shift(UP * 0.8).scale(0.85),
             Write(arrow2),
             run_time=0.6
         )
@@ -203,9 +204,9 @@ class MatrixExponentialDefinition(Scene):
         exp_expansion = MathTex(
             r"e^x = \sum_{n=0}^{\infty} \frac{1}{n!} x^n",
             color=YELLOW,
-            font_size=40,
+            font_size=36,
         )
-        exp_expansion.shift(DOWN * 2.5)
+        exp_expansion.shift(DOWN * 1.2)
         exp_box = SurroundingRectangle(exp_expansion, color=YELLOW, buff=0.25)
         self.play(Write(exp_expansion), run_time=0.8)
         self.play(Create(exp_box), run_time=0.4)
@@ -217,13 +218,14 @@ class MatrixExponentialDefinition(Scene):
             color=YELLOW,
             font_size=36,
         )
-        exp_explicit.shift(DOWN * 3.3)
+        exp_explicit.shift(DOWN * 2.5)
         self.play(Write(exp_explicit), run_time=0.8)
         self.wait(1.2)
 
         self.play(
             FadeOut(maclaurin_general), FadeOut(derivative_note),
-            FadeOut(arrow1), FadeOut(arrow2),
+            FadeOut(arrow1), FadeOut(arrow2), 
+            FadeOut(exp_expansion), FadeOut(exp_box)
         )
         self.wait(0.3)
 
@@ -237,23 +239,23 @@ class MatrixExponentialDefinition(Scene):
 
         # 展開式を上に移動
         self.play(
-            exp_expansion.animate.shift(UP * 3.8).scale(0.75),
-            exp_box.animate.shift(UP * 3.8).scale(0.75),
-            exp_explicit.animate.shift(UP * 3.8).scale(0.75),
+            # exp_expansion.animate.shift(UP * 3.8).scale(0.75),
+            # exp_box.animate.shift(UP * 3.8).scale(0.75),
+            exp_explicit.animate.shift(UP * 4.5).scale(0.75),
             run_time=0.6
         )
         self.wait(0.3)
 
         idea_text = Text(
-            "ここで、引数xを行列Aにすり替える！",
-            color=ORANGE, font_size=28, weight=BOLD,
+            "ここで、xを行列Aにすり替える！",
+            color=ORANGE, font_size=26, weight=BOLD,
         )
-        idea_text.shift(UP * 1.2)
+        idea_text.shift(UP * 1.4 + LEFT * 3.2)
         self.play(Write(idea_text), run_time=0.7)
         self.wait(0.6)
 
         arrow3 = MathTex(r"\Downarrow", color=WHITE, font_size=40)
-        arrow3.shift(UP * 0.4)
+        arrow3.shift(UP * 1.4)
         self.play(Write(arrow3), run_time=0.4)
         self.wait(0.3)
 
@@ -263,26 +265,26 @@ class MatrixExponentialDefinition(Scene):
             color=YELLOW,
             font_size=38,
         )
-        matrix_exp_def.shift(DOWN * 0.6)
+        matrix_exp_def.shift(UP * 0.5)
         matrix_exp_box = SurroundingRectangle(matrix_exp_def, color=YELLOW, buff=0.3)
         self.play(Write(matrix_exp_def), run_time=1.0)
         self.play(Create(matrix_exp_box), run_time=0.4)
         self.wait(0.8)
 
         identity_note = Text(
-            "Iは単位行列（スカラの1に対応）",
-            color=TEAL, font_size=24,
+            "※Iは単位行列（スカラの1に対応）",
+            color=GRAY, font_size=22,
         )
-        identity_note.shift(DOWN * 1.5)
+        identity_note.shift(DOWN * 0.5)
         self.play(Write(identity_note), run_time=0.6)
         self.wait(0.7)
 
         # 時間変数を導入
         time_intro = Text(
-            "微分方程式の解のため、時間変数tを導入すると…",
+            "出したいのは微分方程式の解のため、時間変数tを導入すると…",
             color=WHITE, font_size=26,
         )
-        time_intro.shift(DOWN * 2.3)
+        time_intro.shift(DOWN * 1.2)
         self.play(Write(time_intro), run_time=0.7)
         self.wait(0.5)
 
@@ -291,7 +293,7 @@ class MatrixExponentialDefinition(Scene):
             color=GREEN,
             font_size=36,
         )
-        matrix_exp_time.shift(DOWN * 3.1)
+        matrix_exp_time.shift(DOWN * 1.9)
         self.play(Write(matrix_exp_time), run_time=0.9)
         self.wait(0.5)
 
@@ -301,28 +303,29 @@ class MatrixExponentialDefinition(Scene):
             color=GREEN,
             font_size=36,
         )
-        commute_note.shift(DOWN * 3.6)
+        commute_note.shift(DOWN * 2.75)
         commute_label = Text(
             "（tはスカラなので順序交換可）",
             color=TEAL, font_size=20,
         )
         commute_label.next_to(commute_note, RIGHT, buff=0.2)
         self.play(Write(commute_note), Write(commute_label), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
-            FadeOut(exp_expansion), FadeOut(exp_box), FadeOut(exp_explicit),
+            # FadeOut(exp_expansion), FadeOut(exp_box), 
+            FadeOut(exp_explicit),
             FadeOut(idea_text), FadeOut(arrow3), FadeOut(identity_note),
             FadeOut(time_intro), FadeOut(matrix_exp_time),
-            FadeOut(commute_label),
+            FadeOut(commute_label),FadeOut(commute_note),
         )
         self.wait(0.3)
 
         # 定義のまとめ
         self.play(
-            matrix_exp_def.animate.shift(UP * 1.2).scale(0.9),
-            matrix_exp_box.animate.shift(UP * 1.2).scale(0.9),
-            commute_note.animate.shift(UP * 4.7).scale(0.9),
+            matrix_exp_def.animate.shift(UP),
+            matrix_exp_box.animate.shift(UP),
+            # commute_note.animate.shift(UP * 4.7).scale(0.9),
             run_time=0.6
         )
         self.wait(0.3)
@@ -336,7 +339,7 @@ class MatrixExponentialDefinition(Scene):
         self.wait(0.6)
 
         note_computation = Text(
-            "※ 具体的にA^nの極限を求める方法は次回説明",
+            "※ 具体的にA^nの極限を求める方法は次の動画で詳しく扱う",
             color=ORANGE, font_size=24,
         )
         note_computation.shift(DOWN * 1.1)
@@ -345,7 +348,7 @@ class MatrixExponentialDefinition(Scene):
 
         self.play(
             FadeOut(matrix_exp_def), FadeOut(matrix_exp_box),
-            FadeOut(commute_note), FadeOut(definition_label),
+            FadeOut(definition_label),
             FadeOut(note_computation),
         )
         self.wait(0.3)
@@ -362,7 +365,7 @@ class MatrixExponentialDefinition(Scene):
             "注意：スカラとは異なる性質を持つ！",
             color=RED, font_size=28, weight=BOLD,
         )
-        warning_text.shift(UP * 2.2)
+        warning_text.shift(UP * 2)
         self.play(Write(warning_text), run_time=0.7)
         self.wait(0.6)
 
@@ -387,7 +390,7 @@ class MatrixExponentialDefinition(Scene):
         case1_eq = MathTex(
             r"e^{A+B} = e^A e^B = e^B e^A = e^{B+A}",
             color=GREEN,
-            font_size=32,
+            font_size=36,
         )
         case1_eq.shift(UP * 0.1)
         case1_box = SurroundingRectangle(case1_eq, color=GREEN, buff=0.2)
@@ -407,9 +410,9 @@ class MatrixExponentialDefinition(Scene):
         case2_eq = MathTex(
             r"e^{A+B} \neq e^A e^B \neq e^B e^A \neq e^{B+A}",
             color=RED,
-            font_size=32,
+            font_size=36,
         )
-        case2_eq.shift(DOWN * 1.4)
+        case2_eq.shift(DOWN * 1.5)
         case2_box = SurroundingRectangle(case2_eq, color=RED, buff=0.2)
         self.play(Write(case2_eq), run_time=0.8)
         self.play(Create(case2_box), run_time=0.4)
@@ -417,11 +420,11 @@ class MatrixExponentialDefinition(Scene):
 
         explanation_comm = Text(
             "行列は積の順序で結果が変わるため！",
-            color=ORANGE, font_size=22,
+            color=ORANGE, font_size=24,
         )
-        explanation_comm.shift(DOWN * 2.3)
+        explanation_comm.shift(DOWN * 2.7)
         self.play(Write(explanation_comm), run_time=0.6)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(warning_text), FadeOut(commutative_title),
@@ -440,10 +443,10 @@ class MatrixExponentialDefinition(Scene):
         self.wait(0.4)
 
         self_commute_text = Text(
-            "行列は自分自身とは必ず可換",
+            "自明な性質↓",
             color=WHITE, font_size=26,
         )
-        self_commute_text.shift(UP * 2.0)
+        self_commute_text.shift(UP * 1.6)
         self.play(Write(self_commute_text), run_time=0.7)
         self.wait(0.5)
 
@@ -468,7 +471,7 @@ class MatrixExponentialDefinition(Scene):
         prop1 = MathTex(
             r"e^{At_1 + At_2} = e^{At_1} e^{At_2} = e^{At_2 + At_1}",
             color=YELLOW,
-            font_size=34,
+            font_size=36,
         )
         prop1.shift(DOWN * 0.4)
         self.play(Write(prop1), run_time=0.8)
@@ -478,7 +481,7 @@ class MatrixExponentialDefinition(Scene):
         prop2 = MathTex(
             r"e^{At} e^{-At} = e^{-At} e^{At} = e^{At - At} = I",
             color=YELLOW,
-            font_size=34,
+            font_size=36,
         )
         prop2.shift(DOWN * 1.2)
         self.play(Write(prop2), run_time=0.8)
@@ -502,12 +505,13 @@ class MatrixExponentialDefinition(Scene):
         )
         inverse_note.shift(DOWN * 3.0)
         self.play(Write(inverse_note), run_time=0.6)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(self_commute_text), FadeOut(self_commute_eq),
             FadeOut(therefore), FadeOut(prop1), FadeOut(prop2),
             FadeOut(inverse_note),
+            FadeOut(prop3), FadeOut(prop3_box),
         )
         self.wait(0.3)
 
@@ -519,13 +523,13 @@ class MatrixExponentialDefinition(Scene):
         self.play(Transform(subtitle1, subtitle7), run_time=0.5)
         self.wait(0.4)
 
-        # prop3を上に移動
-        self.play(
-            prop3.animate.shift(UP * 3.8).scale(0.8),
-            prop3_box.animate.shift(UP * 3.8).scale(0.8),
-            run_time=0.6
-        )
-        self.wait(0.3)
+        # # prop3を上に移動
+        # self.play(
+        #     prop3.animate.shift(UP * 3.8).scale(0.8),
+        #     prop3_box.animate.shift(UP * 3.8).scale(0.8),
+        #     run_time=0.6
+        # )
+        # self.wait(0.3)
 
         derivative_title = Text(
             "最後に、微分に関する性質",
@@ -549,7 +553,7 @@ class MatrixExponentialDefinition(Scene):
         # 証明のヒント
         proof_hint = Text(
             "（定義式を項ごとに微分すれば確かめられる）",
-            color=TEAL, font_size=24,
+            color=GRAY, font_size=24,
         )
         proof_hint.shift(DOWN * 0.5)
         self.play(Write(proof_hint), run_time=0.7)
@@ -573,7 +577,6 @@ class MatrixExponentialDefinition(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(prop3), FadeOut(prop3_box),
             FadeOut(derivative_title), FadeOut(derivative_prop),
             FadeOut(derivative_box), FadeOut(proof_hint),
             FadeOut(comparison_text), FadeOut(importance),
@@ -603,7 +606,7 @@ class MatrixExponentialDefinition(Scene):
         self.wait(0.8)
 
         next_question = Text(
-            "しかし、具体的にA^nを計算する必要がある…",
+            "しかし、A^nの足し合わせの極限を具体的に計算する必要がある…",
             color=ORANGE, font_size=26, weight=BOLD,
         )
         next_question.shift(DOWN * 1.5)
@@ -611,12 +614,12 @@ class MatrixExponentialDefinition(Scene):
         self.wait(0.6)
 
         next_topic = Text(
-            "→ 次回は、固有値・固有ベクトルを使った計算方法を学ぶ",
+            "→ 次の動画では、固有値・固有ベクトルを使った計算方法を見ていこう",
             color=GREEN, font_size=26, weight=BOLD,
         )
-        next_topic.shift(DOWN * 2.3)
+        next_topic.shift(DOWN * 2.1)
         self.play(Write(next_topic), run_time=0.8)
-        self.wait(1.5)
+        self.wait(1.8)
 
         self.play(
             FadeOut(VGroup(
