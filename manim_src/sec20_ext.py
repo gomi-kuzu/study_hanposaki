@@ -1102,24 +1102,24 @@ class DiagonalizationAndControlTheory(Scene):
         self.play(Transform(subtitle0, subtitle6), run_time=0.5)
         self.wait(0.4)
 
-        comparison_title = Text(
-            "固有値の性質がシステムの応答を決定する",
-            color=ORANGE, font_size=26, weight=BOLD,
-        )
-        comparison_title.shift(UP * 2.8)
-        self.play(Write(comparison_title), run_time=0.7)
-        self.wait(0.5)
+        # comparison_title = Text(
+        #     "固有値の性質がシステムの応答を決定する",
+        #     color=ORANGE, font_size=26, weight=BOLD,
+        # )
+        # comparison_title.shift(UP * 2.8)
+        # self.play(Write(comparison_title), run_time=0.7)
+        # self.wait(0.5)
 
         # グラフの作成
         axes = Axes(
             x_range=[0, 6, 1],
-            y_range=[0, 1.6, 0.5],
-            x_length=9,
-            y_length=4,
+            y_range=[-0.4, 1.6, 0.5],
+            x_length=8,
+            y_length=3.5,
             axis_config={"color": GREY},
             tips=False,
         )
-        axes.shift(DOWN * 0.3)
+        axes.shift(DOWN * 0.5)
         
         # 軸ラベル
         x_label = MathTex("t", font_size=28, color=YELLOW)
@@ -1200,20 +1200,21 @@ class DiagonalizationAndControlTheory(Scene):
         
         self.wait(1.5)
 
-        key_insight = Text(
-            "固有値が決まれば、システムの性質が数学的に決定される！",
-            color=GREEN, font_size=24, weight=BOLD,
-        )
-        key_insight.shift(DOWN * 3.2 + RIGHT * 2.5)
-        self.play(Write(key_insight), run_time=0.8)
-        self.wait(1.5)
+        # key_insight = Text(
+        #     "固有値が決まれば、システムの性質が数学的に決定される！",
+        #     color=GREEN, font_size=24, weight=BOLD,
+        # )
+        # key_insight.shift(DOWN * 3.2 + RIGHT * 2.5)
+        # self.play(Write(key_insight), run_time=0.8)
+        # self.wait(1.5)
 
         self.play(
             FadeOut(subtitle6),
-            FadeOut(comparison_title), FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
+            # FadeOut(comparison_title),
+            FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
             FadeOut(graph_overdamped), FadeOut(graph_underdamped), FadeOut(graph_critical),
             FadeOut(label_overdamped), FadeOut(label_underdamped), FadeOut(label_critical),
-            FadeOut(feature_note), FadeOut(key_insight),
+            FadeOut(feature_note), # FadeOut(key_insight),
         )
         self.wait(0.3)
 
