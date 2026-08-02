@@ -1119,7 +1119,7 @@ class DiagonalizationAndControlTheory(Scene):
             axis_config={"color": GREY},
             tips=False,
         )
-        axes.shift(DOWN * 0.5)
+        axes.shift(UP * 0.3)
         
         # 軸ラベル
         x_label = MathTex("t", font_size=28, color=YELLOW)
@@ -1167,7 +1167,7 @@ class DiagonalizationAndControlTheory(Scene):
         # グラフのプロット
         graph_overdamped = axes.plot(overdamped_response, color=BLUE, x_range=[0, 6])
         label_overdamped = Text("過減衰", color=BLUE, font_size=22)
-        label_overdamped.next_to(axes.c2p(6, overdamped_response(6)), RIGHT, buff=0.2)
+        label_overdamped.next_to(axes.c2p(6, overdamped_response(6)), RIGHT+UP*0.2, buff=0.2)
         
         self.play(Create(graph_overdamped), Write(label_overdamped), run_time=0.8)
         self.wait(0.5)
