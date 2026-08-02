@@ -1087,7 +1087,6 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(subtitle5),
             FadeOut(phys_title3), FadeOut(phys_desc3),
             FadeOut(system_diagram_sim3), FadeOut(spring_mobject_3),
             FadeOut(mass_sim3), FadeOut(mass_label_sim3),
@@ -1098,110 +1097,125 @@ class DiagonalizationAndControlTheory(Scene):
         # ============================================================
         # Part 6: 3つのパターンの比較
         # ============================================================
-        # subtitle6 = Text("3つのパターンの比較", font_size=28, color=BLUE)
-        # subtitle6.next_to(title, DOWN)
-        # self.play(Transform(subtitle0, subtitle6), run_time=0.5)
-        # self.wait(0.4)
+        subtitle6 = Text("3つのパターンの比較", font_size=28, color=BLUE)
+        subtitle6.next_to(title, DOWN)
+        self.play(Transform(subtitle0, subtitle6), run_time=0.5)
+        self.wait(0.4)
 
-        # comparison_title = Text(
-        #     "固有値の性質とシステムの挙動の関係",
-        #     color=ORANGE, font_size=26, weight=BOLD,
-        # )
-        # comparison_title.shift(UP * 2.3)
-        # self.play(Write(comparison_title), run_time=0.7)
-        # self.wait(0.5)
+        comparison_title = Text(
+            "固有値の性質がシステムの応答を決定する",
+            color=ORANGE, font_size=26, weight=BOLD,
+        )
+        comparison_title.shift(UP * 2.8)
+        self.play(Write(comparison_title), run_time=0.7)
+        self.wait(0.5)
 
-        # # 表形式の比較
-        # comparison_table = VGroup(
-        #     # ヘッダー
-        #     VGroup(
-        #         Text("パターン", color=YELLOW, font_size=20, weight=BOLD),
-        #         Text("固有値", color=YELLOW, font_size=20, weight=BOLD),
-        #         Text("対角化", color=YELLOW, font_size=20, weight=BOLD),
-        #         Text("応答", color=YELLOW, font_size=20, weight=BOLD),
-        #     ).arrange(RIGHT, buff=1.2),
-            
-        #     # パターン1
-        #     VGroup(
-        #         Text("過減衰", color=BLUE, font_size=18),
-        #         MathTex(r"\lambda_1 \neq \lambda_2 \in \mathbb{R}", color=WHITE, font_size=16),
-        #         Text("可能", color=GREEN, font_size=18),
-        #         Text("振動なし（遅い）", color=WHITE, font_size=16),
-        #     ).arrange(RIGHT, buff=0.7),
-            
-        #     # パターン2
-        #     VGroup(
-        #         Text("減衰振動", color=TEAL, font_size=18),
-        #         MathTex(r"-\alpha \pm j\omega", color=WHITE, font_size=16),
-        #         Text("不可能", color=RED, font_size=18),
-        #         Text("振動あり", color=WHITE, font_size=16),
-        #     ).arrange(RIGHT, buff=0.8),
-            
-        #     # パターン3
-        #     VGroup(
-        #         Text("臨界減衰", color=GOLD, font_size=18),
-        #         MathTex(r"-\omega_n", color=WHITE, font_size=16),
-        #         Text("不可能", color=RED, font_size=18),
-        #         Text("振動なし（最速）", color=WHITE, font_size=16),
-        #     ).arrange(RIGHT, buff=0.6),
-        # ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
-        # comparison_table.shift(UP * 0.5)
+        # グラフの作成
+        axes = Axes(
+            x_range=[0, 6, 1],
+            y_range=[0, 1.6, 0.5],
+            x_length=9,
+            y_length=4,
+            axis_config={"color": GREY},
+            tips=False,
+        )
+        axes.shift(DOWN * 0.3)
         
-        # for row in comparison_table:
-        #     self.play(Write(row), run_time=0.6)
-        #     self.wait(0.3)
+        # 軸ラベル
+        x_label = MathTex("t", font_size=28, color=YELLOW)
+        x_label.next_to(axes.x_axis, RIGHT, buff=0.2)
+        y_label = MathTex("x(t)", font_size=28, color=YELLOW)
+        y_label.next_to(axes.y_axis, UP, buff=0.2)
         
-        # self.wait(1.0)
+        self.play(Create(axes), Write(x_label), Write(y_label), run_time=0.8)
+        self.wait(0.4)
 
-        # key_insight = Text(
-        #     "固有値が決まれば、システムの性質が数学的に決定される！",
-        #     color=GREEN, font_size=24, weight=BOLD,
-        # )
-        # key_insight.shift(DOWN * 2.0)
-        # self.play(Write(key_insight), run_time=0.8)
-        # self.wait(1.2)
-
-        # self.play(
-        #     FadeOut(comparison_title), FadeOut(comparison_table),
-        #     FadeOut(key_insight),
-        # )
-        # self.wait(0.3)
-
-        # ============================================================
-        # Part 7: 制御工学への応用
-        # ============================================================
-        # subtitle7 = Text("制御工学への応用", font_size=28, color=GOLD)
-        # subtitle7.next_to(title, DOWN)
-        # self.play(Transform(subtitle0, subtitle7), run_time=0.5)
-        # self.wait(0.4)
-
-        # control_intro = Text(
-        #     "制御工学では、この知見を活用して：",
-        #     color=ORANGE, font_size=26, weight=BOLD,
-        # )
-        # control_intro.shift(UP * 1.8)
-        # self.play(Write(control_intro), run_time=0.7)
-        # self.wait(0.5)
-
-        # control_applications = VGroup(
-        #     Text("• システムの応答性を固有値から予測", color=WHITE, font_size=24),
-        #     Text("• 固有値を配置することで望ましい応答を設計", color=BLUE, font_size=24),
-        #     Text("  （極配置法、状態フィードバック制御）", color=BLUE, font_size=20),
-        #     Text("• 安定性の判定（全ての固有値の実部が負か）", color=TEAL, font_size=24),
-        #     Text("• 過渡応答の評価（減衰率、応答速度）", color=GREEN, font_size=24),
-        # ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        # control_applications.shift(UP * 0.2)
+        # 各パターンの時間応答関数を定義
+        # パターン1: 過減衰 (m=1.0, k=1.0, gamma=4.0)
+        m1, k1, gamma1 = 1.0, 1.0, 4.0
+        x0 = 1.5
+        v0 = 0.0
+        discriminant1 = (gamma1/(2*m1))**2 - k1/m1
+        lambda1_1 = -gamma1/(2*m1) + np.sqrt(discriminant1)
+        lambda2_1 = -gamma1/(2*m1) - np.sqrt(discriminant1)
+        c1_1 = (v0 - lambda2_1*x0)/(lambda1_1 - lambda2_1)
+        c2_1 = (lambda1_1*x0 - v0)/(lambda1_1 - lambda2_1)
         
-        # for item in control_applications:
-        #     self.play(Write(item), run_time=0.5)
-        #     self.wait(0.3)
+        def overdamped_response(t):
+            return c1_1 * np.exp(lambda1_1 * t) + c2_1 * np.exp(lambda2_1 * t)
         
-        # self.wait(1.0)
+        # パターン2: 減衰振動 (m=1.0, k=4.0, gamma=0.5)
+        m2, k2, gamma2 = 1.0, 4.0, 0.5
+        alpha2 = gamma2/(2*m2)
+        omega2 = np.sqrt(k2/m2 - (gamma2/(2*m2))**2)
+        A2 = x0
+        B2 = (v0 + alpha2*x0)/omega2
+        
+        def underdamped_response(t):
+            return np.exp(-alpha2 * t) * (A2 * np.cos(omega2 * t) + B2 * np.sin(omega2 * t))
+        
+        # パターン3: 臨界減衰 (m=1.0, k=4.0, gamma=2*sqrt(km))
+        m3, k3 = 1.0, 4.0
+        gamma3 = 2*np.sqrt(k3*m3)
+        omega_n3 = np.sqrt(k3/m3)
+        c1_3 = x0
+        c2_3 = v0 + omega_n3*x0
+        
+        def critical_response(t):
+            return (c1_3 + c2_3*t) * np.exp(-omega_n3 * t)
 
-        # self.play(
-        #     FadeOut(control_intro), FadeOut(control_applications),
-        # )
-        # self.wait(0.3)
+        # グラフのプロット
+        graph_overdamped = axes.plot(overdamped_response, color=BLUE, x_range=[0, 6])
+        label_overdamped = Text("過減衰", color=BLUE, font_size=22)
+        label_overdamped.next_to(axes.c2p(6, overdamped_response(6)), RIGHT, buff=0.2)
+        
+        self.play(Create(graph_overdamped), Write(label_overdamped), run_time=0.8)
+        self.wait(0.5)
+
+        graph_underdamped = axes.plot(underdamped_response, color=TEAL, x_range=[0, 6])
+        label_underdamped = Text("減衰振動", color=TEAL, font_size=22)
+        label_underdamped.next_to(axes.c2p(6, underdamped_response(6)), RIGHT, buff=0.2)
+        
+        self.play(Create(graph_underdamped), Write(label_underdamped), run_time=0.8)
+        self.wait(0.5)
+
+        graph_critical = axes.plot(critical_response, color=GOLD, x_range=[0, 6])
+        label_critical = Text("臨界減衰", color=GOLD, font_size=22)
+        label_critical.next_to(axes.c2p(6, critical_response(6)), RIGHT, buff=0.2)
+        
+        self.play(Create(graph_critical), Write(label_critical), run_time=0.8)
+        self.wait(1.0)
+
+        # 特徴の説明
+        feature_note = VGroup(
+            Text("• 臨界減衰：振動せず最速で収束", color=GOLD, font_size=20),
+            Text("• 過減衰：振動せずゆっくり収束", color=BLUE, font_size=20),
+            Text("• 減衰振動：振動しながら収束", color=TEAL, font_size=20),
+        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
+        feature_note.shift(DOWN * 3.2 + LEFT * 4)
+        
+        for item in feature_note:
+            self.play(Write(item), run_time=0.5)
+            self.wait(0.3)
+        
+        self.wait(1.5)
+
+        key_insight = Text(
+            "固有値が決まれば、システムの性質が数学的に決定される！",
+            color=GREEN, font_size=24, weight=BOLD,
+        )
+        key_insight.shift(DOWN * 3.2 + RIGHT * 2.5)
+        self.play(Write(key_insight), run_time=0.8)
+        self.wait(1.5)
+
+        self.play(
+            FadeOut(subtitle6),
+            FadeOut(comparison_title), FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
+            FadeOut(graph_overdamped), FadeOut(graph_underdamped), FadeOut(graph_critical),
+            FadeOut(label_overdamped), FadeOut(label_underdamped), FadeOut(label_critical),
+            FadeOut(feature_note), FadeOut(key_insight),
+        )
+        self.wait(0.3)
 
         # ============================================================
         # Part 8: まとめ
