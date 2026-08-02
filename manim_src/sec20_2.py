@@ -12,15 +12,15 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.7)
 
         # ============================================================
-        # Part 1: 前回のおさらい
+        # Part 1: おさらい
         # ============================================================
-        subtitle1 = Text("前回のおさらい", font_size=28, color=BLUE)
+        subtitle1 = Text("おさらい", font_size=28, color=BLUE)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.4)
 
         review1_text = Text(
-            "前回、行列の指数関数を次のように定義した",
+            "前の動画では、行列の指数関数を次のように定義した",
             color=WHITE, font_size=26,
         )
         review1_text.shift(UP * 1.8)
@@ -33,9 +33,9 @@ class MatrixExponentialComputation(Scene):
             font_size=38,
         )
         review1_eq.shift(UP * 0.8)
-        review1_box = SurroundingRectangle(review1_eq, color=YELLOW, buff=0.25)
-        self.play(Write(review1_eq), Create(review1_box), run_time=0.8)
-        self.wait(0.6)
+        # review1_box = SurroundingRectangle(review1_eq, color=YELLOW, buff=0.25)
+        self.play(Write(review1_eq), )#Create(review1_box), run_time=0.8)
+        # self.wait(0.6)
 
         review2_text = Text(
             "または、無限和の形で",
@@ -71,7 +71,7 @@ class MatrixExponentialComputation(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(review1_text), FadeOut(review1_eq), FadeOut(review1_box),
+            FadeOut(review1_text), FadeOut(review1_eq),
             FadeOut(review2_text), FadeOut(review2_eq),
             FadeOut(question), FadeOut(answer),
         )
@@ -86,10 +86,10 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.4)
 
         diag_text = Text(
-            "行列Aが線形独立な固有ベクトルを持つとき",
+            "行列Aが線形独立な固有ベクトルを持つとき、",
             color=WHITE, font_size=26,
         )
-        diag_text.shift(UP * 2.2)
+        diag_text.shift(UP * 2.0)
         self.play(Write(diag_text), run_time=0.7)
         self.wait(0.5)
 
@@ -104,7 +104,7 @@ class MatrixExponentialComputation(Scene):
         diag_eq1 = MathTex(
             r"\Lambda = P^{-1}AP",
             color=YELLOW,
-            font_size=40,
+            font_size=42,
         )
         diag_eq1.shift(UP * 0.7)
         self.play(Write(diag_eq1), run_time=0.8)
@@ -124,12 +124,12 @@ class MatrixExponentialComputation(Scene):
             color=BLUE,
             font_size=32,
         )
-        lambda_example.shift(DOWN * 1.0)
+        lambda_example.shift(DOWN * 1.1)
         self.play(Write(lambda_example), run_time=0.9)
         self.wait(0.8)
 
         transform_text = Text(
-            "この式を変形すると…",
+            "この式を変形して…",
             color=ORANGE, font_size=26,
         )
         transform_text.shift(DOWN * 2.3)
@@ -144,12 +144,12 @@ class MatrixExponentialComputation(Scene):
         diag_eq2.shift(DOWN * 3.0)
         diag_eq2_box = SurroundingRectangle(diag_eq2, color=GREEN, buff=0.25)
         self.play(Write(diag_eq2), Create(diag_eq2_box), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(diag_text), FadeOut(diag_explanation),
             FadeOut(lambda_note), FadeOut(lambda_example),
-            FadeOut(transform_text),
+            FadeOut(transform_text),FadeOut(diag_eq1), 
         )
         self.wait(0.3)
 
@@ -163,15 +163,15 @@ class MatrixExponentialComputation(Scene):
 
         # diag_eq1とdiag_eq2を上に移動
         self.play(
-            diag_eq1.animate.shift(UP * 1.5).scale(0.75),
-            diag_eq2.animate.shift(UP * 4.2).scale(0.75),
-            diag_eq2_box.animate.shift(UP * 4.2).scale(0.75),
+            # diag_eq1.animate.shift(UP * 1.5).scale(0.75),
+            diag_eq2.animate.shift(UP * 4.8).scale(0.95),
+            diag_eq2_box.animate.shift(UP * 4.8).scale(0.8),
             run_time=0.6
         )
         self.wait(0.3)
 
         apply_text = Text(
-            "A = PΛP⁻¹ を指数関数の定義に代入すると",
+            "これを指数関数の定義に代入すると",
             color=WHITE, font_size=26,
         )
         apply_text.shift(UP * 1.2)
@@ -196,33 +196,37 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.8)
 
         # 具体例を示す
-        example_power = MathTex(
-            r"(P\Lambda P^{-1})^2 = P\Lambda P^{-1}P\Lambda P^{-1} = P\Lambda^2 P^{-1}",
-            color=BLUE,
-            font_size=28,
-        )
-        example_power.shift(DOWN * 1.3)
+        example_power = VGroup(
+            Text("例(n=2)：", color=BLUE, font_size=22),
+            MathTex(
+                r"(P\Lambda P^{-1})^2 = P\Lambda P^{-1}P\Lambda P^{-1} = P\Lambda^2 P^{-1}",
+                color=BLUE,
+                font_size=28,
+            )
+        ).arrange(RIGHT, buff=0.2)
+        example_power.shift(DOWN * 1.1)
         self.play(Write(example_power), run_time=0.9)
         self.wait(0.8)
 
         arrow1 = MathTex(r"\Downarrow", color=WHITE, font_size=36)
-        arrow1.shift(DOWN * 2.0)
+        arrow1.shift(DOWN * 1.7)
         self.play(Write(arrow1), run_time=0.4)
         self.wait(0.3)
 
         apply_eq2 = MathTex(
             r"e^A = \sum_{n=0}^{\infty} \frac{1}{n!}P\Lambda^n P^{-1}",
             color=YELLOW,
-            font_size=36,
+            font_size=40,
         )
-        apply_eq2.shift(DOWN * 2.7)
+        apply_eq2.shift(DOWN * 2.6)
         self.play(Write(apply_eq2), run_time=0.9)
         self.wait(0.8)
 
         self.play(
-            FadeOut(diag_eq1), FadeOut(apply_text),
+            FadeOut(apply_text),
             FadeOut(apply_eq1), FadeOut(key_point),
             FadeOut(example_power), FadeOut(arrow1),
+            FadeOut(diag_eq2), FadeOut(diag_eq2_box),        
         )
         self.wait(0.3)
 
@@ -236,9 +240,9 @@ class MatrixExponentialComputation(Scene):
 
         # apply_eq2を上に移動
         self.play(
-            diag_eq2.animate.shift(UP * 0.5).scale(0.9),
-            diag_eq2_box.animate.shift(UP * 0.5).scale(0.9),
-            apply_eq2.animate.shift(UP * 3.9).scale(0.85),
+            # diag_eq2.animate.shift(UP * 0.5).scale(0.9),
+            # diag_eq2_box.animate.shift(UP * 0.5).scale(0.9),
+            apply_eq2.animate.shift(UP * 4.5).scale(0.85),
             run_time=0.6
         )
         self.wait(0.3)
@@ -252,7 +256,7 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.5)
 
         arrow2 = MathTex(r"\Downarrow", color=WHITE, font_size=36)
-        arrow2.shift(UP * 0.5)
+        arrow2.shift(UP * 0.7)
         self.play(Write(arrow2), run_time=0.4)
         self.wait(0.3)
 
@@ -285,7 +289,6 @@ class MatrixExponentialComputation(Scene):
         self.wait(1.2)
 
         self.play(
-            FadeOut(diag_eq2), FadeOut(diag_eq2_box),
             FadeOut(apply_eq2), FadeOut(factor_text),
             FadeOut(arrow2), FadeOut(factor_eq),
             FadeOut(factor_box), FadeOut(notice_text),
@@ -302,8 +305,8 @@ class MatrixExponentialComputation(Scene):
 
         # final_eqを上に移動
         self.play(
-            final_eq.animate.shift(UP * 3.5).scale(0.75),
-            final_box.animate.shift(UP * 3.5).scale(0.75),
+            final_eq.animate.shift(UP * 4.5 + LEFT * 3.8).scale(0.8),
+            final_box.animate.shift(UP * 4.5 + LEFT * 3.8).scale(0.8),
             run_time=0.6
         )
         self.wait(0.3)
@@ -367,10 +370,10 @@ class MatrixExponentialComputation(Scene):
 
         # final_eqとdiagonal_eq2を配置
         self.play(
-            final_eq.animate.shift(DOWN * 1.8).scale(1.1),
-            final_box.animate.shift(DOWN * 1.8).scale(1.1),
-            diagonal_eq2.animate.shift(UP * 2.8).scale(0.9),
-            diagonal_box.animate.shift(UP * 2.8).scale(0.9),
+            final_eq.animate.shift(DOWN * 0.5 + RIGHT * 0.8).scale(1.1),
+            final_box.animate.shift(DOWN * 0.5 + RIGHT * 0.8).scale(1.1),
+            diagonal_eq2.animate.shift(UP * 2.8+RIGHT * 1.8).scale(0.9),
+            diagonal_box.animate.shift(UP * 2.8+RIGHT * 1.8).scale(0.9),
             run_time=0.6
         )
         self.wait(0.3)
@@ -379,31 +382,31 @@ class MatrixExponentialComputation(Scene):
             "対角化可能な行列Aに対して",
             color=WHITE, font_size=26, weight=BOLD,
         )
-        summary_text.shift(UP * 1.8)
+        summary_text.shift(DOWN * 0.1)
         self.play(Write(summary_text), run_time=0.7)
         self.wait(0.8)
 
         steps_text = Text(
-            "① Aを対角化：Λ = P⁻¹AP",
-            color=BLUE, font_size=24,
+            "① 固有値と固有ベクトルを求める",
+            color=BLUE, font_size=26,
         )
-        steps_text.shift(UP * 0.3)
+        steps_text.shift(DOWN * 0.7)
         self.play(Write(steps_text), run_time=0.6)
         self.wait(0.5)
 
         steps_text2 = Text(
             "② e^Λを計算：対角成分にe^λᵢを配置",
-            color=BLUE, font_size=24,
+            color=BLUE, font_size=26,
         )
-        steps_text2.shift(DOWN * 0.1)
+        steps_text2.shift(DOWN* 1.2)
         self.play(Write(steps_text2), run_time=0.6)
         self.wait(0.5)
 
         steps_text3 = Text(
             "③ e^A = Pe^ΛP⁻¹を計算",
-            color=BLUE, font_size=24,
+            color=BLUE, font_size=26,
         )
-        steps_text3.shift(DOWN * 0.5)
+        steps_text3.shift(DOWN * 1.7)
         self.play(Write(steps_text3), run_time=0.6)
         self.wait(1.0)
 
@@ -411,7 +414,7 @@ class MatrixExponentialComputation(Scene):
             "→ これで行列の指数関数が具体的に計算できた！",
             color=GREEN, font_size=26, weight=BOLD,
         )
-        conclusion.shift(DOWN * 2.9)
+        conclusion.shift(DOWN * 2.5)
         self.play(Write(conclusion), run_time=0.8)
         self.wait(1.5)
 
@@ -431,10 +434,10 @@ class MatrixExponentialComputation(Scene):
         self.play(Transform(subtitle1, subtitle7), run_time=0.5)
         self.wait(0.4)
 
-        # final_eqを上に移動
+        # final_eqを右に移動
         self.play(
-            final_eq.animate.shift(UP * 2.3).scale(0.85),
-            final_box.animate.shift(UP * 2.3).scale(0.85),
+            final_eq.animate.shift(RIGHT * 3),
+            final_box.animate.shift(RIGHT * 3).scale(0.85),
             run_time=0.6
         )
         self.wait(0.3)
@@ -443,7 +446,7 @@ class MatrixExponentialComputation(Scene):
             "注意：Aが実数行列でも固有値に複素数が混じることがある",
             color=ORANGE, font_size=26, weight=BOLD,
         )
-        complex_text.shift(UP * 1.2)
+        complex_text.shift(UP)
         self.play(Write(complex_text), run_time=0.8)
         self.wait(0.6)
 
@@ -481,7 +484,7 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.5)
 
         complex_conclusion = Text(
-            "最終的なe^Aは実数行列になる（らしい）",
+            "最終的なe^Aはjが打ち消し合って実数行列になる（らしい）",
             color=GREEN, font_size=26, weight=BOLD,
         )
         complex_conclusion.shift(DOWN * 2.7)
@@ -489,7 +492,7 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.6)
 
         challenge = Text(
-            "※ 余裕のある人はぜひ計算して確かめてみてください",
+            "※ 余裕のある人はぜひ計算して確かめてみてください！",
             color=YELLOW, font_size=22,
         )
         challenge.shift(DOWN * 3.4)
@@ -512,19 +515,19 @@ class MatrixExponentialComputation(Scene):
         self.play(Transform(subtitle1, subtitle8), run_time=0.5)
         self.wait(0.4)
 
-        # final_eqを少し上に移動
-        self.play(
-            final_eq.animate.shift(UP * 0.5).scale(0.9),
-            final_box.animate.shift(UP * 0.5).scale(0.9),
-            run_time=0.6
-        )
-        self.wait(0.3)
+        # # final_eqを少し上に移動
+        # self.play(
+        #     final_eq.animate.shift(UP * 0.5).scale(0.9),
+        #     final_box.animate.shift(UP * 0.5).scale(0.9),
+        #     run_time=0.6
+        # )
+        # self.wait(0.3)
 
         jordan_intro = Text(
-            "対角化できない場合でも計算可能！",
+            "実は、対角化できない場合でも計算可能！",
             color=ORANGE, font_size=26, weight=BOLD,
         )
-        jordan_intro.shift(UP * 1.2)
+        jordan_intro.shift(UP * 1)
         self.play(Write(jordan_intro), run_time=0.7)
         self.wait(0.6)
 
@@ -548,9 +551,9 @@ class MatrixExponentialComputation(Scene):
         jordan_example = MathTex(
             r"J = \begin{bmatrix} \lambda_i & 1 & 0 & \cdots \\ 0 & \lambda_i & 1 & \cdots \\ 0 & 0 & \lambda_i & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{bmatrix}",
             color=BLUE,
-            font_size=32,
+            font_size=34,
         )
-        jordan_example.shift(DOWN * 1.3)
+        jordan_example.shift(DOWN * 1.4)
         self.play(Write(jordan_example), run_time=0.9)
         self.wait(0.8)
 
@@ -795,11 +798,9 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.4)
 
         summary = VGroup(
-            Text("• 対角化可能な場合：e^A = Pe^ΛP⁻¹", color=WHITE, font_size=26),
-            Text("  - e^Λは対角成分にe^λᵢを配置", color=WHITE, font_size=24),
-            Text("• 複素固有値を持つ場合でも最終結果は実数", color=WHITE, font_size=26),
-            Text("• 対角化不可能な場合：ジョルダン標準形を使用", color=WHITE, font_size=26),
-            Text("  - e^J = e^{λᵢI}e^H で計算", color=WHITE, font_size=24),
+            Text("• 対角化可能な場合：e^A = Pe^ΛP⁻¹", color=WHITE, font_size=28),
+            Text("• 複素固有値を持つ場合でも最終結果は実数", color=WHITE, font_size=28),
+            Text("• 対角化不可能な場合：ジョルダン標準形を使用", color=WHITE, font_size=28),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
         summary.shift(UP * 0.5)
         
@@ -809,13 +810,23 @@ class MatrixExponentialComputation(Scene):
         
         self.wait(0.8)
 
-        next_topic = Text(
-            "→ 次回は、これを使って微分方程式を解く！",
-            color=GREEN, font_size=28, weight=BOLD,
-        )
-        next_topic.shift(DOWN * 2.3)
+        next_topic = VGroup(
+            Text(
+                "これらより、状態量がベクトルの微分方程式も",
+                color=GREEN, font_size=26, weight=BOLD,
+            ),
+            MathTex(
+                r"\mathbf{x}(t) = e^{At}\mathbf{x}(0)",
+                color=YELLOW, font_size=32,
+            ),
+            Text(
+                "と解ける！",
+                color=GREEN, font_size=26, weight=BOLD,
+            ),
+        ).arrange(RIGHT, buff=0.2)
+        next_topic.shift(DOWN * 2.0)
         self.play(Write(next_topic), run_time=0.8)
-        self.wait(1.5)
+        self.wait(2.0)
 
         self.play(
             FadeOut(VGroup(
