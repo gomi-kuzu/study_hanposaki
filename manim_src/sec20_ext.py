@@ -6,7 +6,7 @@ class DiagonalizationAndControlTheory(Scene):
     def construct(self):
         self.camera.background_color = "#012817"
 
-        title = Text("対角化と制御工学の応答性解析", font_size=36, color=WHITE)
+        title = Text("おまけ：対角化と制御工学の応答性解析", font_size=36, color=WHITE)
         title.to_edge(UP)
         self.play(Write(title), run_time=0.8)
         self.wait(0.7)
@@ -14,70 +14,104 @@ class DiagonalizationAndControlTheory(Scene):
         # ============================================================
         # Part 0: イントロダクション
         # ============================================================
-        subtitle0 = Text("おまけ：実システムへの応用", font_size=28, color=BLUE)
+        subtitle0 = Text("制御工学への半歩先", font_size=28, color=BLUE)
         subtitle0.next_to(title, DOWN)
         self.play(Write(subtitle0), run_time=0.6)
         self.wait(0.4)
 
         intro_text = Text(
-            "これまで学んできた行列の対角化が",
-            color=WHITE, font_size=26,
+            "今回学んだ行列の対角化が",
+            color=WHITE, font_size=28,
         )
-        intro_text.shift(UP * 1.8)
+        intro_text.shift(UP * 1.2)
         self.play(Write(intro_text), run_time=0.7)
         self.wait(0.4)
 
         intro_text2 = Text(
             "実際のシステムの挙動解析にどう役立つか見てみよう",
-            color=WHITE, font_size=26,
+            color=WHITE, font_size=28,
         )
-        intro_text2.shift(UP * 1.2)
+        intro_text2.shift(UP * 0.5)
         self.play(Write(intro_text2), run_time=0.7)
-        self.wait(0.6)
-
-        key_concept = VGroup(
-            Text("システム行列を対角化", color=YELLOW, font_size=28, weight=BOLD),
-            MathTex(r"\Downarrow", color=WHITE, font_size=32),
-            Text("モード分解", color=GREEN, font_size=28, weight=BOLD),
-            MathTex(r"\Downarrow", color=WHITE, font_size=32),
-            Text("システムの特性を評価", color=TEAL, font_size=28, weight=BOLD),
-        ).arrange(DOWN, buff=0.25)
-        key_concept.shift(DOWN * 0.2)
-        
-        for item in key_concept:
-            self.play(Write(item), run_time=0.5)
-            self.wait(0.2)
-        
         self.wait(0.8)
-
-        mode_explanation = Text(
-            "対角化により、相互干渉のない独立したモードに分解できる",
-            color=ORANGE, font_size=24,
-        )
-        mode_explanation.shift(DOWN * 2.5)
-        self.play(Write(mode_explanation), run_time=0.8)
-        self.wait(1.0)
 
         self.play(
             FadeOut(intro_text), FadeOut(intro_text2),
-            FadeOut(key_concept), FadeOut(mode_explanation),
         )
         self.wait(0.3)
 
         # ============================================================
-        # Part 1: マスバネダンパ系の復習
+        # Part 1: モード分解の意義
         # ============================================================
-        subtitle1 = Text("復習：マスバネダンパ系", font_size=28, color=GOLD)
+        subtitle1 = Text("モード分解とは", font_size=28, color=TEAL)
         subtitle1.next_to(title, DOWN)
         self.play(Transform(subtitle0, subtitle1), run_time=0.5)
         self.wait(0.4)
 
+        mode_intro = VGroup(
+            Text("複雑な多変数・多自由度の動的システムを、", color=ORANGE, font_size=26, weight=BOLD),
+            Text("独立した個別の要素（モード）の足し合わせに変換する手法", color=ORANGE, font_size=26, weight=BOLD),
+        ).arrange(DOWN, buff=0.15)
+        mode_intro.shift(UP * 1.8)
+        self.play(Write(mode_intro), run_time=0.7)
+        self.wait(0.5)
+
+        key_concept = VGroup(
+            Text("線形システムでは、", color=WHITE, font_size=24, weight=BOLD),
+            Text("システム行列を対角化", color=YELLOW, font_size=24, weight=BOLD),
+            MathTex(r"\Downarrow", color=WHITE, font_size=28),
+            Text("システムの特性を評価", color=TEAL, font_size=24, weight=BOLD),
+        ).arrange(DOWN, buff=0.2)
+        key_concept.shift(DOWN * 0.1)
+        
+        for item in key_concept:
+            self.play(Write(item), run_time=0.4)
+            self.wait(0.2)
+        
+        self.wait(0.6)
+
+        self.play(FadeOut(key_concept))
+        self.wait(0.2)
+
+        mode_significance = VGroup(
+            Text("モード分解の利点：", color=ORANGE, font_size=26, weight=BOLD),
+            Text("① 物理的意味から離れるが、相互干渉のないシンプルな系として評価できる", color=WHITE, font_size=24),
+            Text("② システムの持つ特性（速いモード、遅いモード）を明確に分離して評価できる", color=WHITE, font_size=24),
+            Text("③ 対角化できない場合でも、ジョルダン標準形で一方向の依存関係を評価", color=WHITE, font_size=24),
+        ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
+        mode_significance.shift(DOWN * 0.3)
+        
+        for item in mode_significance:
+            self.play(Write(item), run_time=0.4)
+            self.wait(0.2)
+        
+        self.wait(1.5)
+
+        self.play(FadeOut(mode_intro), FadeOut(mode_significance))
+        self.wait(0.3)
+
+        # ============================================================
+        # Part 2: マスバネダンパ系の復習
+        # ============================================================
+        subtitle2 = Text("具体例で見てみよう", font_size=28, color=GOLD)
+        subtitle2.next_to(title, DOWN)
+        self.play(Transform(subtitle0, subtitle2), run_time=0.5)
+        self.wait(0.4)
+
         review_intro = Text(
-            "19話で扱ったマスバネダンパ系を例に見てみよう",
-            color=WHITE, font_size=26,
+            "対角化の3分類が実際の挙動としてどう現れるか",
+            color=ORANGE, font_size=26, weight=BOLD,
         )
-        review_intro.shift(UP * 2.0)
+        review_intro.shift(UP * 1.8)
         self.play(Write(review_intro), run_time=0.7)
+        self.wait(0.5)
+
+        review_intro2 = Text(
+            "マスバネダンパ系を例に見てみよう",
+            color=WHITE, font_size=24,
+        )
+        review_intro2.shift(UP * 1.2+LEFT*0.5)
+        self.play(Write(review_intro2), run_time=0.6)
         self.wait(0.5)
 
         # ポンチ絵：マスバネダンパ系（sec19から転用）
@@ -233,7 +267,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.0)
 
         self.play(
-            FadeOut(review_intro), FadeOut(system_diagram),
+            FadeOut(review_intro), FadeOut(review_intro2), FadeOut(system_diagram),
             FadeOut(params), FadeOut(eq_title),
             FadeOut(equation), FadeOut(state_title),
         )
@@ -299,11 +333,11 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 2: パターン1 - 実数で対角化可能（過減衰）
+        # Part 3: パターン1 - 実数で対角化可能（過減衰）
         # ============================================================
-        subtitle2 = Text("パターン1：過減衰", font_size=28, color=BLUE)
-        subtitle2.next_to(title, DOWN)
-        self.play(Transform(subtitle0, subtitle2), run_time=0.5)
+        subtitle3 = Text("パターン1：過減衰", font_size=28, color=BLUE)
+        subtitle3.next_to(title, DOWN)
+        self.play(Transform(subtitle0, subtitle3), run_time=0.5)
         self.wait(0.4)
 
         # 条件の説明
@@ -551,11 +585,11 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 3: パターン2 - 複素数で対角化（減衰振動）
+        # Part 4: パターン2 - 複素数で対角化（減衰振動）
         # ============================================================
-        subtitle3 = Text("パターン2：減衰振動", font_size=28, color=TEAL)
-        subtitle3.next_to(title, DOWN)
-        self.play(Transform(subtitle0, subtitle3), run_time=0.5)
+        subtitle4 = Text("パターン2：減衰振動", font_size=28, color=TEAL)
+        subtitle4.next_to(title, DOWN)
+        self.play(Transform(subtitle0, subtitle4), run_time=0.5)
         self.wait(0.4)
 
         # 条件の説明
@@ -805,11 +839,11 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 4: パターン3 - 対角化不可能 / ジョルダン標準形（臨界減衰）
+        # Part 5: パターン3 - 対角化不可能 / ジョルダン標準形（臨界減衰）
         # ============================================================
-        subtitle4 = Text("パターン3：臨界減衰", font_size=28, color=GOLD)
-        subtitle4.next_to(title, DOWN)
-        self.play(Transform(subtitle0, subtitle4), run_time=0.5)
+        subtitle5 = Text("パターン3：臨界減衰", font_size=28, color=GOLD)
+        subtitle5.next_to(title, DOWN)
+        self.play(Transform(subtitle0, subtitle5), run_time=0.5)
         self.wait(0.4)
 
         # 条件の説明
@@ -1053,6 +1087,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.5)
 
         self.play(
+            FadeOut(subtitle5),
             FadeOut(phys_title3), FadeOut(phys_desc3),
             FadeOut(system_diagram_sim3), FadeOut(spring_mobject_3),
             FadeOut(mass_sim3), FadeOut(mass_label_sim3),
@@ -1061,143 +1096,112 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 5: 3つのパターンの比較
+        # Part 6: 3つのパターンの比較
         # ============================================================
-        subtitle5 = Text("3つのパターンの比較", font_size=28, color=BLUE)
-        subtitle5.next_to(title, DOWN)
-        self.play(Transform(subtitle0, subtitle5), run_time=0.5)
-        self.wait(0.4)
+        # subtitle6 = Text("3つのパターンの比較", font_size=28, color=BLUE)
+        # subtitle6.next_to(title, DOWN)
+        # self.play(Transform(subtitle0, subtitle6), run_time=0.5)
+        # self.wait(0.4)
 
-        comparison_title = Text(
-            "固有値の性質とシステムの挙動の関係",
-            color=ORANGE, font_size=26, weight=BOLD,
-        )
-        comparison_title.shift(UP * 2.3)
-        self.play(Write(comparison_title), run_time=0.7)
-        self.wait(0.5)
+        # comparison_title = Text(
+        #     "固有値の性質とシステムの挙動の関係",
+        #     color=ORANGE, font_size=26, weight=BOLD,
+        # )
+        # comparison_title.shift(UP * 2.3)
+        # self.play(Write(comparison_title), run_time=0.7)
+        # self.wait(0.5)
 
-        # 表形式の比較
-        comparison_table = VGroup(
-            # ヘッダー
-            VGroup(
-                Text("パターン", color=YELLOW, font_size=20, weight=BOLD),
-                Text("固有値", color=YELLOW, font_size=20, weight=BOLD),
-                Text("対角化", color=YELLOW, font_size=20, weight=BOLD),
-                Text("応答", color=YELLOW, font_size=20, weight=BOLD),
-            ).arrange(RIGHT, buff=1.2),
+        # # 表形式の比較
+        # comparison_table = VGroup(
+        #     # ヘッダー
+        #     VGroup(
+        #         Text("パターン", color=YELLOW, font_size=20, weight=BOLD),
+        #         Text("固有値", color=YELLOW, font_size=20, weight=BOLD),
+        #         Text("対角化", color=YELLOW, font_size=20, weight=BOLD),
+        #         Text("応答", color=YELLOW, font_size=20, weight=BOLD),
+        #     ).arrange(RIGHT, buff=1.2),
             
-            # パターン1
-            VGroup(
-                Text("過減衰", color=BLUE, font_size=18),
-                MathTex(r"\lambda_1 \neq \lambda_2 \in \mathbb{R}", color=WHITE, font_size=16),
-                Text("可能", color=GREEN, font_size=18),
-                Text("振動なし（遅い）", color=WHITE, font_size=16),
-            ).arrange(RIGHT, buff=0.7),
+        #     # パターン1
+        #     VGroup(
+        #         Text("過減衰", color=BLUE, font_size=18),
+        #         MathTex(r"\lambda_1 \neq \lambda_2 \in \mathbb{R}", color=WHITE, font_size=16),
+        #         Text("可能", color=GREEN, font_size=18),
+        #         Text("振動なし（遅い）", color=WHITE, font_size=16),
+        #     ).arrange(RIGHT, buff=0.7),
             
-            # パターン2
-            VGroup(
-                Text("減衰振動", color=TEAL, font_size=18),
-                MathTex(r"-\alpha \pm j\omega", color=WHITE, font_size=16),
-                Text("不可能", color=RED, font_size=18),
-                Text("振動あり", color=WHITE, font_size=16),
-            ).arrange(RIGHT, buff=0.8),
+        #     # パターン2
+        #     VGroup(
+        #         Text("減衰振動", color=TEAL, font_size=18),
+        #         MathTex(r"-\alpha \pm j\omega", color=WHITE, font_size=16),
+        #         Text("不可能", color=RED, font_size=18),
+        #         Text("振動あり", color=WHITE, font_size=16),
+        #     ).arrange(RIGHT, buff=0.8),
             
-            # パターン3
-            VGroup(
-                Text("臨界減衰", color=GOLD, font_size=18),
-                MathTex(r"-\omega_n", color=WHITE, font_size=16),
-                Text("不可能", color=RED, font_size=18),
-                Text("振動なし（最速）", color=WHITE, font_size=16),
-            ).arrange(RIGHT, buff=0.6),
-        ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
-        comparison_table.shift(UP * 0.5)
+        #     # パターン3
+        #     VGroup(
+        #         Text("臨界減衰", color=GOLD, font_size=18),
+        #         MathTex(r"-\omega_n", color=WHITE, font_size=16),
+        #         Text("不可能", color=RED, font_size=18),
+        #         Text("振動なし（最速）", color=WHITE, font_size=16),
+        #     ).arrange(RIGHT, buff=0.6),
+        # ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
+        # comparison_table.shift(UP * 0.5)
         
-        for row in comparison_table:
-            self.play(Write(row), run_time=0.6)
-            self.wait(0.3)
+        # for row in comparison_table:
+        #     self.play(Write(row), run_time=0.6)
+        #     self.wait(0.3)
         
-        self.wait(1.0)
+        # self.wait(1.0)
 
-        key_insight = Text(
-            "固有値が決まれば、システムの性質が数学的に決定される！",
-            color=GREEN, font_size=24, weight=BOLD,
-        )
-        key_insight.shift(DOWN * 2.0)
-        self.play(Write(key_insight), run_time=0.8)
-        self.wait(1.2)
+        # key_insight = Text(
+        #     "固有値が決まれば、システムの性質が数学的に決定される！",
+        #     color=GREEN, font_size=24, weight=BOLD,
+        # )
+        # key_insight.shift(DOWN * 2.0)
+        # self.play(Write(key_insight), run_time=0.8)
+        # self.wait(1.2)
 
-        self.play(
-            FadeOut(comparison_title), FadeOut(comparison_table),
-            FadeOut(key_insight),
-        )
-        self.wait(0.3)
-
-        # ============================================================
-        # Part 6: モード分解の意義
-        # ============================================================
-        subtitle6 = Text("モード分解の意義", font_size=28, color=TEAL)
-        subtitle6.next_to(title, DOWN)
-        self.play(Transform(subtitle0, subtitle6), run_time=0.5)
-        self.wait(0.4)
-
-        mode_significance = VGroup(
-            Text("対角化によるモード分解の利点：", color=ORANGE, font_size=26, weight=BOLD),
-            Text("", font_size=4),  # スペーサー
-            Text("① 物理的意味から離れるが、", color=WHITE, font_size=22),
-            Text("   相互干渉のないシンプルな系として評価できる", color=BLUE, font_size=22),
-            Text("", font_size=4),  # スペーサー
-            Text("② システムの持つ特性（速いモード、遅いモード）", color=WHITE, font_size=22),
-            Text("   を明確に分離して評価できる", color=TEAL, font_size=22),
-            Text("", font_size=4),  # スペーサー
-            Text("③ 対角化できない場合でも、", color=WHITE, font_size=22),
-            Text("   ジョルダン標準形で一方向の依存関係を評価", color=GREEN, font_size=22),
-        ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
-        mode_significance.shift(UP * 0.5)
-        
-        for item in mode_significance:
-            self.play(Write(item), run_time=0.4)
-            self.wait(0.2)
-        
-        self.wait(1.0)
-
-        self.play(FadeOut(mode_significance))
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(comparison_title), FadeOut(comparison_table),
+        #     FadeOut(key_insight),
+        # )
+        # self.wait(0.3)
 
         # ============================================================
         # Part 7: 制御工学への応用
         # ============================================================
-        subtitle7 = Text("制御工学への応用", font_size=28, color=GOLD)
-        subtitle7.next_to(title, DOWN)
-        self.play(Transform(subtitle0, subtitle7), run_time=0.5)
-        self.wait(0.4)
+        # subtitle7 = Text("制御工学への応用", font_size=28, color=GOLD)
+        # subtitle7.next_to(title, DOWN)
+        # self.play(Transform(subtitle0, subtitle7), run_time=0.5)
+        # self.wait(0.4)
 
-        control_intro = Text(
-            "制御工学では、この知見を活用して：",
-            color=ORANGE, font_size=26, weight=BOLD,
-        )
-        control_intro.shift(UP * 1.8)
-        self.play(Write(control_intro), run_time=0.7)
-        self.wait(0.5)
+        # control_intro = Text(
+        #     "制御工学では、この知見を活用して：",
+        #     color=ORANGE, font_size=26, weight=BOLD,
+        # )
+        # control_intro.shift(UP * 1.8)
+        # self.play(Write(control_intro), run_time=0.7)
+        # self.wait(0.5)
 
-        control_applications = VGroup(
-            Text("• システムの応答性を固有値から予測", color=WHITE, font_size=24),
-            Text("• 固有値を配置することで望ましい応答を設計", color=BLUE, font_size=24),
-            Text("  （極配置法、状態フィードバック制御）", color=BLUE, font_size=20),
-            Text("• 安定性の判定（全ての固有値の実部が負か）", color=TEAL, font_size=24),
-            Text("• 過渡応答の評価（減衰率、応答速度）", color=GREEN, font_size=24),
-        ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
-        control_applications.shift(UP * 0.2)
+        # control_applications = VGroup(
+        #     Text("• システムの応答性を固有値から予測", color=WHITE, font_size=24),
+        #     Text("• 固有値を配置することで望ましい応答を設計", color=BLUE, font_size=24),
+        #     Text("  （極配置法、状態フィードバック制御）", color=BLUE, font_size=20),
+        #     Text("• 安定性の判定（全ての固有値の実部が負か）", color=TEAL, font_size=24),
+        #     Text("• 過渡応答の評価（減衰率、応答速度）", color=GREEN, font_size=24),
+        # ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
+        # control_applications.shift(UP * 0.2)
         
-        for item in control_applications:
-            self.play(Write(item), run_time=0.5)
-            self.wait(0.3)
+        # for item in control_applications:
+        #     self.play(Write(item), run_time=0.5)
+        #     self.wait(0.3)
         
-        self.wait(1.0)
+        # self.wait(1.0)
 
-        self.play(
-            FadeOut(control_intro), FadeOut(control_applications),
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(control_intro), FadeOut(control_applications),
+        # )
+        # self.wait(0.3)
 
         # ============================================================
         # Part 8: まとめ
