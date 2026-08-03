@@ -555,10 +555,11 @@ class MatrixExponentialComputation(Scene):
         )
         jordan_example.shift(DOWN * 1.4)
         self.play(Write(jordan_example), run_time=0.9)
-        self.wait(0.8)
+        self.wait(1)
 
         self.play(
             FadeOut(jordan_intro), FadeOut(jordan_text),
+            FadeOut(jordan_def), FadeOut(final_eq), FadeOut(final_box)
         )
         self.wait(0.3)
 
@@ -580,10 +581,10 @@ class MatrixExponentialComputation(Scene):
 
         # ジョルダン標準形を移動
         self.play(
-            final_eq.animate.shift(UP * 0.7),
-            final_box.animate.shift(UP * 0.7),
-            jordan_def.animate.shift(UP * 1.7),
-            jordan_example.animate.shift(UP * 1.7).scale(0.85),
+            # final_eq.animate.shift(UP * 0.7),
+            # final_box.animate.shift(UP * 0.7),
+            # jordan_def.animate.shift(UP * 1.7),
+            jordan_example.animate.shift(UP * 1.75+ LEFT * 3.9).scale(0.9),
             decompose_text.animate.shift(UP * 1.0),
             run_time=0.6
         )
@@ -594,7 +595,7 @@ class MatrixExponentialComputation(Scene):
             color=YELLOW,
             font_size=38,
         )
-        decompose_eq.shift(UP * 0.5)
+        decompose_eq.shift(DOWN * 1.2)
         self.play(Write(decompose_eq), run_time=0.7)
         self.wait(0.6)
 
@@ -604,9 +605,19 @@ class MatrixExponentialComputation(Scene):
             color=TEAL,
             font_size=26,
         )
-        lambda_i_text.shift(DOWN * 0.2)
+        lambda_i_text.shift(DOWN * 2)
         self.play(Write(lambda_i_text), run_time=0.7)
         self.wait(0.6)
+
+        # 対角行列の例
+        Lam_example = MathTex(
+            r"\lambda_i I = \begin{bmatrix} \lambda_i & 0 & 0 & \cdots \\ 0 & \lambda_i & 0 & \cdots \\ 0 & 0 & \lambda_i & \cdots \\ \vdots & \vdots & \vdots & \ddots \end{bmatrix},",
+            color=BLUE,
+            font_size=30,
+        )
+        Lam_example.shift(UP * 0.35 + RIGHT * 0.3)
+        self.play(Write(Lam_example), run_time=0.8)
+        self.wait(0.7)
 
         # Hの例
         h_example = MathTex(
@@ -614,23 +625,24 @@ class MatrixExponentialComputation(Scene):
             color=BLUE,
             font_size=30,
         )
-        h_example.shift(DOWN * 1.3)
+        h_example.shift(UP * 0.35 + RIGHT * 4)
         self.play(Write(h_example), run_time=0.8)
         self.wait(0.7)
 
         commute_notice = Text(
-            "重要：λᵢIとHは可換（前回動画の可換性の条件）",
+            "重要：λᵢIとHは可換（前回動画の後半の話）",
             color=ORANGE, font_size=24, weight=BOLD,
         )
-        commute_notice.shift(DOWN * 2.4)
+        commute_notice.shift(DOWN * 2.6)
         self.play(Write(commute_notice), run_time=0.8)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
-            FadeOut(final_eq), FadeOut(final_box),
-            FadeOut(jordan_def), FadeOut(jordan_example),
+            FadeOut(decompose_eq), 
+            # FadeOut(final_eq), FadeOut(final_box),
+            FadeOut(jordan_example),
             FadeOut(decompose_text), FadeOut(lambda_i_text),
-            FadeOut(h_example),
+            FadeOut(h_example), FadeOut(Lam_example)
         )
         self.wait(0.3)
 
@@ -644,8 +656,8 @@ class MatrixExponentialComputation(Scene):
 
         # decompose_eqを上に移動
         self.play(
-            decompose_eq.animate.shift(UP * 2.0).scale(0.85),
-            commute_notice.animate.shift(UP * 3.7).scale(0.85),
+            # decompose_eq.animate.shift(UP * 1.5).scale(0.9),
+            commute_notice.animate.shift(UP * 4.4).scale(0.85),
             run_time=0.6
         )
         self.wait(0.3)
@@ -654,7 +666,7 @@ class MatrixExponentialComputation(Scene):
             "可換性から、指数関数を分解できる",
             color=WHITE, font_size=26,
         )
-        exponential_text.shift(UP * 1.0)
+        exponential_text.shift(UP * 1.3)
         self.play(Write(exponential_text), run_time=0.7)
         self.wait(0.5)
 
@@ -663,7 +675,7 @@ class MatrixExponentialComputation(Scene):
             color=YELLOW,
             font_size=38,
         )
-        exponential_eq1.shift(UP * 0.2)
+        exponential_eq1.shift(UP * 0.5)
         exponential_box1 = SurroundingRectangle(exponential_eq1, color=YELLOW, buff=0.25)
         self.play(Write(exponential_eq1), Create(exponential_box1), run_time=0.9)
         self.wait(0.8)
@@ -673,7 +685,7 @@ class MatrixExponentialComputation(Scene):
             "① e^{λᵢI}は対角化可能な場合と同様に計算",
             color=BLUE, font_size=24,
         )
-        lambda_exp_text.shift(DOWN * 0.8)
+        lambda_exp_text.shift(DOWN * 0.5)
         self.play(Write(lambda_exp_text), run_time=0.7)
         self.wait(0.5)
 
@@ -682,7 +694,7 @@ class MatrixExponentialComputation(Scene):
             color=BLUE,
             font_size=32,
         )
-        lambda_exp_eq.shift(DOWN * 1.5)
+        lambda_exp_eq.shift(DOWN * 1.2)
         self.play(Write(lambda_exp_eq), run_time=0.7)
         self.wait(0.6)
 
@@ -691,7 +703,7 @@ class MatrixExponentialComputation(Scene):
             "② e^Hはべき零行列なので有限項で打ち切れる",
             color=GREEN, font_size=24,
         )
-        h_exp_text.shift(DOWN * 2.3)
+        h_exp_text.shift(DOWN * 1.8)
         self.play(Write(h_exp_text), run_time=0.7)
         self.wait(0.6)
 
@@ -700,20 +712,20 @@ class MatrixExponentialComputation(Scene):
             color=GREEN,
             font_size=28,
         )
-        h_exp_eq.shift(DOWN * 3.0)
+        h_exp_eq.shift(DOWN * 2.5)
         self.play(Write(h_exp_eq), run_time=0.9)
         self.wait(0.8)
 
         nilpotent_note = Text(
             "（Hⁿ = 0 となるため）",
-            color=TEAL, font_size=20,
+            color=GRAY, font_size=22,
         )
-        nilpotent_note.shift(DOWN * 3.6)
+        nilpotent_note.shift(DOWN * 3.1+RIGHT * 1.5)
         self.play(Write(nilpotent_note), run_time=0.6)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
-            FadeOut(decompose_eq), FadeOut(commute_notice),
+            FadeOut(commute_notice),
             FadeOut(exponential_text), FadeOut(lambda_exp_text),
             FadeOut(lambda_exp_eq), FadeOut(h_exp_text),
             FadeOut(h_exp_eq), FadeOut(nilpotent_note),
@@ -730,8 +742,8 @@ class MatrixExponentialComputation(Scene):
 
         # exponential_eq1を上に移動
         self.play(
-            exponential_eq1.animate.shift(UP * 1.8).scale(0.9),
-            exponential_box1.animate.shift(UP * 1.8).scale(0.9),
+            exponential_eq1.animate.shift(UP * 1.3),
+            exponential_box1.animate.shift(UP * 1.3).scale(0.9),
             run_time=0.6
         )
         self.wait(0.3)
@@ -750,12 +762,12 @@ class MatrixExponentialComputation(Scene):
             font_size=34,
         )
         jordan_final.shift(UP * 0.0)
-        jordan_final_box = SurroundingRectangle(jordan_final, color=GREEN, buff=0.25)
-        self.play(Write(jordan_final), Create(jordan_final_box), run_time=0.9)
+        # jordan_final_box = SurroundingRectangle(jordan_final, color=GREEN, buff=0.25)
+        self.play(Write(jordan_final), run_time=0.9)
         self.wait(0.8)
 
         general_form = Text(
-            "一般の行列Aに対しても",
+            "よって任意の行列Aに対して、",
             color=WHITE, font_size=24,
         )
         general_form.shift(DOWN * 1.0)
@@ -773,7 +785,7 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.8)
 
         conclusion2 = Text(
-            "→ 対角化できない場合でもe^Aを計算できた！",
+            "→ 対角化の可否に関わらずe^Aを計算できた！",
             color=GREEN, font_size=26, weight=BOLD,
         )
         conclusion2.shift(DOWN * 2.8)
@@ -783,7 +795,8 @@ class MatrixExponentialComputation(Scene):
         self.play(
             FadeOut(exponential_eq1), FadeOut(exponential_box1),
             FadeOut(jordan_result_text), FadeOut(jordan_final),
-            FadeOut(jordan_final_box), FadeOut(general_form),
+            # FadeOut(jordan_final_box),
+            FadeOut(general_form),
             FadeOut(general_eq), FadeOut(general_box),
             FadeOut(conclusion2),
         )
@@ -798,7 +811,10 @@ class MatrixExponentialComputation(Scene):
         self.wait(0.4)
 
         summary = VGroup(
-            Text("• 対角化可能な場合：e^A = Pe^ΛP⁻¹", color=WHITE, font_size=28),
+            VGroup(
+                Text("• 対角化可能な場合：", color=WHITE, font_size=28),
+                MathTex(r"e^A = Pe^{\Lambda}P^{-1}", color=WHITE, font_size=32)
+            ).arrange(RIGHT, buff=0.1),
             Text("• 複素固有値を持つ場合でも最終結果は実数", color=WHITE, font_size=28),
             Text("• 対角化不可能な場合：ジョルダン標準形を使用", color=WHITE, font_size=28),
         ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
@@ -817,7 +833,7 @@ class MatrixExponentialComputation(Scene):
             ),
             MathTex(
                 r"\mathbf{x}(t) = e^{At}\mathbf{x}(0)",
-                color=YELLOW, font_size=32,
+                color=YELLOW, font_size=34,
             ),
             Text(
                 "と解ける！",
