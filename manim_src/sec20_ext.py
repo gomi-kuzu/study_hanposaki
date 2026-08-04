@@ -374,7 +374,7 @@ class DiagonalizationAndControlTheory(Scene):
             self.play(Write(item), run_time=0.5)
             self.wait(0.2)
         
-        self.wait(0.8)
+        self.wait(1.2)
 
         # 物理的挙動へ
         self.play(
@@ -630,7 +630,7 @@ class DiagonalizationAndControlTheory(Scene):
             self.play(Write(item), run_time=0.5)
             self.wait(0.2)
         
-        self.wait(0.8)
+        self.wait(1.2)
 
         # 物理的挙動へ
         self.play(
@@ -889,7 +889,7 @@ class DiagonalizationAndControlTheory(Scene):
             self.play(Write(item), run_time=0.5)
             self.wait(0.2)
         
-        self.wait(0.8)
+        self.wait(1.2)
 
         # 物理的挙動へ
         self.play(
@@ -1103,7 +1103,7 @@ class DiagonalizationAndControlTheory(Scene):
 
         self.play(
             FadeOut(mode_decomp3), FadeOut(key_feature3),
-            FadeOut(phys_title3), FadeOut(phys_desc3),
+            FadeOut(phys_desc3),
             FadeOut(system_diagram_sim3), FadeOut(spring_mobject_3),
             FadeOut(mass_sim3), FadeOut(mass_label_sim3),
             FadeOut(time_label_3), FadeOut(conclusion3),
