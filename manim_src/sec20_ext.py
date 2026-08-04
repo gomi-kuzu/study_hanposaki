@@ -260,9 +260,9 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.8)
 
         system_matrix_label = Text(
-            "システム行列A", color=BLUE, font_size=20,
+            "↑システム行列A", color=BLUE, font_size=20,
         )
-        system_matrix_label.shift(RIGHT * 3.8 + DOWN * 2.3)
+        system_matrix_label.shift(RIGHT * 4.5 + DOWN * 2.3)
         self.play(Write(system_matrix_label), run_time=0.5)
         self.wait(1.0)
 
@@ -270,38 +270,42 @@ class DiagonalizationAndControlTheory(Scene):
             FadeOut(review_intro), FadeOut(review_intro2), FadeOut(system_diagram),
             FadeOut(params), FadeOut(eq_title),
             FadeOut(equation), FadeOut(state_title),
+            # FadeOut(system_matrix_label)
         )
         self.wait(0.3)
 
         # システム行列を中央に移動
         self.play(
-            state_eq.animate.shift(LEFT * 3.8 + UP * 2.0).scale(1.2),
-            state_box.animate.shift(LEFT * 3.8 + UP * 2.0).scale(1.2),
-            system_matrix_label.animate.shift(LEFT * 3.8 + UP * 2.0),
+            state_eq.animate.shift(LEFT * 3.8 + UP * 3.2).scale(1.2),
+            state_box.animate.shift(LEFT * 3.8 + UP * 3.2).scale(1.2),
+            system_matrix_label.animate.shift(LEFT * 3.8 + UP * 3.1),
             run_time=0.6
         )
         self.wait(0.3)
 
         # 固有値の説明
         eigenvalue_intro = Text(
-            "このシステム行列の固有値がシステムの挙動を決定する",
+            "このシステム行列の対角化に関する特性が、系の挙動に深く関係する",
             color=ORANGE, font_size=26, weight=BOLD,
         )
         eigenvalue_intro.shift(UP * 0.3)
         self.play(Write(eigenvalue_intro), run_time=0.8)
         self.wait(0.6)
 
-        eigenvalue_eq = MathTex(
+        eigenvalue_eq = VGroup(
+            Text("特性方程式：", color=WHITE, font_size=28),
+            MathTex(
             r"\det(A - \lambda I) = 0",
             color=YELLOW,
-            font_size=36,
-        )
+            font_size=36,),
+            Text("を解くと…", color=WHITE, font_size=28)
+            ).arrange(RIGHT, buff=0.3)
         eigenvalue_eq.shift(DOWN * 0.5)
         self.play(Write(eigenvalue_eq), run_time=0.7)
         self.wait(0.5)
 
         arrow = MathTex(r"\Downarrow", color=WHITE, font_size=32)
-        arrow.shift(DOWN * 1.2)
+        arrow.shift(DOWN)
         self.play(Write(arrow), run_time=0.3)
         self.wait(0.2)
 
@@ -316,7 +320,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.8)
 
         key_note = Text(
-            "この固有値の性質がシステムの応答パターンを決める！",
+            "固有値が物理パラメータで決まることがわかる！",
             color=YELLOW, font_size=24, weight=BOLD,
         )
         key_note.shift(DOWN * 3.0)
@@ -356,15 +360,15 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         math_structure1 = VGroup(
-            Text("• 2つの異なる実数固有値", color=WHITE, font_size=22),
+            Text("• 2つの異なる実数固有値", color=WHITE, font_size=24),
             MathTex(r"\lambda_1, \lambda_2 \in \mathbb{R}, \quad \lambda_1 \neq \lambda_2", 
                    color=YELLOW, font_size=28),
-            Text("• 2つの一次独立な固有ベクトルが存在", color=WHITE, font_size=22),
-            Text("• 完全な対角化が可能", color=GREEN, font_size=22),
+            Text("• 2つの一次独立な固有ベクトルが存在", color=WHITE, font_size=24),
+            Text("• 完全な対角化が可能", color=GREEN, font_size=24),
             MathTex(r"P^{-1}AP = \text{diag}(\lambda_1, \lambda_2)", 
-                   color=GREEN, font_size=26),
+                   color=GREEN, font_size=28),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        math_structure1.shift(UP * 0.1)
+        math_structure1.shift(DOWN * 0.5)
         
         for item in math_structure1:
             self.play(Write(item), run_time=0.5)
@@ -380,7 +384,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         phys_title1 = Text("物理的挙動：", color=GOLD, font_size=26, weight=BOLD)
-        phys_title1.shift(UP * 2.3)
+        phys_title1.shift(UP * 2)
         self.play(Write(phys_title1), run_time=0.6)
         self.wait(0.4)
 
@@ -388,16 +392,16 @@ class DiagonalizationAndControlTheory(Scene):
             "「バネの復元力」よりも「ダンパの抵抗力」が圧倒的に強い",
             color=ORANGE, font_size=24,
         )
-        phys_desc1.shift(UP * 1.6)
+        phys_desc1.shift(UP * 1.3)
         self.play(Write(phys_desc1), run_time=0.7)
         self.wait(0.5)
 
         mode_decomp1 = VGroup(
-            Text("システムは2つの独立したモードに分解される：", color=WHITE, font_size=22),
-            Text("① 速い減衰モード：初期の急激な動き", color=BLUE, font_size=20),
-            Text("② 遅い減衰モード：ジワジワとした戻り", color=TEAL, font_size=20),
+            Text("システムは2つの独立したモードに分解される：", color=WHITE, font_size=26),
+            Text("① 速い減衰モード：初期の急激な動き", color=BLUE, font_size=24),
+            Text("② 遅い減衰モード：ジワジワとした戻り", color=TEAL, font_size=24),
         ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
-        mode_decomp1.shift(UP * 0.5)
+        mode_decomp1.shift(UP * 0.2)
         
         for item in mode_decomp1:
             self.play(Write(item), run_time=0.5)
@@ -409,19 +413,22 @@ class DiagonalizationAndControlTheory(Scene):
             "→ 振動（オーバーシュート）は発生しない",
             color=GREEN, font_size=24, weight=BOLD,
         )
-        key_feature1.shift(DOWN * 0.6)
+        key_feature1.shift(DOWN)
         self.play(Write(key_feature1), run_time=0.7)
         self.wait(1.0)
 
         # グラフィック表示のための準備
         self.play(
-            FadeOut(mode_decomp1), FadeOut(key_feature1),
+            FadeOut(phys_title1),
+            # FadeOut(mode_decomp1), FadeOut(key_feature1),
         )
         self.wait(0.3)
 
         self.play(
-            phys_title1.animate.shift(UP * 0.5).scale(0.85),
+            # phys_title1.animate.shift(UP * 0.5).scale(0.85),
             phys_desc1.animate.shift(UP * 0.5).scale(0.85),
+            mode_decomp1.animate.shift(UP * 0.5).scale(0.85),
+            key_feature1.animate.shift(UP * 0.7).scale(0.85),
             run_time=0.5
         )
         self.wait(0.2)
@@ -569,7 +576,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.0)
 
         conclusion1 = Text(
-            "ゆっくりと目標値に収束（振動なし）",
+            "とてもゆっくりと目標値に収束していく",
             color=GREEN, font_size=24, weight=BOLD,
         )
         conclusion1.shift(DOWN * 3.2 + RIGHT * 2.5)
@@ -577,7 +584,8 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(phys_title1), FadeOut(phys_desc1),
+            FadeOut(mode_decomp1), FadeOut(key_feature1),
+            FadeOut(phys_desc1),
             FadeOut(system_diagram_sim), FadeOut(spring_mobject),
             FadeOut(mass_sim), FadeOut(mass_label_sim),
             FadeOut(time_label), FadeOut(conclusion1),
@@ -603,20 +611,20 @@ class DiagonalizationAndControlTheory(Scene):
 
         # 数学的構造
         math_title2 = Text("数学的構造：", color=TEAL, font_size=24, weight=BOLD)
-        math_title2.shift(UP * 1.2)
+        math_title2.shift(UP * 1.4)
         self.play(Write(math_title2), run_time=0.5)
         self.wait(0.3)
 
         math_structure2 = VGroup(
-            Text("• 互いに共役な複素固有値", color=WHITE, font_size=22),
+            Text("• 互いに共役な複素固有値", color=WHITE, font_size=24),
             MathTex(r"\lambda = -\alpha \pm j\omega", 
                    color=YELLOW, font_size=28),
-            Text("• 実数の範囲では対角化できない", color=WHITE, font_size=22),
-            Text("• 行列指数関数は回転行列を含む", color=GREEN, font_size=22),
+            Text("• 実数の範囲では対角化できない", color=WHITE, font_size=24),
+            Text("• 行列指数関数は回転行列を含む", color=GREEN, font_size=24),
             MathTex(r"e^{At} \propto e^{-\alpha t} \begin{pmatrix} \cos \omega t & \sin \omega t \\ -\sin \omega t & \cos \omega t \end{pmatrix}", 
-                   color=GREEN, font_size=22),
+                   color=GREEN, font_size=30),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        math_structure2.shift(UP * 0.0)
+        math_structure2.shift(DOWN * 0.3)
         
         for item in math_structure2:
             self.play(Write(item), run_time=0.5)
@@ -632,7 +640,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         phys_title2 = Text("物理的挙動：", color=GOLD, font_size=26, weight=BOLD)
-        phys_title2.shift(UP * 2.3)
+        phys_title2.shift(UP * 2.1)
         self.play(Write(phys_title2), run_time=0.6)
         self.wait(0.4)
 
@@ -645,9 +653,9 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.5)
 
         mode_decomp2 = VGroup(
-            Text("運動エネルギーと位置エネルギーの間でキャッチボール", color=WHITE, font_size=22),
-            Text("→ 目標値を通り過ぎて振動（オーバーシュート）", color=BLUE, font_size=20),
-            Text("→ ダンパが徐々にエネルギーを吸収", color=TEAL, font_size=20),
+            Text("運動エネルギーと位置エネルギーの間でキャッチボール", color=WHITE, font_size=24),
+            Text("→ 目標値を通り過ぎて振動（オーバーシュート）", color=BLUE, font_size=24),
+            Text("→ ダンパが徐々にエネルギーを吸収", color=TEAL, font_size=24),
         ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
         mode_decomp2.shift(UP * 0.5)
         
@@ -658,10 +666,10 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.6)
 
         key_feature2 = VGroup(
-            Text("• ダンパが減衰のペース（-α）を決定", color=GREEN, font_size=22),
-            Text("• バネとダンパが共同で振動のペース（ω）を決定", color=GREEN, font_size=22),
+            Text("• ダンパが減衰のペース（-α）を決定", color=GREEN, font_size=24),
+            Text("• バネとダンパが共同で振動のペース（ω）を決定", color=GREEN, font_size=24),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        key_feature2.shift(DOWN * 0.5)
+        key_feature2.shift(DOWN * 0.7)
         
         for item in key_feature2:
             self.play(Write(item), run_time=0.5)
@@ -671,13 +679,16 @@ class DiagonalizationAndControlTheory(Scene):
 
         # グラフィック表示のための準備
         self.play(
-            FadeOut(mode_decomp2), FadeOut(key_feature2),
+            FadeOut(phys_title2),
+            # FadeOut(mode_decomp2), FadeOut(key_feature2),
         )
         self.wait(0.3)
 
         self.play(
-            phys_title2.animate.shift(UP * 0.5).scale(0.85),
+            # phys_title2.animate.shift(UP * 0.5).scale(0.85),
             phys_desc2.animate.shift(UP * 0.5).scale(0.85),
+            mode_decomp2.animate.shift(UP * 0.5).scale(0.85),
+            key_feature2.animate.shift(UP * 0.7).scale(0.85),
             run_time=0.5
         )
         self.wait(0.2)
@@ -831,10 +842,11 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.5)
 
         self.play(
-            FadeOut(phys_title2), FadeOut(phys_desc2),
+            FadeOut(phys_desc2),
             FadeOut(system_diagram_sim2), FadeOut(spring_mobject_2),
             FadeOut(mass_sim2), FadeOut(mass_label_sim2),
             FadeOut(time_label_2), FadeOut(conclusion2),
+            FadeOut(mode_decomp2), FadeOut(key_feature2),
         )
         self.wait(0.3)
 
@@ -864,14 +876,14 @@ class DiagonalizationAndControlTheory(Scene):
         math_structure3 = VGroup(
             Text("• 実数の重根", color=WHITE, font_size=22),
             MathTex(r"\lambda = -\omega_n \text{ (repeated root)}", 
-                   color=YELLOW, font_size=28),
+                   color=YELLOW, font_size=30),
             Text("• 一次独立な固有ベクトルが1つしか存在しない", color=WHITE, font_size=22),
             Text("• 対角化は不可能", color=RED, font_size=22, weight=BOLD),
             Text("• ジョルダン標準形への変換が限界", color=GREEN, font_size=22),
             MathTex(r"J = \begin{pmatrix} -\omega_n & 1 \\ 0 & -\omega_n \end{pmatrix}", 
-                   color=GREEN, font_size=26),
+                   color=GREEN, font_size=30),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        math_structure3.shift(UP * 0.1)
+        math_structure3.shift(DOWN)
         
         for item in math_structure3:
             self.play(Write(item), run_time=0.5)
@@ -887,7 +899,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(0.3)
 
         phys_title3 = Text("物理的挙動：", color=GOLD, font_size=26, weight=BOLD)
-        phys_title3.shift(UP * 2.3)
+        phys_title3.shift(UP * 2.1)
         self.play(Write(phys_title3), run_time=0.6)
         self.wait(0.4)
 
@@ -903,7 +915,7 @@ class DiagonalizationAndControlTheory(Scene):
             Text("独立したモードとして分解できず、", color=WHITE, font_size=22),
             Text("モード間で一方向のカスケード接続（主従関係）が発生", color=BLUE, font_size=20),
             Text("→ 時間応答に t·e^(-ωₙt) という積分項が出現", color=TEAL, font_size=20),
-        ).arrange(DOWN, buff=0.25, aligned_edge=LEFT)
+        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         mode_decomp3.shift(UP * 0.7)
         
         for item in mode_decomp3:
@@ -914,10 +926,10 @@ class DiagonalizationAndControlTheory(Scene):
 
         key_feature3 = VGroup(
             Text("エネルギーの流れ：", color=GREEN, font_size=22, weight=BOLD),
-            Text("  ばね → 質量 → ダンパ", color=GREEN, font_size=20),
+            Text("  ばね ⇛ 質量 ⇛ ダンパ", color=GREEN, font_size=20),
             Text("→ 振動を起こさず、かつ最速で目標値に収束", color=GREEN, font_size=22, weight=BOLD),
-        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        key_feature3.shift(DOWN * 0.3)
+        ).arrange(DOWN, buff=0.15, aligned_edge=LEFT)
+        key_feature3.shift(DOWN * 0.7)
         
         for item in key_feature3:
             self.play(Write(item), run_time=0.5)
@@ -927,13 +939,16 @@ class DiagonalizationAndControlTheory(Scene):
 
         # グラフィック表示のための準備
         self.play(
-            FadeOut(mode_decomp3), FadeOut(key_feature3),
+            FadeOut(phys_title3),
+            # FadeOut(mode_decomp3), FadeOut(key_feature3),
         )
         self.wait(0.3)
 
         self.play(
-            phys_title3.animate.shift(UP * 0.5).scale(0.85),
+            # phys_title3.animate.shift(UP * 0.5).scale(0.85),
             phys_desc3.animate.shift(UP * 0.5).scale(0.85),
+            mode_decomp3.animate.shift(UP * 0.5).scale(0.85),
+            key_feature3.animate.shift(UP * 0.7).scale(0.85),
             run_time=0.5
         )
         self.wait(0.2)
@@ -1087,6 +1102,7 @@ class DiagonalizationAndControlTheory(Scene):
         self.wait(1.5)
 
         self.play(
+            FadeOut(mode_decomp3), FadeOut(key_feature3),
             FadeOut(phys_title3), FadeOut(phys_desc3),
             FadeOut(system_diagram_sim3), FadeOut(spring_mobject_3),
             FadeOut(mass_sim3), FadeOut(mass_label_sim3),
