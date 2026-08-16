@@ -6,7 +6,7 @@ class MatrixDifferentialEquation(Scene):
     def construct(self):
         self.camera.background_color = "#012817"
 
-        title = Text("行列を使った微分方程式の解法", font_size=36, color=WHITE)
+        title = Text("連立微分方程式の解法", font_size=36, color=WHITE)
         title.to_edge(UP)
         self.play(Write(title), run_time=0.8)
         self.wait(0.7)
@@ -37,7 +37,7 @@ class MatrixDifferentialEquation(Scene):
         self.wait(0.6)
 
         purpose_text = Text(
-            "今回はこれを使って、行列の微分方程式の一般解を見ていく",
+            "今回はこれを踏まえて、連立微分方程式の解法を改めて見ていく",
             color=GREEN, font_size=26, weight=BOLD,
         )
         purpose_text.shift(DOWN * 0.3)
@@ -99,9 +99,10 @@ class MatrixDifferentialEquation(Scene):
         )
         initial_note.shift(DOWN * 2.3)
         self.play(Write(initial_note), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
+            FadeOut(solution_eq), FadeOut(solution_box), FadeOut(diff_eq), FadeOut(diff_box),
             FadeOut(setup_text), FadeOut(solution_text), FadeOut(initial_note),
         )
         self.wait(0.3)
@@ -109,20 +110,20 @@ class MatrixDifferentialEquation(Scene):
         # ============================================================
         # Part 3: 固有値・固有ベクトルによる展開
         # ============================================================
-        subtitle3 = Text("固有値・固有ベクトルによる展開", font_size=28, color=TEAL)
+        subtitle3 = Text("固有ベクトルによる基底展開での計算", font_size=28, color=TEAL)
         subtitle3.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle3), run_time=0.5)
         self.wait(0.4)
 
         # diff_eqとsolution_eqを上に移動
-        self.play(
-            diff_eq.animate.shift(UP * 2.5).scale(0.8),
-            diff_box.animate.shift(UP * 2.5).scale(0.8),
-            solution_eq.animate.shift(UP * 3.2).scale(0.8),
-            solution_box.animate.shift(UP * 3.2).scale(0.8),
-            run_time=0.6
-        )
-        self.wait(0.3)
+        # self.play(
+        #     diff_eq.animate.shift(UP * 2.5).scale(0.8),
+        #     diff_box.animate.shift(UP * 2.5).scale(0.8),
+        #     solution_eq.animate.shift(UP * 3.2).scale(0.8),
+        #     solution_box.animate.shift(UP * 3.2).scale(0.8),
+        #     run_time=0.6
+        # )
+        # self.wait(0.3)
 
         eigen_text = Text(
             "Lの固有値をλₐ、固有ベクトルをv⃗ₐとする",
@@ -133,15 +134,15 @@ class MatrixDifferentialEquation(Scene):
         self.wait(0.5)
 
         assumption = Text(
-            "簡単のため、Lは互いに異なるD個の固有値を持つとする",
-            color=ORANGE, font_size=24,
+            "※簡単のため、Lは互いに異なるD個の固有値を持つとする",
+            color=GRAY, font_size=24,
         )
         assumption.shift(UP * 0.7)
         self.play(Write(assumption), run_time=0.7)
         self.wait(0.5)
 
         expansion_text = Text(
-            "すると、x⃗(t)は固有ベクトルの線形結合で表せる",
+            "すると、実はx⃗(t)は固有ベクトルの線形結合で表せる",
             color=WHITE, font_size=26,
         )
         expansion_text.shift(DOWN * 0.0)
@@ -149,21 +150,21 @@ class MatrixDifferentialEquation(Scene):
         self.wait(0.5)
 
         expansion_eq = MathTex(
-            r"\mathbf{x}(t) = c_1 e^{\lambda_1 t}\mathbf{v}_1 + c_2 e^{\lambda_2 t}\mathbf{v}_2 + \cdots + c_D e^{\lambda_D t}\mathbf{v}_D",
+            r"\mathbf{x}(t) = c_1 e^{\lambda_1 t}\mathbf{v}_1 + c_2 e^{\lambda_2 t}\mathbf{v}_2 + \cdots + c_D e^{\lambda_D t}\mathbf{v}_D=",
             color=YELLOW,
-            font_size=30,
+            font_size=32,
         )
-        expansion_eq.shift(DOWN * 0.9)
+        expansion_eq.shift(DOWN * 0.8)
         self.play(Write(expansion_eq), run_time=1.0)
         self.wait(0.7)
 
         expansion_eq_sum = MathTex(
-            r"= \sum_{d=1}^{D} c_d e^{\lambda_d t}\mathbf{v}_d",
+            r" \sum_{d=1}^{D} c_d e^{\lambda_d t}\mathbf{v}_d",
             color=YELLOW,
             font_size=36,
         )
-        expansion_eq_sum.shift(DOWN * 1.7)
-        expansion_box = SurroundingRectangle(expansion_eq_sum, color=YELLOW, buff=0.25)
+        expansion_eq_sum.shift(DOWN * 1.9)
+        expansion_box = SurroundingRectangle(expansion_eq_sum, color=YELLOW, buff=0.1)
         self.play(Write(expansion_eq_sum), Create(expansion_box), run_time=0.8)
         self.wait(1.0)
 
@@ -183,12 +184,12 @@ class MatrixDifferentialEquation(Scene):
 
         # expansion_eq_sumを上に移動
         self.play(
-            expansion_eq_sum.animate.shift(UP * 3.8).scale(0.85),
-            expansion_box.animate.shift(UP * 3.8).scale(0.85),
-            diff_eq.animate.shift(LEFT * 1.8).scale(0.9),
-            diff_box.animate.shift(LEFT * 1.8).scale(0.9),
-            solution_eq.animate.shift(RIGHT * 1.5).scale(0.9),
-            solution_box.animate.shift(RIGHT * 1.5).scale(0.9),
+            expansion_eq_sum.animate.shift(UP * 3.5).scale(0.95),
+            expansion_box.animate.shift(UP * 3.5).scale(0.9),
+            # diff_eq.animate.shift(LEFT * 1.8).scale(0.9),
+            # diff_box.animate.shift(LEFT * 1.8).scale(0.9),
+            # solution_eq.animate.shift(RIGHT * 1.5).scale(0.9),
+            # solution_box.animate.shift(RIGHT * 1.5).scale(0.9),
             run_time=0.6
         )
         self.wait(0.3)
@@ -197,7 +198,7 @@ class MatrixDifferentialEquation(Scene):
             "係数{cₐ}は、t=0を代入してx⃗(0)と等しいとおくことで求まる",
             color=WHITE, font_size=26,
         )
-        coeff_text.shift(UP * 1.2)
+        coeff_text.shift(UP * 0.7)
         self.play(Write(coeff_text), run_time=0.8)
         self.wait(0.5)
 
@@ -206,7 +207,7 @@ class MatrixDifferentialEquation(Scene):
             color=BLUE,
             font_size=32,
         )
-        coeff_eq1.shift(UP * 0.4)
+        coeff_eq1.shift(UP * 0.2)
         self.play(Write(coeff_eq1), run_time=0.8)
         self.wait(0.6)
 
@@ -214,7 +215,7 @@ class MatrixDifferentialEquation(Scene):
             "これは行列形式で書くと",
             color=WHITE, font_size=24,
         )
-        matrix_form.shift(DOWN * 0.4)
+        matrix_form.shift(DOWN * 0.4 + LEFT * 2.5)
         self.play(Write(matrix_form), run_time=0.6)
         self.wait(0.4)
 
@@ -223,22 +224,23 @@ class MatrixDifferentialEquation(Scene):
             color=GREEN,
             font_size=36,
         )
-        coeff_eq2.shift(DOWN * 1.3)
-        coeff_box = SurroundingRectangle(coeff_eq2, color=GREEN, buff=0.25)
-        self.play(Write(coeff_eq2), Create(coeff_box), run_time=0.8)
+        coeff_eq2.shift(DOWN * 1.5)
+        # coeff_box = SurroundingRectangle(coeff_eq2, color=GREEN, buff=0.25)
+        self.play(Write(coeff_eq2), run_time=0.8)
         self.wait(0.7)
 
         solve_text = Text(
             "この連立方程式を解けば係数が求まる",
             color=ORANGE, font_size=24, weight=BOLD,
         )
-        solve_text.shift(DOWN * 2.4)
+        solve_text.shift(DOWN * 2.6)
         self.play(Write(solve_text), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(coeff_text), FadeOut(coeff_eq1),
             FadeOut(matrix_form), FadeOut(solve_text),
+            FadeOut(coeff_eq2)
         )
         self.wait(0.3)
 
@@ -252,14 +254,14 @@ class MatrixDifferentialEquation(Scene):
 
         # coeff_eq2を右下に移動
         self.play(
-            coeff_eq2.animate.shift(DOWN * 0.5 + RIGHT * 2.5).scale(0.8),
-            coeff_box.animate.shift(DOWN * 0.5 + RIGHT * 2.5).scale(0.8),
-            expansion_eq_sum.animate.shift(LEFT * 2.8).scale(0.95),
-            expansion_box.animate.shift(LEFT * 2.8).scale(0.95),
-            diff_eq.animate.shift(UP * 0.3),
-            diff_box.animate.shift(UP * 0.3),
-            solution_eq.animate.shift(UP * 0.3),
-            solution_box.animate.shift(UP * 0.3),
+            # coeff_eq2.animate.shift(DOWN * 0.5 + RIGHT * 2.5).scale(0.8),
+            # coeff_box.animate.shift(DOWN * 0.5 + RIGHT * 2.5).scale(0.8),
+            expansion_eq_sum.animate.shift(UP *0.8 +LEFT * 4),
+            expansion_box.animate.shift(UP * 0.8 + LEFT * 4),
+            # diff_eq.animate.shift(UP * 0.3),
+            # diff_box.animate.shift(UP * 0.3),
+            # solution_eq.animate.shift(UP * 0.3),
+            # solution_box.animate.shift(UP * 0.3),
             run_time=0.6
         )
         self.wait(0.3)
@@ -273,7 +275,7 @@ class MatrixDifferentialEquation(Scene):
         self.wait(0.6)
 
         matrix_exp_text = Text(
-            "行列の指数関数を書き下すと",
+            "20話より、行列の指数関数を書き下すと",
             color=WHITE, font_size=24,
         )
         matrix_exp_text.shift(UP * 0.6)
@@ -283,7 +285,7 @@ class MatrixDifferentialEquation(Scene):
         diag_form = MathTex(
             r"e^{Lt} = P \text{diag}(e^{\lambda_1 t}, \cdots, e^{\lambda_D t}) P^{-1}",
             color=BLUE,
-            font_size=32,
+            font_size=34,
         )
         diag_form.shift(DOWN * 0.1)
         self.play(Write(diag_form), run_time=0.9)
@@ -300,7 +302,7 @@ class MatrixDifferentialEquation(Scene):
         step1 = MathTex(
             r"e^{Lt}\mathbf{x}(0) = P \text{diag}(e^{\lambda_1 t}, \cdots, e^{\lambda_D t}) P^{-1}\mathbf{x}(0)",
             color=YELLOW,
-            font_size=28,
+            font_size=34,
         )
         step1.shift(DOWN * 1.5)
         self.play(Write(step1), run_time=0.9)
@@ -309,8 +311,8 @@ class MatrixDifferentialEquation(Scene):
         self.play(
             FadeOut(equiv_text), FadeOut(matrix_exp_text), 
             FadeOut(diag_form), FadeOut(therefore),
-            FadeOut(diff_eq), FadeOut(diff_box),
-            FadeOut(solution_eq), FadeOut(solution_box),
+            # FadeOut(diff_eq), FadeOut(diff_box),
+            # FadeOut(solution_eq), FadeOut(solution_box),
         )
         self.wait(0.3)
 
@@ -325,10 +327,10 @@ class MatrixDifferentialEquation(Scene):
         # step1を上に移動
         self.play(
             step1.animate.shift(UP * 3.2).scale(0.95),
-            expansion_eq_sum.animate.shift(RIGHT * 2.8),
-            expansion_box.animate.shift(RIGHT * 2.8),
-            coeff_eq2.animate.shift(LEFT * 2.5),
-            coeff_box.animate.shift(LEFT * 2.5),
+            # expansion_eq_sum.animate.shift(RIGHT * 2.8),
+            # expansion_box.animate.shift(RIGHT * 2.8),
+            # coeff_eq2.animate.shift(LEFT * 2.5),
+            # coeff_box.animate.shift(LEFT * 2.5),
             run_time=0.6
         )
         self.wait(0.3)
@@ -344,7 +346,7 @@ class MatrixDifferentialEquation(Scene):
         step2 = MathTex(
             r"= P \text{diag}(e^{\lambda_1 t}, \cdots, e^{\lambda_D t}) \mathbf{c}",
             color=YELLOW,
-            font_size=32,
+            font_size=34,
         )
         step2.shift(UP * 0.5)
         self.play(Write(step2), run_time=0.8)
@@ -354,7 +356,7 @@ class MatrixDifferentialEquation(Scene):
             "Pより右を計算して",
             color=WHITE, font_size=24,
         )
-        calc_text.shift(DOWN * 0.2)
+        calc_text.shift(DOWN * 0.1)
         self.play(Write(calc_text), run_time=0.6)
         self.wait(0.4)
 
@@ -370,18 +372,18 @@ class MatrixDifferentialEquation(Scene):
         step4 = MathTex(
             r"= [\mathbf{v}_1 \cdots \mathbf{v}_D] \begin{bmatrix}c_1 e^{\lambda_1 t} \\ \vdots \\ c_D e^{\lambda_D t} \end{bmatrix}",
             color=BLUE,
-            font_size=32,
+            font_size=34,
         )
-        step4.shift(DOWN * 2.1)
+        step4.shift(DOWN * 1.1 + RIGHT * 3.2)
         self.play(Write(step4), run_time=0.9)
         self.wait(0.7)
 
         step5 = MathTex(
             r"= \sum_{d=1}^{D} c_d e^{\lambda_d t}\mathbf{v}_d",
             color=GREEN,
-            font_size=36,
+            font_size=34,
         )
-        step5.shift(DOWN * 3.1)
+        step5.shift(DOWN * 3)
         step5_box = SurroundingRectangle(step5, color=GREEN, buff=0.25)
         self.play(Write(step5), Create(step5_box), run_time=0.8)
         self.wait(0.8)
@@ -395,6 +397,7 @@ class MatrixDifferentialEquation(Scene):
         self.wait(1.2)
 
         self.play(
+            FadeOut(expansion_eq_sum), FadeOut(expansion_box),
             FadeOut(step1), FadeOut(define_c), FadeOut(step2),
             FadeOut(calc_text), FadeOut(step3), FadeOut(step4),
             FadeOut(conclusion1),
@@ -411,12 +414,12 @@ class MatrixDifferentialEquation(Scene):
 
         # step5を上に移動
         self.play(
-            step5.animate.shift(UP * 4.8 + LEFT * 3.0).scale(0.8),
-            step5_box.animate.shift(UP * 4.8 + LEFT * 3.0).scale(0.8),
-            expansion_eq_sum.animate.shift(DOWN * 0.3 + RIGHT * 2.0).scale(0.95),
-            expansion_box.animate.shift(DOWN * 0.3 + RIGHT * 2.0).scale(0.95),
-            coeff_eq2.animate.shift(DOWN * 0.3).scale(1.05),
-            coeff_box.animate.shift(DOWN * 0.3).scale(1.05),
+            step5.animate.shift(UP * 4.8 + LEFT * 3.0).scale(0.95),
+            step5_box.animate.shift(UP * 4.8 + LEFT * 3.0).scale(0.9),
+            # expansion_eq_sum.animate.shift(DOWN * 0.3 + RIGHT * 2.0).scale(0.95),
+            # expansion_box.animate.shift(DOWN * 0.3 + RIGHT * 2.0).scale(0.95),
+            # coeff_eq2.animate.shift(DOWN * 0.3).scale(1.05),
+            # coeff_box.animate.shift(DOWN * 0.3).scale(1.05),
             run_time=0.6
         )
         self.wait(0.3)
@@ -440,9 +443,9 @@ class MatrixDifferentialEquation(Scene):
         equiv_coeff = MathTex(
             r"\mathbf{x}(0) = P\mathbf{c}",
             color=BLUE,
-            font_size=38,
+            font_size=36,
         )
-        equiv_coeff.shift(DOWN * 0.6)
+        equiv_coeff.shift(DOWN * 0.4)
         self.play(Write(equiv_coeff), run_time=0.8)
         self.wait(0.6)
 
@@ -451,7 +454,7 @@ class MatrixDifferentialEquation(Scene):
             color=BLUE,
             font_size=36,
         )
-        expand_equiv.shift(DOWN * 1.5)
+        expand_equiv.shift(DOWN * 1.9)
         equiv_box2 = SurroundingRectangle(expand_equiv, color=BLUE, buff=0.25)
         self.play(Write(expand_equiv), Create(equiv_box2), run_time=0.8)
         self.wait(0.7)
@@ -460,14 +463,14 @@ class MatrixDifferentialEquation(Scene):
             "→ これも先ほどの連立方程式と等しい！",
             color=GREEN, font_size=24, weight=BOLD,
         )
-        conclusion2.shift(DOWN * 2.6)
+        conclusion2.shift(DOWN * 3.2)
         self.play(Write(conclusion2), run_time=0.7)
         self.wait(1.5)
 
         self.play(
             FadeOut(step5), FadeOut(step5_box),
-            FadeOut(expansion_eq_sum), FadeOut(expansion_box),
-            FadeOut(coeff_eq2), FadeOut(coeff_box),
+            # FadeOut(expansion_eq_sum), FadeOut(expansion_box),
+            # FadeOut(coeff_eq2), FadeOut(coeff_box),
             FadeOut(also_text), FadeOut(multiply_p),
             FadeOut(equiv_coeff), FadeOut(expand_equiv),
             FadeOut(equiv_box2), FadeOut(conclusion2),
@@ -503,7 +506,7 @@ class MatrixDifferentialEquation(Scene):
             color=YELLOW,
             font_size=40,
         )
-        matrix_l.shift(UP * 0.3)
+        matrix_l.shift(UP * 0.1)
         matrix_l_box = SurroundingRectangle(matrix_l, color=YELLOW, buff=0.25)
         self.play(Write(matrix_l), Create(matrix_l_box), run_time=0.8)
         self.wait(0.7)
@@ -512,7 +515,7 @@ class MatrixDifferentialEquation(Scene):
             "この行列は2つの共役な複素数を固有値に持つ",
             color=WHITE, font_size=26,
         )
-        eigen_intro.shift(DOWN * 0.7)
+        eigen_intro.shift(DOWN * 0.9)
         self.play(Write(eigen_intro), run_time=0.8)
         self.wait(0.6)
 
@@ -521,7 +524,7 @@ class MatrixDifferentialEquation(Scene):
             color=BLUE,
             font_size=32,
         )
-        eigenvalues.shift(DOWN * 1.5)
+        eigenvalues.shift(DOWN * 1.7)
         self.play(Write(eigenvalues), run_time=1.0)
         self.wait(0.8)
 
@@ -529,13 +532,13 @@ class MatrixDifferentialEquation(Scene):
             "（jは虚数単位）",
             color=GRAY, font_size=22,
         )
-        note_j.shift(DOWN * 2.1)
+        note_j.shift(DOWN * 2.3)
         self.play(Write(note_j), run_time=0.5)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(example_intro), FadeOut(param_text),
-            FadeOut(eigen_intro),
+            FadeOut(eigen_intro), FadeOut(matrix_l), FadeOut(matrix_l_box), FadeOut(note_j)
         )
         self.wait(0.3)
 
@@ -549,10 +552,10 @@ class MatrixDifferentialEquation(Scene):
 
         # matrix_lとeigenvaluesを上に移動
         self.play(
-            matrix_l.animate.shift(UP * 1.8).scale(0.8),
-            matrix_l_box.animate.shift(UP * 1.8).scale(0.8),
-            eigenvalues.animate.shift(UP * 2.8).scale(0.85),
-            note_j.animate.shift(UP * 2.8),
+            # matrix_l.animate.shift(UP * 1.8).scale(0.8),
+            # matrix_l_box.animate.shift(UP * 1.8).scale(0.8),
+            eigenvalues.animate.shift(UP * 3.3),
+            # note_j.animate.shift(UP * 2.8),
             run_time=0.6
         )
         self.wait(0.3)
@@ -568,7 +571,7 @@ class MatrixDifferentialEquation(Scene):
         evolution_eq = MathTex(
             r"\mathbf{x}(t) = c_1 e^{\frac{1}{4}(-1+j\sqrt{47})t}\mathbf{v}_1 + c_2 e^{\frac{1}{4}(-1-j\sqrt{47})t}\mathbf{v}_2",
             color=YELLOW,
-            font_size=26,
+            font_size=34,
         )
         evolution_eq.shift(UP * 0.1)
         self.play(Write(evolution_eq), run_time=1.0)
@@ -585,7 +588,7 @@ class MatrixDifferentialEquation(Scene):
         euler_formula = MathTex(
             r"e^{j\theta} = \cos\theta + j\sin\theta",
             color=BLUE,
-            font_size=32,
+            font_size=34,
         )
         euler_formula.shift(DOWN * 1.4)
         self.play(Write(euler_formula), run_time=0.8)
@@ -613,11 +616,11 @@ class MatrixDifferentialEquation(Scene):
         )
         result.shift(DOWN * 3.3)
         self.play(Write(result), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
-            FadeOut(matrix_l), FadeOut(matrix_l_box),
-            FadeOut(eigenvalues), FadeOut(note_j),
+            # FadeOut(matrix_l), FadeOut(matrix_l_box),
+            FadeOut(eigenvalues), #FadeOut(note_j),
             FadeOut(evolution_text), FadeOut(evolution_eq),
             FadeOut(euler_text), FadeOut(euler_formula),
             FadeOut(oscillation), FadeOut(decay), FadeOut(result),
@@ -725,7 +728,7 @@ class MatrixDifferentialEquation(Scene):
             "実部が負なので振幅が時間とともに減衰する",
             color=ORANGE, font_size=24, weight=BOLD,
         )
-        damping_note.to_edge(DOWN, buff=0.3)
+        damping_note.shift(DOWN * 3)
         self.play(Write(damping_note), run_time=0.8)
         self.wait(1.5)
 
@@ -750,7 +753,7 @@ class MatrixDifferentialEquation(Scene):
             "γ=0（摩擦なし）の場合を見てみよう",
             color=WHITE, font_size=26,
         )
-        no_friction_text.shift(UP * 1.8)
+        no_friction_text.shift(UP * 2)
         self.play(Write(no_friction_text), run_time=0.7)
         self.wait(0.5)
 
@@ -769,7 +772,7 @@ class MatrixDifferentialEquation(Scene):
             color=BLUE,
             font_size=36,
         )
-        eigenvalues2.shift(UP * 0.0)
+        eigenvalues2.shift(DOWN * 0.2)
         self.play(Write(eigenvalues2), run_time=0.8)
         self.wait(0.7)
 
@@ -777,14 +780,21 @@ class MatrixDifferentialEquation(Scene):
             "実部が0のため、減衰しない無限振動となる",
             color=ORANGE, font_size=26, weight=BOLD,
         )
-        pure_imaginary.shift(DOWN * 0.8)
+        pure_imaginary.shift(DOWN * 1)
         self.play(Write(pure_imaginary), run_time=0.8)
-        self.wait(1.0)
-
+        self.wait(0.2)
+        evolution_eq2 = MathTex(
+            r"\mathbf{x}(t) = c_1 e^{j\sqrt{3}t}\mathbf{v}_1 + c_2 e^{-j\sqrt{3}t}\mathbf{v}_2",
+            color=YELLOW,
+            font_size=34,
+        )
+        evolution_eq2.shift(DOWN * 1.6)
+        self.play(Write(evolution_eq2), run_time=1.0)
+        self.wait(0.8)
         self.play(
             FadeOut(no_friction_text), FadeOut(matrix_l2),
             FadeOut(matrix_l2_box), FadeOut(eigenvalues2),
-            FadeOut(pure_imaginary),
+            FadeOut(pure_imaginary), FadeOut(evolution_eq2)
         )
         self.wait(0.3)
 
@@ -875,7 +885,7 @@ class MatrixDifferentialEquation(Scene):
             "実部が0なので振幅は減衰せず、永久に振動し続ける",
             color=ORANGE, font_size=24, weight=BOLD,
         )
-        oscillation_note.to_edge(DOWN, buff=0.3)
+        oscillation_note.shift(DOWN * 3)
         self.play(Write(oscillation_note), run_time=0.8)
         self.wait(1.5)
 
