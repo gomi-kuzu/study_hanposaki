@@ -14,7 +14,7 @@ class NumericalMethodsODE(Scene):
         # ============================================================
         # Part 1: 前回のおさらい
         # ============================================================
-        subtitle1 = Text("前回のおさらい", font_size=28, color=BLUE)
+        subtitle1 = Text("前の動画のおさらい", font_size=28, color=BLUE)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.4)
@@ -41,7 +41,7 @@ class NumericalMethodsODE(Scene):
             color=GREEN,
             font_size=32,
         )
-        review_eq2.shift(DOWN * 0.1)
+        review_eq2.shift(DOWN * 0.5)
         review_box = SurroundingRectangle(review_eq2, color=GREEN, buff=0.25)
         self.play(Write(review_eq2), Create(review_box), run_time=0.8)
         self.wait(0.8)
@@ -50,9 +50,9 @@ class NumericalMethodsODE(Scene):
             "固有値・固有ベクトルを使った解析的手法",
             color=TEAL, font_size=24,
         )
-        method_text.shift(DOWN * 1.2)
+        method_text.shift(DOWN * 1.8)
         self.play(Write(method_text), run_time=0.7)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(review_text), FadeOut(review_eq1),
@@ -169,7 +169,7 @@ class NumericalMethodsODE(Scene):
         )
         coverage_note.shift(DOWN * 2.0)
         self.play(Write(coverage_note), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(advantage_intro), FadeOut(advantages),
@@ -222,7 +222,7 @@ class NumericalMethodsODE(Scene):
             "現在の状態 x⃗(t) から次の状態 x⃗(t+Δt) を計算",
             color=WHITE, font_size=26,
         )
-        concept.shift(DOWN * 0.5)
+        concept.shift(DOWN)
         self.play(Write(concept), run_time=0.8)
         self.wait(0.6)
 
@@ -230,7 +230,7 @@ class NumericalMethodsODE(Scene):
             "これを繰り返して時間発展を追跡する",
             color=WHITE, font_size=26,
         )
-        concept2.shift(DOWN * 1.2)
+        concept2.shift(DOWN*1.5)
         self.play(Write(concept2), run_time=0.7)
         self.wait(1.0)
 
@@ -238,9 +238,9 @@ class NumericalMethodsODE(Scene):
             "Δtが小さいほど精度は上がるが、計算回数も増える",
             color=ORANGE, font_size=24,
         )
-        accuracy_note.shift(DOWN * 2.1)
+        accuracy_note.shift(DOWN * 2.3)
         self.play(Write(accuracy_note), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(basic_idea), FadeOut(timestep_intro),
@@ -326,8 +326,8 @@ class NumericalMethodsODE(Scene):
 
         # euler_formulaを上に移動
         self.play(
-            euler_formula.animate.shift(UP * 2.8).scale(0.85),
-            euler_box.animate.shift(UP * 2.8).scale(0.85),
+            euler_formula.animate.shift(UP * 3.1).scale(0.9),
+            euler_box.animate.shift(UP * 3.1).scale(0.85),
             run_time=0.6
         )
         self.wait(0.3)
@@ -383,6 +383,7 @@ class NumericalMethodsODE(Scene):
         self.wait(1.2)
 
         self.play(
+            FadeOut(euler_formula), FadeOut(euler_box),
             FadeOut(geometric_text), FadeOut(step1_text),
             FadeOut(step1_eq), FadeOut(step2_text),
             FadeOut(step2_eq), FadeOut(approximation_note),
@@ -397,13 +398,13 @@ class NumericalMethodsODE(Scene):
         self.play(Transform(subtitle1, subtitle7), run_time=0.5)
         self.wait(0.4)
 
-        # euler_formulaを左上に移動
-        self.play(
-            euler_formula.animate.shift(LEFT * 2.5 + UP * 0.3).scale(0.75),
-            euler_box.animate.shift(LEFT * 2.5 + UP * 0.3).scale(0.75),
-            run_time=0.6
-        )
-        self.wait(0.3)
+        # # euler_formulaを左上に移動
+        # self.play(
+        #     euler_formula.animate.shift(LEFT * 2.5 + UP * 0.3).scale(0.75),
+        #     euler_box.animate.shift(LEFT * 2.5 + UP * 0.3).scale(0.75),
+        #     run_time=0.6
+        # )
+        # self.wait(0.3)
 
         heun_intro = Text(
             "オイラー法を改良したホイン法",
@@ -472,11 +473,11 @@ class NumericalMethodsODE(Scene):
 
         # 式を上に移動
         self.play(
-            euler_formula.animate.shift(UP * 1.0 + RIGHT * 2.5).scale(0.95),
-            euler_box.animate.shift(UP * 1.0 + RIGHT * 2.5).scale(0.95),
-            heun_step1_eq.animate.shift(UP * 3.2 + RIGHT * 2.0).scale(0.9),
-            heun_step2_eq.animate.shift(UP * 3.7 + RIGHT * 1.5).scale(0.9),
-            heun_box.animate.shift(UP * 3.7 + RIGHT * 1.5).scale(0.9),
+            # euler_formula.animate.shift(UP * 1.0 + RIGHT * 2.5).scale(0.95),
+            # euler_box.animate.shift(UP * 1.0 + RIGHT * 2.5).scale(0.95),
+            heun_step1_eq.animate.shift(UP * 2.3).scale(0.95),
+            heun_step2_eq.animate.shift(UP * 3.7).scale(0.95),
+            heun_box.animate.shift(UP * 3.85).scale(1.3),
             run_time=0.6
         )
         self.wait(0.3)
@@ -485,7 +486,7 @@ class NumericalMethodsODE(Scene):
             "ホイン法の優位性",
             color=WHITE, font_size=26,
         )
-        advantage_text.shift(UP * 0.8)
+        advantage_text.shift(UP * 0.5)
         self.play(Write(advantage_text), run_time=0.7)
         self.wait(0.5)
 
@@ -493,7 +494,7 @@ class NumericalMethodsODE(Scene):
             "• オイラー法：終点での傾きは考慮しない",
             color=YELLOW, font_size=24,
         )
-        comparison1.shift(UP * 0.1)
+        comparison1.shift(DOWN * 0.2)
         self.play(Write(comparison1), run_time=0.7)
         self.wait(0.5)
 
@@ -501,7 +502,7 @@ class NumericalMethodsODE(Scene):
             "• ホイン法：始点と終点の両方の傾きを使用",
             color=GREEN, font_size=24,
         )
-        comparison2.shift(DOWN * 0.5)
+        comparison2.shift(DOWN * 0.8)
         self.play(Write(comparison2), run_time=0.7)
         self.wait(0.6)
 
@@ -509,7 +510,7 @@ class NumericalMethodsODE(Scene):
             "→ 曲線をより正確に追跡できる",
             color=GREEN, font_size=24, weight=BOLD,
         )
-        result_text.shift(DOWN * 1.2)
+        result_text.shift(DOWN * 1.5)
         self.play(Write(result_text), run_time=0.7)
         self.wait(0.8)
 
@@ -517,11 +518,13 @@ class NumericalMethodsODE(Scene):
             "ただし、f を2回計算するため計算コストは約2倍",
             color=ORANGE, font_size=22,
         )
-        cost_note.shift(DOWN * 2.0)
+        cost_note.shift(DOWN * 2.3)
         self.play(Write(cost_note), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
+            FadeOut(heun_step1_eq), FadeOut(heun_step2_eq),
+            FadeOut(heun_box),
             FadeOut(advantage_text), FadeOut(comparison1),
             FadeOut(comparison2), FadeOut(result_text),
             FadeOut(cost_note),
@@ -531,21 +534,21 @@ class NumericalMethodsODE(Scene):
         # ============================================================
         # Part 9: 精度の比較
         # ============================================================
-        subtitle9 = Text("精度の比較", font_size=28, color=TEAL)
+        subtitle9 = Text("精度の簡易比較", font_size=28, color=TEAL)
         subtitle9.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle9), run_time=0.5)
         self.wait(0.4)
 
         # 式を右に移動
-        self.play(
-            euler_formula.animate.shift(DOWN * 1.0 + RIGHT * 1.5).scale(0.85),
-            euler_box.animate.shift(DOWN * 1.0 + RIGHT * 1.5).scale(0.85),
-            heun_step1_eq.animate.shift(DOWN * 3.5 + RIGHT * 0.5),
-            heun_step2_eq.animate.shift(DOWN * 3.2 + RIGHT * 0.5),
-            heun_box.animate.shift(DOWN * 3.2 + RIGHT * 0.5),
-            run_time=0.6
-        )
-        self.wait(0.3)
+        # self.play(
+        #     euler_formula.animate.shift(DOWN * 1.0 + RIGHT * 1.5).scale(0.85),
+        #     euler_box.animate.shift(DOWN * 1.0 + RIGHT * 1.5).scale(0.85),
+        #     heun_step1_eq.animate.shift(DOWN * 3.5 + RIGHT * 0.5),
+        #     heun_step2_eq.animate.shift(DOWN * 3.2 + RIGHT * 0.5),
+        #     heun_box.animate.shift(DOWN * 3.2 + RIGHT * 0.5),
+        #     run_time=0.6
+        # )
+        # self.wait(0.3)
 
         accuracy_intro = Text(
             "数値解法には「精度の次数」という概念がある",
@@ -603,12 +606,9 @@ class NumericalMethodsODE(Scene):
         )
         conclusion_accuracy.shift(DOWN * 2.6)
         self.play(Write(conclusion_accuracy), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
-            FadeOut(euler_formula), FadeOut(euler_box),
-            FadeOut(heun_step1_eq), FadeOut(heun_step2_eq),
-            FadeOut(heun_box),
             FadeOut(accuracy_intro), FadeOut(accuracy_def),
             FadeOut(euler_accuracy), FadeOut(euler_error),
             FadeOut(heun_accuracy), FadeOut(heun_error),
@@ -690,7 +690,7 @@ class NumericalMethodsODE(Scene):
         self.wait(1.0)
 
         self.play(
-            FadeOut(classification_intro), FadeOut(explicit_title),
+            FadeOut(classification_intro),
             FadeOut(explicit_def), FadeOut(explicit_note),
             FadeOut(implicit_def), FadeOut(implicit_note),
         )
@@ -706,8 +706,9 @@ class NumericalMethodsODE(Scene):
 
         # explicit_exampleを上に移動
         self.play(
-            explicit_example.animate.shift(UP * 2.2).scale(0.9),
-            implicit_title.animate.shift(UP * 3.7),
+            explicit_title.animate.shift(UP * 1.5 + LEFT * 4.5).scale(0.9),
+            explicit_example.animate.shift(UP * 2.3 + LEFT * 4.5).scale(0.9),
+            implicit_title.animate.shift(UP * 3.3),
             run_time=0.6
         )
         self.wait(0.3)
@@ -757,6 +758,7 @@ class NumericalMethodsODE(Scene):
         self.play(
             FadeOut(implicit_euler_intro), FadeOut(key_difference),
             FadeOut(solution_method), FadeOut(complexity_note),
+            FadeOut(implicit_euler_box),
         )
         self.wait(0.3)
 
@@ -770,10 +772,11 @@ class NumericalMethodsODE(Scene):
 
         # 式を上に移動
         self.play(
-            explicit_example.animate.shift(LEFT * 2.5),
-            implicit_title.animate.shift(LEFT * 2.5),
-            implicit_euler_formula.animate.shift(UP * 1.5 + RIGHT * 2.0).scale(0.8),
-            implicit_euler_box.animate.shift(UP * 1.5 + RIGHT * 2.0).scale(0.8),
+            explicit_title.animate.shift(DOWN * 0.8  + RIGHT).scale(1.06),
+            explicit_example.animate.shift(DOWN + RIGHT).scale(1.05),
+            implicit_title.animate.shift(RIGHT * 2.5),
+            implicit_euler_formula.animate.shift(UP *1.1 + RIGHT * 2.5).scale(0.85),
+            # implicit_euler_box.animate.shift(UP * 1.1 + RIGHT * 2.5).scale(0.8),
             run_time=0.6
         )
         self.wait(0.3)
@@ -782,7 +785,7 @@ class NumericalMethodsODE(Scene):
             "計算は複雑になるが、重要なメリットがある",
             color=WHITE, font_size=26,
         )
-        merit_intro.shift(UP * 0.5)
+        merit_intro.shift(UP * 0.4)
         self.play(Write(merit_intro), run_time=0.7)
         self.wait(0.6)
 
@@ -816,11 +819,12 @@ class NumericalMethodsODE(Scene):
         )
         tradeoff.shift(DOWN * 2.3)
         self.play(Write(tradeoff), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
+            FadeOut(explicit_title),
             FadeOut(explicit_example), FadeOut(implicit_title),
-            FadeOut(implicit_euler_formula), FadeOut(implicit_euler_box),
+            FadeOut(implicit_euler_formula), 
             FadeOut(merit_intro), FadeOut(stability_title),
             FadeOut(stability_exp), FadeOut(stability_exp2),
             FadeOut(tradeoff),
@@ -851,8 +855,8 @@ class NumericalMethodsODE(Scene):
         self.wait(1.0)
 
         final_message = Text(
-            "実用では4次ルンゲクッタ法がよく使われる",
-            color=TEAL, font_size=24,
+            "実用では、計算量と精度のバランスの良い4次ルンゲクッタ法がよく使われる",
+            color=TEAL, font_size=26,
         )
         final_message.shift(DOWN * 2.5)
         self.play(Write(final_message), run_time=0.8)
