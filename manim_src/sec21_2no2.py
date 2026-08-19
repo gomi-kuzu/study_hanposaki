@@ -46,7 +46,7 @@ class NumericalMethodsComparison(Scene):
         self.wait(0.8)
 
         note_text = Text(
-            "この場合、f⃗(x⃗(t)) = Lx⃗(t) となる",
+            "この場合、f(x⃗(t)) = Lx⃗(t) となる",
             color=TEAL, font_size=24,
         )
         note_text.shift(DOWN * 0.7)
@@ -98,7 +98,7 @@ class NumericalMethodsComparison(Scene):
         self.wait(0.3)
 
         substitution_text = Text(
-            "f⃗(x⃗(t)) = Lx⃗(t) を代入すると：",
+            "f(x⃗(t)) = Lx⃗(t) を代入すると：",
             color=TEAL, font_size=24,
         )
         substitution_text.shift(DOWN * 1.0)
