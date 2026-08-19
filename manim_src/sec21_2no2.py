@@ -608,7 +608,7 @@ class NumericalMethodsComparison(Scene):
             "1次で打ち切ると：",
             color=WHITE, font_size=24,
         )
-        first_order_approx.shift(DOWN * 2.5 + LEFT * 3)
+        first_order_approx.shift(DOWN * 2.5 + LEFT * 2.8)
         self.play(Write(first_order_approx), run_time=0.7)
         self.wait(0.4)
 
@@ -617,7 +617,7 @@ class NumericalMethodsComparison(Scene):
             color=YELLOW,
             font_size=30,
         )
-        euler_from_taylor.shift(DOWN * 2.6 + RIGHT * 3)
+        euler_from_taylor.shift(DOWN * 2.6 + RIGHT * 2.5)
         euler_from_taylor_box = SurroundingRectangle(euler_from_taylor, color=YELLOW, buff=0.2)
         self.play(Write(euler_from_taylor), Create(euler_from_taylor_box), run_time=1.0)
         self.wait(1.0)
