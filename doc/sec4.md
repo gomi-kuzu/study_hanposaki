@@ -22,4 +22,16 @@
 ### 対角化と制御工学の応答性解析の話
 <div><video controls src="https://github.com/user-attachments/assets/68a70dab-0db8-4f77-825b-41c99d365a4f"></video></div> 
 
+# 第21話
+## 21.1
+### a
+<div><video controls src="https://github.com/user-attachments/assets/2c38a31e-7b6b-49d6-b8a3-9b86bd004c93"></video></div>
+
+## 21.2
+### a
+<div><video controls src="https://github.com/user-attachments/assets/0ce40dcc-a933-4dd3-ac0c-6238c4e93a42"></video></div>
+
+### a
+<div><video controls src="https://github.com/user-attachments/assets/e4beee20-a769-4082-b980-7409547f2cf0"></video></div>
+
 <!-- <div><video controls src=""></video></div> -->
