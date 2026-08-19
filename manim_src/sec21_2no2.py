@@ -41,8 +41,8 @@ class NumericalMethodsComparison(Scene):
             font_size=40,
         )
         system_eq.shift(UP * 0.3)
-        system_box = SurroundingRectangle(system_eq, color=YELLOW, buff=0.25)
-        self.play(Write(system_eq), Create(system_box), run_time=0.8)
+        # system_box = SurroundingRectangle(system_eq, color=YELLOW, buff=0.25)
+        self.play(Write(system_eq), run_time=0.8)
         self.wait(0.8)
 
         note_text = Text(
@@ -70,7 +70,7 @@ class NumericalMethodsComparison(Scene):
         # system_eqを上に移動
         self.play(
             system_eq.animate.shift(UP * 1.5).scale(0.85),
-            system_box.animate.shift(UP * 1.5).scale(0.85),
+            # system_box.animate.shift(UP * 1.5).scale(0.85),
             run_time=0.6
         )
         self.wait(0.3)
@@ -118,6 +118,7 @@ class NumericalMethodsComparison(Scene):
         self.play(
             FadeOut(euler_general_title), FadeOut(euler_general),
             FadeOut(arrow1), FadeOut(substitution_text),
+            FadeOut(system_eq), #FadeOut(system_box),
         )
         self.wait(0.3)
 
@@ -131,10 +132,10 @@ class NumericalMethodsComparison(Scene):
 
         # 式を上に移動
         self.play(
-            system_eq.animate.shift(UP * 0.3 + LEFT * 2.0).scale(0.9),
-            system_box.animate.shift(UP * 0.3 + LEFT * 2.0).scale(0.9),
-            euler_linear.animate.shift(UP * 2.5 + RIGHT * 1.5).scale(0.75),
-            euler_box.animate.shift(UP * 2.5 + RIGHT * 1.5).scale(0.75),
+            # system_eq.animate.shift(UP * 0.3 + LEFT * 2.0).scale(0.9),
+            # system_box.animate.shift(UP * 0.3 + LEFT * 2.0).scale(0.9),
+            euler_linear.animate.shift(UP * 3.5 + RIGHT * 4).scale(0.85),
+            euler_box.animate.shift(UP * 3.5 + RIGHT * 4).scale(0.8),
             run_time=0.6
         )
         self.wait(0.3)
@@ -182,7 +183,7 @@ class NumericalMethodsComparison(Scene):
             color=GREEN,
             font_size=32,
         )
-        heun_linear.shift(DOWN * 2.4)
+        heun_linear.shift(DOWN * 2.7)
         heun_box = SurroundingRectangle(heun_linear, color=GREEN, buff=0.25)
         self.play(Write(heun_linear), Create(heun_box), run_time=1.0)
         self.wait(1.5)
@@ -204,11 +205,10 @@ class NumericalMethodsComparison(Scene):
 
         # 式を整列
         self.play(
-            FadeOut(system_eq), FadeOut(system_box),
-            euler_linear.animate.shift(LEFT * 1.5 + UP * 0.5).scale(1.1),
-            euler_box.animate.shift(LEFT * 1.5 + UP * 0.5).scale(1.1),
-            heun_linear.animate.shift(RIGHT * 0.5 + UP * 3.7).scale(0.95),
-            heun_box.animate.shift(RIGHT * 0.5 + UP * 3.7).scale(0.95),
+            euler_linear.animate.shift(LEFT * 1.5 + DOWN * 0.4).scale(1.1),
+            euler_box.animate.shift(LEFT * 1.5 + DOWN * 0.4).scale(1.1),
+            heun_linear.animate.shift(LEFT * 3.5 + UP * 4.1).scale(0.95),
+            heun_box.animate.shift(LEFT * 3.5 + UP * 4.1).scale(0.9),
             run_time=0.8
         )
         self.wait(0.5)
@@ -217,7 +217,7 @@ class NumericalMethodsComparison(Scene):
             "ホイン法には2次の項が含まれている",
             color=WHITE, font_size=26,
         )
-        comparison_text.shift(UP * 0.5)
+        comparison_text.shift(UP * 0.3)
         self.play(Write(comparison_text), run_time=0.8)
         self.wait(0.6)
 
@@ -226,16 +226,16 @@ class NumericalMethodsComparison(Scene):
             color=RED,
             font_size=36,
         )
-        highlight_term.shift(DOWN * 0.3)
+        highlight_term.shift(DOWN * 0.8)
         highlight_box = SurroundingRectangle(highlight_term, color=RED, buff=0.25)
         self.play(Write(highlight_term), Create(highlight_box), run_time=0.8)
         self.wait(0.8)
 
         precision_note = Text(
             "この項が精度向上に寄与する",
-            color=TEAL, font_size=24,
+            color=TEAL, font_size=26,
         )
-        precision_note.shift(DOWN * 1.2)
+        precision_note.shift(DOWN * 2)
         self.play(Write(precision_note), run_time=0.7)
         self.wait(1.0)
 
@@ -309,7 +309,7 @@ class NumericalMethodsComparison(Scene):
             "時間刻み：",
             color=WHITE, font_size=26,
         )
-        timestep_title.shift(DOWN * 2.4)
+        timestep_title.shift(DOWN * 2.7)
         self.play(Write(timestep_title), run_time=0.7)
         self.wait(0.4)
 
@@ -423,7 +423,7 @@ class NumericalMethodsComparison(Scene):
         exact_line.set_points_smoothly(exact_points)
         
         exact_label = Text("固有値展開", color=BLUE, font_size=20)
-        exact_label.next_to(axes, UP).shift(LEFT * 3 + UP * 0.3)
+        exact_label.next_to(axes, UP).shift(LEFT * 3 + UP * 0.8 )
         
         self.play(Create(exact_line), Write(exact_label), run_time=1.0)
         self.wait(0.5)
@@ -434,7 +434,7 @@ class NumericalMethodsComparison(Scene):
         heun_line.set_points_smoothly(heun_points)
         
         heun_label = Text("ホイン法", color=GREEN, font_size=20)
-        heun_label.next_to(exact_label, RIGHT, buff=0.8)
+        heun_label.next_to(exact_label, RIGHT, buff=1)
         
         self.play(Create(heun_line), Write(heun_label), run_time=1.0)
         self.wait(0.5)
@@ -445,7 +445,7 @@ class NumericalMethodsComparison(Scene):
         euler_line.set_points_smoothly(euler_points)
         
         euler_label = Text("オイラー法", color=YELLOW, font_size=20)
-        euler_label.next_to(heun_label, RIGHT, buff=0.8)
+        euler_label.next_to(heun_label, RIGHT, buff=1)
         
         self.play(Create(euler_line), Write(euler_label), run_time=1.0)
         self.wait(1.0)
@@ -455,7 +455,7 @@ class NumericalMethodsComparison(Scene):
             "ホイン法と固有値展開はほぼ重なっている",
             color=GREEN, font_size=22,
         )
-        observation1.shift(DOWN * 3.2)
+        observation1.shift(DOWN * 3 + RIGHT * 1.5)
         self.play(Write(observation1), run_time=0.8)
         self.wait(0.8)
 
@@ -463,7 +463,7 @@ class NumericalMethodsComparison(Scene):
             "オイラー法は目に見えて誤差がある",
             color=YELLOW, font_size=22,
         )
-        observation2.shift(DOWN * 3.6)
+        observation2.shift(DOWN * 3.4 + RIGHT * 1.5)
         self.play(Write(observation2), run_time=0.8)
         self.wait(1.5)
 
@@ -600,7 +600,7 @@ class NumericalMethodsComparison(Scene):
         self.wait(1.0)
 
         arrow_down = Text("↓", color=RED, font_size=32)
-        arrow_down.shift(DOWN * 2.0)
+        arrow_down.shift(DOWN * 1.9)
         self.play(Write(arrow_down), run_time=0.4)
         self.wait(0.3)
 
@@ -608,25 +608,25 @@ class NumericalMethodsComparison(Scene):
             "1次で打ち切ると：",
             color=WHITE, font_size=24,
         )
-        first_order_approx.shift(DOWN * 2.5)
+        first_order_approx.shift(DOWN * 2.5 + LEFT * 3)
         self.play(Write(first_order_approx), run_time=0.7)
         self.wait(0.4)
 
         euler_from_taylor = MathTex(
             r"\mathbf{x}(t+\Delta t) \approx (I + L\Delta t)\mathbf{x}(t) = \mathbf{x}(t) + L\mathbf{x}(t)\Delta t",
             color=YELLOW,
-            font_size=28,
+            font_size=30,
         )
-        euler_from_taylor.shift(DOWN * 3.2)
+        euler_from_taylor.shift(DOWN * 2.6 + RIGHT * 3)
         euler_from_taylor_box = SurroundingRectangle(euler_from_taylor, color=YELLOW, buff=0.2)
         self.play(Write(euler_from_taylor), Create(euler_from_taylor_box), run_time=1.0)
         self.wait(1.0)
 
         conclusion_text = Text(
             "これはオイラー法の式と一致！",
-            color=RED, font_size=24, weight=BOLD,
+            color=RED, font_size=26, weight=BOLD,
         )
-        conclusion_text.shift(DOWN * 3.8)
+        conclusion_text.shift(DOWN * 3.3)
         self.play(Write(conclusion_text), run_time=0.8)
         self.wait(1.5)
 
@@ -672,9 +672,9 @@ class NumericalMethodsComparison(Scene):
         heun_from_taylor = MathTex(
             r"\mathbf{x}(t+\Delta t) \approx \mathbf{x}(t) + L\mathbf{x}(t)\Delta t + L^2\mathbf{x}(t)\frac{(\Delta t)^2}{2}",
             color=GREEN,
-            font_size=26,
+            font_size=30,
         )
-        heun_from_taylor.shift(DOWN * 0.6)
+        heun_from_taylor.shift(DOWN * 0.7)
         heun_from_taylor_box = SurroundingRectangle(heun_from_taylor, color=GREEN, buff=0.2)
         self.play(Write(heun_from_taylor), Create(heun_from_taylor_box), run_time=1.0)
         self.wait(1.0)
@@ -683,13 +683,13 @@ class NumericalMethodsComparison(Scene):
             "これはホイン法の式と一致！",
             color=GREEN, font_size=24, weight=BOLD,
         )
-        heun_conclusion.shift(DOWN * 1.6)
+        heun_conclusion.shift(DOWN * 1.8)
         self.play(Write(heun_conclusion), run_time=0.8)
         self.wait(1.0)
 
         general_principle = Text(
             "高次の項まで含めるほど精度が向上する",
-            color=ORANGE, font_size=24,
+            color=ORANGE, font_size=26,
         )
         general_principle.shift(DOWN * 2.5)
         self.play(Write(general_principle), run_time=0.8)
