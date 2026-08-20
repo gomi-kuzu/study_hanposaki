@@ -24,14 +24,14 @@
 
 # 第21話
 ## 21.1
-### a
+### 連立微分方程式の解析的解法
 <div><video controls src="https://github.com/user-attachments/assets/2c38a31e-7b6b-49d6-b8a3-9b86bd004c93"></video></div>
 
 ## 21.2
-### a
+### 連立微分方程式の数値解法
 <div><video controls src="https://github.com/user-attachments/assets/0ce40dcc-a933-4dd3-ac0c-6238c4e93a42"></video></div>
 
-### a
-<div><video controls src="https://github.com/user-attachments/assets/e4beee20-a769-4082-b980-7409547f2cf0"></video></div>
+### 数値解法の計算量の話
+<div><video controls src="https://github.com/user-attachments/assets/a9cd6767-1213-4347-93de-0fb76e18657c"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
