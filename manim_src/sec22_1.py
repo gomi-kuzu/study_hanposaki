@@ -66,10 +66,12 @@ class BrownianMotionPDE(Scene):
             rate_func=linear
         )
 
-        # 続きのパス
+        # 続きのパス（すべてのセグメントを保存）
+        segments = []
         for i in range(12, len(path_points), 10):
             segment = VMobject(color=YELLOW, stroke_width=2)
             segment.set_points_smoothly(path_points[i:min(i+11, len(path_points))])
+            segments.append(segment)
             self.play(
                 MoveAlongPath(particle, segment),
                 Create(segment),
@@ -87,9 +89,11 @@ class BrownianMotionPDE(Scene):
         self.play(Write(brownian_text), run_time=0.8)
         self.wait(1.0)
 
+        # すべてのセグメントをまとめて消す
         self.play(
             FadeOut(intro_text), FadeOut(water_line), FadeOut(particle),
-            FadeOut(path), FadeOut(brownian_text), FadeOut(segment)
+            FadeOut(path), FadeOut(brownian_text), 
+            *[FadeOut(seg) for seg in segments]
         )
         self.wait(0.3)
 
