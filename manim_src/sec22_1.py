@@ -338,7 +338,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.6)
 
         derivative_note = Text(
-            "両辺で微分の次数が変わっていることに注目",
+            "右辺と左辺で微分の係数が違うことがポイント",
             color=RED, font_size=24,
         )
         derivative_note.shift(DOWN * 1.2)
@@ -346,7 +346,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.8)
 
         explanation = Text(
-            "2階微分が負（上に凸）→密度が下がる\n2階微分が正（下に凸）→密度が上がる",
+            "xの2階微分が負（上に凸）→次の時刻で密度が下がる\nxの2階微分が正（下に凸）→次の時刻で密度が上がる",
             color=WHITE, font_size=22, line_spacing=1.2,
         )
         explanation.shift(DOWN * 2.1)
@@ -354,7 +354,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.8)
 
         spreading_text = Text(
-            "→ 山が潰れてペチャンコな分布に",
+            "→ 時間が経つにつれ、山が潰れてペチャンコな分布に",
             color=TEAL, font_size=26, weight=BOLD,
         )
         spreading_text.shift(DOWN * 2.9)
@@ -840,16 +840,16 @@ class BrownianMotionPDE(Scene):
         self.wait(0.3)
 
         generalization_note = Text(
-            "係数が状態量 𝐱 に依存する形に一般化",
-            color=ORANGE, font_size=22,
+            "各項の係数は、状態量 𝐱 に依存する形に一般化されている",
+            color=ORANGE, font_size=24,
         )
         generalization_note.shift(DOWN * 2.0)
         self.play(Write(generalization_note), run_time=0.8)
         self.wait(0.8)
 
         future_note = Text(
-            "（この点は後の24話で補足）",
-            color=GRAY, font_size=20,
+            "（この辺は後の24話で補足）",
+            color=GRAY, font_size=22,
         )
         future_note.shift(DOWN * 2.5)
         self.play(Write(future_note), run_time=0.7)
