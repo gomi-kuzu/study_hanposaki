@@ -82,8 +82,8 @@ class BrownianMotionPDE(Scene):
         self.wait(0.5)
 
         brownian_text = Text(
-            "粒子が確率的に摂動する運動をブラウン運動と呼ぶ",
-            color=TEAL, font_size=24,
+            "このような確率的に摂動する運動をブラウン運動と呼ぶ",
+            color=TEAL, font_size=26,
         )
         brownian_text.shift(DOWN * 2)
         self.play(Write(brownian_text), run_time=0.8)
@@ -114,10 +114,10 @@ class BrownianMotionPDE(Scene):
         self.wait(0.6)
 
         question_text = Text(
-            "時刻tに粒子がある位置にいる確率は？",
+            "→時刻tに粒子がある位置にいる確率は？",
             color=TEAL, font_size=26,
         )
-        question_text.shift(UP * 1.1)
+        question_text.shift(UP * 1.3)
         self.play(Write(question_text), run_time=0.8)
         self.wait(0.6)
 
@@ -153,7 +153,7 @@ class BrownianMotionPDE(Scene):
         prob_eq = MathTex(
             r"\text{Prob}(a \le X \le b) = \int_{-\infty}^{\infty} \mathbf{1}_{[a,b]}(x) p(x,t)dx = \int_{a}^{b} p(x,t)dx",
             color=YELLOW,
-            font_size=32,
+            font_size=36,
         )
         prob_eq.shift(UP * 0.5)
         self.play(Write(prob_eq), run_time=1.0)
@@ -168,12 +168,12 @@ class BrownianMotionPDE(Scene):
         self.wait(0.5)
 
         indicator_note = Text(
-            "𝟙: xが[a,b]に入っていれば1、それ以外は0を返す指示関数",
+            "𝟙(・): xが[a,b]に入っていれば1、それ以外は0を返す指示関数",
             color=GRAY, font_size=22,
         )
         indicator_note.shift(DOWN * 0.8)
         self.play(Write(indicator_note), run_time=0.7)
-        self.wait(0.8)
+        self.wait(1.8)
 
         self.play(
             FadeOut(var_note), FadeOut(indicator_note),
@@ -185,7 +185,7 @@ class BrownianMotionPDE(Scene):
             "• この値は確率値なので、必ず 0 ≤ Prob ≤ 1",
             color=WHITE, font_size=24,
         )
-        property1.shift(DOWN * 0.5)
+        property1.shift(DOWN * 1.0)
         self.play(Write(property1), run_time=0.7)
         self.wait(0.5)
 
@@ -193,7 +193,7 @@ class BrownianMotionPDE(Scene):
             "• a=b の時は 0（面積のない点にいる確率は0）",
             color=WHITE, font_size=24,
         )
-        property2.shift(DOWN * 1.0)
+        property2.shift(DOWN * 1.5)
         self.play(Write(property2), run_time=0.7)
         self.wait(0.5)
 
@@ -201,7 +201,7 @@ class BrownianMotionPDE(Scene):
             "• 定義域全体では 1（絶対にどこかには存在する）",
             color=WHITE, font_size=24,
         )
-        property3.shift(DOWN * 1.5)
+        property3.shift(DOWN * 2.0)
         self.play(Write(property3), run_time=0.7)
         self.wait(1.0)
 
@@ -225,7 +225,7 @@ class BrownianMotionPDE(Scene):
         )
         gaussian_text.shift(UP * 2.0)
         self.play(Write(gaussian_text), run_time=0.8)
-        self.wait(0.6)
+        self.wait(1.6)
 
         # グラフの作成
         axes = Axes(
@@ -275,7 +275,7 @@ class BrownianMotionPDE(Scene):
             f"Prob({a_val} ≤ X ≤ {b_val})",
             color=TEAL, font_size=24,
         )
-        area_text.shift(UP * 2.5 + LEFT * 3)
+        area_text.shift(DOWN * 0.5 + LEFT * 2.7)
 
         self.play(Create(area), Write(area_text), run_time=1.0)
         self.wait(1.0)
@@ -312,7 +312,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.6)
 
         found_text = Text(
-            "天下り的に、拡散の式が以下のように見つかったとする：",
+            " ここでは、天下り的に、拡散の式が以下のように見つかったとする：",
             color=TEAL, font_size=24,
         )
         found_text.shift(UP * 1.1)
@@ -325,8 +325,8 @@ class BrownianMotionPDE(Scene):
             font_size=40,
         )
         diffusion_eq.shift(UP * 0.2)
-        diffusion_box = SurroundingRectangle(diffusion_eq, color=YELLOW, buff=0.25)
-        self.play(Write(diffusion_eq), Create(diffusion_box), run_time=0.8)
+        # diffusion_box = SurroundingRectangle(diffusion_eq, color=YELLOW, buff=0.25)
+        self.play(Write(diffusion_eq), run_time=0.8)
         self.wait(0.8)
 
         D_note = Text(
@@ -355,7 +355,7 @@ class BrownianMotionPDE(Scene):
 
         spreading_text = Text(
             "→ 山が潰れてペチャンコな分布に",
-            color=TEAL, font_size=24, weight=BOLD,
+            color=TEAL, font_size=26, weight=BOLD,
         )
         spreading_text.shift(DOWN * 2.9)
         self.play(Write(spreading_text), run_time=0.8)
@@ -364,7 +364,7 @@ class BrownianMotionPDE(Scene):
         self.play(
             FadeOut(diffusion_intro), FadeOut(found_text), FadeOut(D_note),
             FadeOut(derivative_note), FadeOut(explanation), FadeOut(spreading_text),
-            FadeOut(diffusion_eq), FadeOut(diffusion_box),
+            FadeOut(diffusion_eq), 
         )
         self.wait(0.3)
 
@@ -382,7 +382,7 @@ class BrownianMotionPDE(Scene):
         )
         diffusion_visual_text.shift(UP * 2.0)
         self.play(Write(diffusion_visual_text), run_time=0.8)
-        self.wait(0.6)
+        self.wait(1.6)
 
         # グラフの作成
         axes2 = Axes(
@@ -470,7 +470,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.6)
 
         drift_physical = Text(
-            "一定方向に水圧がかかり粒子が流される",
+            "一定方向に水圧がかかり粒子が流されるようなとき",
             color=TEAL, font_size=24,
         )
         drift_physical.shift(UP * 1.1)
@@ -491,8 +491,8 @@ class BrownianMotionPDE(Scene):
             font_size=40,
         )
         drift_eq.shift(DOWN * 0.3)
-        drift_box = SurroundingRectangle(drift_eq, color=GREEN, buff=0.25)
-        self.play(Write(drift_eq), Create(drift_box), run_time=0.8)
+        # drift_box = SurroundingRectangle(drift_eq, color=GREEN, buff=0.25)
+        self.play(Write(drift_eq), run_time=0.8)
         self.wait(0.8)
 
         gamma_note = Text(
@@ -505,16 +505,16 @@ class BrownianMotionPDE(Scene):
 
         drift_explanation = Text(
             "密度関数の山が形を保ったまま横にズレる",
-            color=TEAL, font_size=24,
+            color=TEAL, font_size=26,
         )
         drift_explanation.shift(DOWN * 1.9)
         self.play(Write(drift_explanation), run_time=0.8)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(drift_intro), FadeOut(drift_physical), FadeOut(drift_name),
             FadeOut(gamma_note), FadeOut(drift_explanation),
-            FadeOut(drift_eq), FadeOut(drift_box),
+            FadeOut(drift_eq),
         )
         self.wait(0.3)
 
@@ -532,7 +532,7 @@ class BrownianMotionPDE(Scene):
         )
         drift_visual_text.shift(UP * 2.0)
         self.play(Write(drift_visual_text), run_time=0.8)
-        self.wait(0.6)
+        self.wait(1.6)
 
         # グラフの作成
         axes3 = Axes(
@@ -617,7 +617,7 @@ class BrownianMotionPDE(Scene):
         )
         combined_intro.shift(UP * 2.0)
         self.play(Write(combined_intro), run_time=0.8)
-        self.wait(0.6)
+        self.wait(1.6)
 
         # グラフの作成
         axes4 = Axes(
@@ -718,7 +718,7 @@ class BrownianMotionPDE(Scene):
             "確率密度関数の重要な性質",
             color=WHITE, font_size=26,
         )
-        conservation_intro.shift(UP * 1.5)
+        conservation_intro.shift(UP * 1.8)
         self.play(Write(conservation_intro), run_time=0.8)
         self.wait(0.6)
 
@@ -736,7 +736,7 @@ class BrownianMotionPDE(Scene):
             "時刻tによらず、常に成立",
             color=TEAL, font_size=24,
         )
-        meaning.shift(DOWN * 0.5)
+        meaning.shift(DOWN * 0.6)
         self.play(Write(meaning), run_time=0.7)
         self.wait(0.6)
 
@@ -800,7 +800,7 @@ class BrownianMotionPDE(Scene):
             r"-\sum_{d=1}^{D} \frac{\partial}{\partial x_d}(a_d(\mathbf{x})p(\mathbf{x},t))",
             r"+ \frac{1}{2}\sum_{d,d'} \frac{\partial^2}{\partial x_d \partial x_{d'}} \left( [B(\mathbf{x})B(\mathbf{x})^\top]_{dd'} p(\mathbf{x},t) \right)",
             color=YELLOW,
-            font_size=24,
+            font_size=34,
         )
         fpe_eq.shift(DOWN * 0.8)
         self.play(Write(fpe_eq), run_time=1.2)
@@ -810,7 +810,7 @@ class BrownianMotionPDE(Scene):
             "ドリフト項",
             color=GREEN, font_size=20,
         )
-        drift_term_label.shift(DOWN * 1.5 + LEFT * 2)
+        drift_term_label.shift(DOWN * 2.5 + LEFT * 2)
         drift_arrow = Arrow(
             drift_term_label.get_top(), fpe_eq[1].get_bottom(),
             color=GREEN, buff=0.1, stroke_width=3
@@ -820,7 +820,7 @@ class BrownianMotionPDE(Scene):
             "拡散項",
             color=BLUE, font_size=20,
         )
-        diffusion_term_label.shift(DOWN * 1.5 + RIGHT * 2.5)
+        diffusion_term_label.shift(DOWN * 2.5 + RIGHT * 2.5)
         diffusion_arrow = Arrow(
             diffusion_term_label.get_top(), fpe_eq[2].get_bottom(),
             color=BLUE, buff=0.1, stroke_width=3
@@ -831,7 +831,7 @@ class BrownianMotionPDE(Scene):
             Write(diffusion_term_label), Create(diffusion_arrow),
             run_time=0.8
         )
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(drift_term_label), FadeOut(drift_arrow),
@@ -885,17 +885,17 @@ class BrownianMotionPDE(Scene):
         
         self.wait(1.0)
 
-        final_message = Text(
-            "次回は、この方程式の解法を見ていく",
-            color=GOLD, font_size=24,
-        )
-        final_message.shift(DOWN * 2.5)
-        self.play(Write(final_message), run_time=0.8)
-        self.wait(2.0)
+        # final_message = Text(
+        #     "次回は、この方程式の解法を見ていく",
+        #     color=GOLD, font_size=24,
+        # )
+        # final_message.shift(DOWN * 2.5)
+        # self.play(Write(final_message), run_time=0.8)
+        # self.wait(2.0)
 
         self.play(
             FadeOut(VGroup(
-                title, subtitle1, summary, final_message
+                title, subtitle1, summary, #final_message
             )),
             run_time=1.0
         )
