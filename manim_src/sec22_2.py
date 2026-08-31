@@ -14,13 +14,13 @@ class ProbabilityDensitySolution(Scene):
         # ============================================================
         # Part 1: 前回の復習
         # ============================================================
-        subtitle1 = Text("前回の復習", font_size=28, color=BLUE)
+        subtitle1 = Text("前の動画の復習", font_size=28, color=BLUE)
         subtitle1.next_to(title, DOWN)
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.4)
 
         recap_text = Text(
-            "前回、多変数のフォッカー・プランク方程式を見た",
+            "前の動画の最後に、フォッカー・プランク方程式を見た",
             color=WHITE, font_size=26,
         )
         recap_text.shift(UP * 1.8)
@@ -32,14 +32,14 @@ class ProbabilityDensitySolution(Scene):
             r"-\sum_{d=1}^{D} \frac{\partial}{\partial x_d}(a_d(\mathbf{x})p(\mathbf{x},t))",
             r"+ \frac{1}{2}\sum_{d,d'} \frac{\partial^2}{\partial x_d \partial x_{d'}} \left( [B(\mathbf{x})B(\mathbf{x})^\top]_{dd'} p(\mathbf{x},t) \right)",
             color=YELLOW,
-            font_size=22,
+            font_size=36,
         )
         fpe_eq.shift(UP * 0.8)
         self.play(Write(fpe_eq), run_time=1.2)
         self.wait(1.0)
 
         terms_label = Text(
-            "ドリフト項と拡散項を含む偏微分方程式",
+            "ドリフト項と拡散項を含む連立偏微分方程式",
             color=TEAL, font_size=24,
         )
         terms_label.shift(DOWN * 0.2)
@@ -52,7 +52,7 @@ class ProbabilityDensitySolution(Scene):
         )
         today_text.shift(DOWN * 1.0)
         self.play(Write(today_text), run_time=0.8)
-        self.wait(1.0)
+        self.wait(1.5)
 
         self.play(
             FadeOut(recap_text), FadeOut(fpe_eq), FadeOut(terms_label), FadeOut(today_text),
@@ -80,11 +80,11 @@ class ProbabilityDensitySolution(Scene):
             r"- \sum_{d=1}^{D} \frac{\partial}{\partial x_d} a_d(\mathbf{x})",
             r"+ \frac{1}{2}\sum_{d,d'} \frac{\partial^2}{\partial x_d \partial x_{d'}} [B(\mathbf{x})B(\mathbf{x})^\top]_{dd'}",
             color=YELLOW,
-            font_size=26,
+            font_size=34,
         )
         L_def.shift(UP * 0.6)
-        L_box = SurroundingRectangle(L_def, color=YELLOW, buff=0.25)
-        self.play(Write(L_def), Create(L_box), run_time=1.0)
+        # L_box = SurroundingRectangle(L_def, color=YELLOW, buff=0.25)
+        self.play(Write(L_def), run_time=1.0)
         self.wait(0.8)
 
         drift_label = Text("ドリフト部分", color=GREEN, font_size=20)
@@ -104,7 +104,7 @@ class ProbabilityDensitySolution(Scene):
 
         linearity_note = Text(
             "この作用素は線形：L(αf + βg) = αL(f) + βL(g)",
-            color=ORANGE, font_size=22,
+            color=ORANGE, font_size=24,
         )
         linearity_note.shift(DOWN * 1.5)
         self.play(Write(linearity_note), run_time=0.8)
@@ -126,40 +126,40 @@ class ProbabilityDensitySolution(Scene):
 
         simplification_text = Text(
             "線形作用素を使うと、方程式は次のように書ける",
-            color=WHITE, font_size=26,
+            color=WHITE, font_size=24,
         )
-        simplification_text.shift(UP * 1.5)
+        simplification_text.shift(DOWN * 0.5)
         self.play(Write(simplification_text), run_time=0.8)
         self.wait(0.6)
 
         simple_eq = MathTex(
             r"\frac{\partial}{\partial t}p(\mathbf{x},t) = \mathcal{L}p(\mathbf{x},t)",
             color=YELLOW,
-            font_size=42,
+            font_size=34,
         )
-        simple_eq.shift(UP * 0.3)
+        simple_eq.shift(DOWN * 1.5)
         simple_box = SurroundingRectangle(simple_eq, color=YELLOW, buff=0.3)
         self.play(Write(simple_eq), Create(simple_box), run_time=0.8)
         self.wait(0.8)
 
-        comparison_text = Text(
-            "非常にシンプルな形！",
-            color=GOLD, font_size=28, weight=BOLD,
-        )
-        comparison_text.shift(DOWN * 0.7)
-        self.play(Write(comparison_text), run_time=0.7)
-        self.wait(0.6)
+        # comparison_text = Text(
+        #     "非常にシンプルな形！",
+        #     color=GOLD, font_size=24, weight=BOLD,
+        # )
+        # comparison_text.shift(DOWN * 0.7)
+        # self.play(Write(comparison_text), run_time=0.7)
+        # self.wait(0.6)
 
         analogy_text = Text(
             "これは通常の微分方程式 dy/dt = ay と同じ構造",
             color=TEAL, font_size=24,
         )
-        analogy_text.shift(DOWN * 1.4)
+        analogy_text.shift(DOWN * 2.7)
         self.play(Write(analogy_text), run_time=0.8)
         self.wait(1.0)
 
         self.play(
-            FadeOut(simplification_text), FadeOut(comparison_text),
+            FadeOut(simplification_text), # FadeOut(comparison_text),
             FadeOut(analogy_text),
         )
         self.wait(0.3)
@@ -182,9 +182,9 @@ class ProbabilityDensitySolution(Scene):
 
         # 簡単な方程式を残しながら横に移動
         self.play(
-            simple_eq.animate.shift(LEFT * 3.5).scale(0.7),
-            simple_box.animate.shift(LEFT * 3.5).scale(0.7),
-            FadeOut(L_def), FadeOut(L_box),
+            simple_eq.animate.shift(UP * 1.9 + LEFT * 3.5),
+            simple_box.animate.shift(UP * 1.9 + LEFT * 3.5).scale(0.93),
+            FadeOut(L_def), #FadeOut(L_box),
             run_time=0.8
         )
         self.wait(0.3)
