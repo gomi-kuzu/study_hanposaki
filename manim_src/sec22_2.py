@@ -294,6 +294,64 @@ class ProbabilityDensitySolution(Scene):
         self.wait(0.3)
 
         # ============================================================
+        # Part 5.5: 一般解を求めると何が嬉しいか
+        # ============================================================
+        subtitle5b = Text("一般解を求められると何が嬉しいか？", font_size=28, color=ORANGE)
+        subtitle5b.next_to(title, DOWN)
+        self.play(Transform(subtitle1, subtitle5b), run_time=0.5)
+        self.wait(0.4)
+
+        # 一般解を小さくして上に残す
+        self.play(
+            general_solution.animate.shift(UP * 1.3).scale(0.85),
+            solution_box.animate.shift(UP * 1.3).scale(0.8),
+            run_time=0.6
+        )
+        self.wait(0.3)
+
+        usefulness_text = Text(
+            "確率密度関数の時間発展が分かれば...",
+            color=WHITE, font_size=26,
+        )
+        usefulness_text.shift(UP * 0.8)
+        self.play(Write(usefulness_text), run_time=0.8)
+        self.wait(0.6)
+
+        benefit_title = Text(
+            "確率論で非常に重要な統計量が計算できる！",
+            color=GOLD, font_size=28, weight=BOLD,
+        )
+        benefit_title.shift(UP * 0.2)
+        self.play(Write(benefit_title), run_time=0.8)
+        self.wait(0.6)
+
+        benefits = VGroup(
+            Text("期待値（平均）", color=GREEN, font_size=24),
+            Text("モーメント（分布の形を特徴づける量）", color=TEAL, font_size=24),
+            Text("分散・共分散", color=BLUE, font_size=24),
+        ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
+        benefits.shift(DOWN + LEFT * 1.2)
+
+        for item in benefits:
+            self.play(Write(item), run_time=0.5)
+            self.wait(0.2)
+        self.wait(0.8)
+
+        key_point = Text(
+            "p(𝐱,t) が分かれば、任意の時刻での統計量が求まる",
+            color=ORANGE, font_size=26,
+        )
+        key_point.shift(DOWN * 2.3)
+        self.play(Write(key_point), run_time=0.8)
+        self.wait(1.2)
+
+        self.play(
+            FadeOut(usefulness_text), FadeOut(benefit_title),
+            FadeOut(benefits), FadeOut(key_point),
+        )
+        self.wait(0.3)
+
+        # ============================================================
         # Part 6: 期待値の定義
         # ============================================================
         subtitle6 = Text("期待値の定義", font_size=28, color=TEAL)
@@ -301,21 +359,22 @@ class ProbabilityDensitySolution(Scene):
         self.play(Transform(subtitle1, subtitle6), run_time=0.5)
         self.wait(0.4)
 
+        self.play(
+            general_solution.animate.shift(RIGHT * 3.8),
+            solution_box.animate.shift(RIGHT * 3.8),
+            run_time=0.6
+        )
+        self.wait(0.3)
+
         expectation_intro = Text(
-            "確率密度関数は主に期待値の計算に用いる",
+            "まずは期待値の定義を確認！",
             color=WHITE, font_size=26,
         )
-        expectation_intro.shift(UP * 1.8)
+        expectation_intro.shift(UP * 1.3 + LEFT * 2.1)
         self.play(Write(expectation_intro), run_time=0.8)
         self.wait(0.6)
 
-        # 一般解を上に移動
-        self.play(
-            general_solution.animate.shift(UP * 1.2).scale(0.8),
-            solution_box.animate.shift(UP * 1.2).scale(0.8),
-            FadeOut(expectation_intro),
-            run_time=0.6
-        )
+        self.play(FadeOut(expectation_intro))
         self.wait(0.3)
 
         expectation_def = MathTex(
@@ -338,7 +397,7 @@ class ProbabilityDensitySolution(Scene):
 
         integral_note = Text(
             "全空間で積分して期待値を計算",
-            color=TEAL, font_size=22,
+            color=TEAL, font_size=24,
         )
         integral_note.shift(DOWN * 1.3)
         self.play(Write(integral_note), run_time=0.7)
@@ -361,7 +420,7 @@ class ProbabilityDensitySolution(Scene):
             "期待値を使って統計量を計算できる",
             color=WHITE, font_size=26,
         )
-        moment_intro.shift(DOWN * 0.9)
+        moment_intro.shift(DOWN * 0.9 + LEFT * 3.5)
         self.play(Write(moment_intro), run_time=0.8)
         self.wait(0.6)
 
@@ -370,7 +429,7 @@ class ProbabilityDensitySolution(Scene):
             color=YELLOW,
             font_size=36,
         )
-        moment_def.shift(DOWN * 1.7)
+        moment_def.shift(DOWN * 1.3)
         self.play(Write(moment_def), run_time=0.8)
         self.wait(0.8)
 
@@ -379,9 +438,9 @@ class ProbabilityDensitySolution(Scene):
 
         examples_title = Text(
             "具体例：",
-            color=GOLD, font_size=24, weight=BOLD,
+            color=GOLD, font_size=26, weight=BOLD,
         )
-        examples_title.shift(DOWN * 2.5 + LEFT * 5)
+        examples_title.shift(DOWN * 2.1 + LEFT * 3.4)
         self.play(Write(examples_title), run_time=0.6)
         self.wait(0.3)
 
@@ -391,8 +450,8 @@ class ProbabilityDensitySolution(Scene):
             color=WHITE,
             font_size=24,
         )
-        moment_n1.shift(DOWN * 2.5 + RIGHT * 1.5)
-        moment_n1_label = Text("（平均）", color=TEAL, font_size=20)
+        moment_n1.shift(DOWN * 2.0 + RIGHT * 1.0)
+        moment_n1_label = Text("（平均）", color=TEAL, font_size=22)
         moment_n1_label.next_to(moment_n1, RIGHT, buff=0.2)
         
         self.play(Write(moment_n1), Write(moment_n1_label), run_time=0.7)
@@ -404,8 +463,8 @@ class ProbabilityDensitySolution(Scene):
             color=WHITE,
             font_size=24,
         )
-        moment_n2.shift(DOWN * 3.0 + RIGHT * 1.5)
-        moment_n2_label = Text("（2次モーメント）", color=TEAL, font_size=20)
+        moment_n2.shift(DOWN * 2.6 + RIGHT * 1.0)
+        moment_n2_label = Text("（2次モーメント）", color=TEAL, font_size=22)
         moment_n2_label.next_to(moment_n2, RIGHT, buff=0.2)
         
         self.play(Write(moment_n2), Write(moment_n2_label), run_time=0.7)
@@ -413,9 +472,9 @@ class ProbabilityDensitySolution(Scene):
 
         variance_note = Text(
             "分散 = E[X²] - E[X]²",
-            color=ORANGE, font_size=20,
+            color=ORANGE, font_size=24,
         )
-        variance_note.shift(DOWN * 3.5)
+        variance_note.shift(DOWN * 3.1+ RIGHT * 1.0)
         self.play(Write(variance_note), run_time=0.7)
         self.wait(1.0)
 
@@ -445,10 +504,10 @@ class ProbabilityDensitySolution(Scene):
 
         # 期待値の式を再表示
         self.play(
-            general_solution.animate.shift(DOWN * 0.3).scale(0.95),
-            solution_box.animate.shift(DOWN * 0.3).scale(0.95),
-            expectation_def.animate.shift(DOWN * 0.3).scale(0.95),
-            exp_box.animate.shift(DOWN * 0.3).scale(0.95),
+            general_solution.animate.shift(DOWN * 1.8 + LEFT * 2.5).scale(0.0),
+            solution_box.animate.shift(DOWN * 1.8 + LEFT * 2.5).scale(0.0),
+            # expectation_def.animate.shift(DOWN * 0.3).scale(0.95),
+            # exp_box.animate.shift(DOWN * 0.3).scale(0.95),
             FadeOut(time_evolution_intro),
             run_time=0.6
         )
@@ -457,7 +516,7 @@ class ProbabilityDensitySolution(Scene):
         substitution = MathTex(
             r"\mathbb{E}[g(\mathbf{x})] = \int g(\mathbf{x}) e^{\mathcal{L}t}p(\mathbf{x},0) d\mathbf{x}",
             color=YELLOW,
-            font_size=32,
+            font_size=36,
         )
         substitution.shift(DOWN * 1.3)
         self.play(Write(substitution), run_time=1.0)
@@ -465,14 +524,16 @@ class ProbabilityDensitySolution(Scene):
 
         advantage = Text(
             "初期分布p(𝐱,0)から任意の時刻tでの期待値が計算可能",
-            color=TEAL, font_size=24,
+            color=TEAL, font_size=26,
         )
-        advantage.shift(DOWN * 2.3)
+        advantage.shift(DOWN * 2.5)
         self.play(Write(advantage), run_time=0.8)
-        self.wait(1.0)
+        self.wait(1.5)
 
-        self.play(
-            FadeOut(substitution), FadeOut(advantage),
+        self.play( 
+            FadeOut(general_solution), FadeOut(solution_box),
+            FadeOut(expectation_def), FadeOut(exp_box),
+            FadeOut(advantage),
         )
         self.wait(0.3)
 
@@ -483,7 +544,11 @@ class ProbabilityDensitySolution(Scene):
         subtitle9.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle9), run_time=0.5)
         self.wait(0.4)
-
+        
+        self.play(
+            substitution.animate.shift(UP * 2.4).scale(1.25),
+            run_time=0.6
+        )
         delta_intro = Text(
             "初期分布を点に集中させる場合を考える",
             color=WHITE, font_size=26,
@@ -507,7 +572,7 @@ class ProbabilityDensitySolution(Scene):
 
         delta_meaning = Text(
             "粒子が初期位置 𝐱₀ に確実に存在する",
-            color=TEAL, font_size=24,
+            color=TEAL, font_size=26,
         )
         delta_meaning.shift(DOWN * 2.3)
         self.play(Write(delta_meaning), run_time=0.7)
@@ -530,17 +595,17 @@ class ProbabilityDensitySolution(Scene):
             "期待値の計算式に代入する",
             color=WHITE, font_size=26,
         )
-        calculation_steps.shift(DOWN * 2.8)
+        calculation_steps.shift(DOWN * 2.5)
         self.play(Write(calculation_steps), run_time=0.8)
         self.wait(0.6)
 
         # 一般解と期待値の式を小さくして上に
         self.play(
-            general_solution.animate.shift(UP * 0.4).scale(0.75),
-            solution_box.animate.shift(UP * 0.4).scale(0.75),
-            expectation_def.animate.shift(UP * 0.4).scale(0.75),
-            exp_box.animate.shift(UP * 0.4).scale(0.75),
-            delta_condition.animate.shift(UP * 0.6).scale(0.9),
+            # general_solution.animate.shift(UP * 0.4).scale(0.75),
+            # solution_box.animate.shift(UP * 0.4).scale(0.75),
+            # expectation_def.animate.shift(UP * 0.4).scale(0.75),
+            # exp_box.animate.shift(UP * 0.4).scale(0.75),
+            delta_condition.animate.shift(UP * 3.45 + RIGHT * 1.4).scale(0.0),
             FadeOut(calculation_steps),
             run_time=0.6
         )
@@ -549,159 +614,157 @@ class ProbabilityDensitySolution(Scene):
         step1 = MathTex(
             r"\mathbb{E}[g(\mathbf{x})] = \int g(\mathbf{x})p(\mathbf{x},t)d\mathbf{x}",
             color=WHITE,
-            font_size=28,
+            font_size=32,
         )
-        step1.shift(DOWN * 1.0)
-        self.play(Write(step1), run_time=0.8)
-        self.wait(0.5)
+        # step1.shift(UP * 1.0)
+        # self.play(Write(step1), run_time=0.8)
+        # self.wait(0.5)
 
-        step2 = MathTex(
-            r"= \int g(\mathbf{x}) e^{\mathcal{L}t}p(\mathbf{x},0) d\mathbf{x}",
-            color=WHITE,
-            font_size=28,
-        )
-        step2.shift(DOWN * 1.6)
-        self.play(Write(step2), run_time=0.8)
-        self.wait(0.5)
+        # step2 = MathTex(
+        #     r"= \int g(\mathbf{x}) e^{\mathcal{L}t}p(\mathbf{x},0) d\mathbf{x}",
+        #     color=WHITE,
+        #     font_size=32,
+        # )
+        # step2.shift(UP * 0.1)
+        # self.play(Write(step2), run_time=0.8)
+        # self.wait(0.5)
 
         step3 = MathTex(
             r"= \int g(\mathbf{x}) e^{\mathcal{L}t}\delta(\mathbf{x} - \mathbf{x}_0) d\mathbf{x}",
             color=YELLOW,
-            font_size=28,
+            font_size=36,
         )
-        step3.shift(DOWN * 2.2)
+        step3.shift(DOWN * 0.6)
         step3_box = SurroundingRectangle(step3, color=YELLOW, buff=0.2)
         self.play(Write(step3), Create(step3_box), run_time=0.8)
         self.wait(1.0)
 
         final_note = Text(
             "これが初期位置 𝐱₀ からの時間発展を表す",
-            color=GOLD, font_size=24,
+            color=GOLD, font_size=26,
         )
-        final_note.shift(DOWN * 3.1)
+        final_note.shift(DOWN * 1.8)
         self.play(Write(final_note), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.8)
 
         self.play(
-            FadeOut(step1), FadeOut(step2), FadeOut(step3), FadeOut(step3_box),
+            # FadeOut(step1), FadeOut(step2), 
+            FadeOut(step3), FadeOut(step3_box),
             FadeOut(final_note), FadeOut(delta_condition),
+            FadeOut(substitution),
         )
         self.wait(0.3)
 
-        # ============================================================
-        # Part 11: 具体例（1次元ドリフト拡散）
-        # ============================================================
-        subtitle11 = Text("具体例：1次元ドリフト拡散", font_size=28, color=GOLD)
-        subtitle11.next_to(title, DOWN)
-        self.play(Transform(subtitle1, subtitle11), run_time=0.5)
-        self.wait(0.4)
+        # # ============================================================
+        # # Part 11: 具体例（1次元ドリフト拡散）
+        # # ============================================================
+        # subtitle11 = Text("具体例：1次元ドリフト拡散", font_size=28, color=GOLD)
+        # subtitle11.next_to(title, DOWN)
+        # self.play(Transform(subtitle1, subtitle11), run_time=0.5)
+        # self.wait(0.4)
 
-        # 前の式を消去
-        self.play(
-            FadeOut(general_solution), FadeOut(solution_box),
-            FadeOut(expectation_def), FadeOut(exp_box),
-        )
-        self.wait(0.3)
 
-        example_intro = Text(
-            "1次元での簡単な例を見てみよう",
-            color=WHITE, font_size=26,
-        )
-        example_intro.shift(UP * 1.8)
-        self.play(Write(example_intro), run_time=0.8)
-        self.wait(0.6)
+        # self.wait(0.3)
 
-        example_operator = MathTex(
-            r"\mathcal{L} = -\gamma \frac{\partial}{\partial x} + \frac{D}{2} \frac{\partial^2}{\partial x^2}",
-            color=YELLOW,
-            font_size=36,
-        )
-        example_operator.shift(UP * 0.9)
-        self.play(Write(example_operator), run_time=0.8)
-        self.wait(0.6)
+        # example_intro = Text(
+        #     "1次元での簡単な例を見てみよう",
+        #     color=WHITE, font_size=26,
+        # )
+        # example_intro.shift(UP * 1.8)
+        # self.play(Write(example_intro), run_time=0.8)
+        # self.wait(0.6)
 
-        example_params = Text(
-            "γ: ドリフト係数、D: 拡散係数",
-            color=GRAY, font_size=22,
-        )
-        example_params.shift(UP * 0.2)
-        self.play(Write(example_params), run_time=0.7)
-        self.wait(0.5)
+        # example_operator = MathTex(
+        #     r"\mathcal{L} = -\gamma \frac{\partial}{\partial x} + \frac{D}{2} \frac{\partial^2}{\partial x^2}",
+        #     color=YELLOW,
+        #     font_size=36,
+        # )
+        # example_operator.shift(UP * 0.9)
+        # self.play(Write(example_operator), run_time=0.8)
+        # self.wait(0.6)
 
-        # グラフの作成
-        axes = Axes(
-            x_range=[-4, 4, 1],
-            y_range=[0, 1.2, 0.2],
-            x_length=8,
-            y_length=4,
-            axis_config={"color": WHITE},
-            tips=False,
-        )
-        axes.scale(0.7).shift(DOWN * 1.3)
+        # example_params = Text(
+        #     "γ: ドリフト係数、D: 拡散係数",
+        #     color=GRAY, font_size=22,
+        # )
+        # example_params.shift(UP * 0.2)
+        # self.play(Write(example_params), run_time=0.7)
+        # self.wait(0.5)
 
-        x_label = axes.get_x_axis_label("x", direction=RIGHT, buff=0.2).scale(0.8)
-        y_label = axes.get_y_axis_label("p(x,t)", direction=UP, buff=0.2).scale(0.8)
+        # # グラフの作成
+        # axes = Axes(
+        #     x_range=[-4, 4, 1],
+        #     y_range=[0, 1.2, 0.2],
+        #     x_length=8,
+        #     y_length=4,
+        #     axis_config={"color": WHITE},
+        #     tips=False,
+        # )
+        # axes.scale(0.7).shift(DOWN * 1.3)
 
-        self.play(
-            FadeOut(example_intro), FadeOut(example_params),
-            Create(axes), Write(x_label), Write(y_label),
-            run_time=0.8
-        )
-        self.wait(0.5)
+        # x_label = axes.get_x_axis_label("x", direction=RIGHT, buff=0.2).scale(0.8)
+        # y_label = axes.get_y_axis_label("p(x,t)", direction=UP, buff=0.2).scale(0.8)
 
-        # 時間発展の可視化
-        def gaussian(x, mu=0, sigma=1):
-            return (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
+        # self.play(
+        #     FadeOut(example_intro), FadeOut(example_params),
+        #     Create(axes), Write(x_label), Write(y_label),
+        #     run_time=0.8
+        # )
+        # self.wait(0.5)
 
-        time_params = [
-            (-1.5, 0.3),
-            (-0.5, 0.5),
-            (0.5, 0.7),
-            (1.5, 0.9),
-        ]
+        # # 時間発展の可視化
+        # def gaussian(x, mu=0, sigma=1):
+        #     return (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
 
-        graphs = []
-        time_labels = []
+        # time_params = [
+        #     (-1.5, 0.3),
+        #     (-0.5, 0.5),
+        #     (0.5, 0.7),
+        #     (1.5, 0.9),
+        # ]
 
-        for i, (mu, sigma) in enumerate(time_params):
-            graph = axes.plot(
-                lambda x: gaussian(x, mu=mu, sigma=sigma),
-                x_range=[-4, 4],
-                color=interpolate_color(YELLOW, PURPLE, i / (len(time_params) - 1))
-            )
-            graphs.append(graph)
+        # graphs = []
+        # time_labels = []
+
+        # for i, (mu, sigma) in enumerate(time_params):
+        #     graph = axes.plot(
+        #         lambda x: gaussian(x, mu=mu, sigma=sigma),
+        #         x_range=[-4, 4],
+        #         color=interpolate_color(YELLOW, PURPLE, i / (len(time_params) - 1))
+        #     )
+        #     graphs.append(graph)
             
-            time_label = MathTex(f"t = {i * 0.5}", color=WHITE, font_size=20)
-            time_label.shift(UP * 1.8 + RIGHT * 4.5)
-            time_labels.append(time_label)
+        #     time_label = MathTex(f"t = {i * 0.5}", color=WHITE, font_size=20)
+        #     time_label.shift(UP * 1.8 + RIGHT * 4.5)
+        #     time_labels.append(time_label)
 
-        # 最初のグラフ
-        self.play(Create(graphs[0]), Write(time_labels[0]), run_time=0.8)
-        self.wait(0.5)
+        # # 最初のグラフ
+        # self.play(Create(graphs[0]), Write(time_labels[0]), run_time=0.8)
+        # self.wait(0.5)
 
-        # 時間発展
-        for i in range(1, len(graphs)):
-            self.play(
-                Transform(graphs[0], graphs[i]),
-                FadeOut(time_labels[i-1]),
-                Write(time_labels[i]),
-                run_time=0.9
-            )
-            self.wait(0.4)
+        # # 時間発展
+        # for i in range(1, len(graphs)):
+        #     self.play(
+        #         Transform(graphs[0], graphs[i]),
+        #         FadeOut(time_labels[i-1]),
+        #         Write(time_labels[i]),
+        #         run_time=0.9
+        #     )
+        #     self.wait(0.4)
 
-        conclusion_example = Text(
-            "ドリフト（移動）と拡散（広がり）が同時に起こる",
-            color=TEAL, font_size=22,
-        )
-        conclusion_example.shift(DOWN * 3.2)
-        self.play(Write(conclusion_example), run_time=0.8)
-        self.wait(1.2)
+        # conclusion_example = Text(
+        #     "ドリフト（移動）と拡散（広がり）が同時に起こる",
+        #     color=TEAL, font_size=22,
+        # )
+        # conclusion_example.shift(DOWN * 3.2)
+        # self.play(Write(conclusion_example), run_time=0.8)
+        # self.wait(1.2)
 
-        self.play(
-            FadeOut(example_operator), FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
-            FadeOut(graphs[0]), FadeOut(time_labels[-1]), FadeOut(conclusion_example),
-        )
-        self.wait(0.3)
+        # self.play(
+        #     FadeOut(example_operator), FadeOut(axes), FadeOut(x_label), FadeOut(y_label),
+        #     FadeOut(graphs[0]), FadeOut(time_labels[-1]), FadeOut(conclusion_example),
+        # )
+        # self.wait(0.3)
 
         # ============================================================
         # Part 12: まとめ
@@ -726,10 +789,16 @@ class ProbabilityDensitySolution(Scene):
         
         self.wait(1.0)
 
-        final_message = Text(
-            "次回は、より複雑な系への応用を見ていく",
-            color=GOLD, font_size=24,
-        )
+        final_message = VGroup(
+            Text(
+                "ただし、結局具体的な計算のためには、",
+                color=GOLD, font_size=24,
+            ),
+            Text(
+                "適当に基底をとって線形作用素の表現行列を定める必要がある？",
+                color=GOLD, font_size=24,
+            )
+        ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
         final_message.shift(DOWN * 2.5)
         self.play(Write(final_message), run_time=0.8)
         self.wait(2.0)
