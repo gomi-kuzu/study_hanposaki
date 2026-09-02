@@ -20,7 +20,7 @@ class ProbabilityDensitySolution(Scene):
         self.wait(0.4)
 
         recap_text = Text(
-            "前の動画の最後に、フォッカー・プランク方程式を見た",
+            "前の動画の最後に、多変量のフォッカー・プランク方程式を見た",
             color=WHITE, font_size=26,
         )
         recap_text.shift(UP * 1.8)
