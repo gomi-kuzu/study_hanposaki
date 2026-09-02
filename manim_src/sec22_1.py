@@ -612,7 +612,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.4)
 
         combined_intro = Text(
-            "拡散とドリフトが合わさった時間発展",
+            "拡散項とドリフト項の線形和の偏微分方程式をフォッカー・プランク方程式と呼ぶ",
             color=WHITE, font_size=26,
         )
         combined_intro.shift(UP * 2.0)
@@ -628,13 +628,12 @@ class BrownianMotionPDE(Scene):
             axis_config={"color": WHITE},
             tips=False,
         )
-        axes4.scale(0.8).shift(DOWN * 0.5)
+        axes4.scale(0.8).shift(DOWN)
 
         x_label4 = axes4.get_x_axis_label("x", direction=RIGHT, buff=0.2).scale(0.8)
         y_label4 = axes4.get_y_axis_label("p(x,t)", direction=UP, buff=0.2).scale(0.8)
 
         self.play(
-            FadeOut(combined_intro),
             Create(axes4), Write(x_label4), Write(y_label4),
             run_time=0.8
         )
@@ -644,7 +643,7 @@ class BrownianMotionPDE(Scene):
             "初期: 細長い分布（粒子が落とされた位置の近く）",
             color=YELLOW, font_size=22,
         )
-        initial_note.shift(UP * 2.2)
+        initial_note.shift(UP * 0.2 + LEFT * 3.5)
         self.play(Write(initial_note), run_time=0.8)
         self.wait(0.6)
 
@@ -669,7 +668,7 @@ class BrownianMotionPDE(Scene):
             combined_graphs.append(graph)
             
             time_label = MathTex(f"t = {i * 0.5}", color=WHITE, font_size=24)
-            time_label.shift(UP * 2.2 + RIGHT * 3)
+            time_label.shift(UP + RIGHT * 3)
             combined_time_labels.append(time_label)
 
         # 最初のグラフ
@@ -700,6 +699,7 @@ class BrownianMotionPDE(Scene):
         self.wait(1.0)
 
         self.play(
+            FadeOut(combined_intro),
             FadeOut(axes4), FadeOut(x_label4), FadeOut(y_label4),
             FadeOut(combined_graphs[0]), FadeOut(combined_time_labels[-1]),
             FadeOut(combined_conclusion),
@@ -779,7 +779,7 @@ class BrownianMotionPDE(Scene):
         self.wait(0.6)
 
         fpe_title = Text(
-            "フォッカー・プランク方程式",
+            "多変量のフォッカー・プランク方程式",
             color=GOLD, font_size=30, weight=BOLD,
         )
         fpe_title.shift(UP * 0.7)
@@ -875,7 +875,7 @@ class BrownianMotionPDE(Scene):
             Text("• 拡散：分布が広がる（2階微分項）", color=WHITE, font_size=26),
             Text("• ドリフト：分布が移動する（1階微分項）", color=WHITE, font_size=26),
             Text("• 確率は常に∫p(x,t)dx = 1を満たす", color=WHITE, font_size=26),
-            Text("• 多変数への拡張：フォッカー・プランク方程式", color=WHITE, font_size=26),
+            Text("• 拡散＋ドリフトの一般化：フォッカー・プランク方程式", color=WHITE, font_size=26),
         ).arrange(DOWN, buff=0.4, aligned_edge=LEFT)
         summary.shift(UP * 0.2)
         
