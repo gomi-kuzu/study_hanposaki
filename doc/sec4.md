@@ -34,4 +34,14 @@
 ### 数値解法の計算量の話
 <div><video controls src="https://github.com/user-attachments/assets/a9cd6767-1213-4347-93de-0fb76e18657c"></video></div>
 
+# 第22話
+## 22.1
+### a
+<div><video controls src="https://github.com/user-attachments/assets/62cab618-5c77-4fc4-938e-7d31b919d368"></video></div>
+
+## 22.2
+### a
+<div><video controls src="https://github.com/user-attachments/assets/560a14cf-10f8-4b79-bb67-bc00adbde70f"></video></div>
+
+
 <!-- <div><video controls src=""></video></div> -->
