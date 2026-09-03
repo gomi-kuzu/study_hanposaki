@@ -36,11 +36,11 @@
 
 # 第22話
 ## 22.1
-### a
+### ブラウン運動の話
 <div><video controls src="https://github.com/user-attachments/assets/62cab618-5c77-4fc4-938e-7d31b919d368"></video></div>
 
 ## 22.2
-### a
+### 時変の確率分布でも、時間発展が線形なら統計量は計算できそうって話
 <div><video controls src="https://github.com/user-attachments/assets/560a14cf-10f8-4b79-bb67-bc00adbde70f"></video></div>
 
 
