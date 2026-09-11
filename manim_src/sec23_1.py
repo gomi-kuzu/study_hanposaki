@@ -719,13 +719,13 @@ class FunctionTimeEvolutionSolver(Scene):
         # 実務的な注意と次回予告
         practical_text = Text(
             "ただしエルミート関数は無限次まで続くので、",
-            color=WHITE, font_size=24,
+            color=GRAY, font_size=23,
         )
         practical_text2 = Text(
             "実際には適当な次数で打ち切って、それに対応した行列 L を決める",
-            color=WHITE, font_size=24,
+            color=GRAY, font_size=23,
         )
-        practical_text.shift(DOWN * 2.0)
+        practical_text.shift(DOWN * 1.5)
         practical_text2.next_to(practical_text, DOWN, buff=0.2)
         self.play(Write(practical_text), run_time=0.8)
         self.play(Write(practical_text2), run_time=0.8)
