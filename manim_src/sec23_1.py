@@ -565,6 +565,189 @@ class FunctionTimeEvolutionSolver(Scene):
         self.wait(0.3)
 
         # ============================================================
+        # Part 8.5: 次回への前振り -- 固有関数
+        # ============================================================
+        subtitle85 = Text("次の話題への前振り：固有関数", font_size=28, color=PURPLE)
+        subtitle85.next_to(title, DOWN)
+        self.play(Transform(subtitle1, subtitle85), run_time=0.5)
+        self.wait(0.4)
+
+        intro85 = Text(
+            "まとめに入る前に、次の話題の前振りとして固有関数を紹介する",
+            color=WHITE, font_size=24,
+        )
+        intro85.shift(UP * 2.0)
+        self.play(Write(intro85), run_time=0.8)
+        self.wait(0.6)
+
+        analogy_text = Text(
+            "ベクトルの時間発展では、システム行列の固有値・固有ベクトルが",
+            color=WHITE, font_size=24,
+        )
+        analogy_text2 = Text(
+            "系の特性を大きく左右していた",
+            color=WHITE, font_size=24,
+        )
+        analogy_text.shift(UP * 1.2)
+        analogy_text2.next_to(analogy_text, DOWN, buff=0.15)
+        self.play(Write(analogy_text), run_time=0.7)
+        self.play(Write(analogy_text2), run_time=0.6)
+        self.wait(0.6)
+
+        func_analog = Text(
+            "関数の時間発展にも、よく似たものが存在する ── それが固有関数",
+            color=GOLD, font_size=26, weight=BOLD,
+        )
+        func_analog.shift(UP * 0.0)
+        self.play(Write(func_analog), run_time=0.9)
+        self.wait(0.8)
+
+        eig_def_text = Text(
+            "線形作用素 ℒ に対し、スカラ λᵢ と関数 φᵢ(x) が次を満たすとき",
+            color=WHITE, font_size=24,
+        )
+        eig_def_text.shift(DOWN * 0.9)
+        self.play(Write(eig_def_text), run_time=0.8)
+        self.wait(0.4)
+
+        eig_eq = MathTex(
+            r"\mathcal{L}\varphi_i(x) = \lambda_i\,\varphi_i(x)",
+            color=YELLOW,
+            font_size=42,
+        )
+        eig_eq.shift(DOWN * 1.9)
+        eig_box = SurroundingRectangle(eig_eq, color=YELLOW, buff=0.25)
+        self.play(Write(eig_eq), Create(eig_box), run_time=0.9)
+        self.wait(0.6)
+
+        eig_name = Text(
+            "λᵢ を固有値、φᵢ(x) を固有関数と呼ぶ",
+            color=TEAL, font_size=24,
+        )
+        eig_name.shift(DOWN * 2.9)
+        self.play(Write(eig_name), run_time=0.7)
+        self.wait(1.2)
+
+        self.play(
+            FadeOut(intro85), FadeOut(analogy_text), FadeOut(analogy_text2),
+            FadeOut(func_analog), FadeOut(eig_def_text),
+            FadeOut(eig_eq), FadeOut(eig_box), FadeOut(eig_name),
+        )
+        self.wait(0.3)
+
+        # 固有関数と基底の関係
+        note85_1 = Text(
+            "本教材では固有関数を使った本格的な解析には踏み込まないが、",
+            color=WHITE, font_size=24,
+        )
+        note85_2 = Text(
+            "「固有関数は基底の取り方に依らず、作用素 ℒ によって決まる」",
+            color=GOLD, font_size=24, weight=BOLD,
+        )
+        note85_3 = Text(
+            "という点を次の動画で見ていく",
+            color=WHITE, font_size=24,
+        )
+        note85_1.shift(UP * 1.5)
+        note85_2.next_to(note85_1, DOWN, buff=0.25)
+        note85_3.next_to(note85_2, DOWN, buff=0.25)
+        self.play(Write(note85_1), run_time=0.7)
+        self.play(Write(note85_2), run_time=0.8)
+        self.play(Write(note85_3), run_time=0.6)
+        self.wait(0.8)
+
+        recipe_text = Text(
+            "そこでここでは、エルミート関数のような基底で作用素を表現行列 L に直したとき",
+            color=WHITE, font_size=22,
+        )
+        recipe_text2 = Text(
+            "固有関数がどのように求まるかを天下り的に紹介する",
+            color=WHITE, font_size=22,
+        )
+        recipe_text.shift(DOWN * 0.7)
+        recipe_text2.next_to(recipe_text, DOWN, buff=0.2)
+        self.play(Write(recipe_text), run_time=0.7)
+        self.play(Write(recipe_text2), run_time=0.7)
+        self.wait(1.2)
+
+        self.play(
+            FadeOut(note85_1), FadeOut(note85_2), FadeOut(note85_3),
+            FadeOut(recipe_text), FadeOut(recipe_text2),
+        )
+        self.wait(0.3)
+
+        # 固有関数の構成方法（別ページ）
+        recipe_desc = Text(
+            "表現行列 L の固有ベクトル 𝐯ᵢ の m 番目の要素を係数として、",
+            color=TEAL, font_size=28,
+        )
+        recipe_desc2 = Text(
+            "基底関数 ψₘ(x) の線形和をとれば、それが固有関数になる",
+            color=TEAL, font_size=28,
+        )
+        recipe_desc.shift(UP * 1.5)
+        recipe_desc2.next_to(recipe_desc, DOWN, buff=0.2)
+        self.play(Write(recipe_desc), run_time=0.8)
+        self.play(Write(recipe_desc2), run_time=0.8)
+        self.wait(0.6)
+
+        eig_expand = MathTex(
+            r"\varphi_i(x) = \sum_{m=0} v_{im}\,|\psi_m\rangle "
+            r"= \sum_{m=0} v_{im}\,\psi_m(x)",
+            color=YELLOW,
+            font_size=38,
+        )
+        eig_expand.shift(DOWN * 0.3)
+        # eig_expand_box = SurroundingRectangle(eig_expand, color=YELLOW, buff=0.25)
+        self.play(Write(eig_expand), run_time=1.0)
+        self.wait(0.8)
+
+        # eig_check = Text(
+        #     "この φᵢ(x) が ℒφᵢ = λᵢ φᵢ を満たすことが確認できる",
+        #     color=GREEN, font_size=24,
+        # )
+        # eig_check.shift(DOWN * 1.8)
+        # self.play(Write(eig_check), run_time=0.8)
+        # self.wait(1.5)
+
+        # self.play(
+
+        #     # FadeOut(eig_check),
+        # )
+        # self.wait(0.3)
+
+        # 実務的な注意と次回予告
+        practical_text = Text(
+            "ただしエルミート関数は無限次まで続くので、",
+            color=WHITE, font_size=24,
+        )
+        practical_text2 = Text(
+            "実際には適当な次数で打ち切って、それに対応した行列 L を決める",
+            color=WHITE, font_size=24,
+        )
+        practical_text.shift(DOWN * 2.0)
+        practical_text2.next_to(practical_text, DOWN, buff=0.2)
+        self.play(Write(practical_text), run_time=0.8)
+        self.play(Write(practical_text2), run_time=0.8)
+        self.wait(0.8)
+
+        next_preview = Text(
+            "この次は、同じ関数の時間発展を別の方法で近似し、そのときの固有関数と比較する",
+            color=GOLD, font_size=26, weight=BOLD,
+        )
+        next_preview.shift(DOWN * 3.0)
+        self.play(Write(next_preview), run_time=0.8)
+        self.wait(1.5)
+
+        self.play(
+            FadeOut(recipe_desc), FadeOut(recipe_desc2),
+            FadeOut(eig_expand),
+            FadeOut(practical_text), FadeOut(practical_text2),
+            FadeOut(next_preview),
+        )
+        self.wait(0.3)
+
+        # ============================================================
         # Part 9: まとめ
         # ============================================================
         subtitle9 = Text("まとめ", font_size=36, color=TEAL)
@@ -573,29 +756,23 @@ class FunctionTimeEvolutionSolver(Scene):
         self.wait(0.4)
 
         summary = VGroup(
-            Text("• 関数を基底展開 → 係数 cₙ(t) の常微分方程式に帰着", color=WHITE, font_size=26),
-            Text("• 作用素 ℒ は表現行列 L になり、d𝐜/dt = L𝐜 が得られる", color=WHITE, font_size=26),
-            Text("• 例：OU過程ではエルミート関数を基底に取ると相性が良い", color=WHITE, font_size=26),
-            Text("• 一般解は行列指数関数：𝐜(t) = exp(Lt)𝐜(0)", color=WHITE, font_size=26),
-            Text("• 実際に計算するには基底の打ち切りと初期条件の展開が必要", color=WHITE, font_size=26),
-        ).arrange(DOWN, buff=0.35, aligned_edge=LEFT)
-        summary.shift(UP * 0.3)
+            Text("• 関数を基底展開 → 係数 cₙ(t) の常微分方程式に帰着", color=WHITE, font_size=24),
+            Text("• 作用素 ℒ は表現行列 L になり、d𝐜/dt = L𝐜 が得られる", color=WHITE, font_size=24),
+            Text("• 例：OU過程ではエルミート関数を基底に取ると相性が良い", color=WHITE, font_size=24),
+            Text("• 一般解は行列指数関数：𝐜(t) = exp(Lt)𝐜(0)", color=WHITE, font_size=24),
+            Text("• 実際に計算するには基底の打ち切りと初期条件の展開が必要", color=WHITE, font_size=24),
+            Text("• 固有関数 φᵢ(x) は L の固有ベクトルから基底の線形和で得られる", color=WHITE, font_size=24),
+            Text("• 固有関数は基底に依らず作用素 ℒ 自身で決まる（次の動画の注目点）", color=WHITE, font_size=24),
+        ).arrange(DOWN, buff=0.28, aligned_edge=LEFT)
+        summary.shift(UP * 0.1)
 
         for row in summary:
             self.play(Write(row), run_time=0.6)
             self.wait(0.25)
-        self.wait(1.0)
-
-        omit_note = Text(
-            "※教科書の固有関数の話は割愛",
-            color=GOLD, font_size=24, slant=ITALIC,
-        )
-        omit_note.shift(DOWN * 2.6)
-        self.play(Write(omit_note), run_time=0.8)
         self.wait(2.0)
 
         self.play(
-            FadeOut(VGroup(title, subtitle1, summary, omit_note)),
+            FadeOut(VGroup(title, subtitle1, summary)),
             run_time=1.0,
         )
         self.wait(0.5)
