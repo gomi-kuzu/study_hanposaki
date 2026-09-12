@@ -162,13 +162,13 @@ class SpatialDiscretizationComparison(Scene):
         self.play(Write(subtitle1), run_time=0.6)
         self.wait(0.4)
 
-        recap1 = Text(
-            "前回の最後で、次のことを述べた",
-            color=WHITE, font_size=26,
-        )
-        recap1.shift(UP * 2.0)
-        self.play(Write(recap1), run_time=0.7)
-        self.wait(0.4)
+        # recap1 = Text(
+        #     "前回の最後で、次のことを述べた",
+        #     color=WHITE, font_size=26,
+        # )
+        # recap1.shift(UP * 2.0)
+        # self.play(Write(recap1), run_time=0.7)
+        # self.wait(0.4)
 
         recap2 = Text(
             "「同じ線形作用素 ℒ であれば、",
@@ -202,7 +202,9 @@ class SpatialDiscretizationComparison(Scene):
         self.wait(1.2)
 
         self.play(
-            FadeOut(recap1), FadeOut(recap2), FadeOut(recap3),
+            # FadeOut(recap1),
+            FadeOut(recap2), FadeOut(recap3),
+            FadeOut(recap2), FadeOut(recap3),
             FadeOut(idea_text), FadeOut(method_text), FadeOut(method_box),
         )
         self.wait(0.3)
@@ -210,7 +212,7 @@ class SpatialDiscretizationComparison(Scene):
         # ============================================================
         # Part 2: 傾きから速度を決めるという振り返り
         # ============================================================
-        subtitle2 = Text("方程式の振り返り", font_size=28, color=GOLD)
+        subtitle2 = Text("偏微分方程式の振り返り", font_size=28, color=GOLD)
         subtitle2.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle2), run_time=0.5)
         self.wait(0.4)
@@ -249,12 +251,12 @@ class SpatialDiscretizationComparison(Scene):
         self.wait(0.6)
 
         strategy_text = Text(
-            "→ 予め確率変数空間上に格子状の点を定め、",
-            color=GOLD, font_size=24,
+            "→ 格子点法では、予め確率変数空間上に格子状の点を定め、",
+            color=GOLD, font_size=26,
         )
         strategy_text2 = Text(
             "隣り合う点の差分から勾配の一次近似を求めて速度とする",
-            color=GOLD, font_size=24,
+            color=GOLD, font_size=26,
         )
         strategy_text.shift(DOWN * 1.7)
         strategy_text2.next_to(strategy_text, DOWN, buff=0.15)
@@ -304,9 +306,17 @@ class SpatialDiscretizationComparison(Scene):
         self.play(Write(dx_text), run_time=0.8)
         self.wait(1.2)
 
+        vec_comment = Text(
+            "この”値の集まり”で離散的に確率密度関数を近似する!",
+            color=WHITE, font_size=26,
+        )
+        vec_comment.shift(DOWN * 2.8)
+        self.play(Write(vec_comment), run_time=0.7)
+        self.wait(0.4)
+
         self.play(
             FadeOut(vec_intro), FadeOut(p_vec), FadeOut(p_vec_box),
-            FadeOut(dx_text),
+            FadeOut(dx_text), FadeOut(vec_comment)
         )
         self.wait(0.3)
 
@@ -558,7 +568,7 @@ class SpatialDiscretizationComparison(Scene):
             color=WHITE, font_size=24,
         )
         diff_matrix_note2 = Text(
-            "→ 固有ベクトルも当然異なる。ここから固有関数はどう出る？",
+            "→ 固有ベクトルも当然異なる。では固有関数はどうなるのか？",
             color=WHITE, font_size=24,
         )
         diff_matrix_note1.shift(UP * 2.2)
