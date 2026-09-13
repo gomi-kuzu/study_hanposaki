@@ -108,7 +108,7 @@ class FunctionTimeEvolutionSolver(Scene):
         expansion = MathTex(
             r"p(\mathbf{x},t) = c_0(t)|\psi_0\rangle + c_1(t)|\psi_1\rangle + c_2(t)|\psi_2\rangle + \cdots",
             color=YELLOW,
-            font_size=34,
+            font_size=36,
         )
         expansion.shift(UP * 0.1)
         exp_box = SurroundingRectangle(expansion, color=YELLOW, buff=0.25)
@@ -117,12 +117,12 @@ class FunctionTimeEvolutionSolver(Scene):
 
         basis_note = Text(
             "|ψₙ⟩: 基底関数（時間に依らない）",
-            color=GREEN, font_size=22,
+            color=GREEN, font_size=24,
         )
         basis_note.shift(DOWN * 0.9)
         coeff_note = Text(
             "cₙ(t): 各基底に対応する係数（時間に依存）",
-            color=ORANGE, font_size=22,
+            color=ORANGE, font_size=24,
         )
         coeff_note.shift(DOWN * 1.4)
         self.play(Write(basis_note), Write(coeff_note), run_time=0.8)
@@ -178,7 +178,7 @@ class FunctionTimeEvolutionSolver(Scene):
             r"\frac{\partial}{\partial t}p(\mathbf{x},t) = "
             r"\dot{c}_0(t)|\psi_0\rangle + \dot{c}_1(t)|\psi_1\rangle + \cdots",
             color=GREEN,
-            font_size=30,
+            font_size=34,
         )
         lhs_eq.shift(DOWN * 0.9)
         self.play(Write(lhs_eq), run_time=0.9)
@@ -188,7 +188,7 @@ class FunctionTimeEvolutionSolver(Scene):
         self.wait(0.2)
 
         result_text = Text(
-            "全体としては、係数ベクトル 𝐜(t) についての行列方程式に帰着",
+            "全体としては、係数ベクトル 𝐜(t) についての微分方程式に帰着",
             color=WHITE, font_size=24,
         )
         result_text.shift(DOWN * 0.3)
@@ -206,7 +206,7 @@ class FunctionTimeEvolutionSolver(Scene):
         self.wait(0.8)
 
         merit_text = Text(
-            "偏微分方程式 → 有限次元の連立常微分方程式！",
+            "作用素で表現された偏微分方程式 → 有限次元の連立常微分方程式！",
             color=GOLD, font_size=26, weight=BOLD,
         )
         merit_text.shift(DOWN * 2.6)
@@ -250,7 +250,7 @@ class FunctionTimeEvolutionSolver(Scene):
         ou_params = MathTex(
             r"a(x) = -\gamma x, \qquad B(x) = \sqrt{D}",
             color=TEAL,
-            font_size=30,
+            font_size=32,
         )
         ou_params.shift(DOWN * 0.1)
         self.play(Write(ou_params), run_time=0.8)
@@ -274,7 +274,7 @@ class FunctionTimeEvolutionSolver(Scene):
         L_ou.shift(DOWN * 1.8)
         L_ou_box = SurroundingRectangle(L_ou, color=GREEN, buff=0.25)
         self.play(Write(L_ou), Create(L_ou_box), run_time=0.9)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(ou_intro), FadeOut(ou_eq), FadeOut(ou_params),
@@ -301,7 +301,7 @@ class FunctionTimeEvolutionSolver(Scene):
         hermite_def = MathTex(
             r"\psi_n(x) = \left(2^n n! \sqrt{\pi}\right)^{-1/2} e^{-x^2/2} H_n(x)",
             color=YELLOW,
-            font_size=34,
+            font_size=36,
         )
         hermite_def.shift(UP * 1.0)
         self.play(Write(hermite_def), run_time=1.0)
@@ -345,7 +345,7 @@ class FunctionTimeEvolutionSolver(Scene):
                 stroke_width=3,
             )
             graphs.add(graph)
-            label = MathTex(rf"\psi_{n}", color=col, font_size=26)
+            label = MathTex(rf"\psi_{n}", color=col, font_size=28)
             legend_items.add(label)
 
         legend_items.arrange(DOWN, buff=0.18, aligned_edge=LEFT)
@@ -415,7 +415,7 @@ class FunctionTimeEvolutionSolver(Scene):
 
         use_prop = Text(
             "→ この性質を使えば、微分方程式を基底展開できる",
-            color=GREEN, font_size=24,
+            color=GREEN, font_size=26,
         )
         use_prop.shift(DOWN * 1.8)
         self.play(Write(use_prop), run_time=0.8)
@@ -486,7 +486,7 @@ class FunctionTimeEvolutionSolver(Scene):
             r"\gamma \alpha_{n+2} c_{n+2}(t) + \tfrac{\gamma}{2} c_n(t) - \gamma \alpha_n c_{n-2}(t)",
             r"+ \tfrac{D\alpha_{n+2}}{2} c_{n+2}(t) + \tfrac{D}{2}\!\left(-n-\tfrac{1}{2}\right)\! c_n(t) + \tfrac{D\alpha_n}{2} c_{n-2}(t)",
             color=YELLOW,
-            font_size=26,
+            font_size=28,
         )
         cn_ode.shift(DOWN * 2.6)
         self.play(Write(cn_ode), run_time=1.2)
@@ -518,7 +518,7 @@ class FunctionTimeEvolutionSolver(Scene):
         final_ode = MathTex(
             r"\frac{d}{dt}\mathbf{c}(t) = L\,\mathbf{c}(t)",
             color=YELLOW,
-            font_size=48,
+            font_size=42,
         )
         final_ode.shift(UP * 0.6)
         final_box = SurroundingRectangle(final_ode, color=YELLOW, buff=0.3)
@@ -529,7 +529,7 @@ class FunctionTimeEvolutionSolver(Scene):
             "→ 21話と同じく、行列指数関数で一般解が書ける",
             color=GREEN, font_size=26,
         )
-        sol_text.shift(DOWN * 0.4)
+        sol_text.shift(DOWN * 0.6)
         self.play(Write(sol_text), run_time=0.8)
         self.wait(0.5)
 
@@ -544,14 +544,14 @@ class FunctionTimeEvolutionSolver(Scene):
 
         # 注意点
         caveats_title = Text("注意点", color=ORANGE, font_size=26, weight=BOLD)
-        caveats_title.shift(DOWN * 2.2 + LEFT * 4.5)
+        caveats_title.shift(DOWN * 2.0 + LEFT * 4.5)
         self.play(Write(caveats_title), run_time=0.5)
 
         caveats = VGroup(
             Text("• エルミート関数の n は無限まで続く → 適当な次数で打ち切って近似", color=WHITE, font_size=22),
             Text("• 初期状態 p(x,0) を近似する 𝐜(0) をうまく選ぶ必要がある", color=WHITE, font_size=22),
         ).arrange(DOWN, buff=0.2, aligned_edge=LEFT)
-        caveats.shift(DOWN * 3.0)
+        caveats.shift(DOWN * 2.8)
         for row in caveats:
             self.play(Write(row), run_time=0.7)
             self.wait(0.2)
@@ -626,7 +626,7 @@ class FunctionTimeEvolutionSolver(Scene):
         )
         eig_name.shift(DOWN * 2.9)
         self.play(Write(eig_name), run_time=0.7)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(intro85), FadeOut(analogy_text), FadeOut(analogy_text2),
@@ -695,7 +695,7 @@ class FunctionTimeEvolutionSolver(Scene):
             r"\varphi_i(x) = \sum_{m=0} v_{im}\,|\psi_m\rangle "
             r"= \sum_{m=0} v_{im}\,\psi_m(x)",
             color=YELLOW,
-            font_size=38,
+            font_size=40,
         )
         eig_expand.shift(DOWN * 0.3)
         # eig_expand_box = SurroundingRectangle(eig_expand, color=YELLOW, buff=0.25)
@@ -735,7 +735,7 @@ class FunctionTimeEvolutionSolver(Scene):
             "この次は、同じ関数の時間発展を別の方法で近似し、そのときの固有関数と比較する",
             color=GOLD, font_size=26, weight=BOLD,
         )
-        next_preview.shift(DOWN * 3.0)
+        next_preview.shift(DOWN * 2.8)
         self.play(Write(next_preview), run_time=0.8)
         self.wait(1.5)
 
