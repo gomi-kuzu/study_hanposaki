@@ -43,5 +43,13 @@
 ### 時変の確率分布でも、時間発展が線形なら統計量は計算できそうって話
 <div><video controls src="https://github.com/user-attachments/assets/560a14cf-10f8-4b79-bb67-bc00adbde70f"></video></div>
 
+# 第23話
+## 23.1
+### 関数の時間発展をベクトルの時間発展に置き換える話
+<div><video controls src=""></video></div>
+
+## 23.2
+### 作用素と固有関数の話
+<div><video controls src=""></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
