@@ -199,7 +199,7 @@ class SpatialDiscretizationComparison(Scene):
         method_text.shift(DOWN * 1.3)
         method_box = SurroundingRectangle(method_text, color=YELLOW, buff=0.25)
         self.play(Write(method_text), Create(method_box), run_time=0.9)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             # FadeOut(recap1),
@@ -262,7 +262,7 @@ class SpatialDiscretizationComparison(Scene):
         strategy_text2.next_to(strategy_text, DOWN, buff=0.15)
         self.play(Write(strategy_text), run_time=0.8)
         self.play(Write(strategy_text2), run_time=0.8)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(review_text), FadeOut(fp_eq),
@@ -312,7 +312,7 @@ class SpatialDiscretizationComparison(Scene):
         )
         vec_comment.shift(DOWN * 2.8)
         self.play(Write(vec_comment), run_time=0.7)
-        self.wait(0.4)
+        self.wait(1.2)
 
         self.play(
             FadeOut(vec_intro), FadeOut(p_vec), FadeOut(p_vec_box),
@@ -377,7 +377,7 @@ class SpatialDiscretizationComparison(Scene):
         )
         central_note.shift(DOWN * 2.4)
         self.play(Write(central_note), run_time=0.9)
-        self.wait(1.3)
+        self.wait(1.5)
 
         self.play(
             FadeOut(diff_intro),
@@ -547,7 +547,7 @@ class SpatialDiscretizationComparison(Scene):
         result_ode.shift(DOWN * 2.7)
         result_box = SurroundingRectangle(result_ode, color=GOLD, buff=0.25)
         self.play(Write(result_ode), Create(result_box), run_time=0.9)
-        self.wait(1.4)
+        self.wait(1.5)
 
         self.play(
             FadeOut(mat_intro), FadeOut(first_deriv_mat),
@@ -612,7 +612,7 @@ class SpatialDiscretizationComparison(Scene):
         recipe_eq.shift(DOWN * 2.6)
         recipe_eq_box = SurroundingRectangle(recipe_eq, color=YELLOW, buff=0.25)
         self.play(Write(recipe_eq), Create(recipe_eq_box), run_time=0.9)
-        self.wait(1.4)
+        self.wait(1.5)
 
         self.play(
             FadeOut(diff_matrix_note1), FadeOut(diff_matrix_note2),
