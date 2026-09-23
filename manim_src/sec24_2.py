@@ -20,7 +20,7 @@ class StochasticDifferentialEquationOverview(Scene):
         self.wait(0.3)
 
         recap1 = Text(
-            "22,23話での話：確率密度関数 p(x, t) の時間発展を詳しく見てきた",
+            "22,23話では、確率密度関数 p(x, t) の時間発展を詳しく見てきた",
             color=WHITE, font_size=26,
         )
         recap1.shift(UP * 1.8)
@@ -64,9 +64,9 @@ class StochasticDifferentialEquationOverview(Scene):
 
         sde_intro = Text(
             "状態ベクトルの確率的な時間発展は、次の形の確率微分方程式で表される",
-            color=WHITE, font_size=24,
+            color=WHITE, font_size=26,
         )
-        sde_intro.shift(UP * 2.1)
+        sde_intro.shift(UP * 1.8)
         self.play(Write(sde_intro), run_time=0.8)
         self.wait(0.3)
 
@@ -116,7 +116,7 @@ class StochasticDifferentialEquationOverview(Scene):
         det_label = Text("19〜21話：確定的な微分方程式", color=BLUE, font_size=24)
         det_eq = MathTex(
             r"d\mathbf{x}(t) = \mathbf{a}(\mathbf{x}(t))\,dt",
-            color=WHITE, font_size=36,
+            color=WHITE, font_size=38,
         )
         det_group = VGroup(det_label, det_eq).arrange(DOWN, buff=0.25)
         det_group.shift(UP * 1.5)
@@ -127,24 +127,24 @@ class StochasticDifferentialEquationOverview(Scene):
         sto_eq = MathTex(
             r"d\mathbf{X}(t) = \mathbf{a}(\mathbf{X}(t))\,dt ",
             r"+ \mathbf{B}(\mathbf{X}(t))\,d\mathbf{W}(t)",
-            font_size=36,
+            font_size=38,
         )
         sto_eq[0].set_color(WHITE)
         sto_eq[1].set_color(YELLOW)
         sto_group = VGroup(sto_label, sto_eq).arrange(DOWN, buff=0.25)
         sto_group.shift(DOWN * 0.3)
         self.play(Write(sto_label), Write(sto_eq), run_time=1.0)
-        added_note = Text("← 追加された項", color=YELLOW, font_size=22)
+        added_note = Text("↑ 追加された項", color=YELLOW, font_size=22)
         added_note.next_to(sto_eq[1], DOWN, buff=0.2)
         self.play(Write(added_note), run_time=0.6)
         self.wait(0.5)
 
         correspond = Text(
-            "この 𝐁(𝐗)d𝐖 の項が22話フォッカー・プランクの「拡散項」に、",
+            "この 𝐁(𝐗)d𝐖 の項が22話フォッカー・プランクの方程式の",
             color=GOLD, font_size=24,
         )
         correspond2 = Text(
-            "𝐚(𝐗)dt の項が「ドリフト項」に対応する",
+            "「拡散項」に、𝐚(𝐗)dt の項が「ドリフト項」に対応する",
             color=GOLD, font_size=24,
         )
         correspond.shift(DOWN * 2.0)
@@ -172,7 +172,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "SDE から任意時刻 t の 𝐗(t) の値が欲しい場合：",
             color=WHITE, font_size=26,
         )
-        way_intro.shift(UP * 2.1)
+        way_intro.shift(UP * 1.8)
         self.play(Write(way_intro), run_time=0.7)
         self.wait(0.3)
 
@@ -215,7 +215,7 @@ class StochasticDifferentialEquationOverview(Scene):
 
         self.play(Create(axes4), Write(t_lab), Write(x_lab), run_time=0.7)
         self.play(Create(path), run_time=1.6)
-        self.wait(1.2)
+        self.wait(1.5)
 
         self.play(
             FadeOut(way_intro), FadeOut(ways),
@@ -233,9 +233,9 @@ class StochasticDifferentialEquationOverview(Scene):
 
         rel1 = Text(
             "本質的には、状態ベクトルの時間発展と確率密度関数の時間発展は同じ現象",
-            color=WHITE, font_size=25,
+            color=WHITE, font_size=26,
         )
-        rel1.shift(UP * 2.1)
+        rel1.shift(UP * 1.95)
         self.play(Write(rel1), run_time=0.8)
         self.wait(0.3)
 
@@ -247,7 +247,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "対応する密度関数の時間発展を作用素で解いた方が楽",
             color=GOLD, font_size=26, weight=BOLD,
         )
-        rel2.shift(UP * 0.9)
+        rel2.shift(UP * 1.2)
         rel3.next_to(rel2, DOWN, buff=0.2)
         self.play(Write(rel2), run_time=0.7)
         self.play(Write(rel3), run_time=0.7)
@@ -258,7 +258,7 @@ class StochasticDifferentialEquationOverview(Scene):
             r"= \mathcal{L}\, p(\mathbf{x}, t)",
             color=YELLOW, font_size=44,
         )
-        op_eq.shift(DOWN * 0.4)
+        op_eq.shift(DOWN * 0.8)
         op_box = SurroundingRectangle(op_eq, color=YELLOW, buff=0.25)
         self.play(Write(op_eq), Create(op_box), run_time=0.9)
         self.wait(0.4)
@@ -293,7 +293,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "状態変数の関数（確率密度関数）の時間発展として捉えると線形性を満たしやすい",
             color=WHITE, font_size=26,
         )
-        merit1.shift(UP * 2.1)
+        merit1.shift(UP * 1.8)
         merit2.next_to(merit1, DOWN, buff=0.2)
         self.play(Write(merit1), run_time=0.7)
         self.play(Write(merit2), run_time=0.7)
@@ -310,16 +310,16 @@ class StochasticDifferentialEquationOverview(Scene):
         example_label = Text("例：状態変数側では非線形な時間発展", color=WHITE, font_size=24)
         example_eq = MathTex(
             r"\frac{d}{dt}x(t) = a(x(t)) = \bigl(x(t)\bigr)^2",
-            color=YELLOW, font_size=38,
+            color=YELLOW, font_size=40,
         )
         ex_group = VGroup(example_label, example_eq).arrange(DOWN, buff=0.2)
-        ex_group.shift(DOWN * 1.1)
+        ex_group.shift(DOWN)
         self.play(Write(example_label), Write(example_eq), run_time=0.9)
         self.wait(0.4)
 
         nonlin_note = MathTex(
             r"a(x + x') \neq a(x) + a(x')",
-            color=RED, font_size=32,
+            color=RED, font_size=38,
         )
         nonlin_label = Text("（非線形）", color=RED, font_size=24)
         nonlin_group = VGroup(nonlin_note, nonlin_label).arrange(RIGHT, buff=0.25)
@@ -345,7 +345,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "先ほどの非線形な a(x) に対応するフォッカー・プランク方程式",
             color=WHITE, font_size=25,
         )
-        fp_intro.shift(UP * 2.2)
+        fp_intro.shift(UP * 2)
         self.play(Write(fp_intro), run_time=0.7)
         self.wait(0.3)
 
@@ -354,12 +354,12 @@ class StochasticDifferentialEquationOverview(Scene):
             r"= \frac{\partial}{\partial x}\bigl[a(x)\,p(x, t)\bigr]",
             color=YELLOW, font_size=38,
         )
-        fp_eq.shift(UP * 1.1)
+        fp_eq.shift(UP * 1.2)
         self.play(Write(fp_eq), run_time=0.9)
         self.wait(0.3)
 
-        check_label = Text("作用素として線形性を確認：", color=WHITE, font_size=24)
-        check_label.shift(UP * 0.15)
+        check_label = Text("作用素として線形性を確認：", color=GREEN, font_size=24)
+        # check_label.shift(UP * 0.1)
         self.play(Write(check_label), run_time=0.6)
 
         lin_eq = MathTex(
@@ -367,9 +367,9 @@ class StochasticDifferentialEquationOverview(Scene):
             r"=",
             r"\frac{\partial}{\partial x}\bigl[a(x)\,p(x, t)\bigr] "
             r"+ \frac{\partial}{\partial x}\bigl[a(x)\,p'(x, t)\bigr]",
-            color=GREEN, font_size=30,
+            color=GREEN, font_size=34,
         )
-        lin_eq.shift(DOWN * 0.9)
+        lin_eq.shift(DOWN)
         self.play(Write(lin_eq), run_time=1.2)
         self.wait(0.4)
 
@@ -377,7 +377,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "ポイント：線形作用素は x には作用せず、関数 a や p のみに作用する",
             color=GOLD, font_size=24, weight=BOLD,
         )
-        key.shift(DOWN * 2.2)
+        key.shift(DOWN * 2.1)
         self.play(Write(key), run_time=0.9)
         self.wait(0.4)
 
@@ -385,7 +385,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "→ 適当な表現行列化すれば、線形代数のツールで扱える",
             color=TEAL, font_size=24,
         )
-        reach.shift(DOWN * 3.0)
+        reach.shift(DOWN * 2.6)
         self.play(Write(reach), run_time=0.8)
         self.wait(1.8)
 
@@ -447,15 +447,15 @@ class StochasticDifferentialEquationOverview(Scene):
         self.wait(0.3)
 
         summary = VGroup(
-            Text("• 状態ベクトルの確率的な時間発展は SDE：d𝐗 = 𝐚(𝐗)dt + 𝐁(𝐗)d𝐖 で表される", color=WHITE, font_size=22),
-            Text("• d𝐖 はウィナー過程由来のゆらぎ。微分できないので形式的に d を用いる", color=WHITE, font_size=22),
-            Text("• 𝐚(𝐗)dt がドリフト項、𝐁(𝐗)d𝐖 が拡散項（FP方程式のそれと対応）", color=WHITE, font_size=22),
-            Text("• 任意時刻の 𝐗(t) は逐次更新か確率積分で得られる", color=WHITE, font_size=22),
-            Text("• 本質は密度関数の時間発展と同じ → ∂p/∂t = ℒp を解いてドローする方が楽", color=WHITE, font_size=22),
-            Text("• 状態変数側で非線形でも、密度関数の時間発展は線形になり得る", color=WHITE, font_size=22),
-            Text("• 線形性が得られれば強力な線形系の解析ツールが使える（15話の線形回帰と類似）", color=WHITE, font_size=22),
-        ).arrange(DOWN, buff=0.28, aligned_edge=LEFT)
-        summary.shift(UP * 0.1)
+            Text("• 状態ベクトルの確率的な時間発展は SDE：d𝐗 = 𝐚(𝐗)dt + 𝐁(𝐗)d𝐖 で表される", color=WHITE, font_size=24),
+            Text("• d𝐖 はウィナー過程由来のゆらぎ。微分できないので形式的に d を用いる", color=WHITE, font_size=24),
+            Text("• 𝐚(𝐗)dt がドリフト項、𝐁(𝐗)d𝐖 が拡散項（FP方程式のそれと対応）", color=WHITE, font_size=24),
+            Text("• 任意時刻の 𝐗(t) は逐次更新か確率積分で得られる", color=WHITE, font_size=24),
+            Text("• 本質は密度関数の時間発展と同じ → ∂p/∂t = ℒp を解いてドローする方が楽", color=WHITE, font_size=24),
+            Text("• 状態変数側で非線形でも、密度関数の時間発展は線形になり得る", color=WHITE, font_size=24),
+            Text("• 線形性が得られれば強力な線形系の解析ツールが使える（15話の線形回帰と類似）", color=WHITE, font_size=24),
+        ).arrange(DOWN, buff=0.32, aligned_edge=LEFT)
+        # summary.shift(UP * 0.1)
 
         for row in summary:
             self.play(Write(row), run_time=0.55)
