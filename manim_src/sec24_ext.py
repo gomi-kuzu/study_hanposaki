@@ -20,7 +20,7 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         intro1 = Text(
-            "拡散モデル（Diffusion Model）は画像生成AIの中核をなす技術",
+            "拡散モデル（Diffusion Model）は生成AIの中核をなす技術",
             color=WHITE, font_size=26,
         )
         intro1.shift(UP * 1.8)
@@ -266,7 +266,7 @@ class SDEDiffusionModelRelation(Scene):
             color=YELLOW, font_size=40,
         )
         score_def = VGroup(score_lbl, score_math).arrange(RIGHT, buff=0.25)
-        score_def.shift(UP * 2.2)
+        score_def.shift(UP * 2)
         self.play(Write(score_def), run_time=0.8)
         self.wait(0.3)
 
@@ -290,7 +290,7 @@ class SDEDiffusionModelRelation(Scene):
             c.move_to(field_center)
         data_dot = Dot(field_center, color=WHITE, radius=0.09)
         data_lab = Text("高密度領域", color=GOLD, font_size=20)
-        data_lab.next_to(circles[-1], UP, buff=0.15)
+        data_lab.next_to(circles[0], UP, buff=0.15)
 
         # スコア矢印（外周から中心方向）
         score_arrows = VGroup()
@@ -308,7 +308,7 @@ class SDEDiffusionModelRelation(Scene):
                   run_time=0.7)
         self.play(Create(score_arrows), run_time=1.2)
 
-        score_arrow_lab = Text("スコア（回収力）", color=RED, font_size=22)
+        score_arrow_lab = Text("スコア（回収力）", color=RED, font_size=24)
         score_arrow_lab.to_edge(RIGHT, buff=0.8).shift(DOWN * 0.5)
         self.play(Write(score_arrow_lab), run_time=0.5)
         self.wait(1.8)
@@ -332,7 +332,7 @@ class SDEDiffusionModelRelation(Scene):
             "ドリフトの逆再生 + スコアの回収力 を組み合わせると：",
             color=WHITE, font_size=26,
         )
-        rev_sde_intro.shift(UP * 2.0)
+        rev_sde_intro.shift(UP * 1.8)
         self.play(Write(rev_sde_intro), run_time=0.7)
         self.wait(0.3)
 
@@ -352,13 +352,13 @@ class SDEDiffusionModelRelation(Scene):
         self.play(Write(rev_sde), Create(rev_box), run_time=1.2)
         self.wait(0.4)
 
-        annot1 = Text("元のドリフト", color=BLUE, font_size=22)
+        annot1 = Text("元のドリフト", color=BLUE, font_size=26)
         annot1.next_to(rev_sde[1], DOWN, buff=0.9).shift(LEFT * 1.5)
         annot1_arrow = Arrow(annot1.get_top(), rev_sde[1].get_bottom(),
                              color=BLUE, buff=0.05, stroke_width=3,
                              max_tip_length_to_length_ratio=0.2)
 
-        annot2 = Text("スコアによる回収項", color=RED, font_size=22)
+        annot2 = Text("スコアによる回収項", color=RED, font_size=26)
         annot2.next_to(rev_sde[3], DOWN, buff=0.9).shift(RIGHT * 0.8)
         annot2_arrow = Arrow(annot2.get_top(), rev_sde[3].get_bottom(),
                              color=RED, buff=0.05, stroke_width=3,
@@ -370,7 +370,7 @@ class SDEDiffusionModelRelation(Scene):
 
         note = Text(
             "dt は t=T→0 の向き（負）なので、ドリフトの符号反転は自動で起きる",
-            color=TEAL, font_size=22,
+            color=TEAL, font_size=24,
         )
         note.shift(DOWN * 2.4)
         self.play(Write(note), run_time=0.8)
@@ -386,7 +386,7 @@ class SDEDiffusionModelRelation(Scene):
         # ============================================================
         # Part 7: サンプリングの流れ（オイラー・丸山）
         # ============================================================
-        subtitle7 = Text("サンプリング：オイラー・丸山法で時間を遡る", font_size=28, color=TEAL)
+        subtitle7 = Text("サンプリング：時間を遡る(オイラー・丸山法)", font_size=28, color=TEAL)
         subtitle7.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle7), run_time=0.5)
         self.wait(0.3)
@@ -417,51 +417,87 @@ class SDEDiffusionModelRelation(Scene):
             self.play(Write(s), run_time=0.6)
         self.wait(0.3)
 
-        # 逆再生のサンプルパスの模式図
-        axes_r = Axes(
-            x_range=[0, 5, 1],
-            y_range=[-2.0, 2.0, 1],
-            x_length=7.5,
-            y_length=2.5,
-            axis_config={"color": WHITE, "include_tip": False, "stroke_width": 2},
-        )
-        axes_r.shift(DOWN * 2.0)
-        t_lab_r = MathTex("t", color=WHITE, font_size=24).next_to(
-            axes_r.x_axis.get_end(), RIGHT, buff=0.1)
+        # 逆再生のポンチ絵：多数の粒子が「拡散→整列」していくアニメ
+        # 2D の絵にして、Part 2 のインク拡散のアナロジーと直接つなげる
+        panel = Rectangle(width=8.5, height=3.0, color=WHITE, stroke_width=1.5)
+        panel.shift(DOWN * 2.0)
 
         rng_r = np.random.default_rng(11)
-        n_steps_r = 100
-        ts_r = np.linspace(0, 5, n_steps_r + 1)
-        dt_r = ts_r[1] - ts_r[0]
-        xs_r = np.zeros(n_steps_r + 1)
-        xs_r[-1] = 1.6  # t=T から出発
-        # t=T → 0 へ後退積分：中心へ引き戻す（スコア）+ 減っていくノイズ
-        for k in range(n_steps_r, 0, -1):
-            g = 0.35 + 0.15 * ts_r[k - 1]
-            # 逆時間：ドリフト(0) - g^2 * score(=-x)  →  +g^2 x を dt(<0) で戻す
-            drift_rev = -(g ** 2) * (-xs_r[k])  # score ≈ -x
-            xs_r[k - 1] = xs_r[k] - drift_rev * dt_r \
-                + g * np.sqrt(dt_r) * rng_r.standard_normal() * 0.3
-        pts_r = [axes_r.c2p(ts_r[k], xs_r[k]) for k in range(n_steps_r + 1)]
-        path_r = VMobject(color=RED, stroke_width=2.5)
-        path_r.set_points_as_corners(pts_r)
+        n_particles = 40
 
-        start_dot = Dot(axes_r.c2p(5, xs_r[-1]), color=RED, radius=0.09)
-        end_dot = Dot(axes_r.c2p(0, xs_r[0]), color=GREEN, radius=0.09)
-        start_lab = Text("ノイズ", color=RED, font_size=20).next_to(start_dot, UR, buff=0.1)
-        end_lab = Text("画像", color=GREEN, font_size=20).next_to(end_dot, UL, buff=0.1)
+        # 目標位置：データ多様体を「横方向の細い帯」で表現
+        target_xs = np.linspace(-3.5, 3.5, n_particles)
+        target_ys = 0.05 * rng_r.standard_normal(n_particles)
+        # 順序をシャッフルして「粒子 i がどこに行くか」に必然性を持たせない
+        perm = rng_r.permutation(n_particles)
+        target_xs = target_xs[perm]
 
-        self.play(Create(axes_r), Write(t_lab_r), run_time=0.5)
-        self.play(Create(start_dot), Write(start_lab), run_time=0.4)
-        self.play(Create(path_r), run_time=1.6)
-        self.play(Create(end_dot), Write(end_lab), run_time=0.4)
+        panel_center = panel.get_center()
+        # 初期位置：パネル内に広く散らばったガウスノイズ
+        init_pos = rng_r.normal(0, 0.9, size=(n_particles, 2))
+        # y方向もある程度散らす
+        init_pos[:, 1] *= 0.9
+
+        particles = VGroup()
+        for i in range(n_particles):
+            p = Dot(
+                panel_center + np.array([init_pos[i, 0], init_pos[i, 1], 0]),
+                color=RED, radius=0.06,
+            )
+            particles.add(p)
+
+        # 時間進行を示すバー（t=T → t=0）
+        bar_len = 6.5
+        bar_left = panel.get_top() + LEFT * bar_len / 2 + UP * 0.35
+        bar_right = panel.get_top() + RIGHT * bar_len / 2 + UP * 0.35
+        bar_line = Line(bar_left, bar_right, color=WHITE, stroke_width=2)
+        t_T_lab = MathTex("t{=}T", color=RED, font_size=22).next_to(bar_left, LEFT, buff=0.2)
+        t_0_lab = MathTex("t{=}0", color=GREEN, font_size=22).next_to(bar_right, RIGHT, buff=0.2)
+        marker = Dot(bar_left, color=YELLOW, radius=0.09)
+
+        noise_lab = Text("ノイズ（拡散した粒子）", color=RED, font_size=22)
+        noise_lab.next_to(panel, DOWN, buff=0.15)
+
+        self.play(Create(panel), Create(bar_line),
+                  Write(t_T_lab), Write(t_0_lab), Create(marker),
+                  run_time=0.6)
+        self.play(FadeIn(particles), Write(noise_lab), run_time=0.7)
+        self.wait(0.6)
+
+        # 段階的に粒子を目標位置へ整列させる（複数中間ステップで“凝集”を表現）
+        n_stages = 4
+        for s in range(1, n_stages + 1):
+            alpha = s / n_stages
+            # 各粒子の中間目標＝初期位置と目標位置の内挿 + 残ノイズ（減衰）
+            resid_scale = (1 - alpha) * 0.35
+            anims = []
+            for i, p in enumerate(particles):
+                interp_x = (1 - alpha) * init_pos[i, 0] + alpha * target_xs[i]
+                interp_y = (1 - alpha) * init_pos[i, 1] + alpha * target_ys[i]
+                # 残ノイズを足す
+                interp_x += resid_scale * rng_r.standard_normal()
+                interp_y += resid_scale * rng_r.standard_normal()
+                new_pos = panel_center + np.array([interp_x, interp_y, 0])
+                anims.append(p.animate.move_to(new_pos))
+            # 進行マーカーも動かす
+            marker_target = bar_left + (bar_right - bar_left) * alpha
+            anims.append(marker.animate.move_to(marker_target))
+            self.play(*anims, run_time=0.9)
+            self.wait(0.15)
+
+        # 最終ラベルへ差し替え
+        image_lab = Text("整列した粒子＝生成された画像", color=GREEN, font_size=22)
+        image_lab.next_to(panel, DOWN, buff=0.15)
+        self.play(Transform(noise_lab, image_lab),
+                  particles.animate.set_color(GREEN),
+                  run_time=0.6)
         self.wait(1.5)
 
         self.play(
             FadeOut(step_intro), FadeOut(steps),
-            FadeOut(axes_r), FadeOut(t_lab_r), FadeOut(path_r),
-            FadeOut(start_dot), FadeOut(end_dot),
-            FadeOut(start_lab), FadeOut(end_lab),
+            FadeOut(panel), FadeOut(particles),
+            FadeOut(bar_line), FadeOut(t_T_lab), FadeOut(t_0_lab),
+            FadeOut(marker), FadeOut(noise_lab),
         )
         self.wait(0.3)
 
@@ -545,14 +581,14 @@ class SDEDiffusionModelRelation(Scene):
         para1_eq = MathTex(
             r"\mathbf{s}_\theta(\mathbf{x}, t) \;\approx\; "
             r"\nabla_{\mathbf{x}}\log p_t(\mathbf{x})",
-            color=YELLOW, font_size=36,
+            color=YELLOW, font_size=38,
         )
         para1_group = VGroup(para1_title, para1_eq).arrange(DOWN, buff=0.25)
         para1_group.shift(UP * 1.5)
         self.play(Write(para1_title), Write(para1_eq), run_time=0.9)
         self.wait(0.3)
 
-        para2_title = Text("② ノイズ予測型（DDPM 等で最も一般的）",
+        para2_title = Text("② ノイズ予測型（こちらの方が実装例は多い）",
                            color=GOLD, font_size=26, weight=BOLD)
         para2_desc = Text(
             "順過程で加えられた標準ガウスノイズ 𝜀 ～ 𝒩(0, 𝐈) を予測",
@@ -561,7 +597,7 @@ class SDEDiffusionModelRelation(Scene):
         para2_eq = MathTex(
             r"\nabla_{\mathbf{x}}\log p_t(\mathbf{x}) \;=\; "
             r"-\frac{\boldsymbol{\epsilon}_\theta(\mathbf{x}, t)}{\sigma_t}",
-            color=YELLOW, font_size=36,
+            color=YELLOW, font_size=38,
         )
         para2_group = VGroup(para2_title, para2_desc, para2_eq).arrange(DOWN, buff=0.2)
         para2_group.shift(DOWN * 1.1)
@@ -590,9 +626,9 @@ class SDEDiffusionModelRelation(Scene):
 
         emb_intro = Text(
             "学習済みNNの出力を、真のスコアの位置に代入する",
-            color=WHITE, font_size=25,
+            color=WHITE, font_size=26,
         )
-        emb_intro.shift(UP * 2.2)
+        emb_intro.shift(UP * 2)
         self.play(Write(emb_intro), run_time=0.7)
         self.wait(0.3)
 
@@ -601,7 +637,7 @@ class SDEDiffusionModelRelation(Scene):
             r"d\mathbf{x} = \bigl[\mathbf{f}(\mathbf{x}, t) "
             r"- g(t)^2 \mathbf{s}_\theta(\mathbf{x}, t)\bigr]dt "
             r"+ g(t)\,d\bar{\mathbf{W}}",
-            color=YELLOW, font_size=34,
+            color=YELLOW, font_size=38,
         )
         emb1_group = VGroup(emb1_title, emb1_eq).arrange(DOWN, buff=0.2)
         emb1_group.shift(UP * 0.7)
@@ -613,7 +649,7 @@ class SDEDiffusionModelRelation(Scene):
             r"d\mathbf{x} = \Bigl[\mathbf{f}(\mathbf{x}, t) "
             r"+ \frac{g(t)^2}{\sigma_t} \boldsymbol{\epsilon}_\theta(\mathbf{x}, t)\Bigr]dt "
             r"+ g(t)\,d\bar{\mathbf{W}}",
-            color=YELLOW, font_size=34,
+            color=YELLOW, font_size=38,
         )
         emb2_group = VGroup(emb2_title, emb2_eq).arrange(DOWN, buff=0.2)
         emb2_group.shift(DOWN * 0.9)
@@ -648,7 +684,7 @@ class SDEDiffusionModelRelation(Scene):
             "ノイズ予測型 𝜀_θ の学習は、次の MSE Loss で行う",
             color=WHITE, font_size=26,
         )
-        loss_intro.shift(UP * 2.1)
+        loss_intro.shift(UP * 2)
         self.play(Write(loss_intro), run_time=0.7)
         self.wait(0.3)
 
@@ -659,22 +695,22 @@ class SDEDiffusionModelRelation(Scene):
             r"- \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)\bigr\|^2 \,\Bigr]",
             color=YELLOW, font_size=42,
         )
-        loss_eq.shift(UP * 0.9)
+        loss_eq.shift(UP * 0.6)
         loss_box = SurroundingRectangle(loss_eq, color=YELLOW, buff=0.25)
         self.play(Write(loss_eq), Create(loss_box), run_time=1.0)
         self.wait(0.3)
 
         proc1 = Text(
             "① 元データ 𝐱_0 にノイズ 𝜀 を加え、時刻 t の状態 𝐱_t を作る",
-            color=WHITE, font_size=23,
+            color=WHITE, font_size=24,
         )
         proc2 = Text(
             "② ネットワークに (𝐱_t, t) を渡し、加えたノイズを予測させる",
-            color=WHITE, font_size=23,
+            color=WHITE, font_size=24,
         )
         proc3 = Text(
             "③ 正解ノイズ 𝜀 との差が小さくなるよう、勾配降下法で θ を更新",
-            color=WHITE, font_size=23,
+            color=WHITE, font_size=24,
         )
         procs = VGroup(proc1, proc2, proc3).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
         procs.shift(DOWN * 1.6)
@@ -697,20 +733,20 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         summary = VGroup(
-            Text("• 順過程：d𝐱 = 𝐟(𝐱,t)dt + g(t)d𝐖  でデータをガウスノイズへ拡散",
-                 color=WHITE, font_size=22),
+            Text("• 順過程：d𝐱 = 𝐟(𝐱,t)dt + g(t)d𝐖  でデータがガウスノイズへ変化する様子をモデリング",
+                 color=WHITE, font_size=24),
             Text("• 拡散項は水中でインクが散らばるブラウン運動のアナロジー",
-                 color=WHITE, font_size=22),
+                 color=WHITE, font_size=24),
             Text("• 逆過程には「時間逆再生」＋「スコア（密度が高い方向）による回収力」が必要",
-                 color=WHITE, font_size=22),
+                 color=WHITE, font_size=24),
             Text("• 逆時間SDE：d𝐱 = [𝐟 − g(t)² ∇log p_t] dt + g(t)d𝐖̄",
-                 color=WHITE, font_size=22),
+                 color=WHITE, font_size=24),
             Text("• スコアや加えたノイズをNNで近似（スコア型 / ノイズ型の2大アプローチ）",
-                 color=WHITE, font_size=22),
+                 color=WHITE, font_size=24),
             Text("• 学習はシンプルなMSE：正解ノイズと予測ノイズの2乗誤差最小化",
-                 color=WHITE, font_size=22),
+                 color=WHITE, font_size=24),
             Text("• 生成はガウスノイズから出発し、オイラー・丸山近似で t=T→0 に軌道を辿る",
-                 color=WHITE, font_size=22),
+                 color=WHITE, font_size=24),
             Text("• 拡散モデル ＝「ノイズ化SDEの逆再生 ＋ スコアによる補正」",
                  color=GOLD, font_size=24, weight=BOLD),
         ).arrange(DOWN, buff=0.28, aligned_edge=LEFT)
