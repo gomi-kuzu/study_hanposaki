@@ -140,11 +140,11 @@ class StochasticDifferentialEquationOverview(Scene):
         self.wait(0.5)
 
         correspond = Text(
-            "この 𝐁(𝐗)d𝐖 の項が22話フォッカー・プランクの方程式の",
+            "この 𝐁(𝐗)d𝐖 の項が22話フォッカー・プランクの方程式の「拡散項」に、",
             color=GOLD, font_size=24,
         )
         correspond2 = Text(
-            "「拡散項」に、𝐚(𝐗)dt の項が「ドリフト項」に対応する",
+            "𝐚(𝐗)dt の項が「ドリフト項」に対応する",
             color=GOLD, font_size=24,
         )
         correspond.shift(DOWN * 2.0)
