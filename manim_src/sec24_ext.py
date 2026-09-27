@@ -400,7 +400,7 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         step1 = Text(
-            "① 完全なガウスノイズ 𝐱_T ～ 𝒩(0, 𝐈) を用意する",
+            "① 完全なガウスノイズ 𝐱_T ～ 𝒩 (0, 𝐈) を用意する",
             color=WHITE, font_size=24,
         )
         step2 = Text(
@@ -504,7 +504,7 @@ class SDEDiffusionModelRelation(Scene):
         # ============================================================
         # Part 8: ニューラルネットワークの入出力
         # ============================================================
-        subtitle8 = Text("パラメータの学習に落とし込むには", font_size=28, color=GREEN)
+        subtitle8 = Text("パラメータの学習に落とし込むには？", font_size=28, color=GREEN)
         subtitle8.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle8), run_time=0.5)
         self.wait(0.3)
@@ -513,13 +513,13 @@ class SDEDiffusionModelRelation(Scene):
             "スコアや加えたノイズを、ニューラルネットワークで推定させる",
             color=WHITE, font_size=26,
         )
-        nn_intro.shift(UP * 2)
+        nn_intro.shift(UP * 1.5)
         self.play(Write(nn_intro), run_time=0.7)
         self.wait(0.3)
 
         # NNのポンチ絵
         nn_box = Rectangle(width=2.6, height=1.8, color=YELLOW, stroke_width=3)
-        nn_box.shift(DOWN * 0.2)
+        nn_box.shift(DOWN * 0.7)
         nn_label = Text("NN\n(パラメタθ)", color=YELLOW, font_size=28)
         nn_label.move_to(nn_box.get_center())
 
