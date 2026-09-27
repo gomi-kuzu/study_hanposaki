@@ -57,15 +57,15 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 2: 順過程（ノイズ化）— インクの拡散
+        # Part 2: 順拡散過程（ノイズ化）— インクの拡散
         # ============================================================
-        subtitle2 = Text("順過程：データにノイズを加えていく", font_size=28, color=GOLD)
+        subtitle2 = Text("順拡散過程：データにノイズを加えていく", font_size=28, color=GOLD)
         subtitle2.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle2), run_time=0.5)
         self.wait(0.3)
 
         fwd_intro = Text(
-            "きれいなデータにノイズを加えていく過程は SDE で記述される",
+            "写真のインクが水に滲んでいく過程は SDE で記述される",
             color=WHITE, font_size=26,
         )
         fwd_intro.shift(UP * 2.0)
@@ -84,12 +84,12 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.4)
 
         # インク拡散のポンチ絵
-        drift_label = Text("ドリフト項 𝐟(𝐱,t)dt", color=BLUE, font_size=22)
+        drift_label = Text("ドリフト項 𝐟(𝐱,t)dt", color=BLUE, font_size=24)
         drift_desc = Text("水全体の流れ（インクを寄せる力）", color=WHITE, font_size=20)
         drift_group = VGroup(drift_label, drift_desc).arrange(DOWN, buff=0.1)
         drift_group.shift(LEFT * 3.3 + DOWN * 0.6)
 
-        diff_label = Text("拡散項 g(t)d𝐖", color=RED, font_size=22)
+        diff_label = Text("拡散項 g(t)d𝐖", color=RED, font_size=24)
         diff_desc = Text("インク粒子のブラウン運動", color=WHITE, font_size=20)
         diff_group = VGroup(diff_label, diff_desc).arrange(DOWN, buff=0.1)
         diff_group.shift(RIGHT * 3.3 + DOWN * 0.6)
@@ -129,9 +129,9 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 3: 順過程の結果 — サンプルパスがガウスノイズへ
+        # Part 3: 順拡散過程の結果 — サンプルパスがガウスノイズへ
         # ============================================================
-        subtitle3 = Text("順過程の結果：データはガウスノイズへ", font_size=28, color=GOLD)
+        subtitle3 = Text("順拡散過程の結果：データはガウスノイズへ", font_size=28, color=GOLD)
         subtitle3.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle3), run_time=0.5)
         self.wait(0.3)
@@ -206,9 +206,9 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         # ============================================================
-        # Part 4: 逆過程 — 生成とは時間の逆再生
+        # Part 4: 逆拡散過程 — 生成とは時間の逆再生
         # ============================================================
-        subtitle4 = Text("逆過程：時間を遡ってデータを生成する", font_size=28, color=ORANGE)
+        subtitle4 = Text("逆拡散過程：時間を遡ってデータを生成する", font_size=28, color=ORANGE)
         subtitle4.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle4), run_time=0.5)
         self.wait(0.3)
@@ -222,7 +222,7 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         rev2 = Text(
-            "完全なノイズから、きれいな画像を復元するプロセス",
+            "ぐちゃぐちゃなインクの滲みから、きれいな写真を復元するようなプロセス",
             color=GOLD, font_size=26,
         )
         rev2.shift(UP * 1.2)
@@ -238,7 +238,7 @@ class SDEDiffusionModelRelation(Scene):
             color=WHITE, font_size=24,
         )
         need2 = Text(
-            "② ノイズの回収力（スコア）：散らばった粒子を密度の高い方向へ引き戻す",
+            "② ノイズの回収力（スコア）：散らばったインク粒子を密度の高い方向へ引き戻す",
             color=WHITE, font_size=24,
         )
         needs = VGroup(need1, need2).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
@@ -323,7 +323,7 @@ class SDEDiffusionModelRelation(Scene):
         # ============================================================
         # Part 6: 逆時間SDE
         # ============================================================
-        subtitle6 = Text("逆時間SDE：ノイズから画像を生成する式", font_size=28, color=YELLOW)
+        subtitle6 = Text("逆時間SDE：ノイズからデータを生成する式", font_size=28, color=YELLOW)
         subtitle6.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle6), run_time=0.5)
         self.wait(0.3)
@@ -408,7 +408,7 @@ class SDEDiffusionModelRelation(Scene):
             color=WHITE, font_size=24,
         )
         step3 = Text(
-            "③ 目的地 t=0 に到達したとき、1枚のきれいな画像 𝐱_0 が得られる",
+            "③ 目的地 t=0 に到達したとき、ひとつの意味のあるデータ 𝐱_0 が得られる",
             color=WHITE, font_size=24,
         )
         steps = VGroup(step1, step2, step3).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
@@ -543,8 +543,8 @@ class SDEDiffusionModelRelation(Scene):
         arr_out = Arrow(nn_box.get_right(), out.get_left(),
                         color=WHITE, buff=0.15, stroke_width=3)
 
-        in_lab = Text("入力", color=BLUE, font_size=22).next_to(in1, UP, buff=0.8)
-        out_lab = Text("出力：𝐱と同次元のベクトル", color=RED, font_size=22)
+        in_lab = Text("入力", color=BLUE, font_size=26).next_to(in1, UP, buff=0.8)
+        out_lab = Text("出力：𝐱と同次元のベクトル", color=RED, font_size=26)
         out_lab.next_to(out, DOWN, buff=0.4)
 
         self.play(Create(nn_box), Write(nn_label), run_time=0.5)
@@ -591,7 +591,7 @@ class SDEDiffusionModelRelation(Scene):
         para2_title = Text("② ノイズ予測型（こちらの方が実装例は多い）",
                            color=GOLD, font_size=26, weight=BOLD)
         para2_desc = Text(
-            "順過程で加えられた標準ガウスノイズ 𝜀 ～ 𝒩(0, 𝐈) を予測",
+            "順拡散過程で加えられた標準ガウスノイズ 𝜀 ～ 𝒩(0, 𝐈) を予測",
             color=WHITE, font_size=22,
         )
         para2_eq = MathTex(
@@ -725,6 +725,90 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         # ============================================================
+        # Part 11.5: 作用素による統一的な表現（KFE / FP）
+        # ============================================================
+        subtitle_op = Text("やはり、作用素で書けばシンプルかつ統一的に表現できる",
+                           font_size=28, color=PURPLE)
+        subtitle_op.next_to(title, DOWN)
+        self.play(Transform(subtitle1, subtitle_op), run_time=0.5)
+        self.wait(0.3)
+
+        op_intro = Text(
+            "拡散過程を、密度関数 p(x, t) に対する作用素の形で書き直してみる",
+            color=WHITE, font_size=25,
+        )
+        op_intro.shift(UP * 1.9)
+        self.play(Write(op_intro), run_time=0.7)
+        self.wait(0.3)
+
+        # ドリフト作用素と拡散作用素の定義
+        op_flow = MathTex(
+            r"\mathcal{L}_{\mathrm{Flow}} \;=\; "
+            r"-\frac{\partial}{\partial x}\bigl[\,u(x, t)\,\cdot\,\bigr]",
+            color=BLUE, font_size=34,
+        )
+        op_diff = MathTex(
+            r"\mathcal{L}_{\mathrm{Diff}} \;=\; "
+            r"\frac{1}{2}\frac{\partial^2}{\partial x^2}\bigl[\,\sigma(x, t)^2\,\cdot\,\bigr]",
+            color=RED, font_size=34,
+        )
+        op_defs = VGroup(op_flow, op_diff).arrange(RIGHT, buff=0.9)
+        op_defs.shift(UP * 1.15)
+        self.play(Write(op_flow), Write(op_diff), run_time=1.1)
+        self.wait(0.3)
+
+        # 順方向SDE = KFE = フォッカー・プランク
+        kfe_eq = MathTex(
+            r"\frac{\partial}{\partial t} p(x, t) \;=\; ",
+            r"\mathcal{L}_{\mathrm{Flow}}",
+            r"\, p(x, t) \;+\; ",
+            r"\mathcal{L}_{\mathrm{Diff}}",
+            r"\, p(x, t)",
+            font_size=40,
+        )
+        kfe_eq[0].set_color(WHITE)
+        kfe_eq[1].set_color(BLUE)
+        kfe_eq[2].set_color(WHITE)
+        kfe_eq[3].set_color(RED)
+        kfe_eq[4].set_color(WHITE)
+        # kfe_eq.shift(UP * 0.05)
+        kfe_box = SurroundingRectangle(kfe_eq, color=YELLOW, buff=0.22)
+        self.play(Write(kfe_eq), Create(kfe_box), run_time=1.1)
+        self.wait(0.3)
+
+        kfe_label = Text(
+            "＝ コルモゴロフ前進方程式（KFE）(≒物理学の文脈でのフォッカープランク方程式）",
+            color=GOLD, font_size=24,
+        )
+        kfe_label.next_to(kfe_box, DOWN, buff=0.25)
+        self.play(Write(kfe_label), run_time=0.7)
+        self.wait(0.4)
+
+        # 後退方程式 → 逆時間SDE
+        back_note = Text(
+            "※同様に「後退方程式」を定義でき、それが逆拡散過程に対応する",
+            color=WHITE, font_size=24,
+        )
+        back_note.shift(DOWN * 1.55)
+        self.play(Write(back_note), run_time=0.7)
+        self.wait(0.3)
+
+        unify_note = Text(
+            "この作用素の書き方なら、フローマッチング等の手法も統一的に表現できる",
+            color=TEAL, font_size=24, weight=BOLD,
+        )
+        unify_note.shift(DOWN * 2.25)
+        self.play(Write(unify_note), run_time=0.8)
+        self.wait(2.0)
+
+        self.play(
+            FadeOut(op_intro), FadeOut(op_flow), FadeOut(op_diff),
+            FadeOut(kfe_eq), FadeOut(kfe_box), FadeOut(kfe_label),
+            FadeOut(back_note), FadeOut(unify_note),
+        )
+        self.wait(0.3)
+
+        # ============================================================
         # Part 12: まとめ
         # ============================================================
         subtitle12 = Text("まとめ", font_size=36, color=TEAL)
@@ -735,17 +819,15 @@ class SDEDiffusionModelRelation(Scene):
         summary = VGroup(
             Text("• 順過程：d𝐱 = 𝐟(𝐱,t)dt + g(t)d𝐖  でデータがガウスノイズへ変化する様子をモデリング",
                  color=WHITE, font_size=24),
-            Text("• 拡散項は水中でインクが散らばるブラウン運動のアナロジー",
-                 color=WHITE, font_size=24),
             Text("• 逆過程には「時間逆再生」＋「スコア（密度が高い方向）による回収力」が必要",
                  color=WHITE, font_size=24),
             Text("• 逆時間SDE：d𝐱 = [𝐟 − g(t)² ∇log p_t] dt + g(t)d𝐖̄",
                  color=WHITE, font_size=24),
             Text("• スコアや加えたノイズをNNで近似（スコア型 / ノイズ型の2大アプローチ）",
                  color=WHITE, font_size=24),
-            Text("• 学習はシンプルなMSE：正解ノイズと予測ノイズの2乗誤差最小化",
-                 color=WHITE, font_size=24),
             Text("• 生成はガウスノイズから出発し、オイラー・丸山近似で t=T→0 に軌道を辿る",
+                 color=WHITE, font_size=24),
+            Text("• 拡散モデルでも作用素での記述法は有用",
                  color=WHITE, font_size=24),
             Text("• 拡散モデル ＝「ノイズ化SDEの逆再生 ＋ スコアによる補正」",
                  color=GOLD, font_size=24, weight=BOLD),
