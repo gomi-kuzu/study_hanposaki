@@ -6,7 +6,7 @@ class SDEDiffusionModelRelation(Scene):
     def construct(self):
         self.camera.background_color = "#012817"
 
-        title = Text("確率微分方程式と拡散モデルの関係", font_size=36, color=WHITE)
+        title = Text("おまけ：確率微分方程式として理解する拡散モデル", font_size=36, color=WHITE)
         title.to_edge(UP)
         self.play(Write(title), run_time=0.8)
         self.wait(0.5)
