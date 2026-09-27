@@ -6,7 +6,7 @@ class SDEDiffusionModelRelation(Scene):
     def construct(self):
         self.camera.background_color = "#012817"
 
-        title = Text("おまけ：確率微分方程式として理解する拡散モデル", font_size=36, color=WHITE)
+        title = Text("【おまけ】確率微分方程式として理解する拡散モデル", font_size=36, color=WHITE)
         title.to_edge(UP)
         self.play(Write(title), run_time=0.8)
         self.wait(0.5)
@@ -786,7 +786,7 @@ class SDEDiffusionModelRelation(Scene):
 
         # 後退方程式 → 逆時間SDE
         back_note = Text(
-            "※同様に「後退方程式」を定義でき、それが逆拡散過程に対応する",
+            "※同様に、逆拡散過程をもとに「後退方程式」も定義できる",
             color=WHITE, font_size=24,
         )
         back_note.shift(DOWN * 1.55)
