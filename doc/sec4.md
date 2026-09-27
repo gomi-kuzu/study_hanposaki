@@ -61,4 +61,8 @@ https://github.com/user-attachments/assets/97115ac5-0ee4-452a-8611-e9bfdc49751d
 ### 確率微分方程式の話
 <div><video controls src="https://github.com/user-attachments/assets/e7b03893-42f8-4391-afc7-551fe529d681"></video></div>
 
+## おまけ
+### 拡散モデルへの半歩
+<div><video controls src=""></video></div>
+
 <!-- <div><video controls src=""></video></div> -->
