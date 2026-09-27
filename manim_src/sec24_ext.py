@@ -65,7 +65,7 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         fwd_intro = Text(
-            "写真のインクが水に滲んでいく過程は SDE で記述される",
+            "写真をバケツに落としたときの、インクが滲んでいく過程はSDEでモデリングできる",
             color=WHITE, font_size=26,
         )
         fwd_intro.shift(UP * 2.0)
@@ -504,23 +504,23 @@ class SDEDiffusionModelRelation(Scene):
         # ============================================================
         # Part 8: ニューラルネットワークの入出力
         # ============================================================
-        subtitle8 = Text("ニューラルネットワークの入出力", font_size=28, color=GREEN)
+        subtitle8 = Text("パラメータの学習に落とし込むには", font_size=28, color=GREEN)
         subtitle8.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle8), run_time=0.5)
         self.wait(0.3)
 
         nn_intro = Text(
-            "スコアや加えたノイズは、ニューラルネットワークで近似する",
+            "スコアや加えたノイズを、ニューラルネットワークで推定させる",
             color=WHITE, font_size=26,
         )
-        nn_intro.shift(UP * 2.1)
+        nn_intro.shift(UP * 2)
         self.play(Write(nn_intro), run_time=0.7)
         self.wait(0.3)
 
         # NNのポンチ絵
         nn_box = Rectangle(width=2.6, height=1.8, color=YELLOW, stroke_width=3)
         nn_box.shift(DOWN * 0.2)
-        nn_label = Text("NN\n(θ)", color=YELLOW, font_size=28)
+        nn_label = Text("NN\n(パラメタθ)", color=YELLOW, font_size=28)
         nn_label.move_to(nn_box.get_center())
 
         in1 = MathTex(r"\mathbf{x}", color=WHITE, font_size=36)
@@ -529,10 +529,10 @@ class SDEDiffusionModelRelation(Scene):
         in2.next_to(nn_box, LEFT, buff=1.5).shift(DOWN * 0.5)
 
         out_math1 = MathTex(r"\mathbf{s}_\theta(\mathbf{x}, t)",
-                            color=WHITE, font_size=30)
+                            color=WHITE, font_size=36)
         out_or = Text("または", color=WHITE, font_size=24)
         out_math2 = MathTex(r"\boldsymbol{\epsilon}_\theta(\mathbf{x}, t)",
-                            color=WHITE, font_size=30)
+                            color=WHITE, font_size=36)
         out = VGroup(out_math1, out_or, out_math2).arrange(RIGHT, buff=0.2)
         out.next_to(nn_box, RIGHT, buff=1.2)
 
@@ -543,7 +543,7 @@ class SDEDiffusionModelRelation(Scene):
         arr_out = Arrow(nn_box.get_right(), out.get_left(),
                         color=WHITE, buff=0.15, stroke_width=3)
 
-        in_lab = Text("入力", color=BLUE, font_size=26).next_to(in1, UP, buff=0.8)
+        in_lab = Text("入力", color=BLUE, font_size=26).next_to(in1, UP, buff=0.6)
         out_lab = Text("出力：𝐱と同次元のベクトル", color=RED, font_size=26)
         out_lab.next_to(out, DOWN, buff=0.4)
 
@@ -551,33 +551,33 @@ class SDEDiffusionModelRelation(Scene):
         self.play(Write(in1), Write(in2), GrowArrow(arr_in1), GrowArrow(arr_in2),
                   Write(in_lab), run_time=0.8)
         self.play(GrowArrow(arr_out), Write(out), Write(out_lab), run_time=0.8)
-        self.wait(0.4)
+        # self.wait(0.4)
 
-        in_desc = Text(
-            "𝐱：時刻 t のノイズ混じりの状態    t：現在のノイズ強度",
-            color=WHITE, font_size=22,
-        )
-        in_desc.shift(DOWN * 2.5)
-        self.play(Write(in_desc), run_time=0.7)
+        # in_desc = Text(
+        #     "𝐱：時刻 t のノイズ混じりの状態    t：現在のノイズ強度",
+        #     color=WHITE, font_size=22,
+        # )
+        # in_desc.shift(DOWN * 2.5)
+        # self.play(Write(in_desc), run_time=0.7)
         self.wait(1.8)
 
         self.play(
             FadeOut(nn_intro), FadeOut(nn_box), FadeOut(nn_label),
             FadeOut(in1), FadeOut(in2), FadeOut(out),
             FadeOut(arr_in1), FadeOut(arr_in2), FadeOut(arr_out),
-            FadeOut(in_lab), FadeOut(out_lab), FadeOut(in_desc),
+            FadeOut(in_lab), FadeOut(out_lab), # FadeOut(in_desc),
         )
         self.wait(0.3)
 
         # ============================================================
         # Part 9: パラメータ化の2つのアプローチ
         # ============================================================
-        subtitle9 = Text("何を予測させるか：スコア型 vs ノイズ型", font_size=28, color=BLUE)
+        subtitle9 = Text("何を推定させるか：スコア型 vs ノイズ型", font_size=28, color=BLUE)
         subtitle9.next_to(title, DOWN)
         self.play(Transform(subtitle1, subtitle9), run_time=0.5)
         self.wait(0.3)
 
-        para1_title = Text("① スコア予測型", color=GOLD, font_size=26, weight=BOLD)
+        para1_title = Text("① スコア推定型", color=GOLD, font_size=26, weight=BOLD)
         para1_eq = MathTex(
             r"\mathbf{s}_\theta(\mathbf{x}, t) \;\approx\; "
             r"\nabla_{\mathbf{x}}\log p_t(\mathbf{x})",
@@ -588,10 +588,10 @@ class SDEDiffusionModelRelation(Scene):
         self.play(Write(para1_title), Write(para1_eq), run_time=0.9)
         self.wait(0.3)
 
-        para2_title = Text("② ノイズ予測型（こちらの方が実装例は多い）",
+        para2_title = Text("② ノイズ推定型（こちらの方が実装例は多い）",
                            color=GOLD, font_size=26, weight=BOLD)
         para2_desc = Text(
-            "順拡散過程で加えられた標準ガウスノイズ 𝜀 ～ 𝒩(0, 𝐈) を予測",
+            "順拡散過程で加えられた標準ガウスノイズ 𝜀 ～ 𝒩(0, 𝐈) を推定",
             color=WHITE, font_size=22,
         )
         para2_eq = MathTex(
@@ -632,7 +632,7 @@ class SDEDiffusionModelRelation(Scene):
         self.play(Write(emb_intro), run_time=0.7)
         self.wait(0.3)
 
-        emb1_title = Text("① スコア予測型を組み込む", color=GOLD, font_size=24)
+        emb1_title = Text("① スコア推定型を組み込む", color=GOLD, font_size=24)
         emb1_eq = MathTex(
             r"d\mathbf{x} = \bigl[\mathbf{f}(\mathbf{x}, t) "
             r"- g(t)^2 \mathbf{s}_\theta(\mathbf{x}, t)\bigr]dt "
@@ -644,7 +644,7 @@ class SDEDiffusionModelRelation(Scene):
         self.play(Write(emb1_title), Write(emb1_eq), run_time=1.0)
         self.wait(0.3)
 
-        emb2_title = Text("② ノイズ予測型を組み込む", color=GOLD, font_size=24)
+        emb2_title = Text("② ノイズ推定型を組み込む", color=GOLD, font_size=24)
         emb2_eq = MathTex(
             r"d\mathbf{x} = \Bigl[\mathbf{f}(\mathbf{x}, t) "
             r"+ \frac{g(t)^2}{\sigma_t} \boldsymbol{\epsilon}_\theta(\mathbf{x}, t)\Bigr]dt "
@@ -681,7 +681,7 @@ class SDEDiffusionModelRelation(Scene):
         self.wait(0.3)
 
         loss_intro = Text(
-            "ノイズ予測型 𝜀_θ の学習は、次の MSE Loss で行う",
+            "ノイズ推定型 𝜀_θ の学習は、次の MSE Loss で行う",
             color=WHITE, font_size=26,
         )
         loss_intro.shift(UP * 2)
@@ -705,7 +705,7 @@ class SDEDiffusionModelRelation(Scene):
             color=WHITE, font_size=24,
         )
         proc2 = Text(
-            "② ネットワークに (𝐱_t, t) を渡し、加えたノイズを予測させる",
+            "② ネットワークに (𝐱_t, t) を渡し、加えたノイズを推定させる",
             color=WHITE, font_size=24,
         )
         proc3 = Text(
@@ -823,7 +823,7 @@ class SDEDiffusionModelRelation(Scene):
                  color=WHITE, font_size=24),
             Text("• 逆時間SDE：d𝐱 = [𝐟 − g(t)² ∇log p_t] dt + g(t)d𝐖̄",
                  color=WHITE, font_size=24),
-            Text("• スコアや加えたノイズをNNで近似（スコア型 / ノイズ型の2大アプローチ）",
+            Text("• スコアや加えたノイズをNNで推定",
                  color=WHITE, font_size=24),
             Text("• 生成はガウスノイズから出発し、オイラー・丸山近似で t=T→0 に軌道を辿る",
                  color=WHITE, font_size=24),
