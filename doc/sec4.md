@@ -63,6 +63,6 @@ https://github.com/user-attachments/assets/97115ac5-0ee4-452a-8611-e9bfdc49751d
 
 ## おまけ
 ### 拡散モデルへの半歩
-<div><video controls src=""></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/c7755783-a9c1-4248-a829-ce2994d28c33"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
