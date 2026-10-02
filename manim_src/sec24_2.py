@@ -172,7 +172,7 @@ class StochasticDifferentialEquationOverview(Scene):
             "SDE から任意時刻 t の 𝐗(t) の値が欲しい場合：",
             color=WHITE, font_size=26,
         )
-        way_intro.shift(UP * 1.9)
+        way_intro.shift(UP * 1.8)
         self.play(Write(way_intro), run_time=0.7)
         self.wait(0.3)
 
@@ -180,13 +180,13 @@ class StochasticDifferentialEquationOverview(Scene):
             "① SDEを離散で近似し、初期値から所望時刻まで単位時刻ずつ逐次更新する",
             color=WHITE, font_size=25,
         ),
-        Text("※オイラー丸山法など", color=WHITE, font_size=22),
+        Text("※オイラー・丸山近似など", color=WHITE, font_size=22),
         ).arrange(DOWN, aligned_edge=RIGHT, buff=0.1)
         way2 = Text(
             "② あるいは「確率積分」という操作を行う",
             color=WHITE, font_size=25,
         )
-        ways = VGroup(way1, way2).arrange(DOWN, aligned_edge=LEFT, buff=0.32)
+        ways = VGroup(way1, way2).arrange(DOWN, aligned_edge=LEFT, buff=0.1)
         ways.shift(UP * 0.6)
         for w in ways:
             self.play(Write(w), run_time=0.7)
