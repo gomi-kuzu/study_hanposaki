@@ -59,7 +59,7 @@ https://github.com/user-attachments/assets/97115ac5-0ee4-452a-8611-e9bfdc49751d
 # 24話
 ## 24.2
 ### 確率微分方程式の話
-<div><video controls src="https://github.com/user-attachments/assets/e7b03893-42f8-4391-afc7-551fe529d681"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/6af18150-4de3-4bb2-b9e9-e8499a168bd8"></video></div>
 
 ## おまけ
 ### 拡散モデルへの半歩
