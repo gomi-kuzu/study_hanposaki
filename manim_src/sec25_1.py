@@ -324,13 +324,13 @@ class FuturePredictionProblemSetup(ThreeDScene):
         )).arrange(RIGHT, buff=0.2)
         target_alias.shift(DOWN * 1.2)
 
-        note_typo = Text("↑この関数出力値を予測するのがこの先の目的になる！", color=WHITE, font_size=24)
+        note_typo = Text("↑この関数出力値を予測するのがここでの目的になる！", color=WHITE, font_size=24)
         note_typo.shift(DOWN * 2.1)
 
         self.play(Write(obs_def), run_time=0.8)
         self.play(Write(pred_def), run_time=1.0)
         self.play(Write(target_alias), Write(note_typo), run_time=0.8)
-        self.wait(1.5)
+        self.wait(1.8)
 
         self.play(
             FadeOut(obs_def), FadeOut(pred_def),
@@ -364,6 +364,19 @@ class FuturePredictionProblemSetup(ThreeDScene):
         z_floor_shift = axes3.c2p(0, 0, -2.0) - axes3.c2p(0, 0, 0.0)
         axes3.x_axis.shift(z_floor_shift)
         axes3.y_axis.shift(z_floor_shift)
+
+        # 3D軸ラベル: x軸→x_1, y軸→x_2, z軸→φ
+        axis3_xlabel = MathTex(r"x_1", color=WHITE, font_size=44)
+        axis3_xlabel.next_to(axes3.x_axis.get_end(), RIGHT, buff=0.15)
+        axis3_ylabel = MathTex(r"x_2", color=WHITE, font_size=44)
+        axis3_ylabel.next_to(axes3.y_axis.get_end(), UP, buff=0.15)
+        axis3_zlabel = MathTex(r"\phi", color=WHITE, font_size=44)
+        axis3_zlabel.next_to(axes3.z_axis.get_end(), OUT, buff=0.2)
+        axis3_zlabel.shift(RIGHT * 0.5 + IN * 0.5)  # z軸ラベルを少し右下にずらす
+        # カメラ方向を向くように回転（3D空間内で見やすくする）
+        for lbl in (axis3_xlabel, axis3_ylabel, axis3_zlabel):
+            lbl.rotate(90 * DEGREES, axis=RIGHT)
+        axes3_labels = VGroup(axis3_xlabel, axis3_ylabel, axis3_zlabel)
 
         base_plane = Surface(
             lambda u, v: axes3.c2p(u, v, -2.0),
@@ -413,6 +426,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
         self.add_fixed_in_frame_mobjects(flat_label)
 
         self.play(Create(axes3), Create(base_plane), run_time=0.9)
+        self.play(Write(axes3_labels), run_time=0.6)
         self.play(Create(flat_surface), run_time=1.1)
         self.play(Create(floor_path), run_time=0.7)
         self.play(Create(lifts_flat), FadeIn(top_dots_flat), run_time=0.9)
@@ -462,7 +476,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
         nonlinear_labels.to_edge(LEFT).shift(UP)
         self.add_fixed_in_frame_mobjects(nonlinear_labels)
         nonlinear_labels2 = VGroup(nonlinear_label3, nonlinear_label4).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
-        nonlinear_labels2.to_edge(RIGHT).shift(RIGHT + UP * 0.2)
+        nonlinear_labels2.to_edge(RIGHT).shift(RIGHT*0/7 + UP * 0.2)
         self.add_fixed_in_frame_mobjects(nonlinear_labels2)
 
         self.play(Create(nonlinear_surface), Create(nonlinear_labels2), run_time=1.3)
@@ -484,6 +498,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
         self.play(
             FadeOut(nonlinear_surface), FadeOut(lifts_nl), FadeOut(top_dots_nl),
             FadeOut(floor_path), FadeOut(base_plane), FadeOut(axes3),
+            FadeOut(axes3_labels),
             FadeOut(nonlinear_labels), FadeOut(nonlinear_labels2),
             run_time=0.9,
         )
