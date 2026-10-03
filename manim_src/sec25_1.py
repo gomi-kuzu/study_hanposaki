@@ -29,7 +29,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
     def construct(self):
         self.camera.background_color = "#012817"
 
-        title = Text("少し先の未来を予測する問題", font_size=36, color=WHITE)
+        title = Text("少し先の未来を予測する問題を考える", font_size=36, color=WHITE)
         title.to_edge(UP)
         self.add_fixed_in_frame_mobjects(title)
         self.play(Write(title), run_time=0.8)
@@ -225,15 +225,15 @@ class FuturePredictionProblemSetup(ThreeDScene):
         pair_ellipse.rotate(-30 * DEGREES)
         pair_ellipse.move_to((p_k.get_center() + p_k1.get_center()) / 2)
 
-        pair_arrow = Arrow(p_k.get_center(), p_k1.get_center(), color=YELLOW, buff=0.08, stroke_width=3)
+        pair_arrow = Arrow(p_k.get_center(), p_k1.get_center(), color=YELLOW, buff=0.08, stroke_width=5)
 
         # 位相面の2点ラベル：現在 x(t) と Δt_obs 後の y(t)
-        xt_label = MathTex(r"\mathbf{x}(t)", color=GREEN, font_size=30)
-        xt_label.next_to(p_k, UP + LEFT, buff=0.12)
-        yt_label = MathTex(r"\mathbf{y}(t)", color=GREEN, font_size=30)
-        yt_label.next_to(p_k1, DOWN + RIGHT, buff=0.12)
+        xt_label = MathTex(r"\mathbf{x}(t)", color=GREEN, font_size=36)
+        xt_label.next_to(p_k, UP, buff=0.12)
+        yt_label = MathTex(r"\mathbf{y}(t)", color=GREEN, font_size=36)
+        yt_label.next_to(p_k1, DOWN, buff=0.12)
         dt_label = MathTex(r"\Delta t_{\mathrm{obs}}", color=YELLOW, font_size=26)
-        dt_label.next_to(pair_arrow, RIGHT, buff=0.12)
+        dt_label.next_to(pair_arrow, DOWN*0.4+ RIGHT*0.1, buff=0.12)
 
         # 画面下部：スナップショットペアの定義（言葉＋式）
         pair_word = Text("任意の固定時間を挟んだ状態量のペアをスナップショットペアと呼ぶ", color=YELLOW, font_size=24)
