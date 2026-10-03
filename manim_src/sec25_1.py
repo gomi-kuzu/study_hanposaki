@@ -86,7 +86,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
             run_time=1.0,
         )
         self.play(Write(cap_hidden), Write(cap_data), run_time=0.8)
-        self.wait(1.4)
+        self.wait(1.5)
 
         self.play(
             FadeOut(state_box), FadeOut(state_txt),
@@ -359,6 +359,12 @@ class FuturePredictionProblemSetup(ThreeDScene):
         )
         axes3.shift(LEFT * 1.2 + DOWN * 0.2)
 
+        # x軸・y軸を床面(z=-2)の高さまで下げ、x1-x2平面と軸の矢印を一致させる。
+        # x_axis と y_axis を同じベクトルだけ平行移動するので c2p は不変。
+        z_floor_shift = axes3.c2p(0, 0, -2.0) - axes3.c2p(0, 0, 0.0)
+        axes3.x_axis.shift(z_floor_shift)
+        axes3.y_axis.shift(z_floor_shift)
+
         base_plane = Surface(
             lambda u, v: axes3.c2p(u, v, -2.0),
             u_range=[-2, 2],
@@ -401,8 +407,9 @@ class FuturePredictionProblemSetup(ThreeDScene):
             stroke_width=4,
         )
 
-        flat_label = Text("線形写像で表される", color=BLUE, font_size=24)
-        flat_label.to_edge(RIGHT).shift(LEFT * 0.5 + UP * 1.6)
+        flat_label = VGroup(Text("観測値（縦軸）へは、", color=BLUE, font_size=26),
+                            Text("線形写像で表される", color=BLUE, font_size=26)).arrange(DOWN, aligned_edge=LEFT, buff=0.2)
+        flat_label.to_edge(RIGHT).shift(LEFT * 0.5 + UP)
         self.add_fixed_in_frame_mobjects(flat_label)
 
         self.play(Create(axes3), Create(base_plane), run_time=0.9)
@@ -410,7 +417,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
         self.play(Create(floor_path), run_time=0.7)
         self.play(Create(lifts_flat), FadeIn(top_dots_flat), run_time=0.9)
         self.play(Create(section_line), Write(flat_label), run_time=0.8)
-        self.wait(1.4)
+        self.wait(1.5)
 
         self.play(
             FadeOut(flat_surface), FadeOut(lifts_flat), FadeOut(top_dots_flat),
@@ -446,14 +453,19 @@ class FuturePredictionProblemSetup(ThreeDScene):
             lifts_nl.add(DashedLine(axes3.c2p(x1v, x2v, -2.0), axes3.c2p(x1v, x2v, zn), color=GREEN, dash_length=0.08))
             top_dots_nl.add(Dot3D(axes3.c2p(x1v, x2v, zn), color=GREEN, radius=0.04))
 
-        nonlinear_label1 = Text("時間発展が挟まると", color=WHITE, font_size=24)
-        nonlinear_label2 = Text("写像は曲面として現れる", color=YELLOW, font_size=24)
-        nonlinear_label3 = Text("この曲面を獲得することが予測問題の本質", color=GREEN, font_size=23)
-        nonlinear_labels = VGroup(nonlinear_label1, nonlinear_label2, nonlinear_label3).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
-        nonlinear_labels.to_edge(RIGHT).shift(LEFT * 0.45 + UP * 1.3)
-        self.add_fixed_in_frame_mobjects(nonlinear_labels)
+        nonlinear_label1 = Text("時間発展が挟まると", color=WHITE, font_size=26)
+        nonlinear_label2 = Text("写像は曲面として現れる", color=YELLOW, font_size=26)
+        nonlinear_label3 = Text("この曲面の獲得こそが", color=GREEN, font_size=26)
+        nonlinear_label4 = Text("予測問題を解くことに相当する", color=GREEN, font_size=26)
 
-        self.play(Create(nonlinear_surface), run_time=1.3)
+        nonlinear_labels = VGroup(nonlinear_label1, nonlinear_label2).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+        nonlinear_labels.to_edge(LEFT).shift(UP)
+        self.add_fixed_in_frame_mobjects(nonlinear_labels)
+        nonlinear_labels2 = VGroup(nonlinear_label3, nonlinear_label4).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+        nonlinear_labels2.to_edge(RIGHT).shift(RIGHT + UP * 0.2)
+        self.add_fixed_in_frame_mobjects(nonlinear_labels2)
+
+        self.play(Create(nonlinear_surface), Create(nonlinear_labels2), run_time=1.3)
         self.play(Create(lifts_nl), FadeIn(top_dots_nl), run_time=0.9)
 
         self.move_camera(phi=78 * DEGREES, theta=-20 * DEGREES, run_time=1.8)
@@ -463,13 +475,16 @@ class FuturePredictionProblemSetup(ThreeDScene):
         for row in nonlinear_labels:
             self.play(Write(row), run_time=0.65)
             self.wait(0.2)
+        for row in nonlinear_labels2:
+            self.play(Write(row), run_time=0.65)
+            self.wait(0.2)
 
         self.wait(1.6)
 
         self.play(
             FadeOut(nonlinear_surface), FadeOut(lifts_nl), FadeOut(top_dots_nl),
             FadeOut(floor_path), FadeOut(base_plane), FadeOut(axes3),
-            FadeOut(nonlinear_labels),
+            FadeOut(nonlinear_labels), FadeOut(nonlinear_labels2),
             run_time=0.9,
         )
 
@@ -484,19 +499,21 @@ class FuturePredictionProblemSetup(ThreeDScene):
         self.wait(0.3)
 
         summary = VGroup(
-            Text("1. 観測可能なのは状態そのものではなく観測値", color=WHITE, font_size=26),
-            Text("2. 予測対象は 1ステップ先の観測値 \u03d5(x,t=\u0394t_obs)", color=YELLOW, font_size=26),
-            Text("3. これは非線形曲面の獲得問題として見える", color=ORANGE, font_size=26),
+            Text("・時間発展する状態量を観測する", color=WHITE, font_size=26),
+            Text("・1ステップ先の観測値\u03d5(x,t=\u0394t_obs)を予測する問題を考える ", color=YELLOW, font_size=26),
+            Text("・これは非線形曲面の獲得問題として見える", color=ORANGE, font_size=26),
         ).arrange(DOWN, aligned_edge=LEFT, buff=0.35)
         summary.shift(UP * 0.3)
 
         next_note = Text(
-            "次回は、期待値計算に便利な『随伴作用素』を導入する",
+            "次の動画では、\u03d5(x,t=\u03d5(x,t=\u0394t_obs)) の期待値の計算を通して『随伴作用素』を学ぶ",
             color=TEAL,
-            font_size=28,
+            font_size=24,
             weight=BOLD,
         )
         next_note.shift(DOWN * 2.1)
+
+        self.add_fixed_in_frame_mobjects(summary, next_note)
 
         for line in summary:
             self.play(Write(line), run_time=0.7)
