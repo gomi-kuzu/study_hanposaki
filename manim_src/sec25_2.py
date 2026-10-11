@@ -49,7 +49,7 @@ class AdjointOperatorIntro(Scene):
         )
         intro4.shift(DOWN * 1.2)
         self.play(Write(intro4), run_time=0.8)
-        self.wait(1.5)
+        self.wait(1.8)
 
         self.play(
             FadeOut(intro1), FadeOut(intro2), FadeOut(intro3), FadeOut(intro4),
@@ -108,7 +108,7 @@ class AdjointOperatorIntro(Scene):
         self.play(Create(axes_d), Create(broad), Write(broad_lab), run_time=0.8)
         self.play(ReplacementTransform(broad.copy(), spike), Write(spike_lab),
                   run_time=0.9)
-        self.wait(1.5)
+        self.wait(1.8)
 
         self.play(
             FadeOut(note1), FadeOut(note2),
@@ -411,7 +411,7 @@ class AdjointOperatorIntro(Scene):
         self.wait(0.3)
 
         rw_intro = Text(
-            "同じ操作を e^{𝓛t} 全体に適用すると、作用素が ϕ 側へ移る：",
+            "同じ操作をSSペア推定問題に適用すると、作用素が ϕ 側へ移る：",
             color=WHITE, font_size=26,
         )
         rw_intro.shift(UP * 1.8)
@@ -524,14 +524,14 @@ class AdjointOperatorIntro(Scene):
         self.wait(0.3)
 
         fp_intro = Text(
-            "4部で登場したフォッカー・プランク作用素 𝓛 とその随伴 𝓛† は：",
+            "4部で登場したフォッカー・プランク方程式での具体例：",
             color=WHITE, font_size=25,
         )
         fp_intro.shift(UP * 1.9)
         self.play(Write(fp_intro), run_time=0.8)
         self.wait(0.3)
 
-        fp_title = Text("フォッカー・プランク作用素（密度に作用）", color=BLUE, font_size=24)
+        fp_title = Text("フォッカー・プランク作用素（確率密度関数に作用）", color=BLUE, font_size=24)
         fp_eq = MathTex(
             r"\mathcal{L} = -\sum_{d=1}^{D} \frac{\partial}{\partial x_d} a_d(\mathbf{x})"
             r"\;+\; \frac{1}{2}\sum_{d, d'} \frac{\partial^2}{\partial x_d \partial x_{d'}}"
@@ -560,20 +560,20 @@ class AdjointOperatorIntro(Scene):
         adj_fp_box = SurroundingRectangle(adj_fp_eq, color=YELLOW, buff=0.2)
         self.play(Write(adj_title), run_time=0.5)
         self.play(Write(adj_fp_eq), Create(adj_fp_box), run_time=1.1)
-        self.wait(0.4)
+        self.wait(1.8)
 
-        fp_note = Text(
-            "部分積分の要領で、微分が観測関数側へ移り、発散形が消えている",
-            color=TEAL, font_size=23,
-        )
-        fp_note.shift(DOWN * 2.9)
-        self.play(Write(fp_note), run_time=0.8)
-        self.wait(2.0)
+        # fp_note = Text(
+        #     "部分積分の要領で、微分が観測関数側へ移り、発散形が消えている",
+        #     color=TEAL, font_size=23,
+        # )
+        # fp_note.shift(DOWN * 2.9)
+        # self.play(Write(fp_note), run_time=0.8)
+        # self.wait(2.0)
 
         self.play(
             FadeOut(fp_intro), FadeOut(fp_title), FadeOut(fp_eq),
             FadeOut(adj_title), FadeOut(adj_fp_eq), FadeOut(adj_fp_box),
-            FadeOut(fp_note),
+            # FadeOut(fp_note),
         )
         self.wait(0.3)
 
