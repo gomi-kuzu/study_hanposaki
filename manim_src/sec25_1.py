@@ -521,7 +521,7 @@ class FuturePredictionProblemSetup(ThreeDScene):
         summary.shift(UP * 0.3)
 
         next_note = Text(
-            "次の動画では、\u03d5(x,t=\u03d5(x,t=\u0394t_obs)) の期待値の計算を通して『随伴作用素』を学ぶ",
+            "次の動画では、\u03d5(x,t)=\u03d5(x,t=\u0394t_obs) の期待値の計算を通して『随伴作用素』を学ぶ",
             color=TEAL,
             font_size=24,
             weight=BOLD,
