@@ -1,7 +1,3 @@
-
-
-https://github.com/user-attachments/assets/97115ac5-0ee4-452a-8611-e9bfdc49751d
-
 4章
 ===
 # 第19話
