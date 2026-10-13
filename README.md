@@ -26,4 +26,6 @@ manim -iqm sec1_1.py VectorAsNumbers
 - [1部](./doc/sec1.md)
 - [2部](./doc/sec2.md)
 - [3部](./doc/sec3.md)
+- [4部](./doc/sec4.md)
+- [5部](./doc/sec5.md)
 
