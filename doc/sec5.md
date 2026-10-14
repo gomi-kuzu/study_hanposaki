@@ -7,6 +7,6 @@
 
 ## 25.2
 ### 随伴作用素について考える話
-<div><video controls src="https://github.com/user-attachments/assets/277b2f5d-f220-4193-8e60-a5eb267c91ab"></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/b58ca76b-e19b-4160-abe2-f4b5f0257605"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
