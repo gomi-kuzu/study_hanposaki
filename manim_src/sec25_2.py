@@ -120,7 +120,7 @@ class AdjointOperatorIntro(Scene):
         # ============================================================
         # Part 3: 期待値の定義式
         # ============================================================
-        subtitle3 = Text("期待値：デルタ関数を初期分布として時間 t 遷移", font_size=27, color=GOLD)
+        subtitle3 = Text("求めたい期待値を式変形してみる", font_size=27, color=GOLD)
         subtitle3.next_to(title, DOWN)
         self.play(Transform(subtitle, subtitle3), run_time=0.5)
         self.wait(0.3)
@@ -150,13 +150,13 @@ class AdjointOperatorIntro(Scene):
         self.play(Create(exp_box), run_time=0.4)
         self.wait(0.4)
 
-        ann_p = Text("密度の時間発展", color=BLUE, font_size=22)
+        ann_p = Text("確率密度の時間発展の一般解", color=BLUE, font_size=22)
         ann_p.next_to(exp_eq[2], DOWN, buff=0.7)
         ann_p_arr = Arrow(ann_p.get_top(), exp_eq[2].get_bottom(),
                           color=BLUE, buff=0.05, stroke_width=3,
                           max_tip_length_to_length_ratio=0.25)
 
-        ann_d = Text("初期分布＝デルタ関数 δ(𝐱−𝐱_ini)", color=RED, font_size=22)
+        ann_d = Text("初期分布(デルタ関数)", color=RED, font_size=22)
         ann_d.next_to(exp_eq[4], DOWN, buff=0.7)
         ann_d_arr = Arrow(ann_d.get_top(), exp_eq[4].get_bottom(),
                           color=RED, buff=0.05, stroke_width=3,
@@ -167,7 +167,7 @@ class AdjointOperatorIntro(Scene):
         self.wait(0.3)
 
         op_note = Text(
-            "e^{𝓛t} は線形作用素 𝓛 による密度 p(𝐱,t) の時間発展を表す",
+            "※e^{𝓛t}は偏微分方程式の一般解中に現れる項",
             color=GRAY, font_size=24,
         )
         op_note.shift(DOWN * 1.3)
@@ -175,7 +175,7 @@ class AdjointOperatorIntro(Scene):
         self.wait(0.3)
         
         add_comment = VGroup(
-            Text("これを使って、任意の初期状態から", color=WHITE, font_size=26),
+            Text("これより、任意の初期状態から", color=WHITE, font_size=26),
             MathTex(r"\Delta t_{\text{obs}}",color=WHITE, font_size=32),
             Text("だけ時間発展させれば、", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.15).shift(DOWN * 2.3)
@@ -197,7 +197,7 @@ class AdjointOperatorIntro(Scene):
         # ============================================================
         # Part 4: 素直な解法（密度の時間発展として解く）
         # ============================================================
-        subtitle4 = Text("素直な解法：密度の時間発展として解く", font_size=27, color=BLUE)
+        subtitle4 = Text("素直な解法：確率密度関数の時間発展として解く", font_size=27, color=BLUE)
         subtitle4.next_to(title, DOWN)
         self.play(Transform(subtitle, subtitle4), run_time=0.5)
         self.wait(0.3)
@@ -206,7 +206,7 @@ class AdjointOperatorIntro(Scene):
         self.play(exp_eq.animate.scale(0.85).to_edge(UP, buff=1.9), run_time=0.6)
 
         straight1 = Text(
-            "これまで通り、密度の時間遷移として捉えるなら：",
+            "これまで通り、確率密度関数の時間遷移として捉えるなら：",
             color=WHITE, font_size=26,
         )
         straight1.shift(UP * 0.9)
@@ -434,13 +434,13 @@ class AdjointOperatorIntro(Scene):
         self.play(Write(rw_eq), Create(rw_box), run_time=1.2)
         self.wait(0.4)
 
-        rw_a = Text("作用素 e^{𝓛t} は密度 δ に作用", color=BLUE, font_size=24)
+        rw_a = Text("作用素𝓛 は密度関数δ に作用", color=BLUE, font_size=24)
         rw_a.next_to(rw_eq[0], DOWN, buff=0.9)
         rw_a_arr = Arrow(rw_a.get_top(), rw_eq[0].get_bottom(),
                          color=BLUE, buff=0.05, stroke_width=3,
                          max_tip_length_to_length_ratio=0.22)
 
-        rw_b = Text("随伴 e^{𝓛†t} は観測関数 ϕ に作用", color=RED, font_size=24)
+        rw_b = Text("随伴作用素𝓛† は観測関数ϕ に作用", color=RED, font_size=24)
         rw_b.next_to(rw_eq[2], DOWN, buff=1.4)
         rw_b_arr = Arrow(rw_b.get_top(), rw_eq[2].get_bottom(),
                          color=RED, buff=0.05, stroke_width=3,
@@ -466,7 +466,7 @@ class AdjointOperatorIntro(Scene):
         self.wait(0.3)
 
         # 対比：密度の時間発展 vs 観測関数の時間発展
-        left_title = Text("これまで：密度の時間発展", color=BLUE, font_size=25)
+        left_title = Text("これまで：確率密度関数の時間発展", color=BLUE, font_size=25)
         left_eq = MathTex(
             r"\frac{\partial}{\partial t} p(\mathbf{x}, t) = \mathcal{L}\, p(\mathbf{x}, t)",
             font_size=38, color=BLUE,
@@ -495,12 +495,12 @@ class AdjointOperatorIntro(Scene):
         self.wait(0.3)
 
         merit1 = Text(
-            "状態変数の次元 > 観測変数の次元 であることが多い",
-            color=WHITE, font_size=25,
+            "そして、状態変数の次元よりも観測変数の次元の方が小さいことが多い",
+            color=WHITE, font_size=26,
         )
         merit2 = Text(
             "→ 観測関数の時間発展は単純で、計算負荷を大幅に抑えられる",
-            color=GOLD, font_size=25, weight=BOLD,
+            color=GOLD, font_size=26, weight=BOLD,
         )
         merits = VGroup(merit1, merit2).arrange(DOWN, aligned_edge=LEFT, buff=0.3)
         merits.shift(DOWN * 1.9)
@@ -588,7 +588,7 @@ class AdjointOperatorIntro(Scene):
         summary = VGroup(
             Text("• 求めたいのは、状態を時刻 t 遷移させた観測値の期待値 𝔼[ϕ(𝐗)]",
                  color=WHITE, font_size=25),
-            Text("• 素直には、密度の時間発展 e^{𝓛t} を解けばよい",
+            Text("• 素直には、確率密度関数の時間発展を解けばよい",
                  color=WHITE, font_size=25),
             Text("• 随伴作用素 A†：⟨𝐲, A𝐱⟩ = ⟨A†𝐲, 𝐱⟩（作用素を内積の相手側へ移す）",
                  color=WHITE, font_size=25),
