@@ -178,7 +178,7 @@ class KoopmanOperatorIntro(Scene):
         koop_arrow = CurvedArrow(
             x_n.get_bottom() + DOWN * 0.05 +RIGHT * 0.05,
             koop_lab.get_left() + LEFT * 0.1,
-            color=red_accent, stroke_width=3, angle=-TAU / 7,
+            color=orange_bg, stroke_width=3, angle=-TAU / 7,
             tip_length=0.2,
         )
         self.play(Write(koop_lab), run_time=0.6)
@@ -194,13 +194,13 @@ class KoopmanOperatorIntro(Scene):
         koop_arrow2 = CurvedArrow(
             koop_lab.get_bottom() + DOWN * 0.05,
             koop_note.get_left() + RIGHT *3 + UP * 0.07,
-            color=red_accent, stroke_width=3, angle=-TAU / 7,
+            color=orange_bg, stroke_width=3, angle=-TAU / 7,
             tip_length=0.2,
         )
         self.play(Create(koop_arrow2), run_time=0.9)
         koop_note_arr = Arrow(
             koop_note.get_right()+LEFT * 3 + UP * 0.05, phi_y.get_bottom() + DOWN * 0.1,
-            color=red_accent, buff=0.1, stroke_width=2.5,
+            color=orange_bg, buff=0.1, stroke_width=2.5,
             max_tip_length_to_length_ratio=0.15,
         )
         self.play(Write(koop_note), GrowArrow(koop_note_arr), run_time=0.8)
@@ -567,7 +567,7 @@ class KoopmanOperatorIntro(Scene):
         self.wait(0.3)
 
         adv1 = Text(
-            "→最終的に欲しい物までの計算を線形計算でショートカットできる幅が大きい",
+            "→最終的に欲しい物までの操作を線形計算でショートカットできる幅が大きい",
             color=GOLD, font_size=25, weight=BOLD,
         )
         adv1.shift(UP * 1.9)
