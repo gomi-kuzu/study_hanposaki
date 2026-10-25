@@ -9,4 +9,10 @@
 ### 随伴作用素について考える話
 <div><video controls src="https://github.com/user-attachments/assets/b58ca76b-e19b-4160-abe2-f4b5f0257605"></video></div>
 
+# 第26話
+## 26.1
+### クープマン作用素とはなんぞやって話
+
+## 26.2
+### 最小二乗法でクープマン行列を推定する話
 <!-- <div><video controls src=""></video></div> -->
