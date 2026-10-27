@@ -155,10 +155,24 @@ class KoopmanMatrixEstimation(Scene):
             "これを K で微分していくため、行列を含む微分の公式を用意する",
             color=WHITE, font_size=26,
         )
-        form_intro.shift(UP * 1.8)
+        form_intro.shift(UP * 1.9)
         if form_intro.width > config.frame_width - 0.8:
             form_intro.scale_to_fit_width(config.frame_width - 0.8)
         self.play(Write(form_intro), run_time=0.8)
+        self.wait(0.3)
+
+        # --- 1つ目：元になる基本公式 → 転置を使った導出 ---
+        base1 = MathTex(
+            r"\frac{\partial}{\partial A}\, \boldsymbol{a}^{\top} A \boldsymbol{b}"
+            r"= \boldsymbol{a}\boldsymbol{b}^{\top}",
+            font_size=34, color=TEAL,
+        )
+        if base1.width > config.frame_width - 0.8:
+            base1.scale_to_fit_width(config.frame_width - 0.8)
+        base1.shift(UP)
+        base1_lab = Text("基本公式", color=TEAL, font_size=20)
+        base1_lab.next_to(base1, LEFT, buff=0.3)
+        self.play(Write(base1), FadeIn(base1_lab), run_time=0.9)
         self.wait(0.3)
 
         form1 = MathTex(
@@ -169,9 +183,23 @@ class KoopmanMatrixEstimation(Scene):
         )
         if form1.width > config.frame_width - 0.8:
             form1.scale_to_fit_width(config.frame_width - 0.8)
-        form1.shift(UP * 0.7)
+        form1.shift(UP * 0.1)
         self.play(Write(form1), run_time=1.2)
         self.wait(0.4)
+
+        # --- 2つ目：元になる基本公式 → 転置を使った導出 ---
+        base2 = MathTex(
+            r"\frac{\partial}{\partial A}\, \boldsymbol{a}^{\top} A A^{\top} \boldsymbol{b}"
+            r"= \bigl(\boldsymbol{a}\boldsymbol{b}^{\top} + \boldsymbol{b}\boldsymbol{a}^{\top}\bigr) A",
+            font_size=34, color=TEAL,
+        )
+        if base2.width > config.frame_width - 0.8:
+            base2.scale_to_fit_width(config.frame_width - 0.8)
+        base2.shift(DOWN * 1.2)
+        base2_lab = Text("基本公式", color=TEAL, font_size=20)
+        base2_lab.next_to(base2, LEFT, buff=0.3)
+        self.play(Write(base2), FadeIn(base2_lab), run_time=0.9)
+        self.wait(0.3)
 
         form2 = MathTex(
             r"\frac{\partial}{\partial A}\, \boldsymbol{c}^{\top} A^{\top} A \boldsymbol{d}"
@@ -181,12 +209,14 @@ class KoopmanMatrixEstimation(Scene):
         )
         if form2.width > config.frame_width - 0.8:
             form2.scale_to_fit_width(config.frame_width - 0.8)
-        form2.shift(DOWN * 0.7)
+        form2.shift(DOWN * 2.1)
         self.play(Write(form2), run_time=1.2)
         self.wait(1.8)
 
         self.play(
-            FadeOut(form_intro), FadeOut(form1), FadeOut(form2),
+            FadeOut(form_intro),
+            FadeOut(base1), FadeOut(base1_lab), FadeOut(form1),
+            FadeOut(base2), FadeOut(base2_lab), FadeOut(form2),
         )
         self.wait(0.3)
 
