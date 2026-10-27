@@ -12,7 +12,10 @@
 # 第26話
 ## 26.1
 ### クープマン作用素とはなんぞやって話
+<div><video controls src="https://github.com/user-attachments/assets/b3e5c54c-18ee-4db3-ac24-80310aea3586"></video></div>
 
 ## 26.2
 ### 最小二乗法でクープマン行列を推定する話
+<div><video controls src="https://github.com/user-attachments/assets/f574dd5e-bc73-4442-846c-38a5f73341ec"></video></div>
+
 <!-- <div><video controls src=""></video></div> -->
