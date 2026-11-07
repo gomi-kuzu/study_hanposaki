@@ -101,7 +101,7 @@ class KoopmanModeDecompositionOverview(Scene):
 
         eig3 = VGroup(
             Text("クープマン作用素", color=WHITE, font_size=26),
-            MathTex(r"\mathcal{K}", color=TEAL, font_size=34),
+            MathTex(r"\mathcal{K}", color=TEAL, font_size=36),
             Text("も作用素の一種なので、同様に", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.15)
         eig3.shift(UP * 0.5)
@@ -124,9 +124,9 @@ class KoopmanModeDecompositionOverview(Scene):
 
         eig4 = VGroup(
             Text("を満たす固有値", color=WHITE, font_size=26),
-            MathTex(r"\mu_m", color=GOLD, font_size=32),
+            MathTex(r"\mu_m", color=GOLD, font_size=36),
             Text("と固有関数", color=WHITE, font_size=26),
-            MathTex(r"\varphi_m", color=GOLD, font_size=32),
+            MathTex(r"\varphi_m", color=GOLD, font_size=36),
             Text("が存在する", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.12)
         eig4.shift(DOWN * 1.9)
@@ -185,9 +185,9 @@ class KoopmanModeDecompositionOverview(Scene):
 
         rep4 = VGroup(
             Text("状態量", color=WHITE, font_size=25),
-            MathTex(r"\boldsymbol{x}", color=TEAL, font_size=30),
+            MathTex(r"\boldsymbol{x}", color=TEAL, font_size=34),
             Text("から d 番目の要素を取り出す関数", color=WHITE, font_size=25),
-            MathTex(r"g_d(\cdot)", color=GOLD, font_size=30),
+            MathTex(r"g_d(\cdot)", color=GOLD, font_size=34),
             Text("を定義し、", color=WHITE, font_size=25),
         ).arrange(RIGHT, buff=0.12)
         if rep4.width > config.frame_width - 0.8:
@@ -195,7 +195,7 @@ class KoopmanModeDecompositionOverview(Scene):
         rep4.shift(DOWN * 0.1)
         rep5 = VGroup(
             Text("それらを並べたベクトル値関数", color=WHITE, font_size=25),
-            MathTex(r"\boldsymbol{g}(\cdot)", color=GOLD, font_size=30),
+            MathTex(r"\boldsymbol{g}(\cdot)", color=GOLD, font_size=34),
             Text("を考える", color=WHITE, font_size=25),
         ).arrange(RIGHT, buff=0.12)
         rep5.next_to(rep4, DOWN, buff=0.25)
@@ -241,7 +241,7 @@ class KoopmanModeDecompositionOverview(Scene):
 
         mode1 = VGroup(
             Text("ここで現れる展開係数", color=WHITE, font_size=26),
-            MathTex(r"\boldsymbol{v}_m", color=GOLD, font_size=34),
+            MathTex(r"\boldsymbol{v}_m", color=GOLD, font_size=36),
             Text("を", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.15)
         mode1.shift(DOWN * 0.2)
@@ -276,11 +276,11 @@ class KoopmanModeDecompositionOverview(Scene):
 
         snap1 = VGroup(
             Text("求めたい", color=WHITE, font_size=26),
-            MathTex(r"\boldsymbol{g}(\boldsymbol{y}_n)", color=TEAL, font_size=32),
+            MathTex(r"\boldsymbol{g}(\boldsymbol{y}_n)", color=TEAL, font_size=34),
             Text("は", color=WHITE, font_size=26),
-            MathTex(r"\boldsymbol{g}(\boldsymbol{x}_n)", color=TEAL, font_size=32),
+            MathTex(r"\boldsymbol{g}(\boldsymbol{x}_n)", color=TEAL, font_size=34),
             Text("をクープマン作用素", color=WHITE, font_size=26),
-            MathTex(r"\mathcal{K}", color=GOLD, font_size=32),
+            MathTex(r"\mathcal{K}", color=GOLD, font_size=34),
             Text("に作用させたもの", color=WHITE, font_size=26),
         ).arrange(RIGHT, buff=0.1)
         if snap1.width > config.frame_width - 0.6:
@@ -349,16 +349,16 @@ class KoopmanModeDecompositionOverview(Scene):
         cost_list = VGroup(
             VGroup(
                 Text("① 状態量に固有関数を適用する", color=WHITE, font_size=25),
-                MathTex(r"\varphi_m(\boldsymbol{x}_n)", color=TEAL, font_size=28),
+                MathTex(r"\varphi_m(\boldsymbol{x}_n)", color=TEAL, font_size=32),
             ).arrange(RIGHT, buff=0.2),
             VGroup(
                 Text("② スカラ値をかける", color=WHITE, font_size=25),
-                MathTex(r"\mu_m\,\varphi_m(\boldsymbol{x}_n)", color=TEAL, font_size=28),
+                MathTex(r"\mu_m\,\varphi_m(\boldsymbol{x}_n)", color=TEAL, font_size=32),
             ).arrange(RIGHT, buff=0.2),
             VGroup(
                 Text("③ ベクトルにかけて M_eigen 個足し合わせる",
                      color=WHITE, font_size=25),
-                MathTex(r"\textstyle\sum_m \boldsymbol{v}_m(\cdots)", color=TEAL, font_size=28),
+                MathTex(r"\textstyle\sum_m \boldsymbol{v}_m(\cdots)", color=TEAL, font_size=32),
             ).arrange(RIGHT, buff=0.2),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         if cost_list.width > config.frame_width - 0.8:
