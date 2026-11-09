@@ -456,7 +456,7 @@ class KoopmanModeDecompositionOverview(Scene):
                  color=WHITE, font_size=25),
             Text("• オンライン予測では固有関数適用→スカラ倍→和 のみ",
                  color=GOLD, font_size=25, weight=BOLD),
-            Text("• 固有値・固有関数・モードの求め方は次回へ",
+            Text("• 具体的な分解の流れは次の動画で説明する",
                  color=TEAL, font_size=25),
         ).arrange(DOWN, buff=0.3, aligned_edge=LEFT)
         summary.shift(DOWN * 0.1)
