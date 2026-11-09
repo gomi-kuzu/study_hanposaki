@@ -18,4 +18,18 @@
 ### 最小二乗法でクープマン行列を推定する話
 <div><video controls src="https://github.com/user-attachments/assets/f574dd5e-bc73-4442-846c-38a5f73341ec"></video></div>
 
+# 第27話
+## 27.1
+### クープマンモード分解とは
+<div><video controls src=""></video></div>
+
+### クープマンモード分解の具体的な手順の話
+<div><video controls src=""></video></div>
+
+## おまけ
+### かんたんなデモ
+- [教科書の例を]()
+- [モダンな方法の例]()
+
+
 <!-- <div><video controls src=""></video></div> -->
