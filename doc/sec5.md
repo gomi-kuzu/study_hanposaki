@@ -21,15 +21,15 @@
 # 第27話
 ## 27.1
 ### クープマンモード分解とは
-<div><video controls src=""></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/29cc82f4-2cb8-4cc0-8149-27f2bb60237c"></video></div>
 
 ### クープマンモード分解の具体的な手順の話
-<div><video controls src=""></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/16f9dadc-4362-4131-ad9f-a6f42e8c0324"></video></div>
 
 ## おまけ
 ### かんたんなデモ
-- [教科書の例を]()
-- [モダンな方法の例]()
+- [教科書の例を](https://colab.research.google.com/drive/1m88rXIjVOImA5VZtJNeU7nvjogY_C023?usp=sharing)
+- [モダンな方法の例](https://colab.research.google.com/drive/1zIvQLFp7GYp8d8tAEy8R4omYQzCbkX2e?usp=sharing)
 
 
 <!-- <div><video controls src=""></video></div> -->
