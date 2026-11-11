@@ -28,7 +28,7 @@
 
 ## おまけ
 ### かんたんなデモ
-- [教科書の例を](https://colab.research.google.com/drive/1m88rXIjVOImA5VZtJNeU7nvjogY_C023?usp=sharing)
+- [教科書に似た例](https://colab.research.google.com/drive/1m88rXIjVOImA5VZtJNeU7nvjogY_C023?usp=sharing)
 - [モダンな方法の例](https://colab.research.google.com/drive/1zIvQLFp7GYp8d8tAEy8R4omYQzCbkX2e?usp=sharing)
 
 
