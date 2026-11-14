@@ -859,7 +859,7 @@ class DataCompressionIntroduction(Scene):
                 sq.move_to(DOWN * row * cell * 0.9)
                 big_cells[(n1, n2)] = sq
                 big_group.add(sq)
-        big_group.move_to(RIGHT * 4.7 + UP)
+        big_group.move_to(RIGHT * 4.7)
 
         big_bracket = SurroundingRectangle(big_group, color=YELLOW, buff=0.12)
         big_label = MathTex(
