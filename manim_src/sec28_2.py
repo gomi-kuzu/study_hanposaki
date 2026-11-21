@@ -154,8 +154,9 @@ class DataCompressionVectorApproximation(Scene):
         self.play(Transform(subtitle, subtitle3), run_time=0.5)
         self.wait(0.3)
 
-        ex1 = Text("そこで、次のように少し拡張を行う", color=WHITE, font_size=26)
+        ex1 = Text("そこで、次のように少し拡張を行う（R は自分で選ぶ項の数）", color=WHITE, font_size=26)
         ex1.shift(UP * 1.9)
+        self.fit(ex1)
         self.play(Write(ex1), run_time=0.7)
 
         ex_eq = MathTex(
@@ -296,9 +297,21 @@ class DataCompressionVectorApproximation(Scene):
             font_size=36, color=WHITE,
         )
         self.fit(sv_eq)
-        sv_eq.shift(UP * 0.2)
+        sv_eq.shift(UP * 0.4)
         self.play(Write(sv_eq), run_time=1.6)
-        self.wait(1.2)
+        self.wait(0.6)
+
+        sv_rank = VGroup(
+            Text("ここでの", color=WHITE, font_size=24),
+            MathTex(r"R = \operatorname{rank} P", color=GOLD, font_size=34),
+            Text("、特異値は大きい順", color=WHITE, font_size=24),
+            MathTex(r"\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_R > 0",
+                    color=GOLD, font_size=34),
+        ).arrange(RIGHT, buff=0.12)
+        self.fit(sv_rank)
+        sv_rank.shift(DOWN * 1.5)
+        self.play(Write(sv_rank), run_time=0.9)
+        self.wait(1.0)
 
         sv2 = VGroup(
             Text("ここで", color=WHITE, font_size=25),
@@ -310,11 +323,11 @@ class DataCompressionVectorApproximation(Scene):
             Text("とおき直す", color=WHITE, font_size=25),
         ).arrange(RIGHT, buff=0.12)
         self.fit(sv2)
-        sv2.shift(DOWN * 1.9)
+        sv2.shift(DOWN * 2.4)
         self.play(Write(sv2), run_time=0.9)
         self.wait(1.5)
 
-        self.play(FadeOut(sv1), FadeOut(sv_eq), FadeOut(sv2))
+        self.play(FadeOut(sv1), FadeOut(sv_eq), FadeOut(sv_rank), FadeOut(sv2))
 
         sv3 = Text("さらに、行ベクトル表現になおすと", color=WHITE, font_size=26)
         sv3.shift(UP * 1.9)
@@ -336,7 +349,7 @@ class DataCompressionVectorApproximation(Scene):
         self.wait(0.6)
 
         sv4 = Text(
-            "つまり、P はランク 1 の行列 R 個の和で書ける",
+            "つまり、P はランク 1 の行列 R（= rank P）個の和で厳密に書ける",
             color=TEAL, font_size=26, weight=BOLD,
         )
         sv4.shift(DOWN * 1.6)
@@ -384,23 +397,34 @@ class DataCompressionVectorApproximation(Scene):
         self.wait(0.5)
 
         el2 = Text(
-            "これは先ほどの「変数ごとの積の近似を R 個足し合わせた式」に一致する",
+            "これは先ほどの「変数ごとの積の近似を R 個足し合わせた式」で、",
             color=WHITE, font_size=25,
         )
-        el2.shift(DOWN * 1.0)
+        el2.shift(DOWN * 0.9)
+        self.fit(el2)
+        el2b = Text(
+            "項の数を R = rank P に取った場合に一致する（≃ ではなく = ）",
+            color=WHITE, font_size=25,
+        )
+        el2b.next_to(el2, DOWN, buff=0.15)
+        self.fit(el2b)
         self.fit(el2)
         self.play(Write(el2), run_time=0.9)
+        self.play(Write(el2b), run_time=0.9)
 
         el_cmp = MathTex(
             r"p^{(1)}_{r,n_1} = u_{r,n_1},\quad p^{(2)}_{r,n_2} = \widetilde{v}_{r,n_2}",
             font_size=38, color=GOLD,
         )
         self.fit(el_cmp)
-        el_cmp.shift(DOWN * 2.1)
+        el_cmp.shift(DOWN * 2.6)
         self.play(Write(el_cmp), run_time=0.9)
         self.wait(2.0)
 
-        self.play(FadeOut(el1), FadeOut(el_eq), FadeOut(el_box), FadeOut(el2), FadeOut(el_cmp))
+        self.play(
+            FadeOut(el1), FadeOut(el_eq), FadeOut(el_box),
+            FadeOut(el2), FadeOut(el2b), FadeOut(el_cmp),
+        )
         self.wait(0.3)
 
         # ============================================================
@@ -422,7 +446,7 @@ class DataCompressionVectorApproximation(Scene):
         lr_eq = MathTex(
             r"P = \sum_{r=1}^{R} \sigma_r \boldsymbol{u}_r \boldsymbol{v}_r^{\top}"
             r"\;\simeq\; \sum_{r=1}^{R'} \sigma_r \boldsymbol{u}_r \boldsymbol{v}_r^{\top}"
-            r"\quad (R' < R)",
+            r"\quad (R' < R = \operatorname{rank} P)",
             font_size=40, color=YELLOW,
         )
         self.fit(lr_eq)
@@ -436,7 +460,7 @@ class DataCompressionVectorApproximation(Scene):
         lr2.shift(DOWN * 0.7)
         self.fit(lr2)
         lr3 = Text(
-            "意図的に全ては使わないことで、近似を行っていたと再確認できた",
+            "大きい順に R' 個だけ使い、意図的に全ては使わないことで近似していた",
             color=GOLD, font_size=26, weight=BOLD,
         )
         lr3.next_to(lr2, DOWN, buff=0.3)
@@ -518,9 +542,9 @@ class DataCompressionVectorApproximation(Scene):
                  color=WHITE, font_size=26),
             Text("• R 個の独立な近似の和にすると、要素数は R×L×D で精度も向上",
                  color=GOLD, font_size=26, weight=BOLD),
-            Text("• 2変数では SVD により、この分解は厳密になる",
+            Text("• 2変数では R = rank P に取れば、SVD によりこの分解は厳密になる",
                  color=WHITE, font_size=26),
-            Text("• 低ランク近似は、R 個を意図的に全て使わない近似だった",
+            Text("• 低ランク近似は、大きい特異値 R' 個だけを使う近似だった",
                  color=WHITE, font_size=26),
             Text("• 3変数以上も、SVD を繰り返せば厳密に表現できる",
                  color=TEAL, font_size=26, weight=BOLD),
@@ -647,15 +671,22 @@ class DataCompressionVectorApproximation(Scene):
     # ランク1行列 u_r v_r^T を足し合わせて P を作る紙芝居
     # ================================================================
     def outer_product_animation(self):
-        us = [np.array([1, 2, 1]), np.array([1, 0, -1])]
-        vs = [np.array([2, 1, 3]), np.array([1, 2, 0])]
+        # SVD の成分として整合する数値（u_r は正規直交、ṽ_r = σ_r v_r は直交）
+        #   u_1 = (1,2,2)/3, u_2 = (2,1,-2)/3
+        #   ṽ_1 = (6,3,6)  (σ_1 = 9),  ṽ_2 = (3,0,-3)  (σ_2 = 3√2)
+        u_tex = [
+            [r"\tfrac{1}{3}", r"\tfrac{2}{3}", r"\tfrac{2}{3}"],
+            [r"\tfrac{2}{3}", r"\tfrac{1}{3}", r"-\tfrac{2}{3}"],
+        ]
+        v_tex = [["6", "3", "6"], ["3", "0", "-3"]]
+        M1 = np.outer([1, 2, 2], [6, 3, 6]) // 3
+        M2 = np.outer([2, 1, -2], [3, 0, -3]) // 3
         colors = [TEAL, ORANGE]
         cell = 0.55
         L = 3
 
         def make_block(u, v, color, with_margin, center):
             grid = VGroup()
-            nums = VGroup()
             for i in range(L):
                 for j in range(L):
                     sq = Square(side_length=cell)
@@ -667,20 +698,20 @@ class DataCompressionVectorApproximation(Scene):
             margins = VGroup()
             if with_margin:
                 for i in range(L):
-                    t = MathTex(str(int(u[i])), font_size=24, color=YELLOW)
+                    t = MathTex(u[i], font_size=24, color=YELLOW)
                     t.next_to(grid[i * L], LEFT, buff=0.15)
                     margins.add(t)
                 for j in range(L):
-                    t = MathTex(str(int(v[j])), font_size=24, color=GOLD)
+                    t = MathTex(v[j], font_size=24, color=GOLD)
                     t.next_to(grid[j], UP, buff=0.15)
                     margins.add(t)
             return grid, margins
 
         centers = [LEFT * 4.6 + DOWN * 0.2, LEFT * 0.4 + DOWN * 0.2, RIGHT * 4.2 + DOWN * 0.2]
 
-        g1, mg1 = make_block(us[0], vs[0], colors[0], True, centers[0])
-        g2, mg2 = make_block(us[1], vs[1], colors[1], True, centers[1])
-        P_val = np.outer(us[0], vs[0]) + np.outer(us[1], vs[1])
+        g1, mg1 = make_block(u_tex[0], v_tex[0], colors[0], True, centers[0])
+        g2, mg2 = make_block(u_tex[1], v_tex[1], colors[1], True, centers[1])
+        P_val = M1 + M2
         gP, _ = make_block(None, None, YELLOW, False, centers[2])
 
         plus = MathTex(r"+", font_size=44, color=WHITE).move_to((centers[0] + centers[1]) / 2)
@@ -706,7 +737,6 @@ class DataCompressionVectorApproximation(Scene):
         # 1 項目
         self.play(Create(g1), FadeIn(mg1), Write(lab1), run_time=0.8)
         nums1 = VGroup()
-        M1 = np.outer(us[0], vs[0])
         for i in range(L):
             for j in range(L):
                 t = MathTex(str(int(M1[i, j])), font_size=22, color=WHITE)
@@ -720,7 +750,6 @@ class DataCompressionVectorApproximation(Scene):
         # 2 項目
         self.play(Create(g2), FadeIn(mg2), Write(lab2), run_time=0.8)
         nums2 = VGroup()
-        M2 = np.outer(us[1], vs[1])
         for i in range(L):
             for j in range(L):
                 t = MathTex(str(int(M2[i, j])), font_size=22, color=WHITE)
@@ -748,6 +777,18 @@ class DataCompressionVectorApproximation(Scene):
         )
         self.wait(0.5)
 
+        svd_note = MathTex(
+            r"\boldsymbol{u}_1 \perp \boldsymbol{u}_2,\ \|\boldsymbol{u}_r\| = 1,\qquad"
+            r"\widetilde{\boldsymbol{v}}_1 \perp \widetilde{\boldsymbol{v}}_2,\ "
+            r"\|\widetilde{\boldsymbol{v}}_1\| = \sigma_1 = 9,\ "
+            r"\|\widetilde{\boldsymbol{v}}_2\| = \sigma_2 = 3\sqrt{2}",
+            font_size=28, color=GRAY,
+        )
+        self.fit(svd_note)
+        svd_note.shift(DOWN * 2.3)
+        self.play(FadeIn(svd_note), run_time=0.6)
+        self.wait(1.0)
+
         concl = Text(
             "ランク 1 の行列を R 個足し合わせると、元の行列 P を作れる",
             color=GREEN, font_size=26, weight=BOLD,
@@ -761,6 +802,6 @@ class DataCompressionVectorApproximation(Scene):
             FadeOut(intro), FadeOut(g1), FadeOut(mg1), FadeOut(lab1), FadeOut(nums1),
             FadeOut(plus), FadeOut(g2), FadeOut(mg2), FadeOut(lab2), FadeOut(nums2),
             FadeOut(equal), FadeOut(gP), FadeOut(labP), FadeOut(numsP),
-            FadeOut(concl),
+            FadeOut(svd_note), FadeOut(concl),
             run_time=0.8,
         )
