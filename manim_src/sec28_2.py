@@ -730,7 +730,7 @@ class DataCompressionVectorApproximation(Scene):
             "例：L = 3, R = 2。縦ベクトルと横ベクトルの積で行列を作る",
             color=WHITE, font_size=24,
         )
-        intro.shift(UP * 2.0)
+        intro.shift(UP * 1.8)
         self.fit(intro)
         self.play(Write(intro), run_time=0.8)
 
