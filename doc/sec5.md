@@ -31,5 +31,14 @@
 - [教科書に似た例](https://colab.research.google.com/drive/1m88rXIjVOImA5VZtJNeU7nvjogY_C023?usp=sharing)
 - [モダンな方法の例](https://colab.research.google.com/drive/1zIvQLFp7GYp8d8tAEy8R4omYQzCbkX2e?usp=sharing)
 
+# 第28話
+## 28.1
+### データ圧縮を考える（導入）
+<div><video controls src=""></video></div>
+
+## 28.2
+### データ圧縮を考える（ベクトルの近似）
+<div><video controls src=""></video></div>
+
 
 <!-- <div><video controls src=""></video></div> -->
