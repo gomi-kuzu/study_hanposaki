@@ -34,11 +34,10 @@
 # 第28話
 ## 28.1
 ### データ圧縮を考える（導入）
-<div><video controls src=""></video></div>
+<div><video controls src="https://github.com/user-attachments/assets/609fa43b-b8d7-40be-ac89-5789548f7743"></video></div>
 
 ## 28.2
 ### データ圧縮を考える（ベクトルの近似）
-<div><video controls src=""></video></div>
-
+<div><video controls src="https://github.com/user-attachments/assets/6804784b-d9b6-4c79-bb49-10db50ecf5ed"></video></div>
 
 <!-- <div><video controls src=""></video></div> -->
